@@ -56,7 +56,9 @@ public class Panel extends JPanel implements ActionListener, KeyListener {
         g2d.drawString(player2.name, player2.x, player2.y);
         g2d.drawImage(playerImage ,player1.x, player1.y,player1.width,player1.height, null);
         g2d.drawImage(playerImage ,player2.x, player2.y,player2.width,player2.height, null);
+        g2d.rotate(sword2.rotation, player1.x + player1.width/2, player1.y + player1.height/2);
         g2d.drawImage(swordImage,sword2.x, (int) (sword2.y - (double) player2.width), player2.width, player2.height*2, null);
+        g2d.rotate(-sword2.rotation, player1.x + player1.width/2, player1.y + player1.height/2);
         g2d.rotate(sword.rotation, player1.x + player1.width/2, player1.y + player1.height/2);
         g2d.drawImage(swordImage,sword.x, (int) (sword.y - (double) player1.width), player1.width, player1.height*2, null);
         g2d.rotate(-sword.rotation, player1.x + player1.width/2, player1.y + player1.height/2);
