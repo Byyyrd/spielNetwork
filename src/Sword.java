@@ -70,7 +70,8 @@ public class Sword implements MouseListener,ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
+        x = player.x;
+        y = player.y;
         cooldown--;
         if (offset > -Math.PI / 4) {
             counterOffset = 0;
