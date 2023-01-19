@@ -80,6 +80,7 @@ public class Panel extends JPanel implements ActionListener, KeyListener {
     public void actionPerformed(ActionEvent e) {
         client.sendMessage(player1,sword);
         player1.tick();
+        sword.tick();
         repaint();
     }
 }

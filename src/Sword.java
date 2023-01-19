@@ -1,9 +1,7 @@
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.*;
-import java.util.ArrayList;
 
-public class Sword implements MouseListener, ActionListener {
+public class Sword implements MouseListener {
     double rotation;
     long yLenght;
     long xLenght;
@@ -31,12 +29,10 @@ public class Sword implements MouseListener, ActionListener {
         this.player = player;
         this.width = player.width;
         this.height = player.height * 2;
-        timer = new Timer(10, this);
-        timer.start();
+
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
+    public void tick() {
         x = player.x;
         y = player.y;
         cooldown--;
