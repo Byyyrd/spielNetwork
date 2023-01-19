@@ -18,16 +18,27 @@ public class Panel extends JPanel implements ActionListener, KeyListener {
     Client client;
     Image playerImage;
     Image swordImage;
+    Image bowImage;
+    Image Triangle;
+    Weapon bow;
+    Weapon bow2;
+    double rotation2;
+    ArrayList<ArrayList<Double>> allArrows;
 
     public Panel(Client client) {
         playerImage = new ImageIcon("resources/Player.png").getImage();
         swordImage = new ImageIcon("resources/Sword.png").getImage();
+        bowImage = new ImageIcon("resources/bow.png").getImage();
         this.client = client;
         client.setClientPanel(this);
 
         player2 = new Player(100, 100,playerImage.getWidth(null)*3,playerImage.getHeight(null)*3,player2,sword);
         player1 = new Player(10, 10,playerImage.getWidth(null)*3,playerImage.getHeight(null)*3,player2,sword2);
 
+        bow = new Weapon(player1,this, bowImage);
+        bow2 = new Weapon(player2,this, bowImage);
+        Triangle = new ImageIcon("Triangle.png").getImage();
+        this.addMouseListener(bow);
 
         sword = new Sword(this,player1);
         sword2 = new Sword(this,player2);
@@ -62,6 +73,25 @@ public class Panel extends JPanel implements ActionListener, KeyListener {
         g2d.rotate(sword.rotation, player1.x + player1.width/2, player1.y + player1.height/2);
         g2d.drawImage(swordImage,sword.x, (int) (sword.y - (double) player1.width), player1.width, player1.height*2, null);
         g2d.rotate(-sword.rotation, player1.x + player1.width/2, player1.y + player1.height/2);
+        g2d.rotate(bow.playerRotation, player1.x + playerImage.getWidth(null)*3/2, player1.y + playerImage.getHeight(null)*3/2);
+        g2d.drawImage(bowImage ,player1.x + playerImage.getWidth(null) *3/2 - bowImage.getWidth(null)/48, player1.y + playerImage.getHeight(null)* 3/2 - bowImage.getHeight(null)/48, bowImage.getWidth(null)/24,bowImage.getHeight(null)/24, null);
+        g2d.rotate(-bow.playerRotation, player2.x, player2.y);
+        g2d.rotate(rotation2, player2.x + playerImage.getWidth(null)*3/2, player2.y + playerImage.getHeight(null)*3/2);
+        g2d.drawImage(bowImage ,player2.x + playerImage.getWidth(null) *3/2 - bowImage.getWidth(null)/48, player2.y + playerImage.getHeight(null)* 3/2 - bowImage.getHeight(null)/48, bowImage.getWidth(null)/24,bowImage.getHeight(null)/24, null);
+        g2d.rotate(-rotation2, player2.x, player2.y);
+        g2d.setColor(Color.RED);
+        for (int i = bow.allArrows.size() ;i >= 1  ;i--){
+            g2d.setColor(new Color(0, 0, 0));
+            g2d.fillOval((int) (bow.allArrows.get(i-1).get(0) + 5), (int) (bow.allArrows.get(i-1).get(1) + 5),10,10);
+        }
+        if (allArrows != null) {
+            for (int i = allArrows.size(); i >= 1; i--) {
+                g2d.setColor(new Color(0, 0, 0));
+                g2d.fillOval((int) (allArrows.get(i - 1).get(0) + 5), (int) (allArrows.get(i - 1).get(1) + 5), 10, 10);
+            }
+        }
+        g2d.rotate(bow.playerRotation, bow.x1 +bowImage.getWidth(null)/12,bow.y1+bowImage.getHeight(null)/12);
+        g2d.drawImage(Triangle,(int) bow.x1,(int) bow.y1,bowImage.getWidth(null)/12,bowImage.getHeight(null)/12,null);
     }
 
     public void keyTyped(KeyEvent e) {
@@ -78,9 +108,16 @@ public class Panel extends JPanel implements ActionListener, KeyListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        client.setWeapon(bow);
         client.sendMessage(player1,sword);
         player1.tick();
         sword.tick();
         repaint();
+    }
+    public void setRotation2(double bow2) {
+        this.rotation2 = bow2;
+    }
+    public void setAllArrows(ArrayList<ArrayList<Double>> allArrows) {
+        this.allArrows = allArrows;
     }
 }

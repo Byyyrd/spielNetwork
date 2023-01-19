@@ -13,6 +13,7 @@ public class Client {
     ObjectInputStream inputStream;
     ConnectionFrame conFrame;
     Panel panel;
+    Weapon weapon;
 
     public void setPanel(Panel panel) {
         this.panel = panel;
@@ -33,6 +34,8 @@ public class Client {
                     Message recievedObject = (Message) inputStream.readObject();
                     panel.setPlayer2(recievedObject.getX(),recievedObject.getY(),recievedObject.getName());
                     panel.sword2.rotation = recievedObject.getSwordRotation();
+                    panel.setRotation2(recievedObject.rotation);
+                    panel.setAllArrows(recievedObject.allArrows);
                 } catch (ClassNotFoundException e) {
                     System.out.println("Client hat Scheiße bekommen");
                 } catch (IOException e) {
@@ -45,12 +48,15 @@ public class Client {
     }
     public void sendMessage(Player player,Sword sword) {
         try {
-            outputStream.writeObject(new Message(player.x, player.y,name, sword.rotation));
+            outputStream.writeObject(new Message(player.x, player.y,name, sword.rotation, weapon.allArrows, weapon.playerRotation));
         } catch (IOException e) {
             System.out.println(e);
         }
     }
     public void setClientPanel(Panel panel){
         this.panel = panel;
+    }
+    public void setWeapon(Weapon wepon) {
+        this.weapon = weapon;
     }
 }
