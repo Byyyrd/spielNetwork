@@ -56,7 +56,7 @@ public class Client {
     public void setClientPanel(Panel panel){
         this.panel = panel;
     }
-    public void setWeapon(Weapon wepon) {
+    public void setWeapon(Weapon weapon) {
         this.weapon = weapon;
     }
 }
