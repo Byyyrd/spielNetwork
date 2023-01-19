@@ -23,7 +23,7 @@ public class Client {
         this.name = name;
         this.conFrame = conFrame;
 
-        conFrame.setVisible(false);
+        conFrame.setVisible(true);
         frame = new GameFrame(this);
         socket = new Socket(host, 30000);
         outputStream = new ObjectOutputStream(socket.getOutputStream());

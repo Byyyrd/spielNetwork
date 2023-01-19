@@ -78,7 +78,7 @@ public class Panel extends JPanel implements ActionListener, KeyListener {
         g2d.rotate(-bow.playerRotation, player1.x + playerImage.getWidth(null)*3/2, player1.y + playerImage.getHeight(null)*3/2);
         g2d.rotate(rotation2, player2.x + playerImage.getWidth(null)*3/2, player2.y + playerImage.getHeight(null)*3/2);
         g2d.drawImage(bowImage ,player2.x + playerImage.getWidth(null) *3/2 - bowImage.getWidth(null)/48, player2.y + playerImage.getHeight(null)* 3/2 - bowImage.getHeight(null)/48, bowImage.getWidth(null)/24,bowImage.getHeight(null)/24, null);
-        g2d.rotate(rotation2, player2.x + playerImage.getWidth(null)*3/2, player2.y + playerImage.getHeight(null)*3/2);
+        g2d.rotate(-rotation2, player2.x + playerImage.getWidth(null)*3/2, player2.y + playerImage.getHeight(null)*3/2);
         g2d.setColor(Color.RED);
         for (int i = bow.allArrows.size() ;i >= 1  ;i--){
             g2d.setColor(new Color(0, 0, 0));
