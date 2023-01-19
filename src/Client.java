@@ -21,6 +21,7 @@ public class Client {
     public Client(String host, String name, ConnectionFrame conFrame) throws IOException {
         this.name = name;
         this.conFrame = conFrame;
+
         conFrame.setVisible(false);
         frame = new GameFrame(this);
         socket = new Socket(host, 30000);
