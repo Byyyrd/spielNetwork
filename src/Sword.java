@@ -1,5 +1,7 @@
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
 
 public class Sword implements MouseListener, ActionListener {
     double rotation;
@@ -21,32 +23,35 @@ public class Sword implements MouseListener, ActionListener {
     Panel panel;
 
     Timer timer;
-    public Sword(Panel panel,Player player) {
-       this.panel = panel;
-       this.x = player.x;
-       this.y = player.y;
-       this.player = player;
-       this.width = player.width;
-       this.height = player.height*2;
-       timer = new Timer(10,this);
-       timer.start();
+
+    public Sword(Panel panel, Player player) {
+        this.panel = panel;
+        this.x = player.x;
+        this.y = player.y;
+        this.player = player;
+        this.width = player.width;
+        this.height = player.height * 2;
+        timer = new Timer(10, this);
+        timer.start();
     }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         x = player.x;
         y = player.y;
         cooldown--;
-        if(offset > -Math.PI/4){
+        if (offset > -Math.PI / 4) {
             counterOffset = 0;
             offset -= 0.25;
-        }else{
-            offset = -Math.PI/4;
-            counterOffset = Math.PI/4;
+        } else {
+            offset = -Math.PI / 4;
+            counterOffset = Math.PI / 4;
         }
-        if(panel.getMousePosition() != null && inScreen) {
-            yLenght = (long) ((panel.getMousePosition().getY()) - (y + player.height/2));
-            xLenght = (long) ((panel.getMousePosition().getX()) - (x + player.width/2));
-            rotation = (Math.atan2(yLenght, xLenght)) + Math.PI/2 + offset + counterOffset;
+
+        if (panel.getMousePosition() != null && inScreen) {
+            yLenght = (long) ((panel.getMousePosition().getY()) - (y + player.height / 2));
+            xLenght = (long) ((panel.getMousePosition().getX()) - (x + player.width / 2));
+            rotation = (Math.atan2(yLenght, xLenght)) + Math.PI / 2 + offset + counterOffset;
         }
     }
 
@@ -57,7 +62,7 @@ public class Sword implements MouseListener, ActionListener {
 
     @Override
     public void mousePressed(MouseEvent e) {
-        offset = Math.PI/2;
+        offset = Math.PI / 2;
     }
 
     @Override
@@ -74,6 +79,5 @@ public class Sword implements MouseListener, ActionListener {
     public void mouseExited(MouseEvent e) {
         inScreen = false;
     }
-
-
 }
+

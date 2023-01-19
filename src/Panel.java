@@ -18,7 +18,6 @@ public class Panel extends JPanel implements ActionListener, KeyListener {
     Client client;
     Image playerImage;
     Image swordImage;
-    //ArrayList<Arrow> projectiles = new ArrayList<>();
 
     public Panel(Client client) {
         playerImage = new ImageIcon("resources/Player.png").getImage();
@@ -61,7 +60,6 @@ public class Panel extends JPanel implements ActionListener, KeyListener {
         g2d.rotate(sword.rotation, player1.x + player1.width/2, player1.y + player1.height/2);
         g2d.drawImage(swordImage,sword.x, (int) (sword.y - (double) player1.width), player1.width, player1.height*2, null);
         g2d.rotate(-sword.rotation, player1.x + player1.width/2, player1.y + player1.height/2);
-        g2d.setColor(Color.RED);
     }
 
     public void keyTyped(KeyEvent e) {
@@ -78,7 +76,7 @@ public class Panel extends JPanel implements ActionListener, KeyListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        client.sendMessage(player1);
+        client.sendMessage(player1,sword);
         player1.tick();
         repaint();
     }

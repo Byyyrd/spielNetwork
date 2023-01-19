@@ -32,6 +32,7 @@ public class Client {
                     inputStream = new ObjectInputStream(socket.getInputStream());
                     Message recievedObject = (Message) inputStream.readObject();
                     panel.setPlayer2(recievedObject.getX(),recievedObject.getY(),recievedObject.getName());
+                    panel.sword2.rotation = recievedObject.getSwordRotation();
                 } catch (ClassNotFoundException e) {
                     System.out.println("Client hat Scheiße bekommen");
                 } catch (IOException e) {
@@ -42,9 +43,9 @@ public class Client {
         });
         socketThread.start();
     }
-    public void sendMessage(Player player) {
+    public void sendMessage(Player player,Sword sword) {
         try {
-            outputStream.writeObject(new Message(player.x, player.y,name));
+            outputStream.writeObject(new Message(player.x, player.y,name, sword.rotation));
         } catch (IOException e) {
             System.out.println(e);
         }
