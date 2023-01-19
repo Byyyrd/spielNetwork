@@ -24,14 +24,16 @@ public class Player implements Serializable {
 
     //ArrayList deadlyProjectiles;
     Sword enemySword;
+    ArrayList<ArrayList<Double>> allArrows;
 
-    public Player(int x, int y, int width, int height, Player player2, Sword enemySword) {
+    public Player(int x, int y, int width, int height, Player player2, Sword enemySword,ArrayList<ArrayList<Double>> allArrows) {
         this.player2 = player2;
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
         this.enemySword = enemySword;
+        this.allArrows = allArrows;
     }
 
     public void tick() {
@@ -45,6 +47,14 @@ public class Player implements Serializable {
             if (inRectangle(enemySword.x +21, enemySword.y-5, x, y, width, height) || inRectangle(enemySword.x +21, enemySword.y-25, x, y, width, height) ||inRectangle(enemySword.x +21, enemySword.y-45, x, y, width, height)) {
                 x = 0;
                 y = 0;
+            }
+        }
+        if (allArrows != null){
+            for (int i = 0; i < allArrows.size(); i++){
+                if(inRectangle((int)(allArrows.get(i).get(0)+5) , (int)(allArrows.get(i).get(1)+5),x,y,width,height)){
+                    x = 0;
+                    y = 0;
+                }
             }
         }
     }

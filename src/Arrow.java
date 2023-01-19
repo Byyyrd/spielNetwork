@@ -10,6 +10,18 @@ public class Arrow {
             this.roration = roration;
 
         }
+
+    public double getX() {
+        return x;
     }
+
+    public double getY() {
+        return y;
+    }
+
+    public double getRoration() {
+        return roration;
+    }
+}
 
 
