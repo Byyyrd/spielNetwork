@@ -34,9 +34,7 @@ public class Sword implements MouseListener,ActionListener {
     }
 
     public void tick() {
-        x = player.x;
-        y = player.y;
-        cooldown--;
+
         if (panel.getMousePosition() != null && inScreen) {
             yLenght = (long) ((panel.getMousePosition().getY()) - (y + player.height / 2));
             xLenght = (long) ((panel.getMousePosition().getX()) - (x + player.width / 2));
@@ -71,6 +69,9 @@ public class Sword implements MouseListener,ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        x = player.x;
+        y = player.y;
+        cooldown--;
         if (offset > -Math.PI / 4) {
             counterOffset = 0;
             offset -= 0.25;
