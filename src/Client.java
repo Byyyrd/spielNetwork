@@ -35,13 +35,19 @@ public class Client {
             while (true) {
                 try {
                     inputStream = new ObjectInputStream(socket.getInputStream());
-                    Message recievedObject = (Message) inputStream.readObject();
-                    panel.setPlayer2(recievedObject.getX(),recievedObject.getY(),recievedObject.getName());
-                    panel.sword2.rotation = recievedObject.getSwordRotation();
-                    panel.setRotation2(recievedObject.rotation);
-                    panel.setAllArrows(recievedObject.getAllArrows());
-                    panel.player2.setBowPickedup(recievedObject.bowPickedUp);
-                    System.out.println(recievedObject.getTest());
+                    if(inputStream.readObject().getClass() == Message.class) {
+                        Message recievedObject = (Message) inputStream.readObject();
+                        panel.setPlayer2(recievedObject.getX(), recievedObject.getY(), recievedObject.getName());
+                        panel.sword2.rotation = recievedObject.getSwordRotation();
+                        panel.setRotation2(recievedObject.rotation);
+                        //panel.setAllArrows(recievedObject.getAllArrows());
+                        panel.player2.setBowPickedup(recievedObject.bowPickedUp);
+                        System.out.println(recievedObject.getTest());
+                    }
+                    if (inputStream.readObject().getClass() == ArrayList.class){
+                        ArrayList recievedObject = (ArrayList) inputStream.readObject();
+                        panel.setAllArrows(recievedObject);
+                    }
                 } catch (ClassNotFoundException e) {
                     System.out.println("Client hat Scheiße bekommen");
                 } catch (IOException e) {

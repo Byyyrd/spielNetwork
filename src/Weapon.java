@@ -61,7 +61,8 @@ public class Weapon implements MouseListener, ActionListener {
         if(panel.getMousePosition() != null && entert) {
             yLenght = (long) ((panel.getMousePosition().getY()) - y1);
             xLenght = (long) ((panel.getMousePosition().getX()) - x1);
-            playerRotation = Math.atan2(yLenght, xLenght)+Math.PI;
+            playerRotation = Math.atan2(yLenght, xLenght) + Math.PI;
+        }
             for (int i = allArrows.size() ;i >= 1  ;i--) {
                 if (allArrows.get(i - 1)[0]==allArrows.get(i - 1)[2] && allArrows.get(i - 1)[3] < allArrows.get(i - 1)[1] ){
                     allArrows.get(i - 1)[3]=2500 + (allArrows.get(i - 1)[7] * allArrows.get(i - 1)[2] + allArrows.get(i - 1)[8]);
@@ -111,7 +112,7 @@ public class Weapon implements MouseListener, ActionListener {
 
             }
             //repaint();
-        }
+
 
     }
     public void CreateArrow(){
