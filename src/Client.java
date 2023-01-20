@@ -55,6 +55,7 @@ public class Client {
     public void sendMessage(Player player,Sword sword) {
         try {
             outputStream.writeObject(new Message(player.x, player.y,name, sword.rotation,allArrows, weapon.playerRotation,player.isBowPickedup()));
+            outputStream.writeObject(allArrows);
         } catch (IOException e) {
             System.out.println(e);
         }
