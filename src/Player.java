@@ -41,7 +41,7 @@ public class Player implements Serializable {
 
     public void checkCollision() {
         if (enemySword != null) {
-            if (inRectangle(enemySword.x +21, enemySword.y-5, x, y, width, height) || inRectangle(enemySword.x +21, enemySword.y-25, x, y, width, height) ||inRectangle(enemySword.x +21, enemySword.y-45, x, y, width, height)) {
+            if (inRectangle((int)(enemySword.x + 21 + Math.sin(enemySword.rotation) * 21),(int)(y + width/2 + Math.cos(enemySword.rotation) * -25),x,y, width, height) || inRectangle((int)(enemySword.x + 21 + Math.sin(enemySword.rotation) * 40),(int)(y + width/2 + Math.cos(enemySword.rotation) * -40),x,y, width, height) || inRectangle((int)(enemySword.x + 55 + Math.sin(enemySword.rotation) * -55),(int)(y + width/2 + Math.cos(enemySword.rotation) * -25),x,y, width, height) ) {
                 x = 0;
                 y = 0;
             }

@@ -50,7 +50,9 @@ public class Sword implements MouseListener,ActionListener {
 
     @Override
     public void mousePressed(MouseEvent e) {
-        offset = Math.PI / 2;
+        if(offset == -Math.PI / 4) {
+            offset = Math.PI / 2;
+        }
     }
 
     @Override
