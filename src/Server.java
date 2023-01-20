@@ -26,7 +26,7 @@ public class Server {
                     inputStream = new ObjectInputStream(socket.getInputStream());
                     while (true) {
 
-                        Message recievedObject = (Message) inputStream.readObject();
+                        var recievedObject =  inputStream.readObject();
                         for (int i = 0; i < socketList.size(); i++) {
                             if(socketList.get(i)!=socket) {
                                 try {
