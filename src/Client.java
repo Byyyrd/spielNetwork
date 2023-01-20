@@ -36,6 +36,7 @@ public class Client {
                     panel.sword2.rotation = recievedObject.getSwordRotation();
                     panel.setRotation2(recievedObject.rotation);
                     panel.setAllArrows(recievedObject.allArrows);
+                    panel.player2.setBowPickedup(recievedObject.bowPickedUp);
                 } catch (ClassNotFoundException e) {
                     System.out.println("Client hat Scheiße bekommen");
                 } catch (IOException e) {
@@ -48,7 +49,7 @@ public class Client {
     }
     public void sendMessage(Player player,Sword sword) {
         try {
-            outputStream.writeObject(new Message(player.x, player.y,name, sword.rotation, weapon.allArrows, weapon.playerRotation));
+            outputStream.writeObject(new Message(player.x, player.y,name, sword.rotation, weapon.allArrows, weapon.playerRotation,player.isBowPickedup()));
         } catch (IOException e) {
             System.out.println(e);
         }

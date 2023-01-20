@@ -8,25 +8,22 @@ public class Player implements Serializable {
     int width;
     int height;
     int speed = 5;
-
     boolean downPressed;
     boolean upPressed;
     boolean leftPressed;
     boolean rightPressed;
-
     double xVel;
     double yVel;
     double xDir;
     double yDir;
-
     String name = "";
     Player player2;
-
     //ArrayList deadlyProjectiles;
     Sword enemySword;
     ArrayList<ArrayList<Double>> allArrows;
-
+    boolean bowPickedup;
     public Player(int x, int y, int width, int height, Player player2, Sword enemySword,ArrayList<ArrayList<Double>> allArrows) {
+        bowPickedup = false;
         this.player2 = player2;
         this.x = x;
         this.y = y;
@@ -137,5 +134,13 @@ public class Player implements Serializable {
             return false;
         }
 
+    }
+
+    public boolean isBowPickedup() {
+        return bowPickedup;
+    }
+
+    public void setBowPickedup(boolean bowPickedup) {
+        this.bowPickedup = bowPickedup;
     }
 }

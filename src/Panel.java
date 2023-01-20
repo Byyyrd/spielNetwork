@@ -73,20 +73,23 @@ public class Panel extends JPanel implements ActionListener, KeyListener {
         g2d.rotate(sword.rotation, player1.x + player1.width/2, player1.y + player1.height/2);
         g2d.drawImage(swordImage,sword.x, (int) (sword.y - (double) player1.width), player1.width, player1.height*2, null);
         g2d.rotate(-sword.rotation, player1.x + player1.width/2, player1.y + player1.height/2);
-        g2d.rotate(bow.playerRotation, player1.x + playerImage.getWidth(null)*3/2, player1.y + playerImage.getHeight(null)*3/2);
-        g2d.drawImage(bowImage ,player1.x + playerImage.getWidth(null) *3/2 - bowImage.getWidth(null)/48, player1.y + playerImage.getHeight(null)* 3/2 - bowImage.getHeight(null)/48, bowImage.getWidth(null)/24,bowImage.getHeight(null)/24, null);
-        g2d.rotate(-bow.playerRotation, player1.x + playerImage.getWidth(null)*3/2, player1.y + playerImage.getHeight(null)*3/2);
-        g2d.rotate(rotation2, player2.x + playerImage.getWidth(null)*3/2, player2.y + playerImage.getHeight(null)*3/2);
-        g2d.drawImage(bowImage ,player2.x + playerImage.getWidth(null) *3/2 - bowImage.getWidth(null)/48, player2.y + playerImage.getHeight(null)* 3/2 - bowImage.getHeight(null)/48, bowImage.getWidth(null)/24,bowImage.getHeight(null)/24, null);
-        g2d.rotate(-rotation2, player2.x + playerImage.getWidth(null)*3/2, player2.y + playerImage.getHeight(null)*3/2);
-        g2d.setColor(Color.RED);
+        if (player1.isBowPickedup()) {
+            g2d.rotate(bow.playerRotation, player1.x + playerImage.getWidth(null) * 3 / 2, player1.y + playerImage.getHeight(null) * 3 / 2);
+            g2d.drawImage(bowImage, player1.x + playerImage.getWidth(null) * 3 / 2 - bowImage.getWidth(null) / 48, player1.y + playerImage.getHeight(null) * 3 / 2 - bowImage.getHeight(null) / 48, bowImage.getWidth(null) / 24, bowImage.getHeight(null) / 24, null);
+            g2d.rotate(-bow.playerRotation, player1.x + playerImage.getWidth(null) * 3 / 2, player1.y + playerImage.getHeight(null) * 3 / 2);
+        }
+        if (player2.isBowPickedup()) {
+            g2d.rotate(rotation2, player2.x + playerImage.getWidth(null) * 3 / 2, player2.y + playerImage.getHeight(null) * 3 / 2);
+            g2d.drawImage(bowImage, player2.x + playerImage.getWidth(null) * 3 / 2 - bowImage.getWidth(null) / 48, player2.y + playerImage.getHeight(null) * 3 / 2 - bowImage.getHeight(null) / 48, bowImage.getWidth(null) / 24, bowImage.getHeight(null) / 24, null);
+            g2d.rotate(-rotation2, player2.x + playerImage.getWidth(null) * 3 / 2, player2.y + playerImage.getHeight(null) * 3 / 2);
+        }
         for (int i = bow.allArrows.size() ;i >= 1  ;i--){
-            g2d.setColor(new Color(0, 0, 0));
+            g2d.setColor(new Color(75, 75, 75));
             g2d.fillOval((int) (bow.allArrows.get(i-1).get(0) + 5), (int) (bow.allArrows.get(i-1).get(1) + 5),10,10);
         }
         if (allArrows != null) {
             for (int i = allArrows.size(); i >= 1; i--) {
-                g2d.setColor(new Color(0, 0, 0));
+                g2d.setColor(new Color(75, 75, 75));
                 g2d.fillOval((int) (allArrows.get(i - 1).get(0) + 5), (int) (allArrows.get(i - 1).get(1) + 5), 10, 10);
             }
         }
