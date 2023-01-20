@@ -30,7 +30,9 @@ public class Message implements Serializable {
         testaray[7] = 234.35;
         testaray[8] = 546.214;
         test.add(testaray);
-
+        for (int i = 0; i < allArrows.size(); i++) {
+            this.allArrows.add(allArrows.get(i));
+        }
     }
 
     public int getX() {

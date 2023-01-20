@@ -41,7 +41,7 @@ public class Client {
                     panel.setRotation2(recievedObject.rotation);
                     panel.setAllArrows(recievedObject.getAllArrows());
                     panel.player2.setBowPickedup(recievedObject.bowPickedUp);
-                    System.out.println(allArrows);
+                    System.out.println(recievedObject.getAllArrows());
                 } catch (ClassNotFoundException e) {
                     System.out.println("Client hat Scheiße bekommen");
                 } catch (IOException e) {
