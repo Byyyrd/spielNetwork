@@ -19,10 +19,18 @@ public class Message implements Serializable {
         this.allArrows = allArrows;
         this.rotation = rotation;
         this.bowPickedUp = bowPickedUp;
-        Double[] testaray = new Double[2];
+        Double[] testaray = new Double[9];
         testaray[0] = 546.214;
         testaray[1] = 234.35;
+        testaray[2] = 546.214;
+        testaray[3] = 234.35;
+        testaray[4] = 546.214;
+        testaray[5] = 234.35;
+        testaray[6] = 546.214;
+        testaray[7] = 234.35;
+        testaray[8] = 546.214;
         test.add(testaray);
+
     }
 
     public int getX() {
