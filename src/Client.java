@@ -5,6 +5,7 @@ import java.net.Socket;
 import java.util.ArrayList;
 
 import static java.lang.System.exit;
+import static java.lang.System.setOut;
 
 public class Client {
     String name;
@@ -16,7 +17,7 @@ public class Client {
     Panel panel;
     Weapon weapon;
 
-    ArrayList<ArrayList<Double>> allArrows;
+    ArrayList<Double[]> allArrows;
 
     public void setPanel(Panel panel) {
         this.panel = panel;
@@ -38,7 +39,7 @@ public class Client {
                     panel.setPlayer2(recievedObject.getX(),recievedObject.getY(),recievedObject.getName());
                     panel.sword2.rotation = recievedObject.getSwordRotation();
                     panel.setRotation2(recievedObject.rotation);
-                    panel.setAllArrows(recievedObject.allArrows);
+                    panel.setAllArrows(recievedObject.getAllArrows());
                     panel.player2.setBowPickedup(recievedObject.bowPickedUp);
                 } catch (ClassNotFoundException e) {
                     System.out.println("Client hat Scheiße bekommen");
@@ -60,7 +61,7 @@ public class Client {
     public void setClientPanel(Panel panel){
         this.panel = panel;
     }
-    public void setAllArrows(ArrayList<ArrayList<Double>> allArrows) {
+    public void setAllArrows(ArrayList<Double[]> allArrows) {
         this.allArrows = allArrows;
     }
 

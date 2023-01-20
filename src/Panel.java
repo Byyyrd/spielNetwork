@@ -23,7 +23,7 @@ public class Panel extends JPanel implements ActionListener, KeyListener {
     Weapon bow;
     Weapon bow2;
     double rotation2;
-    ArrayList<ArrayList<Double>> allArrows;
+    ArrayList<Double[]> allArrows;
 
     public Panel(Client client) {
         playerImage = new ImageIcon("resources/Player.png").getImage();
@@ -85,12 +85,12 @@ public class Panel extends JPanel implements ActionListener, KeyListener {
         }
         for (int i = bow.allArrows.size() ;i >= 1  ;i--){
             g2d.setColor(new Color(75, 75, 75));
-            g2d.fillOval((int) (bow.allArrows.get(i-1).get(0) + 5), (int) (bow.allArrows.get(i-1).get(1) + 5),10,10);
+            g2d.fillOval((int) (bow.allArrows.get(i-1)[0] + 5), (int) (bow.allArrows.get(i-1)[1] + 5),10,10);
         }
         if (allArrows != null) {
             for (int i = allArrows.size(); i >= 1; i--) {
                 g2d.setColor(new Color(75, 75, 75));
-                g2d.fillOval((int) (allArrows.get(i - 1).get(0) + 5), (int) (allArrows.get(i - 1).get(1) + 5), 10, 10);
+                g2d.fillOval((int) (allArrows.get(i - 1)[0] + 5), (int) (allArrows.get(i - 1)[1] + 5), 10, 10);
             }
         }
         g2d.rotate(bow.playerRotation, bow.x1 +bowImage.getWidth(null)/12,bow.y1+bowImage.getHeight(null)/12);
@@ -121,7 +121,7 @@ public class Panel extends JPanel implements ActionListener, KeyListener {
     public void setRotation2(double bow2) {
         this.rotation2 = bow2;
     }
-    public void setAllArrows(ArrayList<ArrayList<Double>> allArrows) {
+    public void setAllArrows(ArrayList<Double[]> allArrows) {
         this.allArrows = allArrows;
     }
 }

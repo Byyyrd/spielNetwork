@@ -6,11 +6,11 @@ public class Message implements Serializable {
     private int y;
     private String name;
     private double swordRotation;
-    ArrayList<ArrayList<Double>> allArrows;
+    private ArrayList<Double[]> allArrows;
     double rotation;
     boolean bowPickedUp;
 
-    public Message(int x, int y, String name, double swordRotation, ArrayList<ArrayList<Double>> allArrows, double rotation, boolean bowPickedUp) {
+    public Message(int x, int y, String name, double swordRotation, ArrayList<Double[]> allArrows, double rotation, boolean bowPickedUp) {
         this.x = x;
         this.y = y;
         this.name = name;
@@ -34,5 +34,9 @@ public class Message implements Serializable {
 
     public double getSwordRotation() {
         return swordRotation;
+    }
+
+    public ArrayList<Double[]> getAllArrows() {
+        return allArrows;
     }
 }

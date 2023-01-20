@@ -20,9 +20,9 @@ public class Player implements Serializable {
     Player player2;
     //ArrayList deadlyProjectiles;
     Sword enemySword;
-    ArrayList<ArrayList<Double>> allArrows;
+    ArrayList<Double[]> allArrows;
     boolean bowPickedup;
-    public Player(int x, int y, int width, int height, Player player2, Sword enemySword,ArrayList<ArrayList<Double>> allArrows) {
+    public Player(int x, int y, int width, int height, Player player2, Sword enemySword,ArrayList<Double[]> allArrows) {
         bowPickedup = true;
         this.player2 = player2;
         this.x = x;
@@ -48,7 +48,7 @@ public class Player implements Serializable {
         }
         if (allArrows != null){
             for (int i = 0; i < allArrows.size(); i++){
-                if(inRectangle((int)(allArrows.get(i).get(0)+5) , (int)(allArrows.get(i).get(1)+5),x,y,width,height)){
+                if(inRectangle((int)(allArrows.get(i)[0]+5) , (int)(allArrows.get(i)[1]+5),x,y,width,height)){
                     x = 0;
                     y = 0;
                 }
