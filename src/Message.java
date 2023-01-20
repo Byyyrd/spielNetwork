@@ -21,6 +21,7 @@ public class Message implements Serializable {
         this.bowPickedUp = bowPickedUp;
         Double[] testaray = new Double[2];
         testaray[0] = 546.214;
+        testaray[1] = 234.35;
         test.add(testaray);
     }
 
