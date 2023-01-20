@@ -27,6 +27,7 @@ public class Server {
                     while (true) {
 
                         Message recievedObject = (Message) inputStream.readObject();
+                        System.out.println(recievedObject.getAllArrows());
                         for (int i = 0; i < socketList.size(); i++) {
                             if(socketList.get(i)!=socket) {
                                 try {
