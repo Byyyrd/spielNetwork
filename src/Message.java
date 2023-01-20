@@ -7,6 +7,7 @@ public class Message implements Serializable {
     private String name;
     private double swordRotation;
     private ArrayList<Double[]> allArrows;
+    private ArrayList<Double[]> test = new ArrayList<>();
     double rotation;
     boolean bowPickedUp;
 
@@ -18,6 +19,9 @@ public class Message implements Serializable {
         this.allArrows = allArrows;
         this.rotation = rotation;
         this.bowPickedUp = bowPickedUp;
+        Double[] testaray = new Double[2];
+        testaray[0] = 546.214;
+        test.add(testaray);
     }
 
     public int getX() {
@@ -38,5 +42,9 @@ public class Message implements Serializable {
 
     public ArrayList<Double[]> getAllArrows() {
         return allArrows;
+    }
+
+    public ArrayList<Double[]> getTest() {
+        return test;
     }
 }
