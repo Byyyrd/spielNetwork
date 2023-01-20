@@ -63,4 +63,8 @@ public class Client {
     public void setAllArrows(ArrayList<ArrayList<Double>> allArrows) {
         this.allArrows = allArrows;
     }
+
+    public void setWeapon(Weapon weapon) {
+        this.weapon = weapon;
+    }
 }
