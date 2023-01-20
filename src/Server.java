@@ -25,9 +25,10 @@ public class Server {
                 try {
                     inputStream = new ObjectInputStream(socket.getInputStream());
                     while (true) {
-                        var recievedObject = inputStream.readObject();
+
+                        Message recievedObject = (Message) inputStream.readObject();
                         for (int i = 0; i < socketList.size(); i++) {
-                            if (socketList.get(i) != socket) {
+                            if(socketList.get(i)!=socket) {
                                 try {
                                     outputstream = new ObjectOutputStream(socketList.get(i).getOutputStream());
                                     outputstream.writeObject(recievedObject);
