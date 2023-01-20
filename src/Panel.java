@@ -111,7 +111,7 @@ public class Panel extends JPanel implements ActionListener, KeyListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        client.setWeapon(bow);
+        client.setAllArrows(bow.allArrows);
         client.sendMessage(player1,sword);
         player1.tick();
         sword.tick();

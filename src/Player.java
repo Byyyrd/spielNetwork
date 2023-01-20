@@ -23,7 +23,7 @@ public class Player implements Serializable {
     ArrayList<ArrayList<Double>> allArrows;
     boolean bowPickedup;
     public Player(int x, int y, int width, int height, Player player2, Sword enemySword,ArrayList<ArrayList<Double>> allArrows) {
-        bowPickedup = false;
+        bowPickedup = true;
         this.player2 = player2;
         this.x = x;
         this.y = y;

@@ -2,6 +2,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.ArrayList;
 
 import static java.lang.System.exit;
 
@@ -14,6 +15,8 @@ public class Client {
     ConnectionFrame conFrame;
     Panel panel;
     Weapon weapon;
+
+    ArrayList<ArrayList<Double>> allArrows;
 
     public void setPanel(Panel panel) {
         this.panel = panel;
@@ -49,7 +52,7 @@ public class Client {
     }
     public void sendMessage(Player player,Sword sword) {
         try {
-            outputStream.writeObject(new Message(player.x, player.y,name, sword.rotation, weapon.allArrows, weapon.playerRotation,player.isBowPickedup()));
+            outputStream.writeObject(new Message(player.x, player.y,name, sword.rotation,allArrows, weapon.playerRotation,player.isBowPickedup()));
         } catch (IOException e) {
             System.out.println(e);
         }
@@ -57,7 +60,7 @@ public class Client {
     public void setClientPanel(Panel panel){
         this.panel = panel;
     }
-    public void setWeapon(Weapon weapon) {
-        this.weapon = weapon;
+    public void setAllArrows(ArrayList<ArrayList<Double>> allArrows) {
+        this.allArrows = allArrows;
     }
 }
