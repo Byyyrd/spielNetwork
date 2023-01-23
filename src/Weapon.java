@@ -55,7 +55,7 @@ public class Weapon implements MouseListener, ActionListener {
 
     @Override
     public void mouseExited(MouseEvent e) {
-        entert = false;
+        //entert = false;
     }
 
     @Override

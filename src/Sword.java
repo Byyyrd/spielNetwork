@@ -67,7 +67,7 @@ public class Sword implements MouseListener,ActionListener {
 
     @Override
     public void mouseExited(MouseEvent e) {
-        inScreen = false;
+        //inScreen = false;
     }
 
     @Override
