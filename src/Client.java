@@ -39,6 +39,7 @@ public class Client {
                     panel.setPlayer2(recievedObject.getX(), recievedObject.getY(), recievedObject.getName());
                     panel.sword2.rotation = recievedObject.getSwordRotation();
                     panel.setRotation2(recievedObject.rotation);
+                    panel.player2.setSwordPickedup(recievedObject.swordPickedUp);
                     if (recievedObject.isClicked){
                         panel.bow2.player2CreateArrow(recievedObject.mouseX,recievedObject.mouseY);
                     }
@@ -60,7 +61,7 @@ public class Client {
     }
     public void sendMessage(Player player,Sword sword) {
         try {
-            message = new Message(player.x, player.y,name, sword.rotation, weapon.playerRotation,player.isBowPickedup(),panel.getMousePosition().getX(), panel.getMousePosition().getY(),isClicked);
+            message = new Message(player.x, player.y,name, sword.rotation, weapon.playerRotation,player.isBowPickedup(),panel.getMousePosition().getX(), panel.getMousePosition().getY(),isClicked, player.swordPickedup);
             outputStream.writeObject(message);
             isClicked = false;
             //soutputStream.writeObject(allArrows);

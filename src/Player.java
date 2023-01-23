@@ -22,8 +22,10 @@ public class Player implements Serializable {
     Sword enemySword;
     ArrayList<Double[]> allArrows;
     boolean bowPickedup;
+    boolean swordPickedup;
     public Player(int x, int y, int width, int height, Player player2, Sword enemySword) {
-        bowPickedup = true;
+        bowPickedup = false;
+        swordPickedup = false;
         this.player2 = player2;
         this.x = x;
         this.y = y;
@@ -39,7 +41,7 @@ public class Player implements Serializable {
     }
 
     public void checkCollision() {
-        if (enemySword != null) {
+        if (enemySword != null && player2.swordPickedup) {
             if (inRectangle((int)(enemySword.x + 21 + Math.sin(enemySword.rotation) * 21),(int)(enemySword. y + width/2 + Math.cos(enemySword.rotation) * -25),x,y, width, height) || inRectangle((int)(enemySword.x + 21 + Math.sin(enemySword.rotation) * 40),(int)(enemySword.y + width/2 + Math.cos(enemySword.rotation) * -40),x,y, width, height) || inRectangle((int)(enemySword.x + 21 + Math.sin(enemySword.rotation) * 55),(int)(enemySword.y + width/2 + Math.cos(enemySword.rotation) * -55),x,y, width, height) ) {
                 x = 0;
                 y = 0;
@@ -145,5 +147,12 @@ public class Player implements Serializable {
 
     public void setAllArrows(ArrayList<Double[]> allArrows) {
         this.allArrows = allArrows;
+    }
+
+    public boolean isSwordPickedup() {
+        return swordPickedup;
+    }
+    public void setSwordPickedup(boolean swordPickedup) {
+        this.swordPickedup = swordPickedup;
     }
 }

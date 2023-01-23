@@ -91,12 +91,16 @@ public class Panel extends JPanel implements ActionListener, KeyListener {
         g2d.drawImage(playerImage, player2.x, player2.y, player2.width, player2.height, null);
 
         //Swords
-        g2d.rotate(sword2.rotation, player2.x + player2.width * 0.5, player2.y + player2.height * 0.5);
-        g2d.drawImage(swordImage, sword2.x, (int) (sword2.y - (double) player2.width), player2.width, player2.height * 2, null);
-        g2d.rotate(-sword2.rotation, player2.x + player2.width * 0.5, player2.y + player2.height * 0.5);
-        g2d.rotate(sword.rotation, player1.x + player1.width * 0.5, player1.y + player1.height * 0.5);
-        g2d.drawImage(swordImage, sword.x, (int) (sword.y - (double) player1.width), player1.width, player1.height * 2, null);
-        g2d.rotate(-sword.rotation, player1.x + player1.width * 0.5, player1.y + player1.height * 0.5);
+        if(player2.swordPickedup) {
+            g2d.rotate(sword2.rotation, player2.x + player2.width * 0.5, player2.y + player2.height * 0.5);
+            g2d.drawImage(swordImage, sword2.x, (int) (sword2.y - (double) player2.width), player2.width, player2.height * 2, null);
+            g2d.rotate(-sword2.rotation, player2.x + player2.width * 0.5, player2.y + player2.height * 0.5);
+        }
+        if(player1.swordPickedup) {
+            g2d.rotate(sword.rotation, player1.x + player1.width * 0.5, player1.y + player1.height * 0.5);
+            g2d.drawImage(swordImage, sword.x, (int) (sword.y - (double) player1.width), player1.width, player1.height * 2, null);
+            g2d.rotate(-sword.rotation, player1.x + player1.width * 0.5, player1.y + player1.height * 0.5);
+        }
 
         //Slingshot
         if (player1.isBowPickedup()) {
