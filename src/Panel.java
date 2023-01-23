@@ -114,7 +114,7 @@ public class Panel extends JPanel implements ActionListener, KeyListener {
         if (bow2.allArrows != null) {
             for (int i = bow2.allArrows.size(); i >= 1; i--) {
                 g2d.setColor(new Color(75, 75, 75));
-                g2d.fillOval((int) (allArrows.get(i - 1)[0] + 5), (int) (allArrows.get(i - 1)[1] + 5), 10, 10);
+                g2d.fillOval((int) (bow2.allArrows.get(i - 1)[0] + 5), (int) (bow2.allArrows.get(i - 1)[1] + 5), 10, 10);
             }
         }
         //Sword Collision Points
