@@ -19,6 +19,7 @@ public class Message implements Serializable {
         this.allArrows = allArrows;
         this.rotation = rotation;
         this.bowPickedUp = bowPickedUp;
+
         /*Double[] testaray = new Double[9];
         testaray[0] = 546.214;
         testaray[1] = 234.35;
@@ -56,5 +57,8 @@ public class Message implements Serializable {
 
     public ArrayList<Double[]> getTest() {
         return test;
+    }
+    public void addArrows(Double[] arrow){
+        allArrows.add(arrow);
     }
 }

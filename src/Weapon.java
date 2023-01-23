@@ -17,11 +17,13 @@ public class Weapon implements MouseListener, ActionListener {
     Panel panel;
     Image image;
     Timer timer;
+    Client client;
     ArrayList<Double[]> allArrows = new ArrayList<>();
 
     public Weapon(Player player, Panel panel, Image image) {
         this.player = player;
         this.panel = panel;
+        client = panel.client;
         this.image = image;
         timer = new Timer(10,this);
         timer.start();
@@ -137,5 +139,6 @@ public class Weapon implements MouseListener, ActionListener {
         Arrow[7]=((panel.getMousePosition().getY()-y1)/(panel.getMousePosition().getX()-x1));//LineareFunktion : m Index = 7
         Arrow[8]=(y1 - ((panel.getMousePosition().getY()-y1)/(panel.getMousePosition().getX()-x1))* x1); //LineareFunktion : b Index = 8
         allArrows.add(Arrow);
+        client.message.addArrows(Arrow);
     }
 }
