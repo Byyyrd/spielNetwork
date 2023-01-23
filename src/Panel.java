@@ -11,23 +11,37 @@ import java.util.Objects;
 public class Panel extends JPanel implements ActionListener, KeyListener {
     Player player1;
     Player player2;
+
     Sword sword;
     Sword sword2;
-    Timer timer;
-    private int delay = 10;
-    Client client;
-    Image playerImage;
-    Image swordImage;
-    Image bowImage;
+
     Weapon bow;
     Weapon bow2;
     double rotation2;
+
+
+    Client client;
+    Timer timer;
+
+    Image playerImage;
+    Image swordImage;
+    Image bowImage;
+    Image bgrImage;
+    int bgrWidth;
+    int bgrHeight;
+
+    private int delay = 10;
+
     ArrayList<Double[]> allArrows;
 
     public Panel(Client client) {
         playerImage = new ImageIcon("resources/Player.png").getImage();
         swordImage = new ImageIcon("resources/Sword.png").getImage();
         bowImage = new ImageIcon("resources/bow.png").getImage();
+        bgrImage = new ImageIcon("resources/Background.jpg").getImage();
+        bgrHeight = bgrImage.getHeight(null);
+        bgrWidth = bgrImage.getWidth(null);
+
         this.client = client;
         client.setClientPanel(this);
 
@@ -60,17 +74,27 @@ public class Panel extends JPanel implements ActionListener, KeyListener {
     public void paint(Graphics g) {
         super.paint(g);
         Graphics2D g2d = (Graphics2D) g;
-        g2d.setBackground(new Color(255, 255, 255));
+        //Background
+        g2d.drawImage(bgrImage,0,0,bgrWidth,bgrHeight,null);
+        g2d.drawImage(bgrImage,0,bgrHeight,bgrWidth,bgrHeight,null);
+
+        //Player Names
         g2d.drawString(client.name, player1.x, player1.y);
         g2d.drawString(player2.name, player2.x, player2.y);
+
+        //Player
         g2d.drawImage(playerImage, player1.x, player1.y, player1.width, player1.height, null);
         g2d.drawImage(playerImage, player2.x, player2.y, player2.width, player2.height, null);
+
+        //Swords
         g2d.rotate(sword2.rotation, player2.x + player2.width / 2, player2.y + player2.height / 2);
         g2d.drawImage(swordImage, sword2.x, (int) (sword2.y - (double) player2.width), player2.width, player2.height * 2, null);
         g2d.rotate(-sword2.rotation, player2.x + player2.width / 2, player2.y + player2.height / 2);
         g2d.rotate(sword.rotation, player1.x + player1.width / 2, player1.y + player1.height / 2);
         g2d.drawImage(swordImage, sword.x, (int) (sword.y - (double) player1.width), player1.width, player1.height * 2, null);
         g2d.rotate(-sword.rotation, player1.x + player1.width / 2, player1.y + player1.height / 2);
+
+        //Slingshot
         if (player1.isBowPickedup()) {
             g2d.rotate(bow.playerRotation, player1.x + playerImage.getWidth(null) * 3 / 2, player1.y + playerImage.getHeight(null) * 3 / 2);
             g2d.drawImage(bowImage, player1.x + playerImage.getWidth(null) * 3 / 2 - bowImage.getWidth(null) / 48, player1.y + playerImage.getHeight(null) * 3 / 2 - bowImage.getHeight(null) / 48, bowImage.getWidth(null) / 24, bowImage.getHeight(null) / 24, null);
