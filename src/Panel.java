@@ -107,8 +107,8 @@ public class Panel extends JPanel implements ActionListener, KeyListener {
             g2d.setColor(new Color(75, 75, 75));
             g2d.fillOval((int) (bow.allArrows.get(i - 1)[0] + 5), (int) (bow.allArrows.get(i - 1)[1] + 5), 10, 10);
         }
-        if (allArrows != null) {
-            for (int i = allArrows.size(); i >= 1; i--) {
+        if (bow2.allArrows != null) {
+            for (int i = bow2.allArrows.size(); i >= 1; i--) {
                 g2d.setColor(new Color(75, 75, 75));
                 g2d.fillOval((int) (allArrows.get(i - 1)[0] + 5), (int) (allArrows.get(i - 1)[1] + 5), 10, 10);
             }
@@ -133,12 +133,13 @@ public class Panel extends JPanel implements ActionListener, KeyListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        client.setWeapon(bow);
-        client.setAllArrows(bow.allArrows);
-        client.sendMessage(player1, sword);
-        player1.tick();
-        sword.tick();
-        repaint();
+        if(this.getMousePosition() != null && bow.entert) {
+            client.setWeapon(bow);
+            client.sendMessage(player1, sword);
+            player1.tick();
+            sword.tick();
+            repaint();
+        }
     }
 
     public void setRotation2(double bow2) {

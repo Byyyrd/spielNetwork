@@ -6,32 +6,23 @@ public class Message implements Serializable {
     private int y;
     private String name;
     private double swordRotation;
-    private ArrayList<Double[]> allArrows;
-    private ArrayList<Double[]> test = new ArrayList<>();
     double rotation;
     boolean bowPickedUp;
+    double mouseX;
+    double mouseY;
+    boolean isClicked;
 
-    public Message(int x, int y, String name, double swordRotation, ArrayList<Double[]> allArrows, double rotation, boolean bowPickedUp) {
+    public Message(int x, int y, String name, double swordRotation, double rotation, boolean bowPickedUp, double mouseX, double mouseY, boolean isClicked) {
         this.x = x;
         this.y = y;
         this.name = name;
         this.swordRotation = swordRotation;
-        this.allArrows = allArrows;
         this.rotation = rotation;
         this.bowPickedUp = bowPickedUp;
+        this.mouseX = mouseX;
+        this.mouseY = mouseY;
+        this.isClicked = isClicked;
 
-        /*Double[] testaray = new Double[9];
-        testaray[0] = 546.214;
-        testaray[1] = 234.35;
-        testaray[2] = 546.214;
-        testaray[3] = 234.35;
-        testaray[4] = 546.214;
-        testaray[5] = 234.35;
-        testaray[6] = 546.214;
-        testaray[7] = 234.35;
-        testaray[8] = 546.214;
-        test.add(testaray);*/
-        test = allArrows;
 
     }
 
@@ -51,14 +42,4 @@ public class Message implements Serializable {
         return swordRotation;
     }
 
-    public ArrayList<Double[]> getAllArrows() {
-        return allArrows;
-    }
-
-    public ArrayList<Double[]> getTest() {
-        return test;
-    }
-    public void addArrows(Double[] arrow){
-        allArrows.add(arrow);
-    }
 }

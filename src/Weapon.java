@@ -38,6 +38,7 @@ public class Weapon implements MouseListener, ActionListener {
     public void mousePressed(MouseEvent e) {
         if (player.isBowPickedup()) {
             CreateArrow();
+            client.setClicked(true);
         }
     }
 
@@ -139,6 +140,28 @@ public class Weapon implements MouseListener, ActionListener {
         Arrow[7]=((panel.getMousePosition().getY()-y1)/(panel.getMousePosition().getX()-x1));//LineareFunktion : m Index = 7
         Arrow[8]=(y1 - ((panel.getMousePosition().getY()-y1)/(panel.getMousePosition().getX()-x1))* x1); //LineareFunktion : b Index = 8
         allArrows.add(Arrow);
-        client.message.addArrows(Arrow);
+    }
+    public void player2CreateArrow(double mouseX, double mouseY){
+        Double[] Arrow = new Double[9];
+        Arrow[0]=((double) player.x);// x1 Index = 0
+        Arrow[1]=((double) player.y);// y1 Index = 1
+        if (x1 > panel.getMousePosition().getX() ){
+            Arrow[2]=((mouseX)-500);//x2 Index = 2
+        }
+        else if (x1 < mouseX ) {
+            Arrow[2]=(mouseX + 500);//x2 Index = 2
+        }
+        else {
+            Arrow[2]=(mouseX);//x2 Index = 2
+        }
+
+        //Arrow.add((this.getMousePosition().getX())*1);//x2 Index = 2
+        Arrow[3]=(mouseY);//y2 Index = 3
+        Arrow[4]=(0.0); //Rotation Index = 4
+        Arrow[5]=(0.0); //xLength Index = 5
+        Arrow[6]=(0.0); //yLength Index = 6
+        Arrow[7]=((mouseY-y1)/(mouseX-x1));//LineareFunktion : m Index = 7
+        Arrow[8]=(y1 - ((mouseY-y1)/(mouseX-x1))* x1); //LineareFunktion : b Index = 8
+        allArrows.add(Arrow);
     }
 }
