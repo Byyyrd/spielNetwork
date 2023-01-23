@@ -2,13 +2,16 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.io.IOException;
 
-public class ConnectionFrame extends JFrame implements ActionListener{
+public class ConnectionFrame extends JFrame implements ActionListener, KeyListener {
     JButton button;
     JTextArea textField1;
     JTextArea textField2;
     public ConnectionFrame() {
+        this.addKeyListener(this);
         Font font = new Font("Arial", Font.PLAIN, 20);
         JPanel panel = new JPanel();
         button = new JButton();
@@ -45,6 +48,7 @@ public class ConnectionFrame extends JFrame implements ActionListener{
         textField2.setFont(font);
         textField2.setBounds(150,120,200,20);
         textField2.setForeground(new Color(255,255,255));
+        textField2.setText("Test");
 
         panel.setLayout(null);
         panel.setBackground(new Color(80, 80, 80));
@@ -67,8 +71,31 @@ public class ConnectionFrame extends JFrame implements ActionListener{
         try {
             var client = new Client(textField1.getText(),textField2.getText(),this);
             System.out.println("New Client");
+            this.setVisible(false);
         } catch (IOException ex) {
             System.out.println("IOConnectionError");
         }
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        if(e.getKeyCode() == 13){
+            try {
+                var client = new Client(textField1.getText(),textField2.getText(),this);
+                System.out.println("New Client");
+            } catch (IOException ex) {
+                System.out.println("IOConnectionError");
+            }
+        }
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+
     }
 }

@@ -85,6 +85,7 @@ public class Panel extends JPanel implements ActionListener, KeyListener {
         //g2d.drawImage(bgrImage,0,bgrHeight,bgrWidth,bgrHeight,null);
 
         //Player Names
+        g2d.setColor(Color.red);
         g2d.drawString(client.name, player1.x, player1.y);
         g2d.drawString(player2.name, player2.x, player2.y);
 
