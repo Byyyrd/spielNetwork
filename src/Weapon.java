@@ -95,15 +95,8 @@ public class Weapon implements MouseListener, ActionListener {
             }
         }
 
-
-
-        if(yLenght>-3 && yLenght < 3 || xLenght < 3 && xLenght > -3){
-
-        }
-        else{
             x1 = x1 + (int) (Math.cos(playerRotation) * 500 * 0.01);
             y1 = y1 + (int) (Math.sin(playerRotation) * 500 * 0.01);
-        }
        /*if ((Math.toDegrees(playerRotation)-45)>360){
            playerRotation = playerRotation - Math.toRadians(360) ;
        }*/

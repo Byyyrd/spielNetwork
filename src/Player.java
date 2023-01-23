@@ -34,7 +34,7 @@ public class Player implements Serializable {
         this.enemySword = enemySword;
     }
 
-    public void tick() {
+    public void tick(){
         checkCollision();
         inputs();
         applyVel();
@@ -48,8 +48,8 @@ public class Player implements Serializable {
             }
         }
         if (allArrows != null){
-            for (int i = 0; i < allArrows.size(); i++){
-                if(inRectangle((int)(allArrows.get(i)[0]+5) , (int)(allArrows.get(i)[1]+5),x,y,width,height)){
+            for (Double[] allArrow : allArrows) {
+                if (inRectangle((int) (allArrow[0] + 5), (int) (allArrow[1] + 5), x, y, width, height)) {
                     x = 0;
                     y = 0;
                 }
@@ -85,6 +85,7 @@ public class Player implements Serializable {
         if (e.getKeyCode() == 68) {
             rightPressed = false;
         }
+
     }
 
     public void applyVel() {
@@ -129,11 +130,7 @@ public class Player implements Serializable {
     }
 
     public boolean inRectangle(int px, int py, int rx, int ry, int rb, int rh) {
-        if (rx < px && px < rx + rb && ry < py && py < ry + rh) {
-            return true;
-        } else {
-            return false;
-        }
+        return rx < px && px < rx + rb && ry < py && py < ry + rh;
 
     }
 

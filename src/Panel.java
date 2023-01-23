@@ -86,8 +86,8 @@ public class Panel extends JPanel implements ActionListener, KeyListener {
 
         //Player Names
         g2d.setColor(Color.red);
-        g2d.drawString(client.name, player1.x, player1.y);
-        g2d.drawString(player2.name, player2.x, player2.y);
+        g2d.drawString(client.name + "  " + ((int)(sword.cooldown*10f))/10f, player1.x, player1.y);
+        g2d.drawString(player2.name + "  " + ((int)(sword2.cooldown*10f))/10f, player2.x, player2.y);
 
         //Player
         g2d.drawImage(playerImage, player1.x, player1.y, player1.width, player1.height, null);
@@ -133,10 +133,7 @@ public class Panel extends JPanel implements ActionListener, KeyListener {
     }
 
     public void keyTyped(KeyEvent e) {
-        if (e.getKeyCode() == 70){
-            player1.setBowPickedup(!player1.isBowPickedup());
-            player1.setSwordPickedup(!player1.isSwordPickedup());
-        }
+
     }
 
     public void keyReleased(KeyEvent e) {

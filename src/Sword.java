@@ -10,7 +10,7 @@ public class Sword implements MouseListener,ActionListener {
     int y;
     boolean inScreen = true;
     double offset;
-    double cooldown;
+    double cooldown = 0;
     double counterOffset;
 
     int width;
@@ -41,11 +41,19 @@ public class Sword implements MouseListener,ActionListener {
             xLenght = (long) ((panel.bow.mousePos.getX()) - (x + player.width / 2));
             rotation = (Math.atan2(yLenght, xLenght)) + Math.PI / 2 + offset + counterOffset;
         }
+        if(cooldown > 0){
+            cooldown -= 0.025;
+        }
+
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
-
+        if (e.getButton() == 3 && cooldown <= 0) {
+            player.x += (int) (Math.cos(Math.atan2(yLenght, xLenght)) * 200);
+            player.y += (int) (Math.sin(Math.atan2(yLenght, xLenght)) * 200);
+            cooldown = 3.1;
+        }
     }
 
     @Override
@@ -53,6 +61,7 @@ public class Sword implements MouseListener,ActionListener {
         if(offset == -Math.PI / 4) {
             offset = Math.PI / 2;
         }
+
     }
 
     @Override
@@ -74,7 +83,6 @@ public class Sword implements MouseListener,ActionListener {
     public void actionPerformed(ActionEvent e) {
         x = player.x;
         y = player.y;
-        cooldown--;
         if (offset > -Math.PI / 4) {
             counterOffset = 0;
             offset -= 0.25;
