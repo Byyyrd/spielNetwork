@@ -73,8 +73,12 @@ public class Panel extends JPanel implements ActionListener, KeyListener {
         super.paint(g);
         Graphics2D g2d = (Graphics2D) g;
         //Background
-        g2d.drawImage(bgrImage,0,0,bgrWidth,bgrHeight,null);
-        g2d.drawImage(bgrImage,0,bgrHeight,bgrWidth,bgrHeight,null);
+        for(int j = 0;j <= this.getHeight()/bgrHeight;j++){
+            for (int i = 0; i <= this.getWidth() / bgrWidth; i++) {
+                g2d.drawImage(bgrImage, bgrWidth * i, bgrHeight*j, bgrWidth, bgrHeight, null);
+            }
+        }
+        //g2d.drawImage(bgrImage,0,bgrHeight,bgrWidth,bgrHeight,null);
 
         //Player Names
         g2d.drawString(client.name, player1.x, player1.y);

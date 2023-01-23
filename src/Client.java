@@ -17,7 +17,9 @@ public class Client {
     Panel panel;
     Weapon weapon;
     Message message;
-    boolean isClicked = false;
+
+    ArrayList<Double[]> allArrows;
+
     public void setPanel(Panel panel) {
         this.panel = panel;
     }
@@ -35,14 +37,12 @@ public class Client {
                 try {
                     inputStream = new ObjectInputStream(socket.getInputStream());
                     //if(inputStream.readObject().getClass() == Message.class) {
-                        Message recievedObject = (Message) inputStream.readObject();
-                        panel.setPlayer2(recievedObject.getX(), recievedObject.getY(), recievedObject.getName());
-                        panel.sword2.rotation = recievedObject.getSwordRotation();
-                        panel.setRotation2(recievedObject.rotation);
-                        if (recievedObject.isClicked){
-                            panel.bow2.player2CreateArrow(recievedObject.mouseX,recievedObject.mouseY);
-                        }
-                        panel.player2.setBowPickedup(recievedObject.bowPickedUp);
+                    Message recievedObject = (Message) inputStream.readObject();
+                    panel.setPlayer2(recievedObject.getX(), recievedObject.getY(), recievedObject.getName());
+                    panel.sword2.rotation = recievedObject.getSwordRotation();
+                    panel.setRotation2(recievedObject.rotation);
+                    panel.setAllArrows(recievedObject.getAllArrows());
+                    panel.player2.setBowPickedup(recievedObject.bowPickedUp);
                     //}
                     /*if (inputStream.readObject().getClass() == ArrayList.class){
                         ArrayList recievedObject = (ArrayList) inputStream.readObject();
@@ -60,9 +60,8 @@ public class Client {
     }
     public void sendMessage(Player player,Sword sword) {
         try {
-            message = new Message(player.x, player.y,name, sword.rotation, weapon.playerRotation,player.isBowPickedup(),panel.getMousePosition().getX(), panel.getMousePosition().getY(),isClicked);
+            message = new Message(player.x, player.y,name, sword.rotation,allArrows, weapon.playerRotation,player.isBowPickedup());
             outputStream.writeObject(message);
-            isClicked = false;
             //soutputStream.writeObject(allArrows);
         } catch (IOException e) {
             System.out.println(e);
@@ -71,12 +70,11 @@ public class Client {
     public void setClientPanel(Panel panel){
         this.panel = panel;
     }
+    public void setAllArrows(ArrayList<Double[]> allArrows) {
+        this.allArrows = allArrows;
+    }
 
     public void setWeapon(Weapon weapon) {
         this.weapon = weapon;
-    }
-
-    public void setClicked(boolean clicked) {
-        isClicked = clicked;
     }
 }
