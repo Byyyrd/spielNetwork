@@ -25,6 +25,7 @@ public class Panel extends JPanel implements ActionListener, KeyListener {
     Image swordImage;
     Image bowImage;
     Image bgrImage;
+    Image projImage;
     int bgrWidth;
     int bgrHeight;
 
@@ -35,6 +36,7 @@ public class Panel extends JPanel implements ActionListener, KeyListener {
         swordImage = new ImageIcon("resources/Sword.png").getImage();
         bowImage = new ImageIcon("resources/bow.png").getImage();
         bgrImage = new ImageIcon("resources/Background.jpg").getImage();
+        projImage = new ImageIcon("resources/Projectile.png").getImage();
         bgrHeight = bgrImage.getHeight(null);
         bgrWidth = bgrImage.getWidth(null);
 
@@ -114,13 +116,14 @@ public class Panel extends JPanel implements ActionListener, KeyListener {
             g2d.rotate(-rotation2, player2.x + playerImage.getWidth(null) * 1.5, player2.y + playerImage.getHeight(null) * 1.5);
         }
         for (int i = bow.allArrows.size(); i >= 1; i--) {
-            g2d.setColor(new Color(75, 75, 75));
-            g2d.fillOval((int) (bow.allArrows.get(i - 1)[0] + 5), (int) (bow.allArrows.get(i - 1)[1] + 5), 10, 10);
+            //g2d.setColor(new Color(75, 75, 75));
+            g2d.drawImage(projImage,(int) (bow.allArrows.get(i - 1)[0] + 5) + projImage.getWidth(null)/2, (int) (bow.allArrows.get(i - 1)[1] + 5) + projImage.getHeight(null)/2, projImage.getWidth(null)/2, projImage.getHeight(null)/2,null);
         }
         if (bow2.allArrows != null) {
             for (int i = bow2.allArrows.size(); i >= 1; i--) {
-                g2d.setColor(new Color(75, 75, 75));
-                g2d.fillOval((int) (bow2.allArrows.get(i - 1)[0] + 5), (int) (bow2.allArrows.get(i - 1)[1] + 5), 10, 10);
+                //g2d.setColor(new Color(75, 75, 75));
+
+                g2d.drawImage(projImage,(int) (bow2.allArrows.get(i - 1)[0] + 5) - projImage.getWidth(null)/2, (int) (bow2.allArrows.get(i - 1)[1] + 5) - projImage.getHeight(null)/2, 10, 10,null);
             }
         }
         //Sword Collision Points
