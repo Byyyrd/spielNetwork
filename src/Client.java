@@ -61,7 +61,7 @@ public class Client {
     }
     public void sendMessage(Player player,Sword sword) {
         try {
-            message = new Message(player.x, player.y,name, sword.rotation, weapon.playerRotation,player.isBowPickedup(),panel.getMousePosition().getX(), panel.getMousePosition().getY(),isClicked, player.swordPickedup);
+            message = new Message(player.x, player.y,name, sword.rotation, weapon.playerRotation,player.isBowPickedup(),weapon.mousePos.getX(), weapon.mousePos.getY(),isClicked, player.swordPickedup);
             outputStream.writeObject(message);
             isClicked = false;
             //soutputStream.writeObject(allArrows);
