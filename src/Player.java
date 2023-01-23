@@ -22,7 +22,7 @@ public class Player implements Serializable {
     Sword enemySword;
     ArrayList<Double[]> allArrows;
     boolean bowPickedup;
-    public Player(int x, int y, int width, int height, Player player2, Sword enemySword,ArrayList<Double[]> allArrows) {
+    public Player(int x, int y, int width, int height, Player player2, Sword enemySword) {
         bowPickedup = true;
         this.player2 = player2;
         this.x = x;
@@ -30,7 +30,6 @@ public class Player implements Serializable {
         this.width = width;
         this.height = height;
         this.enemySword = enemySword;
-        this.allArrows = allArrows;
     }
 
     public void tick() {
@@ -142,5 +141,9 @@ public class Player implements Serializable {
 
     public void setBowPickedup(boolean bowPickedup) {
         this.bowPickedup = bowPickedup;
+    }
+
+    public void setAllArrows(ArrayList<Double[]> allArrows) {
+        this.allArrows = allArrows;
     }
 }

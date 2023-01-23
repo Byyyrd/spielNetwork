@@ -62,8 +62,9 @@ public class Weapon implements MouseListener, ActionListener {
         x1 = player.x;
         y1 = player.y;
         if(panel.getMousePosition() != null && entert) {
-            yLenght = (long) ((panel.getMousePosition().getY()) - y1);
-            xLenght = (long) ((panel.getMousePosition().getX()) - x1);
+            var MousePos = panel.getMousePosition();
+            yLenght = (long) ((MousePos.getY()) - y1);
+            xLenght = (long) ((MousePos.getX()) - x1);
             playerRotation = Math.atan2(yLenght, xLenght) + Math.PI;
         }
         for (int i = allArrows.size() ;i >= 1  ;i--) {

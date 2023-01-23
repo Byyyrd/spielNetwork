@@ -41,12 +41,14 @@ public class Panel extends JPanel implements ActionListener, KeyListener {
         this.client = client;
         client.setClientPanel(this);
 
-        player2 = new Player(100, 100, playerImage.getWidth(null) * 3, playerImage.getHeight(null) * 3, player2, sword, allArrows);
-        player1 = new Player(10, 10, playerImage.getWidth(null) * 3, playerImage.getHeight(null) * 3, player2, sword2, null);
+        player2 = new Player(100, 100, playerImage.getWidth(null) * 3, playerImage.getHeight(null) * 3, player2, sword);
+        player1 = new Player(10, 10, playerImage.getWidth(null) * 3, playerImage.getHeight(null) * 3, player2, sword2);
 
         bow = new Weapon(player1, this, bowImage);
         bow2 = new Weapon(player2, this, bowImage);
         this.addMouseListener(bow);
+
+        player1.setAllArrows(bow2.allArrows);
 
         sword = new Sword(this, player1);
         sword2 = new Sword(this, player2);
