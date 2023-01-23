@@ -25,7 +25,7 @@ public class Player implements Serializable {
     boolean swordPickedup;
     public Player(int x, int y, int width, int height, Player player2, Sword enemySword) {
         bowPickedup = false;
-        swordPickedup = false;
+        swordPickedup = true;
         this.player2 = player2;
         this.x = x;
         this.y = y;
