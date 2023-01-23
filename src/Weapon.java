@@ -17,6 +17,7 @@ public class Weapon implements MouseListener, ActionListener {
     Panel panel;
     Image image;
     Timer timer;
+    Point mousePos;
     Client client;
     ArrayList<Double[]> allArrows = new ArrayList<>();
 
@@ -59,12 +60,12 @@ public class Weapon implements MouseListener, ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        setMousePos(panel.getMousePosition());
         x1 = player.x;
         y1 = player.y;
-        if(panel.getMousePosition() != null && entert) {
-            var MousePos = panel.getMousePosition();
-            yLenght = (long) ((MousePos.getY()) - y1);
-            xLenght = (long) ((MousePos.getX()) - x1);
+        if(mousePos != null && entert) {
+            yLenght = (long) ((mousePos.getY()) - y1);
+            xLenght = (long) ((mousePos.getX()) - x1);
             playerRotation = Math.atan2(yLenght, xLenght) + Math.PI;
         }
         for (int i = allArrows.size() ;i >= 1  ;i--) {
@@ -120,33 +121,33 @@ public class Weapon implements MouseListener, ActionListener {
 
     }
     public void CreateArrow(){
-        Double[] Arrow = new Double[9];
-        Arrow[0]=((double) player.x);// x1 Index = 0
-        Arrow[1]=((double) player.y);// y1 Index = 1
-        if (x1 > panel.getMousePosition().getX() ){
-            Arrow[2]=((panel.getMousePosition().getX())-500);//x2 Index = 2
-        }
-        else if (x1 < panel.getMousePosition().getX() ) {
-            Arrow[2]=((panel.getMousePosition().getX()) + 500);//x2 Index = 2
-        }
-        else {
-            Arrow[2]=((panel.getMousePosition().getX()));//x2 Index = 2
-        }
+        if(mousePos != null && entert) {
+            Double[] Arrow = new Double[9];
+            Arrow[0] = ((double) player.x);// x1 Index = 0
+            Arrow[1] = ((double) player.y);// y1 Index = 1
+            if (x1 > mousePos.getX()) {
+                Arrow[2] = ((mousePos.getX()) - 500);//x2 Index = 2
+            } else if (x1 < mousePos.getX()) {
+                Arrow[2] = ((mousePos.getX()) + 500);//x2 Index = 2
+            } else {
+                Arrow[2] = ((mousePos.getX()));//x2 Index = 2
+            }
 
-        //Arrow.add((this.getMousePosition().getX())*1);//x2 Index = 2
-        Arrow[3]=((panel.getMousePosition().getY()));//y2 Index = 3
-        Arrow[4]=(0.0); //Rotation Index = 4
-        Arrow[5]=(0.0); //xLength Index = 5
-        Arrow[6]=(0.0); //yLength Index = 6
-        Arrow[7]=((panel.getMousePosition().getY()-y1)/(panel.getMousePosition().getX()-x1));//LineareFunktion : m Index = 7
-        Arrow[8]=(y1 - ((panel.getMousePosition().getY()-y1)/(panel.getMousePosition().getX()-x1))* x1); //LineareFunktion : b Index = 8
-        allArrows.add(Arrow);
+            //Arrow.add((this.getMousePosition().getX())*1);//x2 Index = 2
+            Arrow[3] = ((mousePos.getY()));//y2 Index = 3
+            Arrow[4] = (0.0); //Rotation Index = 4
+            Arrow[5] = (0.0); //xLength Index = 5
+            Arrow[6] = (0.0); //yLength Index = 6
+            Arrow[7] = ((mousePos.getY() - y1) / (mousePos.getX() - x1));//LineareFunktion : m Index = 7
+            Arrow[8] = (y1 - ((mousePos.getY() - y1) / (mousePos.getX() - x1)) * x1); //LineareFunktion : b Index = 8
+            allArrows.add(Arrow);
+        }
     }
     public void player2CreateArrow(double mouseX, double mouseY){
         Double[] Arrow = new Double[9];
         Arrow[0]=((double) player.x);// x1 Index = 0
         Arrow[1]=((double) player.y);// y1 Index = 1
-        if (x1 > panel.getMousePosition().getX() ){
+        if (x1 > mouseX){
             Arrow[2]=((mouseX)-500);//x2 Index = 2
         }
         else if (x1 < mouseX ) {
@@ -164,5 +165,11 @@ public class Weapon implements MouseListener, ActionListener {
         Arrow[7]=((mouseY-y1)/(mouseX-x1));//LineareFunktion : m Index = 7
         Arrow[8]=(y1 - ((mouseY-y1)/(mouseX-x1))* x1); //LineareFunktion : b Index = 8
         allArrows.add(Arrow);
+    }
+
+    public void setMousePos(Point mousePos) {
+        if(mousePos != null) {
+            this.mousePos = mousePos;
+        }
     }
 }
