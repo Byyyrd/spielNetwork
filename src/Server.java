@@ -44,7 +44,7 @@ public class Server {
                 } catch (IOException e) {
                     System.out.println("Lost one Client");
                 } finally {
-                    //socketList.remove(socket);
+                    socketList.remove(socket);
                 }
 
             });
