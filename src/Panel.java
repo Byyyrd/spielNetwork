@@ -116,15 +116,13 @@ public class Panel extends JPanel implements ActionListener, KeyListener {
             g2d.rotate(-rotation2, player2.x + playerImage.getWidth(null) * 1.5, player2.y + playerImage.getHeight(null) * 1.5);
         }
         for (int i = bow.allArrows.size(); i >= 1; i--) {
-            //g2d.setColor(new Color(75, 75, 75));
-            g2d.drawImage(projImage,(int) (bow.allArrows.get(i - 1)[0] + 5) + projImage.getWidth(null)/2, (int) (bow.allArrows.get(i - 1)[1] + 5) + projImage.getHeight(null)/2, projImage.getWidth(null)/2, projImage.getHeight(null)/2,null);
+            g2d.setColor(new Color(84, 52, 36));
+            g2d.fillOval((int) (bow.allArrows.get(i - 1)[0] + 5), (int) (bow.allArrows.get(i - 1)[1] + 5), 10, 10);
         }
         if (bow2.allArrows != null) {
             for (int i = bow2.allArrows.size(); i >= 1; i--) {
-                //g2d.setColor(new Color(75, 75, 75));
-
-                g2d.drawImage(projImage,(int) (bow2.allArrows.get(i - 1)[0] + 5) - projImage.getWidth(null)/2, (int) (bow2.allArrows.get(i - 1)[1] + 5) - projImage.getHeight(null)/2, 10, 10,null);
-            }
+                g2d.setColor(new Color(84, 52, 36));
+                g2d.fillOval((int) (bow.allArrows.get(i - 1)[0] + 5), (int) (bow.allArrows.get(i - 1)[1] + 5), 10, 10);            }
         }
         //Sword Collision Points
         /*g2d.fillOval((int) (sword.x + 21 + Math.sin(sword.rotation) * 21), (int) (player1.y + (double) player1.width/2 + Math.cos(sword.rotation) * -25), 10, 10);

@@ -66,7 +66,7 @@ public class Weapon implements MouseListener, ActionListener {
         if(mousePos != null && entert) {
             yLenght = (long) ((mousePos.getY()) - y1);
             xLenght = (long) ((mousePos.getX()) - x1);
-            playerRotation = Math.atan2(yLenght, xLenght) + Math.PI;
+            playerRotation = Math.atan2(yLenght, xLenght);
         }
         for (int i = allArrows.size() ;i >= 1  ;i--) {
             if (allArrows.get(i - 1)[0]==allArrows.get(i - 1)[2] && allArrows.get(i - 1)[3] < allArrows.get(i - 1)[1] ){
