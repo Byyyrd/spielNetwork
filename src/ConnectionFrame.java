@@ -6,12 +6,11 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.IOException;
 
-public class ConnectionFrame extends JFrame implements ActionListener, KeyListener {
+public class ConnectionFrame extends JFrame implements ActionListener {
     JButton button;
     JTextArea textField1;
     JTextArea textField2;
     public ConnectionFrame() {
-        this.addKeyListener(this);
         Font font = new Font("Arial", Font.PLAIN, 20);
         JPanel panel = new JPanel();
         button = new JButton();
@@ -75,27 +74,5 @@ public class ConnectionFrame extends JFrame implements ActionListener, KeyListen
         } catch (IOException ex) {
             System.out.println("IOConnectionError");
         }
-    }
-
-    @Override
-    public void keyTyped(KeyEvent e) {
-
-    }
-
-    @Override
-    public void keyPressed(KeyEvent e) {
-        if(e.getKeyCode() == 13){
-            try {
-                var client = new Client(textField1.getText(),textField2.getText(),this);
-                System.out.println("New Client");
-            } catch (IOException ex) {
-                System.out.println("IOConnectionError");
-            }
-        }
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
-
     }
 }
