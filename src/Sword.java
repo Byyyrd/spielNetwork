@@ -36,9 +36,9 @@ public class Sword implements MouseListener,ActionListener {
     public void tick() {
         x = player.x;
         y = player.y;
-        if (panel.getMousePosition() != null && inScreen) {
-            yLenght = (long) ((panel.getMousePosition().getY()) - (y + player.height / 2));
-            xLenght = (long) ((panel.getMousePosition().getX()) - (x + player.width / 2));
+        if (panel.bow.mousePos != null && inScreen) {
+            yLenght = (long) ((panel.bow.mousePos.getY()) - (y + player.height / 2));
+            xLenght = (long) ((panel.bow.mousePos.getX()) - (x + player.width / 2));
             rotation = (Math.atan2(yLenght, xLenght)) + Math.PI / 2 + offset + counterOffset;
         }
     }
