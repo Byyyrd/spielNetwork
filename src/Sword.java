@@ -23,6 +23,8 @@ public class Sword implements MouseListener, ActionListener {
 
     Timer timer;
 
+    Sword sword2;
+
     public Sword(Panel panel, Player player) {
         this.panel = panel;
         this.x = player.x;
@@ -31,7 +33,7 @@ public class Sword implements MouseListener, ActionListener {
         this.width = player.width;
         this.height = player.height * 2;
         Timer timer = new Timer(25, this);
-        timer.start();
+        //timer.start();
     }
 
     public void tick() {
@@ -45,9 +47,16 @@ public class Sword implements MouseListener, ActionListener {
         if (cooldown > 0) {
             cooldown -= 0.025;
         }
+        if (offset > -Math.PI / 4) {
+            counterOffset = 0;
+            offset -= 0.25;
+        } else {
+            offset = -Math.PI / 4;
+            counterOffset = Math.PI / 4;
+        }
 
     }
-    public void drawSword(Graphics2D g2d,Image swordImage,Player player2,Sword sword2){
+    public void drawSword(Graphics2D g2d,Image swordImage,Player player2){
         if(player2.swordPickedup) {
             g2d.rotate(sword2.rotation, player2.x + player2.width * 0.5, player2.y + player2.height * 0.5);
             g2d.drawImage(swordImage, sword2.x, (int) (sword2.y - (double) player2.width), player2.width, player2.height * 2, null);
@@ -90,7 +99,7 @@ public class Sword implements MouseListener, ActionListener {
     @Override
     public void mousePressed(MouseEvent e) {
         if (offset == -Math.PI / 4) {
-            offset = Math.PI / 2;
+            offset = Math.PI / 4;
         }
     }
 
@@ -107,6 +116,9 @@ public class Sword implements MouseListener, ActionListener {
     public void mouseExited(MouseEvent e) {
         
     }
-    
+
+    public void setSword2(Sword sword2) {
+        this.sword2 = sword2;
+    }
 }
 

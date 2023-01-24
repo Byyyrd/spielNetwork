@@ -117,6 +117,8 @@ public class Panel extends JPanel implements ActionListener, KeyListener {
 
         sword = new Sword(this, player1);
         sword2 = new Sword(this, player2);
+        sword.setSword2(sword2);
+        sword2.setSword2(sword);
         this.addMouseListener(sword);
 
         player1.setEnemySword(sword2);
@@ -154,7 +156,7 @@ public class Panel extends JPanel implements ActionListener, KeyListener {
         player1.drawPlayer(g2d,playerImage,client,sword);
 
         //Swords
-        sword.drawSword(g2d,swordImage,player2,sword2);
+        sword.drawSword(g2d,swordImage,player2);
 
         //Slingshot
         if (player1.isBowPickedup()) {
