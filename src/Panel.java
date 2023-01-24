@@ -28,8 +28,9 @@ public class Panel extends JPanel implements ActionListener, KeyListener {
     Image projImage;
     int bgrWidth;
     int bgrHeight;
-
     ArrayList<Double[]> allArrows;
+    ArrayList<int[]> allObsticals;
+
 
     public Panel(Client client) {
         playerImage = new ImageIcon("resources/Player.png").getImage();
@@ -42,15 +43,77 @@ public class Panel extends JPanel implements ActionListener, KeyListener {
 
         this.client = client;
         client.setClientPanel(this);
-
-        player2 = new Player(100, 100, playerImage.getWidth(null) * 3, playerImage.getHeight(null) * 3, player2, sword);
-        player1 = new Player(10, 10, playerImage.getWidth(null) * 3, playerImage.getHeight(null) * 3, player2, sword2);
+        allObsticals = new ArrayList<int[]>();
+        var obstical = new int[4];
+        obstical[0] = 900;
+        obstical[1] = 300;
+        obstical[2] = 200;
+        obstical[3] = 30;
+        allObsticals.add(obstical);
+        var obstical1 = new int[4];
+        obstical1[0] = 390;
+        obstical1[1] = 730;
+        obstical1[2] = 50;
+        obstical1[3] = 190;
+        allObsticals.add(obstical1);
+        var obstical2 = new int[4];
+        obstical2[0] = 550;
+        obstical2[1] = 90;
+        obstical2[2] = 30;
+        obstical2[3] = 30;
+        allObsticals.add(obstical2);
+        var obstical3 = new int[4];
+        obstical3[0] = 200;
+        obstical3[1] = 90;
+        obstical3[2] = 40;
+        obstical3[3] = 600;
+        allObsticals.add(obstical3);
+        var obstical4 = new int[4];
+        obstical4[0] = 1290;
+        obstical4[1] = 600;
+        obstical4[2] = 100;
+        obstical4[3] = 90;
+        allObsticals.add(obstical4);
+        var obstical5 = new int[4];
+        obstical5[0] = 670;
+        obstical5[1] = 740;
+        obstical5[2] = 370;
+        obstical5[3] = 50;
+        allObsticals.add(obstical5);
+        var obstical6 = new int[4];
+        obstical6[0] = 1300;
+        obstical6[1] = 50;
+        obstical6[2] = 70;
+        obstical6[3] = 370;
+        allObsticals.add(obstical6);
+        var obstical7 = new int[4];
+        obstical7[0] = 1500;
+        obstical7[1] = 470;
+        obstical7[2] = 370;
+        obstical7[3] = 70;
+        allObsticals.add(obstical7);
+        var obstical8 = new int[4];
+        obstical8[0] = 730;
+        obstical8[1] = 190;
+        obstical8[2] = 20;
+        obstical8[3] = 400;
+        allObsticals.add(obstical8);
+        var obstical9 = new int[4];
+        obstical9[0] = 360;
+        obstical9[1] = 470;
+        obstical9[2] = 250;
+        obstical9[3] = 40;
+        allObsticals.add(obstical9);
+        
+        player2 = new Player(100, 100, playerImage.getWidth(null) * 3, playerImage.getHeight(null) * 3, player2, sword,this);
+        player1 = new Player(10, 10, playerImage.getWidth(null) * 3, playerImage.getHeight(null) * 3, player2, sword2,this);
 
         bow = new Weapon(player1, this, bowImage);
         bow2 = new Weapon(player2, this, bowImage);
         this.addMouseListener(bow);
 
         player1.setAllArrows(bow2.allArrows);
+        player1.setAllArrowsself(bow.allArrows);
 
         sword = new Sword(this, player1);
         sword2 = new Sword(this, player2);
@@ -81,6 +144,11 @@ public class Panel extends JPanel implements ActionListener, KeyListener {
             for (int i = 0; i <= this.getWidth() / bgrWidth; i++) {
                 g2d.drawImage(bgrImage, bgrWidth * i, bgrHeight*j, bgrWidth, bgrHeight, null);
             }
+        }
+
+        for (int i = 0; i < allObsticals.size(); i++){
+            g2d.setColor(new Color(0, 21, 255));
+            g2d.drawRect(allObsticals.get(i)[0],allObsticals.get(i)[1],allObsticals.get(i)[2],allObsticals.get(i)[3]);
         }
         //g2d.drawImage(bgrImage,0,bgrHeight,bgrWidth,bgrHeight,null);
 
