@@ -1,17 +1,18 @@
 import java.awt.*;
 
 public class Inventory {
-    int hp;
+    double hp;
     int mines;
     int dashCooldown;
-    int maxHp;
+    int maxHp = 10;
     Player player;
     public Inventory(int maxHp,Player player) {
         this.maxHp = maxHp;
         this.player = player;
     }
-    public void playerHit(){
-        hp--;
+    public void playerHit(double damage){
+        hp -= damage;
+        player.hp = hp;
         if (hp <= 0){
             player.x = 0;
             player.y = 0;
