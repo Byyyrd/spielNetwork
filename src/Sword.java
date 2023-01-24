@@ -1,7 +1,7 @@
 import javax.swing.*;
 import java.awt.event.*;
 
-public class Sword implements MouseListener,ActionListener {
+public class Sword implements MouseListener, ActionListener {
     double rotation;
     long yLenght;
     long xLenght;
@@ -29,7 +29,7 @@ public class Sword implements MouseListener,ActionListener {
         this.player = player;
         this.width = player.width;
         this.height = player.height * 2;
-        Timer timer = new Timer(25,this);
+        Timer timer = new Timer(25, this);
         timer.start();
     }
 
@@ -41,7 +41,7 @@ public class Sword implements MouseListener,ActionListener {
             xLenght = (long) ((panel.bow.mousePos.getX()) - (x + player.width / 2));
             rotation = (Math.atan2(yLenght, xLenght)) + Math.PI / 2 + offset + counterOffset;
         }
-        if(cooldown > 0){
+        if (cooldown > 0) {
             cooldown -= 0.025;
         }
 
@@ -50,15 +50,23 @@ public class Sword implements MouseListener,ActionListener {
     @Override
     public void mouseClicked(MouseEvent e) {
         if (e.getButton() == 3 && cooldown <= 0) {
-            player.x += (int) (Math.cos(Math.atan2(yLenght, xLenght)) * 200);
-            player.y += (int) (Math.sin(Math.atan2(yLenght, xLenght)) * 200);
+            for (int i = 0; i <= 10; i++) {
+                if (!player.inRectangle(player.x + 5, player.y, player.player2.x, player.player2.y, player.player2.width, player.player2.width) && !player.inRectangle(player.x + player.player2.width - 5, player.y, player.player2.x, player.player2.y, player.player2.width, player.player2.width)
+                && !player.inRectangle(x + 5, y + player.player2.height, player.player2.x, player.player2.y, player.player2.width, player.player2.width) && !player.inRectangle(x + player.player2.width - 5, y + player.player2.height, player.player2.x, player.player2.y, player.player2.width, player.player2.width) 
+                && !player.inRectangle(x, y + 5, player.player2.x, player.player2.y, player.player2.width, player.player2.width) && !player.inRectangle(x, y + player.player2.height - 5, player.player2.x, player.player2.y, player.player2.width, player.player2.width)
+                && !player.inRectangle(x + player.player2.width, y - 5, player.player2.x, player.player2.y, player.player2.width, player.player2.width) && !player.inRectangle(x + player.player2.width, y + player.player2.height - 5, player.player2.x, player.player2.y, player.player2.width, player.player2.width)
+                ) {
+                    player.x += (int) (Math.cos(Math.atan2(yLenght, xLenght)) * 20);
+                    player.y += (int) (Math.sin(Math.atan2(yLenght, xLenght)) * 20);
+                }
+            }
             cooldown = 3.1;
         }
     }
 
     @Override
     public void mousePressed(MouseEvent e) {
-        if(offset == -Math.PI / 4) {
+        if (offset == -Math.PI / 4) {
             offset = Math.PI / 2;
         }
 

@@ -37,7 +37,7 @@ public class Weapon implements MouseListener, ActionListener {
 
     @Override
     public void mousePressed(MouseEvent e) {
-        if (player.isBowPickedup()) {
+        if (player.isBowPickedup() && e.getButton() == 1) {
             CreateArrow();
             client.setClicked(true);
         }
