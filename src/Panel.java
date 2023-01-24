@@ -13,8 +13,8 @@ public class Panel extends JPanel implements ActionListener, KeyListener {
     Sword sword;
     Sword sword2;
 
-    Slingshot Slingshot;
-    Slingshot bow2;
+    Slingshot slingshot;
+    Slingshot slingshot2;
     double rotation2;
 
 
@@ -108,12 +108,12 @@ public class Panel extends JPanel implements ActionListener, KeyListener {
         player2 = new Player(100, 100, playerImage.getWidth(null) * 3, playerImage.getHeight(null) * 3, player2, sword,this);
         player1 = new Player(10, 10, playerImage.getWidth(null) * 3, playerImage.getHeight(null) * 3, player2, sword2,this);
 
-        Slingshot = new Slingshot(player1, this, bowImage);
-        bow2 = new Slingshot(player2, this, bowImage);
-        this.addMouseListener(Slingshot);
+        slingshot = new Slingshot(player1, this, bowImage);
+        slingshot2 = new Slingshot(player2, this, bowImage);
+        this.addMouseListener(slingshot);
 
-        player1.setAllArrows(bow2.allArrows);
-        player1.setAllArrowsself(Slingshot.allArrows);
+        player1.setAllArrows(slingshot2.allArrows);
+        player1.setAllArrowsself(slingshot.allArrows);
 
         sword = new Sword(this, player1);
         sword2 = new Sword(this, player2);
@@ -157,8 +157,8 @@ public class Panel extends JPanel implements ActionListener, KeyListener {
         sword.drawSword(g2d,swordImage,player2,sword2);
 
         //Slingshot
-        Slingshot.drawSlingshot(g2d,player1,bowImage,playerImage);
-        Slingshot.drawSlingshot(g2d,player2,bowImage,playerImage);
+        slingshot.drawSlingshot(g2d,player1,bowImage,playerImage);
+        slingshot.drawSlingshot(g2d,player2,bowImage,playerImage);
         //Sword Collision Points
         /*g2d.fillOval((int) (sword.x + 21 + Math.sin(sword.rotation) * 21), (int) (player1.y + (double) player1.width/2 + Math.cos(sword.rotation) * -25), 10, 10);
         g2d.fillOval((int) (sword.x + 21 + Math.sin(sword.rotation) * 40), (int) (player1.y + (double) player1.width/2 + Math.cos(sword.rotation) * -40), 10, 10);
@@ -183,8 +183,8 @@ public class Panel extends JPanel implements ActionListener, KeyListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(Slingshot.mousePos != null && Slingshot.entert) {
-            client.setWeapon(Slingshot);
+        if(slingshot.mousePos != null) {
+            client.setWeapon(slingshot);
             client.sendMessage(player1, sword);
             player1.tick();
             sword.tick();

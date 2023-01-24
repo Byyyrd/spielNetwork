@@ -13,7 +13,6 @@ public class Slingshot implements MouseListener, ActionListener {
     long yLenght;
     long xLenght;
     double playerRotation;
-    boolean entert;
     Player player;
     Panel panel;
     Image image;
@@ -46,7 +45,7 @@ public class Slingshot implements MouseListener, ActionListener {
         setMousePos(panel.getMousePosition());
         x1 = player.x;
         y1 = player.y;
-        if (mousePos != null && entert) {
+        if (mousePos != null) {
             yLenght = (long) ((mousePos.getY()) - y1);
             xLenght = (long) ((mousePos.getX()) - x1);
             playerRotation = Math.atan2(yLenght, xLenght);
@@ -90,7 +89,7 @@ public class Slingshot implements MouseListener, ActionListener {
     }
 
     public void CreateArrow() {
-        if (mousePos != null && entert) {
+        if (mousePos != null) {
             Double[] Arrow = new Double[9];
             Arrow[0] = ((double) player.x);// x1 Index = 0
             Arrow[1] = ((double) player.y);// y1 Index = 1
@@ -137,5 +136,32 @@ public class Slingshot implements MouseListener, ActionListener {
         if (mousePos != null) {
             this.mousePos = mousePos;
         }
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        if (player.isBowPickedup() && e.getButton() == 1){
+            CreateArrow();
+        }
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+
     }
 }

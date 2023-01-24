@@ -37,9 +37,9 @@ public class Sword implements MouseListener, ActionListener {
     public void tick() {
         x = player.x;
         y = player.y;
-        if (panel.Slingshot.mousePos != null && inScreen) {
-            yLenght = (long) ((panel.Slingshot.mousePos.getY()) - (y + player.height / 2));
-            xLenght = (long) ((panel.Slingshot.mousePos.getX()) - (x + player.width / 2));
+        if (panel.slingshot.mousePos != null && inScreen) {
+            yLenght = (long) ((panel.slingshot.mousePos.getY()) - (y + player.height / 2));
+            xLenght = (long) ((panel.slingshot.mousePos.getX()) - (x + player.width / 2));
             rotation = (Math.atan2(yLenght, xLenght)) + Math.PI / 2 + offset + counterOffset;
         }
         if (cooldown > 0) {

@@ -39,7 +39,7 @@ public class Client {
                     panel.setRotation2(recievedObject.rotation);
                     panel.player2.setSwordPickedup(recievedObject.swordPickedUp);
                     if (recievedObject.isClicked){
-                        panel.bow2.player2CreateArrow(recievedObject.mouseX,recievedObject.mouseY);
+                        panel.slingshot2.player2CreateArrow(recievedObject.mouseX,recievedObject.mouseY);
                     }
                     panel.player2.setBowPickedup(recievedObject.bowPickedUp);
                     //}
