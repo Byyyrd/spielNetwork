@@ -24,12 +24,14 @@ public class Mine{
     }
 
     public void explodemines(){
-        for (int i = 0; i < mine.alleMinen.size(); i++){
-            if (explosionColision(mine.alleMinen.get(i)[0], mine.alleMinen.get(i)[1],player.x, player.y, 30)||explosionColision(alleMinen.get(i)[0], alleMinen.get(i)[1],player.x + player.width, player.y, 30)||explosionColision(alleMinen.get(i)[0], alleMinen.get(i)[1],player.x+ player.width/2, player.y, 30)||explosionColision(alleMinen.get(i)[0], alleMinen.get(i)[1],player.x + player.width, player.y + player.height/2, 30)||explosionColision(alleMinen.get(i)[0], alleMinen.get(i)[1],player.x+ player.width, player.y+ player.height, 30)||explosionColision(alleMinen.get(i)[0], alleMinen.get(i)[1],player.x + player.width /2, player.y + player.height, 30)||explosionColision(alleMinen.get(i)[0], alleMinen.get(i)[1],player.x, player.y+ player.height, 30)||explosionColision(alleMinen.get(i)[0], alleMinen.get(i)[1],player.x, player.y + player.height / 2, 30)){
-                player.x = 0;
-                player.y = 0;
+        if (mine.alleMinen != null) {
+            for (int i = 0; i < mine.alleMinen.size(); i++) {
+                if (explosionColision(mine.alleMinen.get(i)[0], mine.alleMinen.get(i)[1], player.x, player.y, 30) || explosionColision(alleMinen.get(i)[0], alleMinen.get(i)[1], player.x + player.width, player.y, 30) || explosionColision(alleMinen.get(i)[0], alleMinen.get(i)[1], player.x + player.width / 2, player.y, 30) || explosionColision(alleMinen.get(i)[0], alleMinen.get(i)[1], player.x + player.width, player.y + player.height / 2, 30) || explosionColision(alleMinen.get(i)[0], alleMinen.get(i)[1], player.x + player.width, player.y + player.height, 30) || explosionColision(alleMinen.get(i)[0], alleMinen.get(i)[1], player.x + player.width / 2, player.y + player.height, 30) || explosionColision(alleMinen.get(i)[0], alleMinen.get(i)[1], player.x, player.y + player.height, 30) || explosionColision(alleMinen.get(i)[0], alleMinen.get(i)[1], player.x, player.y + player.height / 2, 30)) {
+                    player.x = 0;
+                    player.y = 0;
+                }
+                mine.alleMinen.remove(i);
             }
-            mine.alleMinen.remove(i);
         }
     }
     public void drawMine(Graphics2D g2d){
