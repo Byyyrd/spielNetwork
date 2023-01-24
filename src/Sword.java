@@ -9,7 +9,6 @@ public class Sword implements MouseListener {
 
     int x;
     int y;
-    boolean inScreen = true;
     double offset;
     double cooldown = 0;
     double counterOffset;
@@ -40,9 +39,10 @@ public class Sword implements MouseListener {
         y = player.y;
         sword2.x = player2.x;
         sword2.y = player2.y;
-        if (panel.slingshot.mousePos != null && inScreen) {
+        if (panel.slingshot.mousePos != null) {
             yLenght = (long) ((panel.slingshot.mousePos.getY()) - (y + player.height / 2));
             xLenght = (long) ((panel.slingshot.mousePos.getX()) - (x + player.width / 2));
+            rotation = (Math.atan2(yLenght, xLenght)) + Math.PI / 2 + offset + counterOffset;
         }
         if (cooldown > 0) {
             cooldown -= 0.025;
