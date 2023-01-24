@@ -40,7 +40,7 @@ public class Client {
                     if (recievedObject.isClicked){
                         panel.slingshot2.player2CreateArrow(recievedObject.mouseX,recievedObject.mouseY);
                     }
-                    panel.player2.setBowPickedup(recievedObject.bowPickedUp);
+                    panel.player2.setSlingshotPickedup(recievedObject.bowPickedUp);
                 } catch (ClassNotFoundException e) {
                     System.out.println("Client hat Scheiße bekommen");
                 } catch (IOException e) {
@@ -53,7 +53,7 @@ public class Client {
     }
     public void sendMessage(Player player,Sword sword) {
         try {
-            message = new Message(player.x, player.y,name, sword.rotation, slingshot.playerRotation,player.isBowPickedup(), slingshot.mousePos.getX(), slingshot.mousePos.getY(),isClicked, player.swordPickedup);
+            message = new Message(player.x, player.y,name, sword.rotation, slingshot.playerRotation,player.isSlingshotPickedup(), slingshot.mousePos.getX(), slingshot.mousePos.getY(),isClicked, player.swordPickedup);
             outputStream.writeObject(message);
             isClicked = false;
             //soutputStream.writeObject(allArrows);

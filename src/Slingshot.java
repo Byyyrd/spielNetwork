@@ -31,7 +31,7 @@ public class Slingshot implements MouseListener, ActionListener {
     }
 
     public void drawSlingshot(Graphics2D g2d, Player player, Player player2, Image image, Image playerImage, Slingshot slingshot2) {
-        if (player.isBowPickedup()) {
+        if (player.isSlingshotPickedup()) {
             g2d.rotate(this.playerRotation, player.x + playerImage.getWidth(null) * 1.5, player.y + playerImage.getHeight(null) * 1.5);
             g2d.drawImage(image, player.x + playerImage.getWidth(null) * 3 / 2 - image.getWidth(null) / 48, player.y + playerImage.getHeight(null) * 3 / 2 - image.getHeight(null) / 48, image.getWidth(null) / 24, image.getHeight(null) / 24, null);
             g2d.rotate(-this.playerRotation, player.x + playerImage.getWidth(null) * 1.5, player.y + playerImage.getHeight(null) * 1.5);
@@ -40,7 +40,7 @@ public class Slingshot implements MouseListener, ActionListener {
             g2d.setColor(new Color(12, 255, 0));
             g2d.fillOval((int) (this.allArrows.get(i - 1)[0] + 5), (int) (this.allArrows.get(i - 1)[1] + 5), 10, 10);
         }
-        if (player2.isBowPickedup()) {
+        if (player2.isSlingshotPickedup()) {
             g2d.rotate(panel.rotation2, player2.x + playerImage.getWidth(null) * 1.5, player2.y + playerImage.getHeight(null) * 1.5);
             g2d.drawImage(image, player2.x + playerImage.getWidth(null) * 3 / 2 - image.getWidth(null) / 48, player2.y + playerImage.getHeight(null) * 3 / 2 - image.getHeight(null) / 48, image.getWidth(null) / 24, image.getHeight(null) / 24, null);
             g2d.rotate(-panel.rotation2, player2.x + playerImage.getWidth(null) * 1.5, player2.y + playerImage.getHeight(null) * 1.5);
@@ -151,7 +151,7 @@ public class Slingshot implements MouseListener, ActionListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        if (player.isBowPickedup()) {
+        if (player.isSlingshotPickedup()) {
             CreateArrow();
             client.setClicked(true);
         }

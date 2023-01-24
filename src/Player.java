@@ -195,11 +195,11 @@ public class Player implements Serializable {
 
     }
 
-    public boolean isBowPickedup() {
+    public boolean isSlingshotPickedup() {
         return bowPickedup;
     }
 
-    public void setBowPickedup(boolean bowPickedup) {
+    public void setSlingshotPickedup(boolean bowPickedup) {
         this.bowPickedup = bowPickedup;
     }
 

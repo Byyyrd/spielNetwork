@@ -179,7 +179,7 @@ public class Panel extends JPanel implements ActionListener, KeyListener {
     public void keyPressed(KeyEvent e) {
         player1.keyPressed(e);
         if (e.getKeyCode() == 70){
-            player1.setBowPickedup(!player1.isBowPickedup());
+            player1.setSlingshotPickedup(!player1.isSlingshotPickedup());
             player1.setSwordPickedup(!player1.isSwordPickedup());
         }
     }
