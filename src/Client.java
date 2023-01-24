@@ -46,7 +46,7 @@ public class Client {
                     if (recievedObject.minePlased){
                         panel.mine2.createMine();
                     }
-                    if (recievedObject.explodet && panel.mine2.alleMinen.size() != 0){
+                    if (recievedObject.explodet && panel.mine2.alleMinen.size() != 0 && panel.mine2.alleMinen != null){
                         panel.mine.explodemines();
                     }
                 } catch (ClassNotFoundException e) {
@@ -64,7 +64,6 @@ public class Client {
             message = new Message(player.x, player.y,name, sword.rotation, slingshot.playerRotation,player.isSlingshotPickedup(), slingshot.mousePos.getX(), slingshot.mousePos.getY(),isClicked, player.swordPickedup, minePlased,explodet);
             outputStream.writeObject(message);
             isClicked = false;
-            //soutputStream.writeObject(allArrows);
         } catch (IOException e) {
             System.out.println(e);
         }

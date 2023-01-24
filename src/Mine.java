@@ -4,16 +4,18 @@ import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
 public class Mine{
-    int minenUeber = 5;
+    int minenUeber = 9999;
     ArrayList<int[]> alleMinen = new ArrayList<int[]>();
     Player player;
     boolean minePlased;
     boolean explodet;
     Mine mine;
+    Panel panel;
 
-    public Mine(Player player, Mine mine) {
+    public Mine(Player player, Mine mine, Panel panel) {
         this.player = player;
         this.mine = mine;
+        this.panel = panel;
     }
 
     public void createMine(){
@@ -25,11 +27,10 @@ public class Mine{
     }
 
     public void explodemines(){
-        if (mine.alleMinen.size() != 0) {
-            for (int i = 0; i < mine.alleMinen.size(); i++) {
-                if (explosionColision(mine.alleMinen.get(i)[0], mine.alleMinen.get(i)[1], player.x, player.y, 90) || explosionColision(alleMinen.get(i)[0], alleMinen.get(i)[1], player.x + player.width, player.y, 90) || explosionColision(alleMinen.get(i)[0], alleMinen.get(i)[1], player.x + player.width / 2, player.y, 90) || explosionColision(alleMinen.get(i)[0], alleMinen.get(i)[1], player.x + player.width, player.y + player.height / 2, 90) || explosionColision(alleMinen.get(i)[0], alleMinen.get(i)[1], player.x + player.width, player.y + player.height, 90) || explosionColision(alleMinen.get(i)[0], alleMinen.get(i)[1], player.x + player.width / 2, player.y + player.height, 90) || explosionColision(alleMinen.get(i)[0], alleMinen.get(i)[1], player.x, player.y + player.height, 90) || explosionColision(alleMinen.get(i)[0], alleMinen.get(i)[1], player.x, player.y + player.height / 2, 90)) {
-                    player.x = 0;
-                    player.y = 0;
+        if (mine.alleMinen.size() != 0 && mine.alleMinen != null) {
+            for (int i = mine.alleMinen.size(); i >= 0; i--) {
+                if (explosionColision(mine.alleMinen.get(i)[0], mine.alleMinen.get(i)[1], player.x, player.y, 90) || explosionColision(mine.alleMinen.get(i)[0], mine.alleMinen.get(i)[1], player.x + player.width, player.y, 90) || explosionColision(mine.alleMinen.get(i)[0], mine.alleMinen.get(i)[1], player.x + player.width / 2, player.y, 90) || explosionColision(mine.alleMinen.get(i)[0], mine.alleMinen.get(i)[1], player.x + player.width, player.y + player.height / 2, 90) || explosionColision(mine.alleMinen.get(i)[0], mine.alleMinen.get(i)[1], player.x + player.width, player.y + player.height, 90) || explosionColision(mine.alleMinen.get(i)[0], mine.alleMinen.get(i)[1], player.x + player.width / 2, player.y + player.height, 90) || explosionColision(mine.alleMinen.get(i)[0], mine.alleMinen.get(i)[1], player.x, player.y + player.height, 90) || explosionColision(mine.alleMinen.get(i)[0], mine.alleMinen.get(i)[1], player.x, player.y + player.height / 2, 90)) {
+                    panel.p1Inv.playerHit(10);
                 }
                 mine.alleMinen.remove(i);
             }
