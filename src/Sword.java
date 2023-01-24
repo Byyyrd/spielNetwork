@@ -37,9 +37,9 @@ public class Sword implements MouseListener, ActionListener {
     public void tick() {
         x = player.x;
         y = player.y;
-        if (panel.bow.mousePos != null) {
-            yLenght = (long) ((panel.bow.mousePos.getY()) - (y + player.height / 2));
-            xLenght = (long) ((panel.bow.mousePos.getX()) - (x + player.width / 2));
+        if (panel.Slingshot.mousePos != null && inScreen) {
+            yLenght = (long) ((panel.Slingshot.mousePos.getY()) - (y + player.height / 2));
+            xLenght = (long) ((panel.Slingshot.mousePos.getX()) - (x + player.width / 2));
             rotation = (Math.atan2(yLenght, xLenght)) + Math.PI / 2 + offset + counterOffset;
         }
         if (cooldown > 0) {
@@ -76,6 +76,31 @@ public class Sword implements MouseListener, ActionListener {
             cooldown = 3.1;
         }
     }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+        if (offset == -Math.PI / 4) {
+            offset = Math.PI / 2;
+        }
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+        inScreen = true;
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+        //inScreen = false;
+    }
+
+    @Override
     public void actionPerformed(ActionEvent e) {
         x = player.x;
         y = player.y;
@@ -87,26 +112,5 @@ public class Sword implements MouseListener, ActionListener {
             counterOffset = Math.PI / 4;
         }
     }
-    @Override
-    public void mousePressed(MouseEvent e) {
-        if (offset == -Math.PI / 4) {
-            offset = Math.PI / 2;
-        }
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseEntered(MouseEvent e) {
-    }
-
-    @Override
-    public void mouseExited(MouseEvent e) {
-        
-    }
-    
 }
 

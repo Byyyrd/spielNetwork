@@ -13,8 +13,8 @@ public class Panel extends JPanel implements ActionListener, KeyListener {
     Sword sword;
     Sword sword2;
 
-    Weapon bow;
-    Weapon bow2;
+    Slingshot Slingshot;
+    Slingshot bow2;
     double rotation2;
 
 
@@ -108,12 +108,12 @@ public class Panel extends JPanel implements ActionListener, KeyListener {
         player2 = new Player(100, 100, playerImage.getWidth(null) * 3, playerImage.getHeight(null) * 3, player2, sword,this);
         player1 = new Player(10, 10, playerImage.getWidth(null) * 3, playerImage.getHeight(null) * 3, player2, sword2,this);
 
-        bow = new Weapon(player1, this, bowImage);
-        bow2 = new Weapon(player2, this, bowImage);
-        this.addMouseListener(bow);
+        Slingshot = new Slingshot(player1, this, bowImage);
+        bow2 = new Slingshot(player2, this, bowImage);
+        this.addMouseListener(Slingshot);
 
         player1.setAllArrows(bow2.allArrows);
-        player1.setAllArrowsself(bow.allArrows);
+        player1.setAllArrowsself(Slingshot.allArrows);
 
         sword = new Sword(this, player1);
         sword2 = new Sword(this, player2);
@@ -157,26 +157,12 @@ public class Panel extends JPanel implements ActionListener, KeyListener {
         sword.drawSword(g2d,swordImage,player2,sword2);
 
         //Slingshot
-        if (player1.isBowPickedup()) {
-            g2d.rotate(bow.playerRotation, player1.x + playerImage.getWidth(null) * 1.5, player1.y + playerImage.getHeight(null) * 1.5);
-            g2d.drawImage(bowImage, player1.x + playerImage.getWidth(null) * 3 / 2 - bowImage.getWidth(null) / 48, player1.y + playerImage.getHeight(null) * 3 / 2 - bowImage.getHeight(null) / 48, bowImage.getWidth(null) / 24, bowImage.getHeight(null) / 24, null);
-            g2d.rotate(-bow.playerRotation, player1.x + playerImage.getWidth(null) * 1.5, player1.y + playerImage.getHeight(null) * 1.5);
-        }
-        if (player2.isBowPickedup()) {
-            g2d.rotate(rotation2, player2.x + playerImage.getWidth(null) * 1.5, player2.y + playerImage.getHeight(null) * 1.5);
-            g2d.drawImage(bowImage, player2.x + playerImage.getWidth(null) * 3 / 2 - bowImage.getWidth(null) / 48, player2.y + playerImage.getHeight(null) * 3 / 2 - bowImage.getHeight(null) / 48, bowImage.getWidth(null) / 24, bowImage.getHeight(null) / 24, null);
-            g2d.rotate(-rotation2, player2.x + playerImage.getWidth(null) * 1.5, player2.y + playerImage.getHeight(null) * 1.5);
-        }
-        for (int i = bow.allArrows.size(); i >= 1; i--) {
-            g2d.setColor(new Color(12, 255, 0));
-            g2d.fillOval((int) (bow.allArrows.get(i - 1)[0] + 5), (int) (bow.allArrows.get(i - 1)[1] + 5), 10, 10);
-        }
-        if (bow2.allArrows != null) {
-            for (int i = bow2.allArrows.size(); i >= 1; i--) {
-                g2d.setColor(new Color(12, 255, 0));
-                g2d.fillOval((int) (bow2.allArrows.get(i - 1)[0] + 5), (int) (bow2.allArrows.get(i - 1)[1] + 5), 10, 10);
-            }
-        }
+        Slingshot.drawSlingshot(g2d,player1,bowImage,playerImage);
+        Slingshot.drawSlingshot(g2d,player2,bowImage,playerImage);
+        //Sword Collision Points
+        /*g2d.fillOval((int) (sword.x + 21 + Math.sin(sword.rotation) * 21), (int) (player1.y + (double) player1.width/2 + Math.cos(sword.rotation) * -25), 10, 10);
+        g2d.fillOval((int) (sword.x + 21 + Math.sin(sword.rotation) * 40), (int) (player1.y + (double) player1.width/2 + Math.cos(sword.rotation) * -40), 10, 10);
+        g2d.fillOval((int) (sword.x + 21 + Math.sin(sword.rotation) * 55), (int) (player1.y + (double) player1.width/2 + Math.cos(sword.rotation) * -55), 10, 10);*/
     }
 
     public void keyTyped(KeyEvent e) {
@@ -197,8 +183,8 @@ public class Panel extends JPanel implements ActionListener, KeyListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(bow.mousePos != null && bow.entert) {
-            client.setWeapon(bow);
+        if(Slingshot.mousePos != null && Slingshot.entert) {
+            client.setWeapon(Slingshot);
             client.sendMessage(player1, sword);
             player1.tick();
             sword.tick();

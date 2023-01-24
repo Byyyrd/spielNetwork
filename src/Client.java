@@ -2,10 +2,8 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-import java.util.ArrayList;
 
 import static java.lang.System.exit;
-import static java.lang.System.setOut;
 
 public class Client {
     String name;
@@ -15,7 +13,7 @@ public class Client {
     ObjectInputStream inputStream;
     ConnectionFrame conFrame;
     Panel panel;
-    Weapon weapon;
+    Slingshot slingshot;
     Message message;
     boolean isClicked = false;
     public void setPanel(Panel panel) {
@@ -61,7 +59,7 @@ public class Client {
     }
     public void sendMessage(Player player,Sword sword) {
         try {
-            message = new Message(player.x, player.y,name, sword.rotation, weapon.playerRotation,player.isBowPickedup(),weapon.mousePos.getX(), weapon.mousePos.getY(),isClicked, player.swordPickedup);
+            message = new Message(player.x, player.y,name, sword.rotation, slingshot.playerRotation,player.isBowPickedup(), slingshot.mousePos.getX(), slingshot.mousePos.getY(),isClicked, player.swordPickedup);
             outputStream.writeObject(message);
             isClicked = false;
             //soutputStream.writeObject(allArrows);
@@ -73,8 +71,8 @@ public class Client {
         this.panel = panel;
     }
 
-    public void setWeapon(Weapon weapon) {
-        this.weapon = weapon;
+    public void setWeapon(Slingshot slingshot) {
+        this.slingshot = slingshot;
     }
 
     public void setClicked(boolean clicked) {
