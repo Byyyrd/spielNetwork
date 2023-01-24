@@ -16,6 +16,8 @@ public class Client {
     Slingshot slingshot;
     Message message;
     boolean isClicked = false;
+    boolean minePlased = false;
+    boolean explodet = false;
     public void setPanel(Panel panel) {
         this.panel = panel;
     }
@@ -41,6 +43,7 @@ public class Client {
                         panel.slingshot2.player2CreateArrow(recievedObject.mouseX,recievedObject.mouseY);
                     }
                     panel.player2.setSlingshotPickedup(recievedObject.bowPickedUp);
+                    panel.mine.explodemines();
                 } catch (ClassNotFoundException e) {
                     System.out.println("Client hat Scheiße bekommen");
                 } catch (IOException e) {
@@ -53,7 +56,7 @@ public class Client {
     }
     public void sendMessage(Player player,Sword sword) {
         try {
-            message = new Message(player.x, player.y,name, sword.rotation, slingshot.playerRotation,player.isSlingshotPickedup(), slingshot.mousePos.getX(), slingshot.mousePos.getY(),isClicked, player.swordPickedup);
+            message = new Message(player.x, player.y,name, sword.rotation, slingshot.playerRotation,player.isSlingshotPickedup(), slingshot.mousePos.getX(), slingshot.mousePos.getY(),isClicked, player.swordPickedup, minePlased,explodet);
             outputStream.writeObject(message);
             isClicked = false;
             //soutputStream.writeObject(allArrows);
@@ -71,5 +74,13 @@ public class Client {
 
     public void setClicked(boolean clicked) {
         isClicked = clicked;
+    }
+
+    public void setMinePlased(boolean minePlased) {
+        this.minePlased = minePlased;
+    }
+
+    public void setExplodet(boolean explodet) {
+        this.explodet = explodet;
     }
 }

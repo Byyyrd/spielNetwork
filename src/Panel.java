@@ -17,6 +17,8 @@ public class Panel extends JPanel implements ActionListener, KeyListener {
     Slingshot slingshot2;
     double rotation2;
 
+    Mine mine;
+    Mine mine2;
 
     Client client;
     Timer timer;
@@ -115,6 +117,9 @@ public class Panel extends JPanel implements ActionListener, KeyListener {
         player1.setAllArrows(slingshot2.allArrows);
         player1.setAllArrowsself(slingshot.allArrows);
 
+        mine2 = new Mine(player2, null);
+        mine = new Mine(player1, mine2);
+
         sword = new Sword(this, player1);
         sword2 = new Sword(this, player2);
         sword.setSword2(sword2);
@@ -162,10 +167,9 @@ public class Panel extends JPanel implements ActionListener, KeyListener {
 
         //Slingshot
         slingshot.drawSlingshot(g2d,player1,player2,bowImage,playerImage,slingshot2 );
-        //Sword Collision Points
-        /*g2d.fillOval((int) (sword.x + 21 + Math.sin(sword.rotation) * 21), (int) (player1.y + (double) player1.width/2 + Math.cos(sword.rotation) * -25), 10, 10);
-        g2d.fillOval((int) (sword.x + 21 + Math.sin(sword.rotation) * 40), (int) (player1.y + (double) player1.width/2 + Math.cos(sword.rotation) * -40), 10, 10);
-        g2d.fillOval((int) (sword.x + 21 + Math.sin(sword.rotation) * 55), (int) (player1.y + (double) player1.width/2 + Math.cos(sword.rotation) * -55), 10, 10);*/
+
+        //Minen
+        mine.drawMine(g2d);
     }
 
     public void keyTyped(KeyEvent e) {
@@ -177,6 +181,7 @@ public class Panel extends JPanel implements ActionListener, KeyListener {
     }
 
     public void keyPressed(KeyEvent e) {
+        mine.keyPressed(e);
         player1.keyPressed(e);
         if (e.getKeyCode() == 70){
             player1.setSlingshotPickedup(!player1.isSlingshotPickedup());
@@ -187,11 +192,15 @@ public class Panel extends JPanel implements ActionListener, KeyListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if(slingshot.mousePos != null) {
+            client.setMinePlased(mine.minePlased);
+            client.setExplodet(mine.explodet);
             client.setWeapon(slingshot);
             client.sendMessage(player1, sword);
             player1.tick();
             sword.tick();
             repaint();
+            mine.minePlased = false;
+            mine.explodet = false;
         }
     }
 
