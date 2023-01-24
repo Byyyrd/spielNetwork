@@ -25,7 +25,7 @@ public class Mine{
     }
 
     public void explodemines(){
-        if (mine.alleMinen != null) {
+        if (mine.alleMinen.size() != 0) {
             for (int i = 0; i < mine.alleMinen.size(); i++) {
                 if (explosionColision(mine.alleMinen.get(i)[0], mine.alleMinen.get(i)[1], player.x, player.y, 30) || explosionColision(alleMinen.get(i)[0], alleMinen.get(i)[1], player.x + player.width, player.y, 30) || explosionColision(alleMinen.get(i)[0], alleMinen.get(i)[1], player.x + player.width / 2, player.y, 30) || explosionColision(alleMinen.get(i)[0], alleMinen.get(i)[1], player.x + player.width, player.y + player.height / 2, 30) || explosionColision(alleMinen.get(i)[0], alleMinen.get(i)[1], player.x + player.width, player.y + player.height, 30) || explosionColision(alleMinen.get(i)[0], alleMinen.get(i)[1], player.x + player.width / 2, player.y + player.height, 30) || explosionColision(alleMinen.get(i)[0], alleMinen.get(i)[1], player.x, player.y + player.height, 30) || explosionColision(alleMinen.get(i)[0], alleMinen.get(i)[1], player.x, player.y + player.height / 2, 30)) {
                     player.x = 0;
