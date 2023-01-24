@@ -43,7 +43,12 @@ public class Client {
                         panel.slingshot2.player2CreateArrow(recievedObject.mouseX,recievedObject.mouseY);
                     }
                     panel.player2.setSlingshotPickedup(recievedObject.bowPickedUp);
-                    panel.mine.explodemines();
+                    if (recievedObject.minePlased){
+                        panel.mine2.createMine();
+                    }
+                    if (recievedObject.explodet){
+                        panel.mine.explodemines();
+                    }
                 } catch (ClassNotFoundException e) {
                     System.out.println("Client hat Scheiße bekommen");
                 } catch (IOException e) {

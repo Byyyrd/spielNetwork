@@ -13,6 +13,7 @@ public class Mine{
 
     public Mine(Player player, Mine mine) {
         this.player = player;
+        this.mine = mine;
     }
 
     public void createMine(){
