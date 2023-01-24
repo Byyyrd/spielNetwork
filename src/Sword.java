@@ -18,12 +18,12 @@ public class Sword implements MouseListener, ActionListener {
     int height;
 
     Player player;
-
     Panel panel;
-
     Timer timer;
-
     Sword sword2;
+    Player player2;
+
+
 
     public Sword(Panel panel, Player player) {
         this.panel = panel;
@@ -39,6 +39,8 @@ public class Sword implements MouseListener, ActionListener {
     public void tick() {
         x = player.x;
         y = player.y;
+        sword2.x = player2.x;
+        sword2.y = player2.y;
         if (panel.bow.mousePos != null) {
             yLenght = (long) ((panel.bow.mousePos.getY()) - (y + player.height / 2));
             xLenght = (long) ((panel.bow.mousePos.getX()) - (x + player.width / 2));
@@ -119,6 +121,11 @@ public class Sword implements MouseListener, ActionListener {
 
     public void setSword2(Sword sword2) {
         this.sword2 = sword2;
+    }
+
+
+    public void setPlayer2(Player player2) {
+        this.player2 = player2;
     }
 }
 

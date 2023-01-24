@@ -96,9 +96,6 @@ public class Weapon implements MouseListener, ActionListener {
 
         x1 = x1 + (int) (Math.cos(playerRotation) * 500 * 0.01);
         y1 = y1 + (int) (Math.sin(playerRotation) * 500 * 0.01);
-       /*if ((Math.toDegrees(playerRotation)-45)>360){
-           playerRotation = playerRotation - Math.toRadians(360) ;
-       }*/
         for (int i = allArrows.size(); i >= 1; i--) {
             if (allArrows.get(i - 1)[0] >= panel.getWidth() || allArrows.get(i - 1)[0] <= 0) {
                 allArrows.remove(i - 1);
@@ -107,7 +104,7 @@ public class Weapon implements MouseListener, ActionListener {
             }
 
         }
-        //repaint();
+
 
 
     }
