@@ -122,7 +122,7 @@ public class Panel extends JPanel implements ActionListener, KeyListener {
         player1.setEnemySword(sword2);
         player2.setEnemySword(sword);
 
-        this.setBounds(0, 0, 100, 100);
+        this.setBounds(0, 0, 1280, 900);
 
         int delay = 10;
         timer = new Timer(delay, this);
@@ -147,8 +147,8 @@ public class Panel extends JPanel implements ActionListener, KeyListener {
         }
 
         for (int i = 0; i < allObsticals.size(); i++){
-            g2d.setColor(new Color(0, 21, 255));
-            g2d.drawRect(allObsticals.get(i)[0],allObsticals.get(i)[1],allObsticals.get(i)[2],allObsticals.get(i)[3]);
+            g2d.setColor(new Color(48, 61, 61));
+            g2d.fillRect(allObsticals.get(i)[0],allObsticals.get(i)[1],allObsticals.get(i)[2],allObsticals.get(i)[3]);
         }
         //g2d.drawImage(bgrImage,0,bgrHeight,bgrWidth,bgrHeight,null);
 
