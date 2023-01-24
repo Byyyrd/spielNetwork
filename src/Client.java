@@ -32,7 +32,6 @@ public class Client {
             while (true) {
                 try {
                     inputStream = new ObjectInputStream(socket.getInputStream());
-                    //if(inputStream.readObject().getClass() == Message.class) {
                     Message recievedObject = (Message) inputStream.readObject();
                     panel.setPlayer2(recievedObject.getX(), recievedObject.getY(), recievedObject.getName());
                     panel.sword2.rotation = recievedObject.getSwordRotation();
@@ -42,11 +41,6 @@ public class Client {
                         panel.slingshot2.player2CreateArrow(recievedObject.mouseX,recievedObject.mouseY);
                     }
                     panel.player2.setBowPickedup(recievedObject.bowPickedUp);
-                    //}
-                    /*if (inputStream.readObject().getClass() == ArrayList.class){
-                        ArrayList recievedObject = (ArrayList) inputStream.readObject();
-                        panel.setAllArrows(recievedObject);
-                    }*/
                 } catch (ClassNotFoundException e) {
                     System.out.println("Client hat Scheiße bekommen");
                 } catch (IOException e) {

@@ -18,10 +18,12 @@ public class Sword implements MouseListener, ActionListener {
     int height;
 
     Player player;
-
     Panel panel;
-
     Timer timer;
+    Sword sword2;
+    Player player2;
+
+
 
     public Sword(Panel panel, Player player) {
         this.panel = panel;
@@ -31,23 +33,31 @@ public class Sword implements MouseListener, ActionListener {
         this.width = player.width;
         this.height = player.height * 2;
         Timer timer = new Timer(25, this);
-        timer.start();
+        //timer.start();
     }
 
     public void tick() {
         x = player.x;
         y = player.y;
+        sword2.x = player2.x;
+        sword2.y = player2.y;
         if (panel.slingshot.mousePos != null && inScreen) {
             yLenght = (long) ((panel.slingshot.mousePos.getY()) - (y + player.height / 2));
             xLenght = (long) ((panel.slingshot.mousePos.getX()) - (x + player.width / 2));
-            rotation = (Math.atan2(yLenght, xLenght)) + Math.PI / 2 + offset + counterOffset;
-        }
+
         if (cooldown > 0) {
             cooldown -= 0.025;
         }
+        if (offset > -Math.PI / 4) {
+            counterOffset = 0;
+            offset -= 0.25;
+        } else {
+            offset = -Math.PI / 4;
+            counterOffset = Math.PI / 4;
+        }
 
     }
-    public void drawSword(Graphics2D g2d,Image swordImage,Player player2,Sword sword2){
+    public void drawSword(Graphics2D g2d,Image swordImage,Player player2){
         if(player2.swordPickedup) {
             g2d.rotate(sword2.rotation, player2.x + player2.width * 0.5, player2.y + player2.height * 0.5);
             g2d.drawImage(swordImage, sword2.x, (int) (sword2.y - (double) player2.width), player2.width, player2.height * 2, null);
@@ -80,7 +90,7 @@ public class Sword implements MouseListener, ActionListener {
     @Override
     public void mousePressed(MouseEvent e) {
         if (offset == -Math.PI / 4) {
-            offset = Math.PI / 2;
+            offset = Math.PI / 4;
         }
 
     }
@@ -92,25 +102,21 @@ public class Sword implements MouseListener, ActionListener {
 
     @Override
     public void mouseEntered(MouseEvent e) {
-        inScreen = true;
+
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
-        //inScreen = false;
+        
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        x = player.x;
-        y = player.y;
-        if (offset > -Math.PI / 4) {
-            counterOffset = 0;
-            offset -= 0.25;
-        } else {
-            offset = -Math.PI / 4;
-            counterOffset = Math.PI / 4;
-        }
+    public void setSword2(Sword sword2) {
+        this.sword2 = sword2;
+    }
+
+
+    public void setPlayer2(Player player2) {
+        this.player2 = player2;
     }
 }
 
