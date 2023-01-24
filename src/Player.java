@@ -45,6 +45,18 @@ public class Player implements Serializable {
         checkCollision();
         inputs();
         applyVel();
+        if (x > panel.getWidth()){
+            x = -width;
+        }
+        if (x < -width){
+            x = panel.getWidth();
+        }
+        if (y > panel.getHeight()){
+            y = -height;
+        }
+        if (y < -height){
+            y = panel.getHeight();
+        }
     }
 
     public void checkCollision() {
