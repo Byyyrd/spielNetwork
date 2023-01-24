@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Weapon implements MouseListener, ActionListener {
     double y1;
@@ -69,14 +70,14 @@ public class Weapon implements MouseListener, ActionListener {
             playerRotation = Math.atan2(yLenght, xLenght);
         }
         for (int i = allArrows.size() ;i >= 1  ;i--) {
-            if (allArrows.get(i - 1)[0]==allArrows.get(i - 1)[2] && allArrows.get(i - 1)[3] < allArrows.get(i - 1)[1] ){
+            if (Objects.equals(allArrows.get(i - 1)[0], allArrows.get(i - 1)[2]) && allArrows.get(i - 1)[3] < allArrows.get(i - 1)[1] ){
                 allArrows.get(i - 1)[3]=2500 + (allArrows.get(i - 1)[7] * allArrows.get(i - 1)[2] + allArrows.get(i - 1)[8]);
             }
-            else if (allArrows.get(i - 1)[0]==allArrows.get(i - 1)[2] && allArrows.get(i - 1)[3] > allArrows.get(i - 1)[1]){
-                allArrows.get(i - 1)[3]=2500 - (allArrows.get(i - 1)[7] * allArrows.get(i - 1)[2] + allArrows.get(i - 1)[8]);
+            else if (Objects.equals(allArrows.get(i - 1)[0], allArrows.get(i - 1)[2]) && allArrows.get(i - 1)[3] > allArrows.get(i - 1)[1]){
+                allArrows.get(i - 1)[3] = 2500 - (allArrows.get(i - 1)[7] * allArrows.get(i - 1)[2] + allArrows.get(i - 1)[8]);
             }
             else {
-                allArrows.get(i - 1)[3]= allArrows.get(i - 1)[7] * allArrows.get(i - 1)[2] + allArrows.get(i - 1)[8];
+                allArrows.get(i - 1)[3] = allArrows.get(i - 1)[7] * allArrows.get(i - 1)[2] + allArrows.get(i - 1)[8];
             }
 
         }
@@ -95,8 +96,15 @@ public class Weapon implements MouseListener, ActionListener {
             }
         }
 
+
+
+        if(yLenght>-3 && yLenght < 3 || xLenght < 3 && xLenght > -3){
+
+        }
+        else{
             x1 = x1 + (int) (Math.cos(playerRotation) * 500 * 0.01);
             y1 = y1 + (int) (Math.sin(playerRotation) * 500 * 0.01);
+        }
        /*if ((Math.toDegrees(playerRotation)-45)>360){
            playerRotation = playerRotation - Math.toRadians(360) ;
        }*/

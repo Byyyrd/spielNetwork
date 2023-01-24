@@ -12,6 +12,10 @@ public class Player implements Serializable {
     boolean upPressed;
     boolean leftPressed;
     boolean rightPressed;
+    boolean downCollids = false;
+    boolean upCollids = false;
+    boolean leftCollids = false;
+    boolean rightCollids = false;
     double xVel;
     double yVel;
     double xDir;
@@ -21,9 +25,11 @@ public class Player implements Serializable {
     //ArrayList deadlyProjectiles;
     Sword enemySword;
     ArrayList<Double[]> allArrows;
+    ArrayList<Double[]> allArrowsself;
     boolean bowPickedup;
     boolean swordPickedup;
-    public Player(int x, int y, int width, int height, Player player2, Sword enemySword) {
+    Panel panel;
+    public Player(int x, int y, int width, int height, Player player2, Sword enemySword, Panel panel) {
         bowPickedup = false;
         swordPickedup = true;
         this.player2 = player2;
@@ -32,6 +38,7 @@ public class Player implements Serializable {
         this.width = width;
         this.height = height;
         this.enemySword = enemySword;
+        this.panel= panel;
     }
 
     public void tick(){
@@ -52,6 +59,20 @@ public class Player implements Serializable {
                 if (inRectangle((int) (allArrow[0] + 5), (int) (allArrow[1] + 5), x, y, width, height)) {
                     x = 0;
                     y = 0;
+                }
+            }
+        }
+        for (int j = 0; j < panel.allObsticals.size(); j++){
+            for (int i = 0; i < allArrows.size(); i++){
+                if(inRectangle((int)(allArrows.get(i)[0]+5) , (int)(allArrows.get(i)[1]+5),panel.allObsticals.get(j)[0],panel.allObsticals.get(j)[1],panel.allObsticals.get(j)[2],panel.allObsticals.get(j)[3])){
+                    allArrows.remove(i);
+                }
+            } 
+        }
+        for (int j = 0; j < panel.allObsticals.size(); j++){
+            for (int i = 0; i < allArrowsself.size(); i++){
+                if(inRectangle((int)(allArrowsself.get(i)[0]+5) , (int)(allArrowsself.get(i)[1]+5),panel.allObsticals.get(j)[0],panel.allObsticals.get(j)[1],panel.allObsticals.get(j)[2],panel.allObsticals.get(j)[3])){
+                    allArrowsself.remove(i);
                 }
             }
         }
@@ -104,21 +125,38 @@ public class Player implements Serializable {
     }
 
     public void inputs() {
-        if (upPressed && !inRectangle(x + 5, y, player2.x, player2.y, player2.width, player2.width) && !inRectangle(x + player2.width - 5, y, player2.x, player2.y, player2.width, player2.width)) {
+        for ( int i = 0; i < panel.allObsticals.size(); i++) {
+            if( inRectangle(x + 5, y, panel.allObsticals.get(i)[0], panel.allObsticals.get(i)[1], panel.allObsticals.get(i)[2], panel.allObsticals.get(i)[3]) || inRectangle(x + player2.width - 5, y, panel.allObsticals.get(i)[0], panel.allObsticals.get(i)[1], panel.allObsticals.get(i)[2], panel.allObsticals.get(i)[3])|| inRectangle(x + player2.width/2 - 5, y, panel.allObsticals.get(i)[0], panel.allObsticals.get(i)[1], panel.allObsticals.get(i)[2], panel.allObsticals.get(i)[3])) {
+                upCollids = true;
+            }
+            if (inRectangle(x + 5, y + player2.height, panel.allObsticals.get(i)[0], panel.allObsticals.get(i)[1], panel.allObsticals.get(i)[2], panel.allObsticals.get(i)[3]) || inRectangle(x + player2.width - 5, y + player2.height, panel.allObsticals.get(i)[0], panel.allObsticals.get(i)[1], panel.allObsticals.get(i)[2], panel.allObsticals.get(i)[3]) || inRectangle(x + player2.width/2 - 5, y + player2.height/2, panel.allObsticals.get(i)[0], panel.allObsticals.get(i)[1], panel.allObsticals.get(i)[2], panel.allObsticals.get(i)[3])) {
+                downCollids = true;
+            }
+            if (inRectangle(x, y + 5, panel.allObsticals.get(i)[0], panel.allObsticals.get(i)[1], panel.allObsticals.get(i)[2], panel.allObsticals.get(i)[3]) || inRectangle(x, y + player2.height - 5,panel.allObsticals.get(i)[0], panel.allObsticals.get(i)[1], panel.allObsticals.get(i)[2], panel.allObsticals.get(i)[3])|| inRectangle(x, y + player2.height/2 - 5,panel.allObsticals.get(i)[0], panel.allObsticals.get(i)[1], panel.allObsticals.get(i)[2], panel.allObsticals.get(i)[3])) {
+                leftCollids = true;
+            }
+            if (inRectangle(x + player2.width, y - 5, panel.allObsticals.get(i)[0], panel.allObsticals.get(i)[1], panel.allObsticals.get(i)[2], panel.allObsticals.get(i)[3]) || inRectangle(x + player2.width, y + player2.height - 5, panel.allObsticals.get(i)[0], panel.allObsticals.get(i)[1], panel.allObsticals.get(i)[2], panel.allObsticals.get(i)[3])|| inRectangle(x + player2.width/2, y + player2.height/2 - 5, panel.allObsticals.get(i)[0], panel.allObsticals.get(i)[1], panel.allObsticals.get(i)[2], panel.allObsticals.get(i)[3])) {
+                rightCollids = true;
+            }
+        }
+        if (upPressed && !inRectangle(x + 5, y, player2.x, player2.y, player2.width, player2.width) && !inRectangle(x + player2.width - 5, y, player2.x, player2.y, player2.width, player2.width) && !upCollids) {
             yDir = -1;
-        } else if (downPressed && !inRectangle(x + 5, y + player2.height, player2.x, player2.y, player2.width, player2.width) && !inRectangle(x + player2.width - 5, y + player2.height, player2.x, player2.y, player2.width, player2.width)) {
+        } else if (downPressed && !inRectangle(x + 5, y + player2.height, player2.x, player2.y, player2.width, player2.width) && !inRectangle(x + player2.width - 5, y + player2.height, player2.x, player2.y, player2.width, player2.width) && !downCollids) {
             yDir = 1;
         } else {
             yDir = 0;
         }
-        if (leftPressed && !inRectangle(x, y + 5, player2.x, player2.y, player2.width, player2.width) && !inRectangle(x, y + player2.height - 5, player2.x, player2.y, player2.width, player2.width)) {
+        if (leftPressed && !inRectangle(x, y + 5, player2.x, player2.y, player2.width, player2.width) && !inRectangle(x, y + player2.height - 5, player2.x, player2.y, player2.width, player2.width) && !leftCollids) {
             xDir = -1;
-        } else if (rightPressed && !inRectangle(x + player2.width, y - 5, player2.x, player2.y, player2.width, player2.width) && !inRectangle(x + player2.width, y + player2.height - 5, player2.x, player2.y, player2.width, player2.width)) {
+        } else if (rightPressed && !inRectangle(x + player2.width, y - 5, player2.x, player2.y, player2.width, player2.width) && !inRectangle(x + player2.width, y + player2.height - 5, player2.x, player2.y, player2.width, player2.width) && !rightCollids) {
             xDir = 1;
         } else {
             xDir = 0;
         }
-
+        upCollids = false;
+        downCollids = false;
+        leftCollids = false;
+        rightCollids = false;
     }
 
     public void setEnemySword(Sword enemySword) {
@@ -144,6 +182,10 @@ public class Player implements Serializable {
 
     public void setAllArrows(ArrayList<Double[]> allArrows) {
         this.allArrows = allArrows;
+    }
+
+    public void setAllArrowsself(ArrayList<Double[]> allArrowsself) {
+        this.allArrowsself = allArrowsself;
     }
 
     public boolean isSwordPickedup() {
