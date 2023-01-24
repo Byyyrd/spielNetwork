@@ -151,15 +151,15 @@ public class Slingshot implements MouseListener, ActionListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        if (player.isSlingshotPickedup()) {
-            CreateArrow();
-            client.setClicked(true);
-        }
+
     }
 
     @Override
     public void mousePressed(MouseEvent e) {
-
+        if (player.isSlingshotPickedup()) {
+            CreateArrow();
+            client.setClicked(true);
+        }
     }
 
     @Override
