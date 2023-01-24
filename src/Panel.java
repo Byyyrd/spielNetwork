@@ -161,8 +161,7 @@ public class Panel extends JPanel implements ActionListener, KeyListener {
         sword.drawSword(g2d,swordImage,player2);
 
         //Slingshot
-        slingshot.drawSlingshot(g2d,player1,bowImage,playerImage);
-        slingshot.drawSlingshot(g2d,player2,bowImage,playerImage);
+        slingshot.drawSlingshot(g2d,player1,player2,bowImage,playerImage,slingshot2 );
         //Sword Collision Points
         /*g2d.fillOval((int) (sword.x + 21 + Math.sin(sword.rotation) * 21), (int) (player1.y + (double) player1.width/2 + Math.cos(sword.rotation) * -25), 10, 10);
         g2d.fillOval((int) (sword.x + 21 + Math.sin(sword.rotation) * 40), (int) (player1.y + (double) player1.width/2 + Math.cos(sword.rotation) * -40), 10, 10);

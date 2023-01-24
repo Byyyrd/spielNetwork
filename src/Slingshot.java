@@ -29,17 +29,30 @@ public class Slingshot implements MouseListener, ActionListener {
         timer = new Timer(10, this);
         timer.start();
     }
-    public void drawSlingshot(Graphics2D g2d, Player player,Image image, Image playerImage){
+
+    public void drawSlingshot(Graphics2D g2d, Player player, Player player2, Image image, Image playerImage, Slingshot slingshot2) {
         if (player.isBowPickedup()) {
             g2d.rotate(this.playerRotation, player.x + playerImage.getWidth(null) * 1.5, player.y + playerImage.getHeight(null) * 1.5);
             g2d.drawImage(image, player.x + playerImage.getWidth(null) * 3 / 2 - image.getWidth(null) / 48, player.y + playerImage.getHeight(null) * 3 / 2 - image.getHeight(null) / 48, image.getWidth(null) / 24, image.getHeight(null) / 24, null);
             g2d.rotate(-this.playerRotation, player.x + playerImage.getWidth(null) * 1.5, player.y + playerImage.getHeight(null) * 1.5);
         }
-        for (int i = this.allArrows.size(); i >= 1; i--) {
+        for (int i = allArrows.size(); i >= 1; i--) {
             g2d.setColor(new Color(12, 255, 0));
             g2d.fillOval((int) (this.allArrows.get(i - 1)[0] + 5), (int) (this.allArrows.get(i - 1)[1] + 5), 10, 10);
         }
+        if (player2.isBowPickedup()) {
+            g2d.rotate(panel.rotation2, player2.x + playerImage.getWidth(null) * 1.5, player2.y + playerImage.getHeight(null) * 1.5);
+            g2d.drawImage(image, player2.x + playerImage.getWidth(null) * 3 / 2 - image.getWidth(null) / 48, player2.y + playerImage.getHeight(null) * 3 / 2 - image.getHeight(null) / 48, image.getWidth(null) / 24, image.getHeight(null) / 24, null);
+            g2d.rotate(-panel.rotation2, player2.x + playerImage.getWidth(null) * 1.5, player2.y + playerImage.getHeight(null) * 1.5);
+        }
+        if (slingshot2.allArrows != null) {
+            for (int i = slingshot2.allArrows.size(); i >= 1; i--) {
+                g2d.setColor(new Color(12, 255, 0));
+                g2d.fillOval((int) (slingshot2.allArrows.get(i - 1)[0] + 5), (int) (slingshot2.allArrows.get(i - 1)[1] + 5), 10, 10);
+            }
+        }
     }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         setMousePos(panel.getMousePosition());
@@ -85,7 +98,6 @@ public class Slingshot implements MouseListener, ActionListener {
         }
 
 
-
     }
 
     public void CreateArrow() {
@@ -122,14 +134,13 @@ public class Slingshot implements MouseListener, ActionListener {
             Arrow[2] = (mouseX);//x2 Index = 2
         }
 
-        //Arrow.add((this.getMousePosition().getX())*1);//x2 Index = 2
         Arrow[3] = (mouseY);//y2 Index = 3
         Arrow[4] = (0.0); //Rotation Index = 4
         Arrow[5] = (0.0); //xLength Index = 5
         Arrow[6] = (0.0); //yLength Index = 6
         Arrow[7] = ((mouseY - y1) / (mouseX - x1));//LineareFunktion : m Index = 7
         Arrow[8] = (y1 - ((mouseY - y1) / (mouseX - x1)) * x1); //LineareFunktion : b Index = 8
-        allArrows.add(Arrow);
+        this.allArrows.add(Arrow);
     }
 
     public void setMousePos(Point mousePos) {
@@ -140,7 +151,7 @@ public class Slingshot implements MouseListener, ActionListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        if (player.isBowPickedup() && e.getButton() == 1){
+        if (player.isBowPickedup() && e.getButton() == 1) {
             CreateArrow();
             client.setClicked(true);
         }
