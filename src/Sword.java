@@ -2,7 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class Sword implements MouseListener, ActionListener {
+public class Sword implements MouseListener {
     double rotation;
     long yLenght;
     long xLenght;
@@ -32,8 +32,7 @@ public class Sword implements MouseListener, ActionListener {
         this.player = player;
         this.width = player.width;
         this.height = player.height * 2;
-        Timer timer = new Timer(25, this);
-        //timer.start();
+
     }
 
     public void tick() {
@@ -44,7 +43,7 @@ public class Sword implements MouseListener, ActionListener {
         if (panel.slingshot.mousePos != null && inScreen) {
             yLenght = (long) ((panel.slingshot.mousePos.getY()) - (y + player.height / 2));
             xLenght = (long) ((panel.slingshot.mousePos.getX()) - (x + player.width / 2));
-
+        }
         if (cooldown > 0) {
             cooldown -= 0.025;
         }
@@ -86,13 +85,11 @@ public class Sword implements MouseListener, ActionListener {
             cooldown = 3.1;
         }
     }
-
     @Override
     public void mousePressed(MouseEvent e) {
         if (offset == -Math.PI / 4) {
             offset = Math.PI / 4;
         }
-
     }
 
     @Override
@@ -102,7 +99,6 @@ public class Sword implements MouseListener, ActionListener {
 
     @Override
     public void mouseEntered(MouseEvent e) {
-
     }
 
     @Override
