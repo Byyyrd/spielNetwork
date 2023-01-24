@@ -28,7 +28,8 @@ public class Mine{
         if (mine.alleMinen.size() != 0) {
             for (int i = 0; i < mine.alleMinen.size(); i++) {
                 if (explosionColision(mine.alleMinen.get(i)[0], mine.alleMinen.get(i)[1], player.x, player.y, 90) || explosionColision(alleMinen.get(i)[0], alleMinen.get(i)[1], player.x + player.width, player.y, 90) || explosionColision(alleMinen.get(i)[0], alleMinen.get(i)[1], player.x + player.width / 2, player.y, 90) || explosionColision(alleMinen.get(i)[0], alleMinen.get(i)[1], player.x + player.width, player.y + player.height / 2, 90) || explosionColision(alleMinen.get(i)[0], alleMinen.get(i)[1], player.x + player.width, player.y + player.height, 90) || explosionColision(alleMinen.get(i)[0], alleMinen.get(i)[1], player.x + player.width / 2, player.y + player.height, 90) || explosionColision(alleMinen.get(i)[0], alleMinen.get(i)[1], player.x, player.y + player.height, 90) || explosionColision(alleMinen.get(i)[0], alleMinen.get(i)[1], player.x, player.y + player.height / 2, 90)) {
-
+                    player.x = 0;
+                    player.y = 0;
                 }
                 mine.alleMinen.remove(i);
             }
