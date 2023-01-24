@@ -145,33 +145,16 @@ public class Panel extends JPanel implements ActionListener, KeyListener {
                 g2d.drawImage(bgrImage, bgrWidth * i, bgrHeight*j, bgrWidth, bgrHeight, null);
             }
         }
-
+        //Obstacles
         for (int i = 0; i < allObsticals.size(); i++){
             g2d.setColor(new Color(48, 61, 61));
             g2d.fillRect(allObsticals.get(i)[0],allObsticals.get(i)[1],allObsticals.get(i)[2],allObsticals.get(i)[3]);
         }
-        //g2d.drawImage(bgrImage,0,bgrHeight,bgrWidth,bgrHeight,null);
-
-        //Player Names
-        g2d.setColor(Color.red);
-        g2d.drawString(client.name + "  " + ((int)(sword.cooldown*10f))/10f, player1.x, player1.y);
-        g2d.drawString(player2.name + "  " + ((int)(sword2.cooldown*10f))/10f, player2.x, player2.y);
-
         //Player
-        g2d.drawImage(playerImage, player1.x, player1.y, player1.width, player1.height, null);
-        g2d.drawImage(playerImage, player2.x, player2.y, player2.width, player2.height, null);
+        player1.drawPlayer(g2d,playerImage,client,sword);
 
         //Swords
-        if(player2.swordPickedup) {
-            g2d.rotate(sword2.rotation, player2.x + player2.width * 0.5, player2.y + player2.height * 0.5);
-            g2d.drawImage(swordImage, sword2.x, (int) (sword2.y - (double) player2.width), player2.width, player2.height * 2, null);
-            g2d.rotate(-sword2.rotation, player2.x + player2.width * 0.5, player2.y + player2.height * 0.5);
-        }
-        if(player1.swordPickedup) {
-            g2d.rotate(sword.rotation, player1.x + player1.width * 0.5, player1.y + player1.height * 0.5);
-            g2d.drawImage(swordImage, sword.x, (int) (sword.y - (double) player1.width), player1.width, player1.height * 2, null);
-            g2d.rotate(-sword.rotation, player1.x + player1.width * 0.5, player1.y + player1.height * 0.5);
-        }
+        sword.drawSword(g2d,swordImage,player2,sword2);
 
         //Slingshot
         if (player1.isBowPickedup()) {
@@ -194,10 +177,6 @@ public class Panel extends JPanel implements ActionListener, KeyListener {
                 g2d.fillOval((int) (bow2.allArrows.get(i - 1)[0] + 5), (int) (bow2.allArrows.get(i - 1)[1] + 5), 10, 10);
             }
         }
-        //Sword Collision Points
-        /*g2d.fillOval((int) (sword.x + 21 + Math.sin(sword.rotation) * 21), (int) (player1.y + (double) player1.width/2 + Math.cos(sword.rotation) * -25), 10, 10);
-        g2d.fillOval((int) (sword.x + 21 + Math.sin(sword.rotation) * 40), (int) (player1.y + (double) player1.width/2 + Math.cos(sword.rotation) * -40), 10, 10);
-        g2d.fillOval((int) (sword.x + 21 + Math.sin(sword.rotation) * 55), (int) (player1.y + (double) player1.width/2 + Math.cos(sword.rotation) * -55), 10, 10);*/
     }
 
     public void keyTyped(KeyEvent e) {

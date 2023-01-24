@@ -1,3 +1,4 @@
+import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -22,7 +23,6 @@ public class Player implements Serializable {
     double yDir;
     String name = "";
     Player player2;
-    //ArrayList deadlyProjectiles;
     Sword enemySword;
     ArrayList<Double[]> allArrows;
     ArrayList<Double[]> allArrowsself;
@@ -76,6 +76,17 @@ public class Player implements Serializable {
                 }
             }
         }
+    }
+    public void drawPlayer(Graphics2D g2d, Image playerImage,Client client,Sword sword){
+        //Player Names
+        g2d.setColor(Color.red);
+        g2d.drawString(client.name + "  " + ((int)(sword.cooldown*10f))/10f, x,y);
+        g2d.drawString(player2.name + "  " + ((int)(enemySword.cooldown*10f))/10f, player2.x, player2.y);
+
+        //Player
+        g2d.drawImage(playerImage, x, y, width, height, null);
+        g2d.drawImage(playerImage, player2.x, player2.y, player2.width, player2.height, null);
+
     }
 
     public void keyPressed(KeyEvent e) {
