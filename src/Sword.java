@@ -71,12 +71,16 @@ public class Sword implements MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
+
+    }
+    @Override
+    public void mousePressed(MouseEvent e) {
         if (e.getButton() == 3 && cooldown <= 0 && player.isSwordPickedup()) {
             for (int i = 0; i <= 10; i++) {
                 if (!player.inRectangle(player.x + 5, player.y, player.player2.x, player.player2.y, player.player2.width, player.player2.width) && !player.inRectangle(player.x + player.player2.width - 5, player.y, player.player2.x, player.player2.y, player.player2.width, player.player2.width)
-                && !player.inRectangle(x + 5, y + player.player2.height, player.player2.x, player.player2.y, player.player2.width, player.player2.width) && !player.inRectangle(x + player.player2.width - 5, y + player.player2.height, player.player2.x, player.player2.y, player.player2.width, player.player2.width) 
-                && !player.inRectangle(x, y + 5, player.player2.x, player.player2.y, player.player2.width, player.player2.width) && !player.inRectangle(x, y + player.player2.height - 5, player.player2.x, player.player2.y, player.player2.width, player.player2.width)
-                && !player.inRectangle(x + player.player2.width, y - 5, player.player2.x, player.player2.y, player.player2.width, player.player2.width) && !player.inRectangle(x + player.player2.width, y + player.player2.height - 5, player.player2.x, player.player2.y, player.player2.width, player.player2.width)
+                        && !player.inRectangle(x + 5, y + player.player2.height, player.player2.x, player.player2.y, player.player2.width, player.player2.width) && !player.inRectangle(x + player.player2.width - 5, y + player.player2.height, player.player2.x, player.player2.y, player.player2.width, player.player2.width)
+                        && !player.inRectangle(x, y + 5, player.player2.x, player.player2.y, player.player2.width, player.player2.width) && !player.inRectangle(x, y + player.player2.height - 5, player.player2.x, player.player2.y, player.player2.width, player.player2.width)
+                        && !player.inRectangle(x + player.player2.width, y - 5, player.player2.x, player.player2.y, player.player2.width, player.player2.width) && !player.inRectangle(x + player.player2.width, y + player.player2.height - 5, player.player2.x, player.player2.y, player.player2.width, player.player2.width)
                 ) {
                     player.x += (int) (Math.cos(Math.atan2(yLenght, xLenght)) * 20);
                     player.y += (int) (Math.sin(Math.atan2(yLenght, xLenght)) * 20);
@@ -84,9 +88,6 @@ public class Sword implements MouseListener {
             }
             cooldown = 3.1;
         }
-    }
-    @Override
-    public void mousePressed(MouseEvent e) {
         if (offset == -Math.PI / 4) {
             offset = Math.PI / 4;
         }
