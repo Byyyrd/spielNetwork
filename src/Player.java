@@ -29,6 +29,7 @@ public class Player implements Serializable {
     boolean slingshotPickedup;
     boolean swordPickedup;
     Panel panel;
+    double hp;
     public Player(int x, int y, int width, int height, Player player2, Sword enemySword, Panel panel) {
         slingshotPickedup = false;
         swordPickedup = true;
@@ -62,15 +63,13 @@ public class Player implements Serializable {
     public void checkCollision() {
         if (enemySword != null && player2.swordPickedup) {
             if (inRectangle((int)(enemySword.x + 21 + Math.sin(enemySword.rotation) * 21),(int)(enemySword. y + width/2 + Math.cos(enemySword.rotation) * -25),x,y, width, height) || inRectangle((int)(enemySword.x + 21 + Math.sin(enemySword.rotation) * 40),(int)(enemySword.y + width/2 + Math.cos(enemySword.rotation) * -40),x,y, width, height) || inRectangle((int)(enemySword.x + 21 + Math.sin(enemySword.rotation) * 55),(int)(enemySword.y + width/2 + Math.cos(enemySword.rotation) * -55),x,y, width, height) ) {
-                x = 0;
-                y = 0;
+                panel.p1Inv.playerHit(2.5);
             }
         }
         if (allArrows != null){
             for (Double[] allArrow : allArrows) {
                 if (inRectangle((int) (allArrow[0] + 5), (int) (allArrow[1] + 5), x, y, width, height)) {
-                    x = 0;
-                    y = 0;
+                    panel.p1Inv.playerHit(1);
                 }
             }
         }
