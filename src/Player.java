@@ -26,11 +26,11 @@ public class Player implements Serializable {
     Sword enemySword;
     ArrayList<Double[]> allArrows;
     ArrayList<Double[]> allArrowsself;
-    boolean bowPickedup;
+    boolean slingshotPickedup;
     boolean swordPickedup;
     Panel panel;
     public Player(int x, int y, int width, int height, Player player2, Sword enemySword, Panel panel) {
-        bowPickedup = false;
+        slingshotPickedup = false;
         swordPickedup = true;
         this.player2 = player2;
         this.x = x;
@@ -196,11 +196,11 @@ public class Player implements Serializable {
     }
 
     public boolean isSlingshotPickedup() {
-        return bowPickedup;
+        return slingshotPickedup;
     }
 
-    public void setSlingshotPickedup(boolean bowPickedup) {
-        this.bowPickedup = bowPickedup;
+    public void setSlingshotPickedup(boolean slingshotPickedup) {
+        this.slingshotPickedup = slingshotPickedup;
     }
 
     public void setAllArrows(ArrayList<Double[]> allArrows) {
