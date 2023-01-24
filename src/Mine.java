@@ -16,7 +16,6 @@ public class Mine{
     }
 
     public void createMine(){
-        System.out.println("created");
         int[] mine = new int[2];
         mine[0] = player.x ;
         mine[1] = player.y;
@@ -52,7 +51,6 @@ public class Mine{
         }
     }
     public void keyPressed(KeyEvent e) {
-        System.out.println("presed");
         if (e.getKeyCode() == 32){
             if (minenUeber > 0){
                 minenUeber--;

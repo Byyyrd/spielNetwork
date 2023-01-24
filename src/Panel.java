@@ -28,10 +28,12 @@ public class Panel extends JPanel implements ActionListener, KeyListener {
     Image bowImage;
     Image bgrImage;
     Image projImage;
+    Image hpImage;
     int bgrWidth;
     int bgrHeight;
     ArrayList<Double[]> allArrows;
     ArrayList<int[]> allObsticals;
+    Inventory p1Inv;
 
 
     public Panel(Client client) {
@@ -40,6 +42,7 @@ public class Panel extends JPanel implements ActionListener, KeyListener {
         bowImage = new ImageIcon("resources/bow.png").getImage();
         bgrImage = new ImageIcon("resources/Background.jpg").getImage();
         projImage = new ImageIcon("resources/Projectile.png").getImage();
+        hpImage = new ImageIcon("resources/Healthbar.png").getImage();
         bgrHeight = bgrImage.getHeight(null);
         bgrWidth = bgrImage.getWidth(null);
 
@@ -128,10 +131,11 @@ public class Panel extends JPanel implements ActionListener, KeyListener {
         sword2.setPlayer2(player1);
         this.addMouseListener(sword);
 
+        p1Inv = new Inventory(10,player1);
+
+
         player1.setEnemySword(sword2);
         player2.setEnemySword(sword);
-
-        this.setBounds(0, 0, 1280, 900);
 
         int delay = 10;
         timer = new Timer(delay, this);
@@ -159,6 +163,7 @@ public class Panel extends JPanel implements ActionListener, KeyListener {
             g2d.setColor(new Color(48, 61, 61));
             g2d.fillRect(allObsticals.get(i)[0],allObsticals.get(i)[1],allObsticals.get(i)[2],allObsticals.get(i)[3]);
         }
+
         //Player
         player1.drawPlayer(g2d,playerImage,client,sword);
 
@@ -170,6 +175,9 @@ public class Panel extends JPanel implements ActionListener, KeyListener {
 
         //Minen
         mine.drawMine(g2d);
+
+        //Inventory
+        p1Inv.drawInventory(g2d,hpImage);
     }
 
     public void keyTyped(KeyEvent e) {
