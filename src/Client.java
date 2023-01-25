@@ -53,6 +53,7 @@ public class Client {
                     if(!recievedObject.message.equals("")) {
                         panel.messageInput.setText(recievedObject.getName() + ": " + recievedObject.message + "\n" + panel.messageInput.getText());
                     }
+                    panel.p1Inv.enemyHp = recievedObject.hp;
                 } catch (ClassNotFoundException e) {
                     System.out.println("Client hat Scheiße bekommen");
                 } catch (IOException e) {

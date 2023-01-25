@@ -33,8 +33,8 @@ public class Inventory {
         g2d.setColor(new Color(1,1,1, 139));
         g2d.fillRect(0,950,1920,150);
         g2d.setColor(Color.red);
-        g2d.fillRect(0,1000, (int) (hp*50),50);
-        g2d.drawImage(hpImage,0,1000,hpImage.getWidth(null),hpImage.getHeight(null),null);
+        g2d.fillRect(0,925, (int) (hp*50),50);
+        g2d.drawImage(hpImage,0,925,hpImage.getWidth(null),hpImage.getHeight(null),null);
         g2d.setColor(Color.red);
         g2d.fillRect(player.x, player.y + player.height + 3, (int) (4.8*hp),10);
         g2d.drawImage(hpImage,player.x, player.y + player.height + 3, player.width,10,null);
