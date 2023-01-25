@@ -155,7 +155,6 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
         slingshot.drawSlingshot(g2d, player1, player2, bowImage, playerImage, slingshot2);
         g2d.setTransform(oldXForm);
         super.paint(g);
-        serverDown = true;
         if (serverDown){
             g2d.setFont(new Font("Arial",Font.PLAIN,200));
             g2d.setColor(Color.red);
