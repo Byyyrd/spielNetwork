@@ -6,7 +6,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
-public class Panel extends JPanel implements ActionListener, KeyListener {
+public class Panel extends JLayeredPane implements ActionListener, KeyListener {
     Player player1;
     Player player2;
 
@@ -88,6 +88,23 @@ public class Panel extends JPanel implements ActionListener, KeyListener {
         messageInput = new JTextArea(1, 10);
 
 
+        //Chat
+        messageOutput.setBackground(new Color(94, 94, 94));
+        messageOutput.setFont(font);
+        messageOutput.setBounds(25, 225, 275, 20);
+        messageOutput.setForeground(new Color(255, 255, 255));
+        messageOutput.setVisible(true);
+
+        messageInput.setBackground(new Color(94, 94, 94));
+        messageInput.setFont(font);
+        messageInput.setBounds(25, 25, 300, 175);
+        messageInput.setForeground(new Color(255, 255, 255));
+        messageInput.setEditable(false);
+        messageInput.setVisible(true);
+
+        add(messageOutput,100);
+        add(messageInput,100);
+
         int delay = 10;
         timer = new Timer(delay, this);
         timer.start();
@@ -120,27 +137,18 @@ public class Panel extends JPanel implements ActionListener, KeyListener {
 
         //Swords
         sword.drawSword(g2d,swordImage,player2);
-
-        //Slingshot
-        slingshot.drawSlingshot(g2d,player1,player2,bowImage,playerImage,slingshot2 );
-
         //Minen
         mine.drawMine(g2d);
 
         //Inventory
         p1Inv.drawInventory(g2d,hpImage);
+        //Slingshot
+        slingshot.drawSlingshot(g2d,player1,player2,bowImage,playerImage,slingshot2 );
 
-        //Chat
-        messageOutput.setBackground(new Color(94, 94, 94));
-        messageOutput.setFont(font);
-        messageOutput.setBounds(25, 225, 275, 20);
-        messageOutput.setForeground(new Color(255, 255, 255));
 
-        messageInput.setBackground(new Color(94, 94, 94));
-        messageInput.setFont(font);
-        messageInput.setBounds(25, 25, 300, 175);
-        messageInput.setForeground(new Color(255, 255, 255));
-        messageInput.setEditable(false);
+
+
+
     }
 
     public void keyTyped(KeyEvent e) {
@@ -159,6 +167,7 @@ public class Panel extends JPanel implements ActionListener, KeyListener {
             player1.setSwordPickedup(!player1.isSwordPickedup());
         }
         if(e.getKeyCode() == 13){
+            send = true;
             message = messageOutput.getText();
             messageOutput.setText("");
         }
@@ -166,6 +175,9 @@ public class Panel extends JPanel implements ActionListener, KeyListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        if(!send){
+            message = "";
+        }
         if(slingshot.mousePos != null) {
             client.setMinePlased(mine.minePlased);
             client.setExplodet(mine.explodet);
