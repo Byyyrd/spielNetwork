@@ -157,7 +157,7 @@ public class Slingshot implements MouseListener, ActionListener {
     @Override
     public void mousePressed(MouseEvent e) {
         if (player.isSlingshotPickedup()) {
-            if (!explosionColision(player.x + player.width/2, player.y + player.height/2, 1745,245, 100)&&!explosionColision(player.x + player.width/2, player.y +player.height/2, 245,745, 100)) {
+            if (!explosionColision(player.x + player.width/2, player.y + player.height/2, 1745,245, 100)&&!explosionColision(player.x + player.width/2, player.y +player.height/2, 195,845, 100)) {
                 CreateArrow();
                 client.setClicked(true);
             }

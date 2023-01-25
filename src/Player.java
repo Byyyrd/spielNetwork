@@ -89,10 +89,10 @@ public class Player implements Serializable {
     public void drawPlayer(Graphics2D g2d, Image playerImage, Client client, Sword sword) {
         //heal
         g2d.setColor(new Color(0, 255, 13));
-        g2d.drawOval(200, 700, 90, 90);
-        g2d.drawOval(145, 645, 200, 200);
+        g2d.drawOval(150, 800, 90, 90);
+        g2d.drawOval(95, 745, 200, 200);
         g2d.setColor(new Color(0, 255, 13, 123));
-        g2d.fillOval(200, 700, 90, 90);
+        g2d.fillOval(150, 800, 90, 90);
         g2d.setColor(new Color(0, 255, 13));
         g2d.drawOval(1700, 200, 90, 90);
         g2d.drawOval(1645, 145, 200, 200);
@@ -193,7 +193,7 @@ public class Player implements Serializable {
     }
 
     public void heal() {
-        if (explosionColision(x + width / 2, y + height / 2, 245, 745, 45) && healtime <= 0) {
+        if (explosionColision(x + width / 2, y + height / 2, 195, 845, 45) && healtime <= 0) {
             if (panel.p1Inv.hp < panel.p1Inv.maxHp) {
                 panel.p1Inv.hp++;
             }
