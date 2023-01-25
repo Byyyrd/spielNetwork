@@ -193,18 +193,12 @@ public class Player implements Serializable {
                 panel.p1Inv.hp++;
             }
             healtime = 4;
-            panel.mine.canPlase = false;
-        } else if (healtime <= 0){
-            panel.mine.canPlase = true;
         }
         if (explosionColision(x + width/2, y + height/2, 1745,145, 45) && healtime <= 0 ){
             if (panel.p1Inv.hp <panel.p1Inv.maxHp) {
                 panel.p1Inv.hp++;
             }
             healtime = 4;
-            panel.mine.canPlase = false;
-        } else if (healtime <= 0){
-            panel.mine.canPlase = true;
         }
     }
 
