@@ -15,6 +15,7 @@ public class Mine{
     double time;
     double minenTimer;
     boolean loesche;
+    boolean canPlase;
 
     public Mine(Player player,Player player2, Mine mine, Panel panel) {
         this.player = player;
@@ -30,10 +31,17 @@ public class Mine{
        if (explosionColision(player.x + player.width/2, player.y + player.height/2, 1000,500, 100) && minenTimer <= 0){
            minenUeber++;
            minenTimer = 4;
+           canPlase = false;
+       } else{
+           canPlase = true;
        }
+
         if (explosionColision(player2.x + player2.width/2, player2.y + player2.height/2, 1000,500, 100) && minenTimer <= 0){
             mine.minenUeber++;
             mine.minenTimer = 4;
+            mine.canPlase = false;
+        }else {
+            mine.canPlase = true;
         }
         panel.p1Inv.setMines(minenUeber);
     }
@@ -89,7 +97,7 @@ public class Mine{
     public void keyPressed(KeyEvent e) {
         if (time<= 0) {
             if (e.getKeyCode() == 32) {
-                if (minenUeber > 0) {
+                if (minenUeber > 0 && canPlase) {
                     minenUeber--;
                     createMine();
                 }
