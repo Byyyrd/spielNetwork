@@ -41,6 +41,7 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
     boolean send;
     String message;
     boolean inChat;
+    boolean serverDown;
 
     public Panel(Client client) {
         playerImage = new ImageIcon("resources/Player.png").getImage();
@@ -155,6 +156,13 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
         slingshot.drawSlingshot(g2d, player1, player2, bowImage, playerImage, slingshot2);
         g2d.setTransform(oldXForm);
         super.paint(g);
+        serverDown = true;
+        if (serverDown){
+            g2d.setFont(new Font("Arial",Font.PLAIN,200));
+            g2d.setColor(Color.red);
+            g2d.setBackground(Color.BLACK);
+            g2d.drawString("Server Shutdown",100,500);
+        }
     }
 
     public void keyTyped(KeyEvent e) {

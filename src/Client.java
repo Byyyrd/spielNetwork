@@ -58,6 +58,12 @@ public class Client {
                     System.out.println("Client hat Scheiße bekommen");
                 } catch (IOException e) {
                     System.out.println("Server shutdown");
+                    panel.serverDown = true;
+                    try {
+                        Thread.sleep(100);
+                    } catch (InterruptedException ex) {
+                        throw new RuntimeException(ex);
+                    }
                     exit(100);
                 }
             }
