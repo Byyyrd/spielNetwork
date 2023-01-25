@@ -44,7 +44,7 @@ public class Inventory {
         g2d.setFont(new Font("Arial", Font.PLAIN, 40));
         g2d.drawString("Minen: " + mines, 525, 1015);
         g2d.drawString("Dash: " + ((int)(dashCooldown*10f))/10f, 725, 1015);
-        g2d.drawString("p1 " + death2 + " : p2 " + death, 925,1015);
+        g2d.drawString("p1 " + death2 * 5 + " : p2 " + death * 5, 925,1015);
     }
 
     public void setMines(int mines) {
