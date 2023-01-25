@@ -98,12 +98,14 @@ public class Player implements Serializable {
         //heal
         g2d.setColor(new Color(0, 255, 13));
         g2d.drawOval(200,700,90, 90);
+        g2d.drawOval(145,645,200, 200);
         g2d.setColor(new Color(0, 255, 13, 123));
         g2d.fillOval(200,700,90, 90);
         g2d.setColor(new Color(0, 255, 13));
-        g2d.drawOval(1700,100,90, 90);
+        g2d.drawOval(1700,200,90, 90);
+        g2d.drawOval(1645,145,200, 200);
         g2d.setColor(new Color(0, 255, 13, 123));
-        g2d.fillOval(1700,100,90, 90);
+        g2d.fillOval(1700,200,90, 90);
     }
 
     public void keyPressed(KeyEvent e) {
@@ -194,7 +196,7 @@ public class Player implements Serializable {
             }
             healtime = 4;
         }
-        if (explosionColision(x + width/2, y + height/2, 1745,145, 45) && healtime <= 0 ){
+        if (explosionColision(x + width/2, y + height/2, 1745,245, 45) && healtime <= 0 ){
             if (panel.p1Inv.hp <panel.p1Inv.maxHp) {
                 panel.p1Inv.hp++;
             }
