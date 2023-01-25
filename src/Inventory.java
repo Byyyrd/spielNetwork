@@ -12,13 +12,17 @@ public class Inventory {
         hp = maxHp;
     }
     public void playerHit(double damage){
-        System.out.println(hp);
-        hp -= damage;
-        player.hp = hp;
+        if (player.iFrame <= 0){
+            hp -= damage;
+            player.hp = hp;
+        }
+        player.iFrame = 1;
         if (hp <= 0){
             player.x = 0;
             player.y = 0;
             hp = maxHp;
+            player.swordPickedup = false;
+            player.slingshotPickedup = true;
         }
     }
     public void drawInventory(Graphics2D g2d,Image hpImage){

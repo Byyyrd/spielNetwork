@@ -1,10 +1,10 @@
 import java.io.Serializable;
 
 public class Message implements Serializable {
-    private int x;
-    private int y;
-    private String name;
-    private double swordRotation;
+    private final int x;
+    private final int y;
+    private final String name;
+    private final double swordRotation;
     double rotation;
     boolean bowPickedUp;
     double mouseX;
