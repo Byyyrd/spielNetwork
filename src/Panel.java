@@ -91,7 +91,6 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
 
 
         //Chat
-
         messageOutput.setFont(font);
         messageOutput.setBackground(new Color(94, 94, 94));
         messageOutput.setBounds(1625, 225, 300, 20);
@@ -99,7 +98,7 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
 
         messageInput.setBackground(new Color(94, 94, 94,200));
         messageInput.setFont(font);
-        messageInput.setBounds(1625, 25, 300, 175);
+        messageInput.setBounds(1600, 725, 300, 175);
         messageInput.setForeground(new Color(255, 255, 255));
         messageInput.setEditable(false);
         setLayer(messageInput,DRAG_LAYER);
@@ -183,7 +182,7 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
                 messageOutput.setText("");
                 remove(messageOutput);
                 messageInput.setFont(new Font("Arial", Font.PLAIN, 20));
-                messageInput.setBounds(1625, 25, 300, 175);
+                messageInput.setBounds(1600, 725, 300, 175);
                 addKeyListener(this);
                 this.grabFocus();
             }else{
