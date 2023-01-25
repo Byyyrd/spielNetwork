@@ -176,12 +176,17 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
         if(e.getKeyCode() == 84){
             if(inChat) {
                 inChat = false;
-                messageOutput.setVisible(false);
-                messageInput.setVisible(false);
+                messageOutput.setText("");
+                remove(messageOutput);
+                remove(messageInput);
+                addKeyListener(this);
+                this.grabFocus();
             }else{
                 inChat = true;
-                messageOutput.setVisible(true);
-                messageInput.setVisible(true);
+                add(messageOutput,1);
+                add(messageInput,1);
+                messageOutput.grabFocus();
+                removeKeyListener(this);
             }
         }
     }
