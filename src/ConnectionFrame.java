@@ -34,7 +34,7 @@ public class ConnectionFrame extends JFrame implements ActionListener {
         textField1.setFont(font);
         textField1.setBounds(150,50,200,20);
         textField1.setForeground(new Color(255,255,255));
-        textField1.setText("::1");
+        textField1.setText("10.0.136.140");
 
         infoText2.setText("Enter name:");
         infoText2.setBounds(10,120,110,20);
