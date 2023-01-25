@@ -47,6 +47,7 @@ public class Client {
                         panel.mine2.createMine();
                     }
                     if (recievedObject.explodet && panel.mine2.alleMinen.size() != 0 && panel.mine2.alleMinen != null){
+                        panel.mine2.time = 1;
                         panel.mine.explodemines();
                     }
                 } catch (ClassNotFoundException e) {

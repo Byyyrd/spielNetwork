@@ -70,7 +70,7 @@ public class ConnectionFrame extends JFrame implements ActionListener {
         try {
             var client = new Client(textField1.getText(),textField2.getText(),this);
             System.out.println("New Client");
-            this.setVisible(true);
+            this.setVisible(false);
         } catch (IOException ex) {
             System.out.println("IOConnectionError");
         }

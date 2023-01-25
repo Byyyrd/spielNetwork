@@ -31,8 +31,8 @@ public class Player implements Serializable {
     Panel panel;
     double hp;
     public Player(int x, int y, int width, int height, Player player2, Sword enemySword, Panel panel) {
-        slingshotPickedup = false;
-        swordPickedup = true;
+        slingshotPickedup = true;
+        swordPickedup = false;
         this.player2 = player2;
         this.x = x;
         this.y = y;

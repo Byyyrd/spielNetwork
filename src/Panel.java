@@ -206,6 +206,7 @@ public class Panel extends JPanel implements ActionListener, KeyListener {
             client.sendMessage(player1, sword);
             player1.tick();
             sword.tick();
+            mine.tick();
             repaint();
             mine.minePlased = false;
             mine.explodet = false;
