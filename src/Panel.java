@@ -110,6 +110,9 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
         add(messageInput,10,10);
         add(button);
 
+        messageOutput.addKeyListener(this);
+        messageInput.addKeyListener(this);
+
         int delay = 10;
         timer = new Timer(delay, this);
         timer.start();
@@ -171,19 +174,18 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
             player1.setSlingshotPickedup(!player1.isSlingshotPickedup());
             player1.setSwordPickedup(!player1.isSwordPickedup());
         }
+        if(e.getKeyCode() == 10){
+            send = true;
+            message = messageOutput.getText();
+            messageInput.setText(client.name + ": " + message + "\n" + messageInput.getText());
+            messageOutput.setText("");
+        }
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if(!send){
             message = "";
-        }
-        if(e.getSource() == button){
-
-            send = true;
-            message = messageOutput.getText();
-            messageInput.setText(client.name + ": " + message + "\n" + messageInput.getText());
-            messageOutput.setText("");
         }
 
         if(slingshot.mousePos != null) {
