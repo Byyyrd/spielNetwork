@@ -187,7 +187,8 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
             message = messageOutput.getText();
             messageOutput.setText("");
         }
-        if (e.getKeyCode() == 84) {
+        if (e.getKeyCode() == 130) {
+
             if (inChat) {
                 inChat = false;
                 messageOutput.setText("");
@@ -219,14 +220,16 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
             client.setExplodet(mine.explodet);
             client.setWeapon(slingshot);
             client.sendMessage(player1, sword);
-            player1.tick();
-            sword.tick();
-            mine.tick();
-            player1.heal();
-            repaint();
-            mine.minePlased = false;
-            mine.explodet = false;
+            if(!inChat) {
+                player1.tick();
+                sword.tick();
+                mine.tick();
+                player1.heal();
+                mine.minePlased = false;
+                mine.explodet = false;
+            }
         }
+        repaint();
     }
 
     public void setRotation2(double bow2) {
