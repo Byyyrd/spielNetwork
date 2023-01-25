@@ -32,7 +32,7 @@ public class Mine{
            minenUeber++;
            minenTimer = 4;
            canPlase = false;
-       } else{
+       } else if (minenTimer <= 0){
            canPlase = true;
        }
 
@@ -40,7 +40,7 @@ public class Mine{
             mine.minenUeber++;
             mine.minenTimer = 4;
             mine.canPlase = false;
-        }else {
+        }else if (mine.minenTimer <= 0){
             mine.canPlase = true;
         }
         panel.p1Inv.setMines(minenUeber);
@@ -48,8 +48,8 @@ public class Mine{
 
     public void createMine(){
         int[] mine = new int[2];
-        mine[0] = player.x ;
-        mine[1] = player.y;
+        mine[0] = player.x + player.width/2 ;
+        mine[1] = player.y + player.height/2;
         alleMinen.add(mine);
         minePlased = true;
     }
