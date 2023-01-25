@@ -51,7 +51,7 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
         bgrHeight = bgrImage.getHeight(null);
         bgrWidth = bgrImage.getWidth(null);
 
-        font = new Font("Arial", Font.PLAIN, 20);
+        font = new Font("Arial", Font.PLAIN, 40);
 
         this.client = client;
         client.setClientPanel(this);
@@ -90,12 +90,13 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
 
 
         //Chat
-        messageOutput.setBackground(new Color(94, 94, 94));
+
         messageOutput.setFont(font);
+        messageOutput.setBackground(new Color(94, 94, 94));
         messageOutput.setBounds(1625, 225, 300, 20);
         messageOutput.setForeground(new Color(255, 255, 255));
 
-        messageInput.setBackground(new Color(94, 94, 94));
+        messageInput.setBackground(new Color(94, 94, 94,200));
         messageInput.setFont(font);
         messageInput.setBounds(1625, 25, 300, 175);
         messageInput.setForeground(new Color(255, 255, 255));
@@ -122,7 +123,6 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
 
     @Override
     public void paint(Graphics g) {
-        super.paint(g);
         Graphics2D g2d = (Graphics2D) g;
         //Background
         /*for(int j = 0;j <= this.getHeight()/bgrHeight;j++){
@@ -150,6 +150,7 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
 
         //Slingshot
         slingshot.drawSlingshot(g2d,player1,player2,bowImage,playerImage,slingshot2 );
+        super.paint(g);
     }
 
     public void keyTyped(KeyEvent e) {
@@ -178,6 +179,7 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
                 inChat = false;
                 messageOutput.setText("");
                 remove(messageOutput);
+                messageInput.setFont(new Font("Arial", Font.PLAIN, 20));
                 messageInput.setBounds(1625, 25, 300, 175);
                 addKeyListener(this);
                 this.grabFocus();
@@ -187,6 +189,7 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
                 setLayer(messageOutput,DRAG_LAYER);
                 messageOutput.setBounds(0,850,1900, 50);
                 messageInput.setBounds(0, 0, 1900, 800);
+                messageInput.setFont(font);
                 messageOutput.grabFocus();
                 removeKeyListener(this);
             }
