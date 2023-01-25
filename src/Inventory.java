@@ -8,6 +8,8 @@ public class Inventory {
     int maxHp = 10;
     Player player;
     Player player2;
+    int death;
+    int death2;
     public Inventory(int maxHp,Player player, Player player2) {
         this.maxHp = maxHp;
         this.player = player;
@@ -24,9 +26,13 @@ public class Inventory {
         if (hp <= 0){
             player.x = 0;
             player.y = 0;
+            death++;
             hp = maxHp;
             player.swordPickedup = false;
             player.slingshotPickedup = true;
+        }
+        if (enemyHp <= 0){
+            death2++;
         }
     }
     public void drawInventory(Graphics2D g2d,Image hpImage){
@@ -44,6 +50,7 @@ public class Inventory {
         g2d.setFont(new Font("Arial", Font.PLAIN, 40));
         g2d.drawString("Minen: " + mines, 525, 1015);
         g2d.drawString("Dash: " + ((int)(dashCooldown*10f))/10f, 725, 1015);
+        g2d.drawString("p1 " + death + " : p2 " + death2, 925,1015);
     }
 
     public void setMines(int mines) {

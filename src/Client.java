@@ -3,6 +3,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
+import static java.lang.System.console;
 import static java.lang.System.exit;
 
 public class Client {
@@ -62,7 +63,7 @@ public class Client {
                     try {
                         Thread.sleep(1000);
                     } catch (InterruptedException ex) {
-                        throw new RuntimeException(ex);
+                        //throw new RuntimeException(ex);
                     }
                     exit(100);
                 }
@@ -76,7 +77,9 @@ public class Client {
                 panel.messageInput.setText(name + ": " + panel.message + "\n" + panel.messageInput.getText());
             }
             message = new Message(player.x, player.y,name, sword.rotation, slingshot.playerRotation,player.isSlingshotPickedup(), slingshot.mousePos.getX(), slingshot.mousePos.getY(),isClicked, player.swordPickedup, minePlased,explodet,panel.message, panel.p1Inv.hp);
-            outputStream.writeObject(message);
+            if(!panel.serverDown) {
+                outputStream.writeObject(message);
+            }
             isClicked = false;
             panel.send = false;
         } catch (IOException e) {
