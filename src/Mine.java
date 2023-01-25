@@ -65,11 +65,7 @@ public class Mine{
         }
     }
     public boolean explosionColision(int x, int y, int x2, int y2, int distance){
-        if (Math.abs(x-x2) < distance && Math.abs(y-y2) < distance){
-            return true;
-        }else{
-            return false;
-        }
+        return Math.abs(x - x2) < distance && Math.abs(y - y2) < distance;
     }
     public void keyPressed(KeyEvent e) {
         if (time<= 0) {

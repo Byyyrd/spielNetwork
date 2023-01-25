@@ -9,18 +9,11 @@ public class Player implements Serializable {
     int width;
     int height;
     int speed = 5;
-    boolean downPressed;
-    boolean upPressed;
-    boolean leftPressed;
-    boolean rightPressed;
-    boolean downCollids = false;
-    boolean upCollids = false;
-    boolean leftCollids = false;
-    boolean rightCollids = false;
-    double xVel;
-    double yVel;
-    double xDir;
-    double yDir;
+    boolean downPressed,rightPressed,leftPressed,upPressed;
+    boolean downCollides, rightCollides, leftCollides, upCollides;
+    double xVel,yVel;
+    double xDir,yDir;
+    double iFrame;
     String name = "";
     Player player2;
     Sword enemySword;
@@ -46,6 +39,7 @@ public class Player implements Serializable {
         checkCollision();
         inputs();
         applyVel();
+        iFrame -= 0.1;
         if (x > panel.getWidth()){
             x = -width;
         }
@@ -149,36 +143,36 @@ public class Player implements Serializable {
     public void inputs() {
         for ( int i = 0; i < panel.allObsticals.size(); i++) {
             if( inRectangle(x + 5, y, panel.allObsticals.get(i)[0], panel.allObsticals.get(i)[1], panel.allObsticals.get(i)[2], panel.allObsticals.get(i)[3]) || inRectangle(x + player2.width - 5, y, panel.allObsticals.get(i)[0], panel.allObsticals.get(i)[1], panel.allObsticals.get(i)[2], panel.allObsticals.get(i)[3])|| inRectangle(x + player2.width/2 - 5, y, panel.allObsticals.get(i)[0], panel.allObsticals.get(i)[1], panel.allObsticals.get(i)[2], panel.allObsticals.get(i)[3])) {
-                upCollids = true;
+                upCollides = true;
             }
             if (inRectangle(x + 5, y + player2.height, panel.allObsticals.get(i)[0], panel.allObsticals.get(i)[1], panel.allObsticals.get(i)[2], panel.allObsticals.get(i)[3]) || inRectangle(x + player2.width - 5, y + player2.height, panel.allObsticals.get(i)[0], panel.allObsticals.get(i)[1], panel.allObsticals.get(i)[2], panel.allObsticals.get(i)[3]) || inRectangle(x + player2.width/2 - 5, y + player2.height/2, panel.allObsticals.get(i)[0], panel.allObsticals.get(i)[1], panel.allObsticals.get(i)[2], panel.allObsticals.get(i)[3])) {
-                downCollids = true;
+                downCollides = true;
             }
             if (inRectangle(x, y + 5, panel.allObsticals.get(i)[0], panel.allObsticals.get(i)[1], panel.allObsticals.get(i)[2], panel.allObsticals.get(i)[3]) || inRectangle(x, y + player2.height - 5,panel.allObsticals.get(i)[0], panel.allObsticals.get(i)[1], panel.allObsticals.get(i)[2], panel.allObsticals.get(i)[3])|| inRectangle(x, y + player2.height/2 - 5,panel.allObsticals.get(i)[0], panel.allObsticals.get(i)[1], panel.allObsticals.get(i)[2], panel.allObsticals.get(i)[3])) {
-                leftCollids = true;
+                leftCollides = true;
             }
             if (inRectangle(x + player2.width, y - 5, panel.allObsticals.get(i)[0], panel.allObsticals.get(i)[1], panel.allObsticals.get(i)[2], panel.allObsticals.get(i)[3]) || inRectangle(x + player2.width, y + player2.height - 5, panel.allObsticals.get(i)[0], panel.allObsticals.get(i)[1], panel.allObsticals.get(i)[2], panel.allObsticals.get(i)[3])|| inRectangle(x + player2.width/2, y + player2.height/2 - 5, panel.allObsticals.get(i)[0], panel.allObsticals.get(i)[1], panel.allObsticals.get(i)[2], panel.allObsticals.get(i)[3])) {
-                rightCollids = true;
+                rightCollides = true;
             }
         }
-        if (upPressed && !inRectangle(x + 5, y, player2.x, player2.y, player2.width, player2.width) && !inRectangle(x + player2.width - 5, y, player2.x, player2.y, player2.width, player2.width) && !upCollids) {
+        if (upPressed && !inRectangle(x + 5, y, player2.x, player2.y, player2.width, player2.width) && !inRectangle(x + player2.width - 5, y, player2.x, player2.y, player2.width, player2.width) && !upCollides) {
             yDir = -1;
-        } else if (downPressed && !inRectangle(x + 5, y + player2.height, player2.x, player2.y, player2.width, player2.width) && !inRectangle(x + player2.width - 5, y + player2.height, player2.x, player2.y, player2.width, player2.width) && !downCollids) {
+        } else if (downPressed && !inRectangle(x + 5, y + player2.height, player2.x, player2.y, player2.width, player2.width) && !inRectangle(x + player2.width - 5, y + player2.height, player2.x, player2.y, player2.width, player2.width) && !downCollides) {
             yDir = 1;
         } else {
             yDir = 0;
         }
-        if (leftPressed && !inRectangle(x, y + 5, player2.x, player2.y, player2.width, player2.width) && !inRectangle(x, y + player2.height - 5, player2.x, player2.y, player2.width, player2.width) && !leftCollids) {
+        if (leftPressed && !inRectangle(x, y + 5, player2.x, player2.y, player2.width, player2.width) && !inRectangle(x, y + player2.height - 5, player2.x, player2.y, player2.width, player2.width) && !leftCollides) {
             xDir = -1;
-        } else if (rightPressed && !inRectangle(x + player2.width, y - 5, player2.x, player2.y, player2.width, player2.width) && !inRectangle(x + player2.width, y + player2.height - 5, player2.x, player2.y, player2.width, player2.width) && !rightCollids) {
+        } else if (rightPressed && !inRectangle(x + player2.width, y - 5, player2.x, player2.y, player2.width, player2.width) && !inRectangle(x + player2.width, y + player2.height - 5, player2.x, player2.y, player2.width, player2.width) && !rightCollides) {
             xDir = 1;
         } else {
             xDir = 0;
         }
-        upCollids = false;
-        downCollids = false;
-        leftCollids = false;
-        rightCollids = false;
+        upCollides = false;
+        downCollides = false;
+        leftCollides = false;
+        rightCollides = false;
     }
 
     public void setEnemySword(Sword enemySword) {

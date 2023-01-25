@@ -82,6 +82,7 @@ public class Sword implements MouseListener {
                         && !player.inRectangle(x, y + 5, player.player2.x, player.player2.y, player.player2.width, player.player2.width) && !player.inRectangle(x, y + player.player2.height - 5, player.player2.x, player.player2.y, player.player2.width, player.player2.width)
                         && !player.inRectangle(x + player.player2.width, y - 5, player.player2.x, player.player2.y, player.player2.width, player.player2.width) && !player.inRectangle(x + player.player2.width, y + player.player2.height - 5, player.player2.x, player.player2.y, player.player2.width, player.player2.width)
                 ) {
+                    player.iFrame = 1;
                     player.x += (int) (Math.cos(Math.atan2(yLenght, xLenght)) * 20);
                     player.y += (int) (Math.sin(Math.atan2(yLenght, xLenght)) * 20);
                 }
