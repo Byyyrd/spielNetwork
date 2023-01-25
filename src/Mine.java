@@ -37,7 +37,7 @@ public class Mine{
             mine.minenUeber++;
             mine.minenTimer = 4;
         }
-        if (explosionColision(player.x + player.width/2, player.y + player.height/2, 1000,500, 200)||explosionColision(player.x + player.width/2, player.y + player.height/2, 1745,245, 100)||explosionColision(player.x + player.width/2, player.y +player.height/2, 245,745, 100)){
+        if (explosionColision(player.x + player.width/2, player.y + player.height/2, 1000,500, 200)||explosionColision(player.x + player.width/2, player.y + player.height/2, 1745,245, 100)||explosionColision(player.x + player.width/2, player.y +player.height/2, 195,845, 100)){
             canPlase = false;
         } else {
             canPlase = true;

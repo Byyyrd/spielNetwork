@@ -142,16 +142,15 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
         //Minen
         mine.drawMine(g2d);
         g2d.setTransform(oldXForm);
+
         //Player
         player1.drawPlayer(g2d, playerImage, client, sword);
         g2d.setTransform(oldXForm);
+
         //Swords
         sword.drawSword(g2d, swordImage, player2);
         g2d.setTransform(oldXForm);
 
-        //Inventory
-        p1Inv.drawInventory(g2d, hpImage);
-        g2d.setTransform(oldXForm);
         //Slingshot
         slingshot.drawSlingshot(g2d, player1, player2, bowImage, playerImage, slingshot2);
         g2d.setTransform(oldXForm);
