@@ -29,11 +29,11 @@ public class Mine{
        mine.minenTimer -= 0.1;
        if (explosionColision(player.x + player.width/2, player.y + player.height/2, 1000,500, 100) && minenTimer <= 0){
            minenUeber++;
-           minenTimer = 0.5;
+           minenTimer = 4;
        }
         if (explosionColision(player2.x + player2.width/2, player2.y + player2.height/2, 1000,500, 100) && minenTimer <= 0){
             mine.minenUeber++;
-            mine.minenTimer = 0.5;
+            mine.minenTimer = 4;
         }
     }
 
