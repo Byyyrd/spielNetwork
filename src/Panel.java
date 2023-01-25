@@ -39,6 +39,7 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
     Font font;
     boolean send;
     String message;
+    boolean inChat;
 
     public Panel(Client client) {
         playerImage = new ImageIcon("resources/Player.png").getImage();
@@ -91,20 +92,22 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
         //Chat
         messageOutput.setBackground(new Color(94, 94, 94));
         messageOutput.setFont(font);
-        messageOutput.setBounds(1725, 225, 300, 20);
+        messageOutput.setBounds(1625, 225, 300, 20);
         messageOutput.setForeground(new Color(255, 255, 255));
 
         messageInput.setBackground(new Color(94, 94, 94));
         messageInput.setFont(font);
-        messageInput.setBounds(1725, 25, 300, 175);
+        messageInput.setBounds(1625, 25, 300, 175);
         messageInput.setForeground(new Color(255, 255, 255));
         messageInput.setEditable(false);
 
         add(messageOutput);
         add(messageInput);
 
-        messageOutput.addKeyListener(this);
+
         messageInput.addKeyListener(this);
+        messageOutput.addKeyListener(this);
+
 
         int delay = 10;
         timer = new Timer(delay, this);
@@ -165,9 +168,19 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
             player1.setSwordPickedup(!player1.isSwordPickedup());
         }
         if(e.getKeyCode() == 10){
+            e.consume();
             send = true;
             message = messageOutput.getText();
             messageOutput.setText("");
+        }
+        if(e.getKeyCode() == 84){
+            if(inChat) {
+                messageOutput.setVisible(false);
+                messageInput.setVisible(false);
+            }else {
+                messageOutput.setVisible(true);
+                messageInput.setVisible(true);
+            }
         }
     }
 
@@ -176,7 +189,6 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
         if(!send){
             message = "";
         }
-
         if(slingshot.mousePos != null) {
             client.setMinePlased(mine.minePlased);
             client.setExplodet(mine.explodet);

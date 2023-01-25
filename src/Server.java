@@ -26,9 +26,9 @@ public class Server {
                     inputStream = new ObjectInputStream(socket.getInputStream());
                     while (true) {
 
-                        var recievedObject =  inputStream.readObject();
+                        var recievedObject = inputStream.readObject();
                         for (int i = 0; i < socketList.size(); i++) {
-                            if(socketList.get(i)!=socket) {
+                            if (socketList.get(i) != socket) {
                                 try {
                                     outputstream = new ObjectOutputStream(socketList.get(i).getOutputStream());
                                     outputstream.writeObject(recievedObject);
@@ -44,7 +44,7 @@ public class Server {
                 } catch (IOException e) {
                     System.out.println("Lost one Client");
                 } finally {
-                    //socketList.remove(socket);
+                    socketList.remove(socket);
                 }
 
             });
