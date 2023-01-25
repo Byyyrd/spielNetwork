@@ -35,6 +35,7 @@ public class Mine{
             mine.minenUeber++;
             mine.minenTimer = 4;
         }
+        panel.p1Inv.setMines(minenUeber);
     }
 
     public void createMine(){

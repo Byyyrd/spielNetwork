@@ -4,7 +4,7 @@ public class Inventory {
     double hp;
     double enemyHp;
     int mines;
-    int dashCooldown;
+    double dashCooldown;
     int maxHp = 10;
     Player player;
     Player player2;
@@ -41,5 +41,16 @@ public class Inventory {
         g2d.setColor(Color.red);
         g2d.fillRect(player2.x, player2.y + player2.height + 3, (int) ((4.8*enemyHp)),10);
         g2d.drawImage(hpImage,player2.x, player2.y + player2.height + 3, player2.width,10,null);
+        g2d.setFont(new Font("Arial", Font.PLAIN, 40));
+        g2d.drawString("Minen: " + mines, 525, 1015);
+        g2d.drawString("Dash: " + ((int)(dashCooldown*10f))/10f, 725, 1015);
+    }
+
+    public void setMines(int mines) {
+        this.mines = mines;
+    }
+
+    public void setDashCooldown(double dashCooldown) {
+        this.dashCooldown = dashCooldown;
     }
 }
