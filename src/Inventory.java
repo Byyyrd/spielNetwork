@@ -41,16 +41,10 @@ public class Inventory {
         g2d.setColor(Color.red);
         g2d.fillRect(0,975, (int) (hp*50),50);
         g2d.drawImage(hpImage,0,975,hpImage.getWidth(null),hpImage.getHeight(null),null);
-        g2d.setColor(Color.red);
-        g2d.fillRect(player.x, player.y + player.height + 3, (int) (4.8*hp),10);
-        g2d.drawImage(hpImage,player.x, player.y + player.height + 3, player.width,10,null);
-        g2d.setColor(Color.red);
-        g2d.fillRect(player2.x, player2.y + player2.height + 3, (int) ((4.8*enemyHp)),10);
-        g2d.drawImage(hpImage,player2.x, player2.y + player2.height + 3, player2.width,10,null);
         g2d.setFont(new Font("Arial", Font.PLAIN, 40));
         g2d.drawString("Minen: " + mines, 525, 1015);
         g2d.drawString("Dash: " + ((int)(dashCooldown*10f))/10f, 725, 1015);
-        g2d.drawString("p1 " + death + " : p2 " + death2, 925,1015);
+        g2d.drawString("p1 " + death2 + " : p2 " + death, 925,1015);
     }
 
     public void setMines(int mines) {

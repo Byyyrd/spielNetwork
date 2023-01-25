@@ -104,6 +104,13 @@ public class Player implements Serializable {
         g2d.drawString(client.name + "  " + ((int) (sword.cooldown * 10f)) / 10f, x, y);
         g2d.drawString(player2.name + "  " + ((int) (enemySword.cooldown * 10f)) / 10f, player2.x, player2.y);
 
+        g2d.setColor(Color.red);
+        g2d.fillRect(x, y + height + 3, (int) (4.8*panel.p1Inv.hp),10);
+        g2d.drawImage(panel.hpImage,x, y + height + 3, width,10,null);
+        g2d.setColor(Color.red);
+        g2d.fillRect(player2.x, player2.y + player2.height + 3, (int) ((4.8*panel.p1Inv.enemyHp)),10);
+        g2d.drawImage(panel.hpImage,player2.x, player2.y + player2.height + 3, player2.width,10,null);
+
         //Player
         g2d.drawImage(playerImage, x, y, width, height, null);
         g2d.drawImage(playerImage, player2.x, player2.y, player2.width, player2.height, null);
