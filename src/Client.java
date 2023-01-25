@@ -50,7 +50,9 @@ public class Client {
                         panel.mine2.time = 1;
                         panel.mine.explodemines();
                     }
-                    panel.messageInput.setText(recievedObject.getName()+": "+recievedObject.message+"\n"+panel.messageInput.getText());
+                    if(!recievedObject.message.equals("")) {
+                        panel.messageInput.setText(recievedObject.getName() + ": " + recievedObject.message + "\n" + panel.messageInput.getText());
+                    }
                 } catch (ClassNotFoundException e) {
                     System.out.println("Client hat Scheiße bekommen");
                 } catch (IOException e) {
