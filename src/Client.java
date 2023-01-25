@@ -50,6 +50,7 @@ public class Client {
                         panel.mine2.time = 1;
                         panel.mine.explodemines();
                     }
+                    panel.messageInput.setText(recievedObject.getName()+": "+recievedObject.message+"\n"+panel.messageInput.getText());
                 } catch (ClassNotFoundException e) {
                     System.out.println("Client hat Scheiße bekommen");
                 } catch (IOException e) {
@@ -65,6 +66,7 @@ public class Client {
             message = new Message(player.x, player.y,name, sword.rotation, slingshot.playerRotation,player.isSlingshotPickedup(), slingshot.mousePos.getX(), slingshot.mousePos.getY(),isClicked, player.swordPickedup, minePlased,explodet,panel.message);
             outputStream.writeObject(message);
             isClicked = false;
+            panel.send = false;
         } catch (IOException e) {
             System.out.println(e);
         }
