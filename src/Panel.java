@@ -39,6 +39,7 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
     Font font;
     boolean send;
     String message;
+    JButton button;
 
     public Panel(Client client) {
         playerImage = new ImageIcon("resources/Player.png").getImage();
@@ -56,7 +57,12 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
         client.setClientPanel(this);
         allObsticals = new ArrayList<int[]>();
         addObstacles();
-        
+        button = new JButton();
+
+        button.setBounds(305, 225, 20, 20);
+        button.addActionListener(this);
+        button.setText("...");
+
         player2 = new Player(100, 100, playerImage.getWidth(null) * 3, playerImage.getHeight(null) * 3, player2, sword,this);
         player1 = new Player(10, 10, playerImage.getWidth(null) * 3, playerImage.getHeight(null) * 3, player2, sword2,this);
 
@@ -93,17 +99,16 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
         messageOutput.setFont(font);
         messageOutput.setBounds(25, 225, 275, 20);
         messageOutput.setForeground(new Color(255, 255, 255));
-        messageOutput.setVisible(true);
 
         messageInput.setBackground(new Color(94, 94, 94));
         messageInput.setFont(font);
         messageInput.setBounds(25, 25, 300, 175);
         messageInput.setForeground(new Color(255, 255, 255));
         messageInput.setEditable(false);
-        messageInput.setVisible(true);
 
-        add(messageOutput,100);
-        add(messageInput,100);
+        add(messageOutput,10,10);
+        add(messageInput,10,10);
+        add(button);
 
         int delay = 10;
         timer = new Timer(delay, this);
@@ -121,11 +126,11 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
         super.paint(g);
         Graphics2D g2d = (Graphics2D) g;
         //Background
-        for(int j = 0;j <= this.getHeight()/bgrHeight;j++){
+        /*for(int j = 0;j <= this.getHeight()/bgrHeight;j++){
             for (int i = 0; i <= this.getWidth() / bgrWidth; i++) {
                 g2d.drawImage(bgrImage, bgrWidth * i, bgrHeight*j, bgrWidth, bgrHeight, null);
             }
-        }
+        }*/
         //Obstacles
         for (int i = 0; i < allObsticals.size(); i++){
             g2d.setColor(new Color(48, 61, 61));
@@ -166,11 +171,6 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
             player1.setSlingshotPickedup(!player1.isSlingshotPickedup());
             player1.setSwordPickedup(!player1.isSwordPickedup());
         }
-        if(e.getKeyCode() == 13){
-            send = true;
-            message = messageOutput.getText();
-            messageOutput.setText("");
-        }
     }
 
     @Override
@@ -178,6 +178,12 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
         if(!send){
             message = "";
         }
+        if(e.getSource() == button){
+            send = true;
+            message = messageOutput.getText();
+            messageOutput.setText("");
+        }
+
         if(slingshot.mousePos != null) {
             client.setMinePlased(mine.minePlased);
             client.setExplodet(mine.explodet);
