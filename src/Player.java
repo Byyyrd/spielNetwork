@@ -23,6 +23,8 @@ public class Player implements Serializable {
     boolean swordPickedup;
     Panel panel;
     double hp;
+    double healtime;
+
     public Player(int x, int y, int width, int height, Player player2, Sword enemySword, Panel panel) {
         slingshotPickedup = true;
         swordPickedup = false;
@@ -40,6 +42,7 @@ public class Player implements Serializable {
         inputs();
         applyVel();
         iFrame -= 0.1;
+        healtime -= 0.1;
         if (x > panel.getWidth()){
             x = -width;
         }
@@ -72,7 +75,7 @@ public class Player implements Serializable {
                 if(inRectangle((int)(allArrows.get(i)[0]+5) , (int)(allArrows.get(i)[1]+5),panel.allObsticals.get(j)[0],panel.allObsticals.get(j)[1],panel.allObsticals.get(j)[2],panel.allObsticals.get(j)[3])){
                     allArrows.remove(i);
                 }
-            } 
+            }
         }
         for (int j = 0; j < panel.allObsticals.size(); j++){
             for (int i = 0; i < allArrowsself.size(); i++){
@@ -91,7 +94,16 @@ public class Player implements Serializable {
         //Player
         g2d.drawImage(playerImage, x, y, width, height, null);
         g2d.drawImage(playerImage, player2.x, player2.y, player2.width, player2.height, null);
-
+        
+        //heal
+        g2d.setColor(new Color(0, 255, 13));
+        g2d.drawOval(200,700,90, 90);
+        g2d.setColor(new Color(0, 255, 13, 123));
+        g2d.fillOval(200,700,90, 90);
+        g2d.setColor(new Color(0, 255, 13));
+        g2d.drawOval(1700,100,90, 90);
+        g2d.setColor(new Color(0, 255, 13, 123));
+        g2d.fillOval(1700,100,90, 90);
     }
 
     public void keyPressed(KeyEvent e) {
@@ -175,6 +187,21 @@ public class Player implements Serializable {
         rightCollides = false;
     }
 
+    public void heal(){
+        if (explosionColision(x + width/2, y + height/2, 245,745, 45) && healtime <= 0){
+            if (panel.p1Inv.hp <panel.p1Inv.maxHp) {
+                panel.p1Inv.hp++;
+            }
+            healtime = 4;
+        }
+        if (explosionColision(x + width/2, y + height/2, 1745,145, 45) && healtime <= 0 ){
+            if (panel.p1Inv.hp <panel.p1Inv.maxHp) {
+                panel.p1Inv.hp++;
+            }
+            healtime = 4;
+        }
+    }
+
     public void setEnemySword(Sword enemySword) {
         this.enemySword = enemySword;
     }
@@ -209,5 +236,8 @@ public class Player implements Serializable {
     }
     public void setSwordPickedup(boolean swordPickedup) {
         this.swordPickedup = swordPickedup;
+    }
+    public boolean explosionColision(int x, int y, int x2, int y2, int distance){
+        return Math.abs(x - x2) < distance && Math.abs(y - y2) < distance;
     }
 }
