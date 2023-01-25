@@ -4,24 +4,38 @@ import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
 public class Mine{
-    int minenUeber = 9999;
+    int minenUeber = 10;
     ArrayList<int[]> alleMinen = new ArrayList<int[]>();
     Player player;
+    Player player2;
     boolean minePlased;
     boolean explodet;
     Mine mine;
     Panel panel;
     double time;
+    double minenTimer;
     boolean loesche;
 
-    public Mine(Player player, Mine mine, Panel panel) {
+    public Mine(Player player,Player player2, Mine mine, Panel panel) {
         this.player = player;
+        this.player2 = player2;
         this.mine = mine;
         this.panel = panel;
     }
     public void tick(){
        time = time - 0.1;
        mine.time = mine.time - 0.1;
+       minenTimer -= 0.1;
+       mine.minenTimer -= 0.1;
+       if (explosionColision(player.x + player.width/2, player.y + player.height/2, 1000,500, 100) && minenTimer <= 0){
+           minenUeber++;
+           minenTimer = 1;
+       }
+        System.out.println(minenUeber);
+        if (explosionColision(player2.x + player2.width/2, player2.y + player2.height/2, 1000,500, 100) && minenTimer <= 0){
+            mine.minenUeber++;
+            mine.minenTimer = 1;
+        }
     }
 
     public void createMine(){
@@ -43,6 +57,7 @@ public class Mine{
         }
     }
     public void drawMine(Graphics2D g2d){
+        g2d.setColor(new Color(255, 0, 0));
         for(int i = 0; i < alleMinen.size(); i++){
             g2d.fillOval(alleMinen.get(i)[0], alleMinen.get(i)[1],10,10);
             if (time >= 0) {
@@ -63,6 +78,10 @@ public class Mine{
                 }
             }
         }
+        g2d.setColor(new Color(255, 0, 0));
+        g2d.drawOval(900,400,200, 200);
+        g2d.setColor(new Color(255, 0, 0, 123));
+        g2d.fillOval(900,400,200, 200);
     }
     public boolean explosionColision(int x, int y, int x2, int y2, int distance){
         return Math.abs(x - x2) < distance && Math.abs(y - y2) < distance;
