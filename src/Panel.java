@@ -213,6 +213,7 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
             player1.tick();
             sword.tick();
             mine.tick();
+            player1.heal();
             repaint();
             mine.minePlased = false;
             mine.explodet = false;
