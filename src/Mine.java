@@ -28,7 +28,7 @@ public class Mine{
        mine.time = mine.time - 0.1;
        minenTimer -= 0.1;
        mine.minenTimer -= 0.1;
-       if (explosionColision(player.x + player.width/2, player.y + player.height/2, 1000,500, 100) && minenTimer <= 0 && minenUeber < 25){
+       if (explosionColision(player.x + player.width/2, player.y + player.height/2, 1000,500, 200) && minenTimer <= 0 && minenUeber < 25){
            minenUeber++;
            minenTimer = 4;
            canPlase = false;
@@ -36,7 +36,7 @@ public class Mine{
            canPlase = true;
        }
 
-        if (explosionColision(player2.x + player2.width/2, player2.y + player2.height/2, 1000,500, 100) && minenTimer <= 0 && mine.minenUeber < 25){
+        if (explosionColision(player2.x + player2.width/2, player2.y + player2.height/2, 1000,500, 200) && minenTimer <= 0 && mine.minenUeber < 25){
             mine.minenUeber++;
             mine.minenTimer = 4;
             mine.canPlase = false;
