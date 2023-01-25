@@ -166,10 +166,7 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
         }
         if(e.getKeyCode() == 10){
             send = true;
-            if (!messageOutput.equals("")) {
-                message = messageOutput.getText();
-                messageInput.setText(client.name + ": " + message + "\n" + messageInput.getText());
-            }
+            message = messageOutput.getText();
             messageOutput.setText("");
         }
     }
