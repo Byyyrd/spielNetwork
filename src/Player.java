@@ -39,8 +39,11 @@ public class Player implements Serializable {
 
     public void tick() {
         checkCollision();
-        inputs();
-        applyVel();
+        if (!panel.inChat){
+            inputs();
+            applyVel();
+        }
+
         iFrame -= 0.1;
         healtime -= 0.1;
         if (x > panel.getWidth()) {

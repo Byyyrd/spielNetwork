@@ -156,13 +156,13 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
         g2d.setTransform(oldXForm);
 
         //Inventory
-        p1Inv.drawInventory(g2d,hpImage);
+        p1Inv.drawInventory(g2d, hpImage);
         super.paint(g);
-        if (serverDown){
-            g2d.setFont(new Font("Arial",Font.PLAIN,200));
+        if (serverDown) {
+            g2d.setFont(new Font("Arial", Font.PLAIN, 200));
             g2d.setColor(Color.red);
             g2d.setBackground(Color.BLACK);
-            g2d.drawString("Server Shutdown",100,500);
+            g2d.drawString("Server Shutdown", 100, 500);
         }
     }
 
@@ -220,14 +220,12 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
             client.setExplodet(mine.explodet);
             client.setWeapon(slingshot);
             client.sendMessage(player1, sword);
-            if(!inChat) {
-                player1.tick();
-                sword.tick();
-                mine.tick();
-                player1.heal();
-                mine.minePlased = false;
-                mine.explodet = false;
-            }
+            player1.tick();
+            sword.tick();
+            mine.tick();
+            player1.heal();
+            mine.minePlased = false;
+            mine.explodet = false;
         }
         repaint();
     }
