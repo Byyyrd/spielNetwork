@@ -13,8 +13,9 @@ public class Message implements Serializable {
     boolean swordPickedUp;
     boolean minePlased;
     boolean explodet;
+    String message;
 
-    public Message(int x, int y, String name, double swordRotation, double rotation, boolean bowPickedUp, double mouseX, double mouseY, boolean isClicked, boolean swordPickedUp, boolean minePlased, boolean explodet) {
+    public Message(int x, int y, String name, double swordRotation, double rotation, boolean bowPickedUp, double mouseX, double mouseY, boolean isClicked, boolean swordPickedUp, boolean minePlased, boolean explodet, String message) {
         this.x = x;
         this.y = y;
         this.name = name;
@@ -27,6 +28,7 @@ public class Message implements Serializable {
         this.swordPickedUp = swordPickedUp;
         this.minePlased = minePlased;
         this.explodet = explodet;
+        this.message = message;
     }
 
     public int getX() {
