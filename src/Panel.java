@@ -120,8 +120,8 @@ public class Panel extends JPanel implements ActionListener, KeyListener {
         player1.setAllArrows(slingshot2.allArrows);
         player1.setAllArrowsself(slingshot.allArrows);
 
-        mine2 = new Mine(player2, null);
-        mine = new Mine(player1, mine2);
+        mine2 = new Mine(player2, null,null);
+        mine = new Mine(player1, mine2, this);
 
         sword = new Sword(this, player1);
         sword2 = new Sword(this, player2);
