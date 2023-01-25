@@ -39,7 +39,6 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
     Font font;
     boolean send;
     String message;
-    JButton button;
 
     public Panel(Client client) {
         playerImage = new ImageIcon("resources/Player.png").getImage();
@@ -57,11 +56,6 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
         client.setClientPanel(this);
         allObsticals = new ArrayList<int[]>();
         addObstacles();
-        button = new JButton();
-
-        button.setBounds(305, 225, 20, 20);
-        button.addActionListener(this);
-        button.setText("...");
 
         player2 = new Player(100, 100, playerImage.getWidth(null) * 3, playerImage.getHeight(null) * 3, player2, sword,this);
         player1 = new Player(10, 10, playerImage.getWidth(null) * 3, playerImage.getHeight(null) * 3, player2, sword2,this);
@@ -97,18 +91,17 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
         //Chat
         messageOutput.setBackground(new Color(94, 94, 94));
         messageOutput.setFont(font);
-        messageOutput.setBounds(25, 225, 275, 20);
+        messageOutput.setBounds(1725, 225, 300, 20);
         messageOutput.setForeground(new Color(255, 255, 255));
 
         messageInput.setBackground(new Color(94, 94, 94));
         messageInput.setFont(font);
-        messageInput.setBounds(25, 25, 300, 175);
+        messageInput.setBounds(1725, 25, 300, 175);
         messageInput.setForeground(new Color(255, 255, 255));
         messageInput.setEditable(false);
 
-        add(messageOutput,10,10);
-        add(messageInput,10,10);
-        add(button);
+        add(messageOutput);
+        add(messageInput);
 
         messageOutput.addKeyListener(this);
         messageInput.addKeyListener(this);
