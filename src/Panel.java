@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.geom.AffineTransform;
 import java.util.ArrayList;
 
 public class Panel extends JLayeredPane implements ActionListener, KeyListener {
@@ -124,6 +125,7 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
     @Override
     public void paint(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
+        AffineTransform oldXForm = g2d.getTransform();
         //Background
         /*for(int j = 0;j <= this.getHeight()/bgrHeight;j++){
             for (int i = 0; i <= this.getWidth() / bgrWidth; i++) {
@@ -150,6 +152,7 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
 
         //Slingshot
         slingshot.drawSlingshot(g2d,player1,player2,bowImage,playerImage,slingshot2 );
+        g2d.setTransform(oldXForm);
         super.paint(g);
     }
 
