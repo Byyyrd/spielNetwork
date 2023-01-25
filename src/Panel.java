@@ -84,7 +84,7 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
         sword2.setPlayer2(player1);
         this.addMouseListener(sword);
 
-        p1Inv = new Inventory(10,player1);
+        p1Inv = new Inventory(10,player1, player2);
 
 
         player1.setEnemySword(sword2);
@@ -145,18 +145,15 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
 
         //Swords
         sword.drawSword(g2d,swordImage,player2);
+
         //Minen
         mine.drawMine(g2d);
 
         //Inventory
         p1Inv.drawInventory(g2d,hpImage);
+
         //Slingshot
         slingshot.drawSlingshot(g2d,player1,player2,bowImage,playerImage,slingshot2 );
-
-
-
-
-
     }
 
     public void keyTyped(KeyEvent e) {
