@@ -9,10 +9,10 @@ public class Player implements Serializable {
     int width;
     int height;
     int speed = 5;
-    boolean downPressed,rightPressed,leftPressed,upPressed;
+    boolean downPressed, rightPressed, leftPressed, upPressed;
     boolean downCollides, rightCollides, leftCollides, upCollides;
-    double xVel,yVel;
-    double xDir,yDir;
+    double xVel, yVel;
+    double xDir, yDir;
     double iFrame;
     String name = "";
     Player player2;
@@ -34,78 +34,81 @@ public class Player implements Serializable {
         this.width = width;
         this.height = height;
         this.enemySword = enemySword;
-        this.panel= panel;
+        this.panel = panel;
     }
 
-    public void tick(){
+    public void tick() {
         checkCollision();
         inputs();
         applyVel();
         iFrame -= 0.1;
         healtime -= 0.1;
-        if (x > panel.getWidth()){
+        if (x > panel.getWidth()) {
             x = -width;
         }
-        if (x < -width){
+        if (x < -width) {
             x = panel.getWidth();
         }
-        if (y > panel.getHeight()){
+        if (y > panel.getHeight()) {
             y = -height;
         }
-        if (y < -height){
+        if (y < -height) {
             y = panel.getHeight();
         }
     }
 
     public void checkCollision() {
         if (enemySword != null && player2.swordPickedup) {
-            if (inRectangle((int)(enemySword.x + 21 + Math.sin(enemySword.rotation) * 21),(int)(enemySword. y + width/2 + Math.cos(enemySword.rotation) * -25),x,y, width, height) || inRectangle((int)(enemySword.x + 21 + Math.sin(enemySword.rotation) * 40),(int)(enemySword.y + width/2 + Math.cos(enemySword.rotation) * -40),x,y, width, height) || inRectangle((int)(enemySword.x + 21 + Math.sin(enemySword.rotation) * 55),(int)(enemySword.y + width/2 + Math.cos(enemySword.rotation) * -55),x,y, width, height) ) {
+            if (inRectangle((int) (enemySword.x + 21 + Math.sin(enemySword.rotation) * 21), (int) (enemySword.y + width / 2 + Math.cos(enemySword.rotation) * -25), x, y, width, height) || inRectangle((int) (enemySword.x + 21 + Math.sin(enemySword.rotation) * 40), (int) (enemySword.y + width / 2 + Math.cos(enemySword.rotation) * -40), x, y, width, height) || inRectangle((int) (enemySword.x + 21 + Math.sin(enemySword.rotation) * 55), (int) (enemySword.y + width / 2 + Math.cos(enemySword.rotation) * -55), x, y, width, height)) {
                 panel.p1Inv.playerHit(2.5);
             }
         }
-        if (allArrows != null){
+        if (allArrows != null) {
             for (Double[] allArrow : allArrows) {
                 if (inRectangle((int) (allArrow[0] + 5), (int) (allArrow[1] + 5), x, y, width, height)) {
                     panel.p1Inv.playerHit(1);
                 }
             }
         }
-        for (int j = 0; j < panel.allObsticals.size(); j++){
-            for (int i = 0; i < allArrows.size(); i++){
-                if(inRectangle((int)(allArrows.get(i)[0]+5) , (int)(allArrows.get(i)[1]+5),panel.allObsticals.get(j)[0],panel.allObsticals.get(j)[1],panel.allObsticals.get(j)[2],panel.allObsticals.get(j)[3])){
+        for (int j = 0; j < panel.allObsticals.size(); j++) {
+            for (int i = 0; i < allArrows.size(); i++) {
+                if (inRectangle((int) (allArrows.get(i)[0] + 5), (int) (allArrows.get(i)[1] + 5), panel.allObsticals.get(j)[0], panel.allObsticals.get(j)[1], panel.allObsticals.get(j)[2], panel.allObsticals.get(j)[3])) {
                     allArrows.remove(i);
                 }
             }
         }
-        for (int j = 0; j < panel.allObsticals.size(); j++){
-            for (int i = 0; i < allArrowsself.size(); i++){
-                if(inRectangle((int)(allArrowsself.get(i)[0]+5) , (int)(allArrowsself.get(i)[1]+5),panel.allObsticals.get(j)[0],panel.allObsticals.get(j)[1],panel.allObsticals.get(j)[2],panel.allObsticals.get(j)[3])){
+        for (int j = 0; j < panel.allObsticals.size(); j++) {
+            for (int i = 0; i < allArrowsself.size(); i++) {
+                if (inRectangle((int) (allArrowsself.get(i)[0] + 5), (int) (allArrowsself.get(i)[1] + 5), panel.allObsticals.get(j)[0], panel.allObsticals.get(j)[1], panel.allObsticals.get(j)[2], panel.allObsticals.get(j)[3])) {
                     allArrowsself.remove(i);
                 }
             }
         }
     }
-    public void drawPlayer(Graphics2D g2d, Image playerImage,Client client,Sword sword){
+
+    public void drawPlayer(Graphics2D g2d, Image playerImage, Client client, Sword sword) {
+        //heal
+        g2d.setColor(new Color(0, 255, 13));
+        g2d.drawOval(200, 700, 90, 90);
+        g2d.drawOval(145, 645, 200, 200);
+        g2d.setColor(new Color(0, 255, 13, 123));
+        g2d.fillOval(200, 700, 90, 90);
+        g2d.setColor(new Color(0, 255, 13));
+        g2d.drawOval(1700, 200, 90, 90);
+        g2d.drawOval(1645, 145, 200, 200);
+        g2d.setColor(new Color(0, 255, 13, 123));
+        g2d.fillOval(1700, 200, 90, 90);
+
         //Player Names
         g2d.setColor(Color.red);
-        g2d.drawString(client.name + "  " + ((int)(sword.cooldown*10f))/10f, x,y);
-        g2d.drawString(player2.name + "  " + ((int)(enemySword.cooldown*10f))/10f, player2.x, player2.y);
+        g2d.drawString(client.name + "  " + ((int) (sword.cooldown * 10f)) / 10f, x, y);
+        g2d.drawString(player2.name + "  " + ((int) (enemySword.cooldown * 10f)) / 10f, player2.x, player2.y);
 
         //Player
         g2d.drawImage(playerImage, x, y, width, height, null);
         g2d.drawImage(playerImage, player2.x, player2.y, player2.width, player2.height, null);
-        
-        //heal
-        g2d.setColor(new Color(0, 255, 13));
-        g2d.drawOval(200,700,90, 90);
-        g2d.drawOval(145,645,200, 200);
-        g2d.setColor(new Color(0, 255, 13, 123));
-        g2d.fillOval(200,700,90, 90);
-        g2d.setColor(new Color(0, 255, 13));
-        g2d.drawOval(1700,200,90, 90);
-        g2d.drawOval(1645,145,200, 200);
-        g2d.setColor(new Color(0, 255, 13, 123));
-        g2d.fillOval(1700,200,90, 90);
+
+
     }
 
     public void keyPressed(KeyEvent e) {
@@ -155,17 +158,17 @@ public class Player implements Serializable {
     }
 
     public void inputs() {
-        for ( int i = 0; i < panel.allObsticals.size(); i++) {
-            if( inRectangle(x + 5, y, panel.allObsticals.get(i)[0], panel.allObsticals.get(i)[1], panel.allObsticals.get(i)[2], panel.allObsticals.get(i)[3]) || inRectangle(x + player2.width - 5, y, panel.allObsticals.get(i)[0], panel.allObsticals.get(i)[1], panel.allObsticals.get(i)[2], panel.allObsticals.get(i)[3])|| inRectangle(x + player2.width/2 - 5, y, panel.allObsticals.get(i)[0], panel.allObsticals.get(i)[1], panel.allObsticals.get(i)[2], panel.allObsticals.get(i)[3])) {
+        for (int i = 0; i < panel.allObsticals.size(); i++) {
+            if (inRectangle(x + 5, y, panel.allObsticals.get(i)[0], panel.allObsticals.get(i)[1], panel.allObsticals.get(i)[2], panel.allObsticals.get(i)[3]) || inRectangle(x + player2.width - 5, y, panel.allObsticals.get(i)[0], panel.allObsticals.get(i)[1], panel.allObsticals.get(i)[2], panel.allObsticals.get(i)[3]) || inRectangle(x + player2.width / 2 - 5, y, panel.allObsticals.get(i)[0], panel.allObsticals.get(i)[1], panel.allObsticals.get(i)[2], panel.allObsticals.get(i)[3])) {
                 upCollides = true;
             }
-            if (inRectangle(x + 5, y + player2.height, panel.allObsticals.get(i)[0], panel.allObsticals.get(i)[1], panel.allObsticals.get(i)[2], panel.allObsticals.get(i)[3]) || inRectangle(x + player2.width - 5, y + player2.height, panel.allObsticals.get(i)[0], panel.allObsticals.get(i)[1], panel.allObsticals.get(i)[2], panel.allObsticals.get(i)[3]) || inRectangle(x + player2.width/2 - 5, y + player2.height/2, panel.allObsticals.get(i)[0], panel.allObsticals.get(i)[1], panel.allObsticals.get(i)[2], panel.allObsticals.get(i)[3])) {
+            if (inRectangle(x + 5, y + player2.height, panel.allObsticals.get(i)[0], panel.allObsticals.get(i)[1], panel.allObsticals.get(i)[2], panel.allObsticals.get(i)[3]) || inRectangle(x + player2.width - 5, y + player2.height, panel.allObsticals.get(i)[0], panel.allObsticals.get(i)[1], panel.allObsticals.get(i)[2], panel.allObsticals.get(i)[3]) || inRectangle(x + player2.width / 2 - 5, y + player2.height / 2, panel.allObsticals.get(i)[0], panel.allObsticals.get(i)[1], panel.allObsticals.get(i)[2], panel.allObsticals.get(i)[3])) {
                 downCollides = true;
             }
-            if (inRectangle(x, y + 5, panel.allObsticals.get(i)[0], panel.allObsticals.get(i)[1], panel.allObsticals.get(i)[2], panel.allObsticals.get(i)[3]) || inRectangle(x, y + player2.height - 5,panel.allObsticals.get(i)[0], panel.allObsticals.get(i)[1], panel.allObsticals.get(i)[2], panel.allObsticals.get(i)[3])|| inRectangle(x, y + player2.height/2 - 5,panel.allObsticals.get(i)[0], panel.allObsticals.get(i)[1], panel.allObsticals.get(i)[2], panel.allObsticals.get(i)[3])) {
+            if (inRectangle(x, y + 5, panel.allObsticals.get(i)[0], panel.allObsticals.get(i)[1], panel.allObsticals.get(i)[2], panel.allObsticals.get(i)[3]) || inRectangle(x, y + player2.height - 5, panel.allObsticals.get(i)[0], panel.allObsticals.get(i)[1], panel.allObsticals.get(i)[2], panel.allObsticals.get(i)[3]) || inRectangle(x, y + player2.height / 2 - 5, panel.allObsticals.get(i)[0], panel.allObsticals.get(i)[1], panel.allObsticals.get(i)[2], panel.allObsticals.get(i)[3])) {
                 leftCollides = true;
             }
-            if (inRectangle(x + player2.width, y - 5, panel.allObsticals.get(i)[0], panel.allObsticals.get(i)[1], panel.allObsticals.get(i)[2], panel.allObsticals.get(i)[3]) || inRectangle(x + player2.width, y + player2.height - 5, panel.allObsticals.get(i)[0], panel.allObsticals.get(i)[1], panel.allObsticals.get(i)[2], panel.allObsticals.get(i)[3])|| inRectangle(x + player2.width/2, y + player2.height/2 - 5, panel.allObsticals.get(i)[0], panel.allObsticals.get(i)[1], panel.allObsticals.get(i)[2], panel.allObsticals.get(i)[3])) {
+            if (inRectangle(x + player2.width, y - 5, panel.allObsticals.get(i)[0], panel.allObsticals.get(i)[1], panel.allObsticals.get(i)[2], panel.allObsticals.get(i)[3]) || inRectangle(x + player2.width, y + player2.height - 5, panel.allObsticals.get(i)[0], panel.allObsticals.get(i)[1], panel.allObsticals.get(i)[2], panel.allObsticals.get(i)[3]) || inRectangle(x + player2.width / 2, y + player2.height / 2 - 5, panel.allObsticals.get(i)[0], panel.allObsticals.get(i)[1], panel.allObsticals.get(i)[2], panel.allObsticals.get(i)[3])) {
                 rightCollides = true;
             }
         }
@@ -189,15 +192,15 @@ public class Player implements Serializable {
         rightCollides = false;
     }
 
-    public void heal(){
-        if (explosionColision(x + width/2, y + height/2, 245,745, 45) && healtime <= 0){
-            if (panel.p1Inv.hp <panel.p1Inv.maxHp) {
+    public void heal() {
+        if (explosionColision(x + width / 2, y + height / 2, 245, 745, 45) && healtime <= 0) {
+            if (panel.p1Inv.hp < panel.p1Inv.maxHp) {
                 panel.p1Inv.hp++;
             }
             healtime = 4;
         }
-        if (explosionColision(x + width/2, y + height/2, 1745,245, 45) && healtime <= 0 ){
-            if (panel.p1Inv.hp <panel.p1Inv.maxHp) {
+        if (explosionColision(x + width / 2, y + height / 2, 1745, 245, 45) && healtime <= 0) {
+            if (panel.p1Inv.hp < panel.p1Inv.maxHp) {
                 panel.p1Inv.hp++;
             }
             healtime = 4;
@@ -236,10 +239,12 @@ public class Player implements Serializable {
     public boolean isSwordPickedup() {
         return swordPickedup;
     }
+
     public void setSwordPickedup(boolean swordPickedup) {
         this.swordPickedup = swordPickedup;
     }
-    public boolean explosionColision(int x, int y, int x2, int y2, int distance){
+
+    public boolean explosionColision(int x, int y, int x2, int y2, int distance) {
         return Math.abs(x - x2) < distance && Math.abs(y - y2) < distance;
     }
 }

@@ -59,8 +59,8 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
         allObsticals = new ArrayList<int[]>();
         addObstacles();
 
-        player2 = new Player(100, 100, playerImage.getWidth(null) * 3, playerImage.getHeight(null) * 3, player2, sword,this);
-        player1 = new Player(10, 10, playerImage.getWidth(null) * 3, playerImage.getHeight(null) * 3, player2, sword2,this);
+        player2 = new Player(100, 100, playerImage.getWidth(null) * 3, playerImage.getHeight(null) * 3, player2, sword, this);
+        player1 = new Player(10, 10, playerImage.getWidth(null) * 3, playerImage.getHeight(null) * 3, player2, sword2, this);
 
         slingshot = new Slingshot(player1, this, bowImage);
         slingshot2 = new Slingshot(player2, this, bowImage);
@@ -69,7 +69,7 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
         player1.setAllArrows(slingshot2.allArrows);
         player1.setAllArrowsself(slingshot.allArrows);
 
-        mine2 = new Mine(player2, null,null, null);
+        mine2 = new Mine(player2, null, null, null);
         mine = new Mine(player1, player2, mine2, this);
 
         sword = new Sword(this, player1);
@@ -80,7 +80,7 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
         sword2.setPlayer2(player1);
         this.addMouseListener(sword);
 
-        p1Inv = new Inventory(10,player1, player2);
+        p1Inv = new Inventory(10, player1, player2);
 
 
         player1.setEnemySword(sword2);
@@ -96,12 +96,12 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
         messageOutput.setBounds(1625, 225, 300, 20);
         messageOutput.setForeground(new Color(255, 255, 255));
 
-        messageInput.setBackground(new Color(94, 94, 94,200));
+        messageInput.setBackground(new Color(94, 94, 94, 200));
         messageInput.setFont(font);
         messageInput.setBounds(1600, 725, 300, 175);
         messageInput.setForeground(new Color(255, 255, 255));
         messageInput.setEditable(false);
-        setLayer(messageInput,DRAG_LAYER);
+        setLayer(messageInput, DRAG_LAYER);
 
         add(messageInput);
 
@@ -126,31 +126,33 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
         Graphics2D g2d = (Graphics2D) g;
         AffineTransform oldXForm = g2d.getTransform();
         //Background
-        /*for(int j = 0;j <= this.getHeight()/bgrHeight;j++){
+        for (int j = 0; j <= this.getHeight() / bgrHeight; j++) {
             for (int i = 0; i <= this.getWidth() / bgrWidth; i++) {
-                g2d.drawImage(bgrImage, bgrWidth * i, bgrHeight*j, bgrWidth, bgrHeight, null);
+                g2d.drawImage(bgrImage, bgrWidth * i, bgrHeight * j, bgrWidth, bgrHeight, null);
             }
-        }*/
-        //Obstacles
-        for (int i = 0; i < allObsticals.size(); i++){
-            g2d.setColor(new Color(48, 61, 61));
-            g2d.fillRect(allObsticals.get(i)[0],allObsticals.get(i)[1],allObsticals.get(i)[2],allObsticals.get(i)[3]);
         }
-
-        //Player
-        player1.drawPlayer(g2d,playerImage,client,sword);
-
-        //Swords
-        sword.drawSword(g2d,swordImage,player2);
-
+        g2d.setTransform(oldXForm);
+        //Obstacles
+        for (int i = 0; i < allObsticals.size(); i++) {
+            g2d.setColor(new Color(48, 61, 61));
+            g2d.fillRect(allObsticals.get(i)[0], allObsticals.get(i)[1], allObsticals.get(i)[2], allObsticals.get(i)[3]);
+        }
+        g2d.setTransform(oldXForm);
         //Minen
         mine.drawMine(g2d);
+        g2d.setTransform(oldXForm);
+        //Player
+        player1.drawPlayer(g2d, playerImage, client, sword);
+        g2d.setTransform(oldXForm);
+        //Swords
+        sword.drawSword(g2d, swordImage, player2);
+        g2d.setTransform(oldXForm);
 
         //Inventory
-        p1Inv.drawInventory(g2d,hpImage);
-
+        p1Inv.drawInventory(g2d, hpImage);
+        g2d.setTransform(oldXForm);
         //Slingshot
-        slingshot.drawSlingshot(g2d,player1,player2,bowImage,playerImage,slingshot2 );
+        slingshot.drawSlingshot(g2d, player1, player2, bowImage, playerImage, slingshot2);
         g2d.setTransform(oldXForm);
         super.paint(g);
     }
@@ -166,18 +168,18 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
     public void keyPressed(KeyEvent e) {
         mine.keyPressed(e);
         player1.keyPressed(e);
-        if (e.getKeyCode() == 70){
+        if (e.getKeyCode() == 70) {
             player1.setSlingshotPickedup(!player1.isSlingshotPickedup());
             player1.setSwordPickedup(!player1.isSwordPickedup());
         }
-        if(e.getKeyCode() == 10){
+        if (e.getKeyCode() == 10) {
             e.consume();
             send = true;
             message = messageOutput.getText();
             messageOutput.setText("");
         }
-        if(e.getKeyCode() == 84){
-            if(inChat) {
+        if (e.getKeyCode() == 84) {
+            if (inChat) {
                 inChat = false;
                 messageOutput.setText("");
                 remove(messageOutput);
@@ -185,11 +187,11 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
                 messageInput.setBounds(1600, 725, 300, 175);
                 addKeyListener(this);
                 this.grabFocus();
-            }else{
+            } else {
                 inChat = true;
-                add(messageOutput,1,1);
-                setLayer(messageOutput,DRAG_LAYER);
-                messageOutput.setBounds(0,850,1900, 50);
+                add(messageOutput, 1, 1);
+                setLayer(messageOutput, DRAG_LAYER);
+                messageOutput.setBounds(0, 850, 1900, 50);
                 messageInput.setBounds(0, 0, 1900, 800);
                 messageInput.setFont(font);
                 messageOutput.grabFocus();
@@ -200,10 +202,10 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(!send){
+        if (!send) {
             message = "";
         }
-        if(slingshot.mousePos != null) {
+        if (slingshot.mousePos != null) {
             client.setMinePlased(mine.minePlased);
             client.setExplodet(mine.explodet);
             client.setWeapon(slingshot);
@@ -224,29 +226,31 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
     public void setAllArrows(ArrayList<Double[]> allArrows) {
         this.allArrows = allArrows;
     }
-    public void addObstacles(){
+
+    public void addObstacles() {
         var obstical = new int[4];
-        addObstical(900,300,200,30,obstical);
+        addObstical(900, 300, 200, 30, obstical);
         var obstical1 = new int[4];
-        addObstical(390,730,50,190,obstical1);
+        addObstical(390, 730, 50, 190, obstical1);
         var obstical2 = new int[4];
-        addObstical(550,90,30,30,obstical2);
+        addObstical(550, 90, 30, 30, obstical2);
         var obstical3 = new int[4];
-        addObstical(200,90,40,600,obstical3);
+        addObstical(200, 90, 40, 600, obstical3);
         var obstical4 = new int[4];
-        addObstical(1290,600,100,90,obstical4);
+        addObstical(1290, 600, 100, 90, obstical4);
         var obstical5 = new int[4];
-        addObstical(670,740,370,50,obstical5);
+        addObstical(670, 740, 370, 50, obstical5);
         var obstical6 = new int[4];
-        addObstical(1300,50,70,370,obstical6);
+        addObstical(1300, 50, 70, 370, obstical6);
         var obstical7 = new int[4];
-        addObstical(1500,470,370,70,obstical7);
+        addObstical(1500, 470, 370, 70, obstical7);
         var obstical8 = new int[4];
-        addObstical(730,190,20,400,obstical8);
+        addObstical(730, 190, 20, 400, obstical8);
         var obstical9 = new int[4];
-        addObstical(360,470,250,40,obstical9);
+        addObstical(360, 470, 250, 40, obstical9);
     }
-    public void addObstical(int x, int y, int wight, int hight, int[] obstical){
+
+    public void addObstical(int x, int y, int wight, int hight, int[] obstical) {
         obstical[0] = x;
         obstical[1] = y;
         obstical[2] = wight;
