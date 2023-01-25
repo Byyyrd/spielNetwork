@@ -60,7 +60,7 @@ public class Client {
                     System.out.println("Server shutdown");
                     panel.serverDown = true;
                     try {
-                        Thread.sleep(100);
+                        Thread.sleep(1000);
                     } catch (InterruptedException ex) {
                         throw new RuntimeException(ex);
                     }
