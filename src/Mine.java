@@ -20,8 +20,8 @@ public class Mine{
         this.panel = panel;
     }
     public void tick(){
-       time = time - 0.01;
-       mine.time = mine.time - 0.01;
+       time = time - 0.1;
+       mine.time = mine.time - 0.1;
     }
 
     public void createMine(){
@@ -34,7 +34,7 @@ public class Mine{
 
     public void explodemines(){
         if (mine.alleMinen.size() != 0 && mine.alleMinen != null) {
-            for (int i = mine.alleMinen.size(); i >= 0; i--) {
+            for (int i = mine.alleMinen.size(); i > 0; i--) {
                 if (explosionColision(mine.alleMinen.get(i-1)[0], mine.alleMinen.get(i-1)[1], player.x, player.y, 90) || explosionColision(mine.alleMinen.get(i -1)[0], mine.alleMinen.get(i -1 )[1], player.x + player.width, player.y, 90) || explosionColision(mine.alleMinen.get(i -1 )[0], mine.alleMinen.get(i-1)[1], player.x + player.width / 2, player.y, 90) || explosionColision(mine.alleMinen.get(i-1)[0], mine.alleMinen.get(i-1)[1], player.x + player.width, player.y + player.height / 2, 90) || explosionColision(mine.alleMinen.get(i-1)[0], mine.alleMinen.get(i-1)[1], player.x + player.width, player.y + player.height, 90) || explosionColision(mine.alleMinen.get(i-1)[0], mine.alleMinen.get(i-1)[1], player.x + player.width / 2, player.y + player.height, 90) || explosionColision(mine.alleMinen.get(i-1)[0], mine.alleMinen.get(i-1)[1], player.x, player.y + player.height, 90) || explosionColision(mine.alleMinen.get(i-1)[0], mine.alleMinen.get(i-1)[1], player.x, player.y + player.height / 2, 90)) {
                     panel.p1Inv.playerHit(10);
                 }
@@ -55,7 +55,7 @@ public class Mine{
         if (mine != null){
             for (int i = 0; i < mine.alleMinen.size(); i++){
                 g2d.fillOval(mine.alleMinen.get(i)[0], mine.alleMinen.get(i)[1],10,10);
-                if (time >= 0) {
+                if (mine.time >= 0) {
                     g2d.fillOval(mine.alleMinen.get(i)[0]-45, mine.alleMinen.get(i)[1]-45, 90, 90);
                 }else if (mine.loesche) {
                     mine.alleMinen.removeAll(mine.alleMinen);
@@ -79,7 +79,6 @@ public class Mine{
                 explodet = true;
                 time = 1;
                 loesche = true;
-                System.out.println(time);
             }
         }
     }
