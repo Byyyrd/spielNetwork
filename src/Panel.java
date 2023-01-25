@@ -100,8 +100,8 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
         messageInput.setBounds(1625, 25, 300, 175);
         messageInput.setForeground(new Color(255, 255, 255));
         messageInput.setEditable(false);
+        setLayer(messageInput,DRAG_LAYER);
 
-        add(messageOutput);
         add(messageInput);
 
 
@@ -178,13 +178,15 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
                 inChat = false;
                 messageOutput.setText("");
                 remove(messageOutput);
-                remove(messageInput);
+                messageInput.setBounds(1625, 25, 300, 175);
                 addKeyListener(this);
                 this.grabFocus();
             }else{
                 inChat = true;
-                add(messageOutput,1);
-                add(messageInput,1);
+                add(messageOutput,1,1);
+                setLayer(messageOutput,DRAG_LAYER);
+                messageOutput.setBounds(0,850,1900, 50);
+                messageInput.setBounds(0, 0, 1900, 800);
                 messageOutput.grabFocus();
                 removeKeyListener(this);
             }
