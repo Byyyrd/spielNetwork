@@ -24,9 +24,9 @@ public class Player implements Serializable {
     Panel panel;
     double hp;
     double healtime;
-    double swortDamage=2.5;
+    double swordDamage =2.5;
     double slingshotDamage=1;
-    double minenDemage=10;
+    double minenDamage =10;
     int arrowCount;
     double iFrametime;
 
@@ -68,7 +68,7 @@ public class Player implements Serializable {
     public void checkCollision() {
         if (enemySword != null && player2.swordPickedup) {
             if (inRectangle((int) (enemySword.x + 21 + Math.sin(enemySword.rotation) * 21), (int) (enemySword.y + width / 2 + Math.cos(enemySword.rotation) * -25), x, y, width, height) || inRectangle((int) (enemySword.x + 21 + Math.sin(enemySword.rotation) * 40), (int) (enemySword.y + width / 2 + Math.cos(enemySword.rotation) * -40), x, y, width, height) || inRectangle((int) (enemySword.x + 21 + Math.sin(enemySword.rotation) * 55), (int) (enemySword.y + width / 2 + Math.cos(enemySword.rotation) * -55), x, y, width, height)) {
-                panel.p1Inv.playerHit(player2.swortDamage);
+                panel.p1Inv.playerHit(player2.swordDamage);
             }
         }
         if (allArrows != null) {
