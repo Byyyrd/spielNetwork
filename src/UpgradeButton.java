@@ -15,7 +15,7 @@ public class UpgradeButton extends JButton implements ActionListener {
         this.addActionListener(this);
         this.setBackground(new Color(94, 94, 94));
         this.setFont(new Font("Arial", Font.PLAIN, 40));
-        this.setBounds(x,300,200,100);
+        this.setBounds(x,400,400,200);
         this.setText(this.attribute);
     }
 
@@ -23,48 +23,54 @@ public class UpgradeButton extends JButton implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(Objects.equals(attribute, "Heal")){
 
-            panel.remove(this);
+
         }
         if(Objects.equals(attribute, "SwordDamage")){
 
-            panel.remove(this);
+
         }
         if(Objects.equals(attribute, "Slingshotdamage")){
 
-            panel.remove(this);
+
         }
         if(Objects.equals(attribute, "Minedamage")){
 
-            panel.remove(this);
+
         }
         if(Objects.equals(attribute, "Slingshot-projectiles")){
 
-            panel.remove(this);
+
         }
         if(Objects.equals(attribute, "Sword-DmgReduction")){
 
-            panel.remove(this);
+
         }
         if(Objects.equals(attribute, "Slingshot-DmgReduction")){
 
-            panel.remove(this);
+
         }
         if(Objects.equals(attribute, "Mines-DmgReduction")){
 
-            panel.remove(this);
+
         }
         if(Objects.equals(attribute, "Speed")){
 
-            panel.remove(this);
+
         }
         if(Objects.equals(attribute, "MaxMines")){
 
-            panel.remove(this);
+
         }
         if(Objects.equals(attribute, "MineGain")){
 
-            panel.remove(this);
+
         }
+        panel.grabFocus();
+        panel.addKeyListener(panel);
+        for(int i = 0; i <= 2;i++){
+            panel.remove(panel.p1Inv.allButtons.get(i));
+        }
+        panel.p1Inv.allButtons.removeAll(panel.p1Inv.allButtons);
     }
 }
 
