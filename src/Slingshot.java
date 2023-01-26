@@ -84,8 +84,8 @@ public class Slingshot implements MouseListener, ActionListener {
             if (allArrows.get(i - 1)[6] > -3 && allArrows.get(i - 1)[6] < 3 || allArrows.get(i - 1)[5] < 3 && allArrows.get(i - 1)[5] > -3) {
                 allArrows.remove(i - 1);
             } else {
-                allArrows.get(i - 1)[0] = (allArrows.get(i - 1)[0] + (Math.cos(allArrows.get(i - 1)[4]) * 1500 * 0.01));//xMovement
-                allArrows.get(i - 1)[1] = (allArrows.get(i - 1)[1] + (Math.sin(allArrows.get(i - 1)[4]) * 1500 * 0.01));//yMovement
+                allArrows.get(i - 1)[0] = (allArrows.get(i - 1)[0] + (Math.cos(allArrows.get(i - 1)[4]) * 1500 * 0.01 * player.arrowVelosety));//xMovement
+                allArrows.get(i - 1)[1] = (allArrows.get(i - 1)[1] + (Math.sin(allArrows.get(i - 1)[4]) * 1500 * 0.01 * player.arrowVelosety));//yMovement
             }
         }
 
@@ -108,9 +108,9 @@ public class Slingshot implements MouseListener, ActionListener {
             Arrow[0] = ((double) player.x);// x1 Index = 0
             Arrow[1] = ((double) player.y);// y1 Index = 1
             if (x1 > mousePos.getX()) {
-                Arrow[2] = ((mousePos.getX()) - 500);//x2 Index = 2
+                Arrow[2] = ((mousePos.getX()) - 10000);//x2 Index = 2
             } else if (x1 < mousePos.getX()) {
-                Arrow[2] = ((mousePos.getX()) + 500);//x2 Index = 2
+                Arrow[2] = ((mousePos.getX()) + 10000);//x2 Index = 2
             } else {
                 Arrow[2] = ((mousePos.getX()));//x2 Index = 2
             }

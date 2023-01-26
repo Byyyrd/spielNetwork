@@ -62,8 +62,8 @@ public class Inventory {
         g2d.drawImage(hpImage, 0, 975, hpImage.getWidth(null), hpImage.getHeight(null), null);
         //DashCooldown & Mines left
         g2d.setFont(new Font("Arial", Font.PLAIN, 40));
-        g2d.drawString("Minen: " + mines, 525, 1015);
-        g2d.drawString("Dash: " + ((int) (dashCooldown * 10f)) / 10f, 725, 1015);
+        g2d.drawString("Minen: " + mines, 1225, 1015);
+        g2d.drawString("Dash: " + ((int) (dashCooldown * 10f)) / 10f, 1425, 1015);
         //Points
         g2d.setColor(Color.green);
         g2d.fillRect(600, 975, (int) (exp * 25), 50);
