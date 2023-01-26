@@ -88,6 +88,7 @@ public class Inventory {
                 case 10 -> allButtons.add(new UpgradeButton(panel, i * 600 + 100, "MaxMines"));
                 case 11 -> allButtons.add(new UpgradeButton(panel, i * 600 + 100, "MineGain"));
             }
+            allButtons.get(i).addKeyListener(panel);
             panel.add(allButtons.get(i));
         }
     }

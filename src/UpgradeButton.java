@@ -58,7 +58,6 @@ public class UpgradeButton extends JButton implements ActionListener {
             player.minenTime -= 0.19;
         }
         panel.grabFocus();
-        panel.addKeyListener(panel);
         for (int i = 0; i <= 2; i++) {
             panel.remove(panel.p1Inv.allButtons.get(i));
         }
