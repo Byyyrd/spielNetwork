@@ -13,6 +13,7 @@ public class Slingshot implements MouseListener, ActionListener {
     long yLenght;
     long xLenght;
     double playerRotation;
+    double time;
     Player player;
     Panel panel;
     Image image;
@@ -143,6 +144,10 @@ public class Slingshot implements MouseListener, ActionListener {
         this.allArrows.add(Arrow);
     }
 
+    public void tick(){
+        time -= 0.1;
+    }
+
     public void setMousePos(Point mousePos) {
         if (mousePos != null) {
             this.mousePos = mousePos;
@@ -150,35 +155,30 @@ public class Slingshot implements MouseListener, ActionListener {
     }
 
     @Override
-    public void mouseClicked(MouseEvent e) {
-
-    }
+    public void mouseClicked(MouseEvent e) {}
 
     @Override
     public void mousePressed(MouseEvent e) {
         if (player.isSlingshotPickedup()) {
             if (!explosionColision(player.x + player.width/2, player.y + player.height/2, 1745,245, 100)&&!explosionColision(player.x + player.width/2, player.y +player.height/2, 195,845, 100)) {
-                for (int i = 0; i < panel.player1.arrowCount; i++)
-                CreateArrow();
-                client.setClicked(true);
+                if (time <= 0){
+                    CreateArrow();
+                    client.setClicked(true);
+                    time = player.arrowTime;
+                }
             }
         }
     }
+
     public boolean explosionColision(int x, int y, int x2, int y2, int distance) {
         return Math.abs(x - x2) < distance && Math.abs(y - y2) < distance;
     }
     @Override
-    public void mouseReleased(MouseEvent e) {
-
-    }
+    public void mouseReleased(MouseEvent e) {}
 
     @Override
-    public void mouseEntered(MouseEvent e) {
-
-    }
+    public void mouseEntered(MouseEvent e) {}
 
     @Override
-    public void mouseExited(MouseEvent e) {
-
-    }
+    public void mouseExited(MouseEvent e) {}
 }

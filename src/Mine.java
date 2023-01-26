@@ -34,7 +34,7 @@ public class Mine{
 
         if (explosionColision(player2.x + player2.width/2, player2.y + player2.height/2, 1000,500, 100) && minenTimer <= 0 && mine.minenUeber < 25){
             mine.minenUeber++;
-            mine.minenTimer = 4;
+            mine.minenTimer = player.minenTime;
         }
         if (explosionColision(player.x + player.width/2, player.y + player.height/2, 1000,500, 200)||explosionColision(player.x + player.width/2, player.y + player.height/2, 1745,245, 100)||explosionColision(player.x + player.width/2, player.y +player.height/2, 195,845, 100)){
             canPlase = false;
@@ -57,7 +57,7 @@ public class Mine{
         if (mine.alleMinen.size() != 0 && mine.alleMinen != null) {
             for (int i = mine.alleMinen.size(); i > 0; i--) {
                 if (explosionColision(mine.alleMinen.get(i-1)[0], mine.alleMinen.get(i-1)[1], player.x, player.y, 90) || explosionColision(mine.alleMinen.get(i -1)[0], mine.alleMinen.get(i -1 )[1], player.x + player.width, player.y, 90) || explosionColision(mine.alleMinen.get(i -1 )[0], mine.alleMinen.get(i-1)[1], player.x + player.width / 2, player.y, 90) || explosionColision(mine.alleMinen.get(i-1)[0], mine.alleMinen.get(i-1)[1], player.x + player.width, player.y + player.height / 2, 90) || explosionColision(mine.alleMinen.get(i-1)[0], mine.alleMinen.get(i-1)[1], player.x + player.width, player.y + player.height, 90) || explosionColision(mine.alleMinen.get(i-1)[0], mine.alleMinen.get(i-1)[1], player.x + player.width / 2, player.y + player.height, 90) || explosionColision(mine.alleMinen.get(i-1)[0], mine.alleMinen.get(i-1)[1], player.x, player.y + player.height, 90) || explosionColision(mine.alleMinen.get(i-1)[0], mine.alleMinen.get(i-1)[1], player.x, player.y + player.height / 2, 90)) {
-                    panel.p1Inv.playerHit(panel.player2.minenDamage);
+                    panel.p1Inv.playerHit(panel.player2.minenDemage * (1 - panel.player1.minenDamageReduction / 100));
                 }
             }
             mine.loesche = true;

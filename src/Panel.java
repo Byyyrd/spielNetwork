@@ -30,6 +30,7 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
     Image bgrImage;
     Image projImage;
     Image hpImage;
+    Image schildImage;
     int bgrWidth;
     int bgrHeight;
     ArrayList<Double[]> allArrows;
@@ -50,6 +51,7 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
         bgrImage = new ImageIcon("resources/Background.jpg").getImage();
         projImage = new ImageIcon("resources/Projectile.png").getImage();
         hpImage = new ImageIcon("resources/Healthbar.png").getImage();
+        schildImage = new ImageIcon("resources/Schield.png").getImage();
         bgrHeight = bgrImage.getHeight(null);
         bgrWidth = bgrImage.getWidth(null);
 
@@ -164,6 +166,23 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
             g2d.setBackground(Color.BLACK);
             g2d.drawString("Server Shutdown", 100, 500);
         }
+        if (inChat){
+            g2d.setColor(new Color(1,1,1));
+            g2d.fillRect(0,950,1920,150);
+            g2d.setColor(Color.white);
+            g2d.setFont(new Font("Arial", Font.PLAIN, 40));
+            g2d.drawImage(schildImage, 20, 956,schildImage.getWidth(null)/3, schildImage.getHeight(null)/3,null );
+            g2d.rotate(Math.PI, 23 + swordImage.getWidth(null)/6,960 +swordImage.getHeight(null)/10);
+            g2d.drawImage(swordImage,23, 960, swordImage.getWidth(null)/3, swordImage.getHeight(null)/5,null );
+            g2d.rotate(-Math.PI, 23 + swordImage.getWidth(null)/6,960 +swordImage.getHeight(null)/10);
+            g2d.drawString(":  " + player1.melieDamageReduction, 100, 1010);
+
+            g2d.drawImage(schildImage, 125, 956,schildImage.getWidth(null)/3, schildImage.getHeight(null)/3,null );
+            g2d.rotate(Math.PI, 130 + bowImage.getWidth(null)/48,990 +bowImage.getHeight(null)/48);
+            g2d.drawImage(bowImage,130, 990, bowImage.getWidth(null)/24, bowImage.getHeight(null)/24,null );
+            g2d.rotate(-Math.PI, 130 + bowImage.getWidth(null)/48,990 +bowImage.getHeight(null)/48);
+            g2d.drawString(":  " + player1.melieDamageReduction, 100, 1010);
+        }
     }
 
     public void keyTyped(KeyEvent e) {
@@ -223,6 +242,7 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
             player1.tick();
             sword.tick();
             mine.tick();
+            slingshot.tick();
             player1.heal();
             mine.minePlased = false;
             mine.explodet = false;
