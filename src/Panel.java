@@ -244,6 +244,7 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
         mine.keyPressed(e);
         player1.keyPressed(e);
         if (e.getKeyCode() == 70) {
+            System.out.println("Swap");
             player1.setSlingshotPickedup(!player1.isSlingshotPickedup());
             player1.setSwordPickedup(!player1.isSwordPickedup());
         }

@@ -80,7 +80,7 @@ public class Inventory {
                 case 2 ->  allButtons.add(new UpgradeButton(panel, i * 600 + 100, "SwordDamage"));
                 case 3 ->  allButtons.add(new UpgradeButton(panel, i * 600 + 100, "Slingshotdamage"));
                 case 4 ->  allButtons.add(new UpgradeButton(panel, i * 600 + 100, "Minedamage"));
-                case 5 ->  allButtons.add(new UpgradeButton(panel, i * 600 + 100, "Slingshot-projectiles"));
+                case 5 ->  allButtons.add(new UpgradeButton(panel, i * 600 + 100, "Slingshot-Cooldown"));
                 case 6 ->  allButtons.add(new UpgradeButton(panel, i * 600 + 100, "Sword-DmgReduction"));
                 case 7 ->  allButtons.add(new UpgradeButton(panel, i * 600 + 100, "Slingshot-DmgReduction"));
                 case 8 ->  allButtons.add(new UpgradeButton(panel, i * 600 + 100, "Mines-DmgReduction"));
