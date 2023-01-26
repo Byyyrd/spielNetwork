@@ -31,6 +31,7 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
     Image projImage;
     Image hpImage;
     Image schildImage;
+    Image speedImage;
     int bgrWidth;
     int bgrHeight;
     ArrayList<Double[]> allArrows;
@@ -52,6 +53,7 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
         projImage = new ImageIcon("resources/Projectile.png").getImage();
         hpImage = new ImageIcon("resources/Healthbar.png").getImage();
         schildImage = new ImageIcon("resources/Schield.png").getImage();
+        speedImage = new ImageIcon("resources/Speed.png").getImage();
         bgrHeight = bgrImage.getHeight(null);
         bgrWidth = bgrImage.getWidth(null);
 
@@ -190,13 +192,43 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
             g2d.drawImage(swordImage,563, 960, swordImage.getWidth(null)/3, swordImage.getHeight(null)/5,null );
             g2d.drawString(":  " + player1.swordDamage, 610, 1010);
 
-            g2d.drawImage(bowImage,700, 970, bowImage.getWidth(null)/24, bowImage.getHeight(null)/24,null );
-            g2d.drawString(":  " + player1.slingshotDamageReduction, 280, 1010);
+            g2d.drawImage(bowImage,703, 973, bowImage.getWidth(null)/24, bowImage.getHeight(null)/24,null );
+            g2d.drawString(":  " + player1.slingshotDamage, 750, 1010);
 
             g2d.setColor(Color.red);
-            g2d.fillOval(395,975,30,30);
+            g2d.fillOval(853,985,30,30);
             g2d.setColor(Color.white);
-            g2d.drawString(":  " + player1.minenDamageReduction, 460, 1010);
+            g2d.drawString(":  " + player1.minenDamageReduction, 900, 1010);
+
+            g2d.setColor(new Color(12, 255,0, 142));
+            g2d.fillOval(1000,980,40,40);
+            g2d.setColor(Color.green);
+            g2d.setFont(new Font("Arial", Font.PLAIN, 60));
+            g2d.drawString("+",1002,1020);
+            g2d.setFont(new Font("Arial", Font.PLAIN, 40));
+            g2d.setColor(Color.white);
+            g2d.drawString(":  " + player1.healtime + "s", 1050, 1010);
+
+            g2d.drawImage(bowImage,1155, 973, bowImage.getWidth(null)/24, bowImage.getHeight(null)/24,null );
+            g2d.drawString(":  " + player1.arrowTime + "s", 1200, 1010);
+
+            g2d.setColor(new Color(255, 0,0, 142));
+            g2d.fillOval(1320,980,40,40);
+            g2d.setColor(Color.red);
+            g2d.setFont(new Font("Arial", Font.PLAIN, 60));
+            g2d.drawString("+",1322,1020);
+            g2d.setFont(new Font("Arial", Font.PLAIN, 40));
+            g2d.setColor(Color.white);
+            g2d.drawString(":  " + player1.minenTime + "s", 1370, 1010);
+
+            g2d.drawImage(speedImage,1500, 975, speedImage.getWidth(null)/3, speedImage.getHeight(null)/3,null );
+            g2d.drawString(":  " + player1.speed , 1550, 1010);
+
+            g2d.setColor(Color.red);
+            g2d.drawString("MAX",1630,1015);
+            g2d.fillOval(1730,980,40,40);
+            g2d.setColor(Color.white);
+            g2d.drawString(":  " + player1.maxMinen, 1780, 1010);
         }
     }
 
