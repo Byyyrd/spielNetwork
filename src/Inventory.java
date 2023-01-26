@@ -23,7 +23,7 @@ public class Inventory {
         if (player.iFrame <= 0){
             hp -= damage;
             player.hp = hp;
-            player.iFrame = 0.5;
+            player.iFrame = player.iFrametime;
         }
 
         if (hp <= 0){
