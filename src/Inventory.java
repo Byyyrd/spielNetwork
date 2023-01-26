@@ -14,6 +14,7 @@ public class Inventory {
     int death2;
     double expSpend;
     double exp;
+    int level;
     Panel panel;
     UpgradeButton button;
     ArrayList<UpgradeButton> allButtons = new ArrayList<>();
@@ -71,20 +72,21 @@ public class Inventory {
 
     public void levelUp() {
         expSpend += 20;
+        level++;
         for (int i = 0; i <= 2; i++) {
             int rand = (int) (Math.random() * 11 + 1);
             switch (rand) {
-                case 1 ->  allButtons.add(new UpgradeButton(panel, i * 500 + 50, "Heal"));
-                case 2 ->  allButtons.add(new UpgradeButton(panel, i * 500 + 50, "SwordDamage"));
-                case 3 ->  allButtons.add(new UpgradeButton(panel, i * 500 + 50, "Slingshotdamage"));
-                case 4 ->  allButtons.add(new UpgradeButton(panel, i * 500 + 50, "Minedamage"));
-                case 5 ->  allButtons.add(new UpgradeButton(panel, i * 500 + 50, "Slingshot-projectiles"));
-                case 6 ->  allButtons.add(new UpgradeButton(panel, i * 500 + 50, "Sword-DmgReduction"));
-                case 7 ->  allButtons.add(new UpgradeButton(panel, i * 500 + 50, "Slingshot-DmgReduction"));
-                case 8 ->  allButtons.add(new UpgradeButton(panel, i * 500 + 50, "Mines-DmgReduction"));
-                case 9 ->  allButtons.add(new UpgradeButton(panel, i * 500 + 50, "Speed"));
-                case 10 -> allButtons.add(new UpgradeButton(panel, i * 500 + 50, "MaxMines"));
-                case 11 -> allButtons.add(new UpgradeButton(panel, i * 500 + 50, "MineGain"));
+                case 1 ->  allButtons.add(new UpgradeButton(panel, i * 600 + 100, "Heal"));
+                case 2 ->  allButtons.add(new UpgradeButton(panel, i * 600 + 100, "SwordDamage"));
+                case 3 ->  allButtons.add(new UpgradeButton(panel, i * 600 + 100, "Slingshotdamage"));
+                case 4 ->  allButtons.add(new UpgradeButton(panel, i * 600 + 100, "Minedamage"));
+                case 5 ->  allButtons.add(new UpgradeButton(panel, i * 600 + 100, "Slingshot-projectiles"));
+                case 6 ->  allButtons.add(new UpgradeButton(panel, i * 600 + 100, "Sword-DmgReduction"));
+                case 7 ->  allButtons.add(new UpgradeButton(panel, i * 600 + 100, "Slingshot-DmgReduction"));
+                case 8 ->  allButtons.add(new UpgradeButton(panel, i * 600 + 100, "Mines-DmgReduction"));
+                case 9 ->  allButtons.add(new UpgradeButton(panel, i * 600 + 100, "Speed"));
+                case 10 -> allButtons.add(new UpgradeButton(panel, i * 600 + 100, "MaxMines"));
+                case 11 -> allButtons.add(new UpgradeButton(panel, i * 600 + 100, "MineGain"));
             }
             panel.add(allButtons.get(i));
         }

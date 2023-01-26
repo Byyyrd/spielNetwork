@@ -15,7 +15,7 @@ public class UpgradeButton extends JButton implements ActionListener {
         this.addActionListener(this);
         this.setBackground(new Color(94, 94, 94));
         this.setFont(new Font("Arial", Font.PLAIN, 40));
-        this.setBounds(x,400,400,200);
+        this.setBounds(x,400,500,200);
         this.setText(this.attribute);
     }
 
