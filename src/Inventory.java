@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.util.Random;
 
 public class Inventory {
     double hp;
@@ -62,6 +63,15 @@ public class Inventory {
     }
     public void levelUp(){
         expSpend += 20;
+        int rand = (int) (Math.random()*3 + 1);
+        switch (rand){
+            case (1):
+                break;
+            case (2):
+                break;
+            case (3):
+                break;
+        }
     }
     public void setMines(int mines) {
         this.mines = mines;
