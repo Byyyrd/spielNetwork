@@ -256,10 +256,7 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
             messageOutput.setText("");
         }
         if(e.getKeyCode() == 71){
-            p1Inv.death2++;
-            p1Inv.death2++;
-            p1Inv.death2++;
-            p1Inv.death2++;
+            p1Inv.levelUp();
         }
         if (e.getKeyCode() == 130) {
             e.consume();
