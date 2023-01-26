@@ -304,10 +304,6 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
         this.rotation2 = bow2;
     }
 
-    public void setAllArrows(ArrayList<Double[]> allArrows) {
-        this.allArrows = allArrows;
-    }
-
     public void addObstacles() {
         var obstical = new int[4];
         addObstical(900, 300, 200, 30, obstical);

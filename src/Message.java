@@ -16,8 +16,13 @@ public class Message implements Serializable {
     String message;
     double hp;
     int death;
+    double swordDamage;
+    double slingshotDamage;
+    double minenDemage;
+    double minenTime;
+    int maxMinen;
 
-    public Message(int x, int y, String name, double swordRotation, double rotation, boolean bowPickedUp, double mouseX, double mouseY, boolean isClicked, boolean swordPickedUp, boolean minePlased, boolean explodet, String message, double hp, int death) {
+    public Message(int x, int y, String name, double swordRotation, double rotation, boolean bowPickedUp, double mouseX, double mouseY, boolean isClicked, boolean swordPickedUp, boolean minePlased, boolean explodet, String message, double hp, int death, double swordDamage, double slingshotDamage, double minenDemage, double minenTime, int maxMinen) {
         this.x = x;
         this.y = y;
         this.name = name;
@@ -33,6 +38,11 @@ public class Message implements Serializable {
         this.message = message;
         this.hp = hp;
         this.death = death;
+        this.swordDamage = swordDamage;
+        this.slingshotDamage = slingshotDamage;
+        this.minenDemage = minenDemage;
+        this.minenTime = minenTime;
+        this.maxMinen = maxMinen;
     }
 
     public int getX() {
