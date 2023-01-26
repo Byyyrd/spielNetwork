@@ -6,11 +6,12 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.IOException;
 
-public class ConnectionFrame extends JFrame implements ActionListener {
+public class ConnectionFrame extends JFrame implements ActionListener, KeyListener {
     JButton button;
     JTextArea textField1;
     JTextArea textField2;
     public ConnectionFrame() {
+        addKeyListener(this);
         Font font = new Font("Arial", Font.PLAIN, 20);
         JPanel panel = new JPanel();
         button = new JButton();
@@ -18,6 +19,8 @@ public class ConnectionFrame extends JFrame implements ActionListener {
         textField2 = new JTextArea(1,10);
         JTextArea infoText1 = new JTextArea();
         JTextArea infoText2 = new JTextArea();
+
+
 
         button.setBounds(125,200,150,50);
         button.addActionListener(this);
@@ -74,5 +77,31 @@ public class ConnectionFrame extends JFrame implements ActionListener {
         } catch (IOException ex) {
             System.out.println("IOConnectionError");
         }
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        System.out.println("Pressed");
+        if (e.getKeyCode() == 10){
+            e.consume();
+            System.out.println("Enter");
+            try {
+                var client = new Client(textField1.getText(),textField2.getText(),this);
+                System.out.println("New Client");
+                this.setVisible(false);
+            } catch (IOException ex) {
+                System.out.println("IOConnectionError");
+            }
+        }
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+
     }
 }

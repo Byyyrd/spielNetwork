@@ -188,7 +188,7 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
             messageOutput.setText("");
         }
         if (e.getKeyCode() == 130) {
-
+            e.consume();
             if (inChat) {
                 inChat = false;
                 messageOutput.setText("");
