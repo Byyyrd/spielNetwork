@@ -297,7 +297,6 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
             mine.minePlased = false;
             mine.explodet = false;
         }
-        this.requestFocusInWindow();
         repaint();
     }
 
