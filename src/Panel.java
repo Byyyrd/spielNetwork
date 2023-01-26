@@ -224,13 +224,13 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
             g2d.drawString(":  " + ((int) (player1.minenTime * 10f))/10f + "s", 1370, 1010);
 
             g2d.drawImage(speedImage,1500, 975, speedImage.getWidth(null)/3, speedImage.getHeight(null)/3,null );
-            g2d.drawString(":  " + player1.speed , 1550, 1010);
+            g2d.drawString(":  " + ((int) (player1.speed * 10f))/10f , 1550, 1010);
 
             g2d.setColor(Color.red);
-            g2d.drawString("MAX",1630,1015);
-            g2d.fillOval(1730,980,40,40);
+            g2d.drawString("MAX",1650,1015);
+            g2d.fillOval(1760,980,40,40);
             g2d.setColor(Color.white);
-            g2d.drawString(":  " + player1.maxMinen, 1780, 1010);
+            g2d.drawString(":  " + player1.maxMinen, 1800, 1010);
         }
     }
 

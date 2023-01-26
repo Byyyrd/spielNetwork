@@ -21,6 +21,7 @@ public class Slingshot implements MouseListener, ActionListener {
     Point mousePos;
     Client client;
     ArrayList<Double[]> allArrows = new ArrayList<>();
+    boolean mouseDown;
 
     public Slingshot(Player player, Panel panel, Image image) {
         this.player = player;
@@ -146,6 +147,15 @@ public class Slingshot implements MouseListener, ActionListener {
 
     public void tick(){
         time -= 0.1;
+        if (mouseDown) {
+            if (!explosionColision(player.x + player.width / 2, player.y + player.height / 2, 1745, 245, 100) && !explosionColision(player.x + player.width / 2, player.y + player.height / 2, 195, 845, 100)) {
+                if (time <= 0) {
+                    CreateArrow();
+                    client.setClicked(true);
+                    time = player.arrowTime;
+                }
+            }
+        }
     }
 
     public void setMousePos(Point mousePos) {
@@ -160,13 +170,7 @@ public class Slingshot implements MouseListener, ActionListener {
     @Override
     public void mousePressed(MouseEvent e) {
         if (player.isSlingshotPickedup()) {
-            if (!explosionColision(player.x + player.width/2, player.y + player.height/2, 1745,245, 100)&&!explosionColision(player.x + player.width/2, player.y +player.height/2, 195,845, 100)) {
-                if (time <= 0){
-                    CreateArrow();
-                    client.setClicked(true);
-                    time = player.arrowTime;
-                }
-            }
+            mouseDown = true;
         }
     }
 
@@ -174,7 +178,9 @@ public class Slingshot implements MouseListener, ActionListener {
         return Math.abs(x - x2) < distance && Math.abs(y - y2) < distance;
     }
     @Override
-    public void mouseReleased(MouseEvent e) {}
+    public void mouseReleased(MouseEvent e) {
+        mouseDown = false;
+    }
 
     @Override
     public void mouseEntered(MouseEvent e) {}
