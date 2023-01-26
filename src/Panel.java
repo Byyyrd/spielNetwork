@@ -177,11 +177,26 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
             g2d.rotate(-Math.PI, 23 + swordImage.getWidth(null)/6,960 +swordImage.getHeight(null)/10);
             g2d.drawString(":  " + player1.melieDamageReduction, 100, 1010);
 
-            g2d.drawImage(schildImage, 125, 956,schildImage.getWidth(null)/3, schildImage.getHeight(null)/3,null );
-            g2d.rotate(Math.PI, 130 + bowImage.getWidth(null)/48,990 +bowImage.getHeight(null)/48);
-            g2d.drawImage(bowImage,130, 990, bowImage.getWidth(null)/24, bowImage.getHeight(null)/24,null );
-            g2d.rotate(-Math.PI, 130 + bowImage.getWidth(null)/48,990 +bowImage.getHeight(null)/48);
-            g2d.drawString(":  " + player1.melieDamageReduction, 100, 1010);
+            g2d.drawImage(schildImage, 200, 956,schildImage.getWidth(null)/3, schildImage.getHeight(null)/3,null );
+            g2d.drawImage(bowImage,208, 970, bowImage.getWidth(null)/24, bowImage.getHeight(null)/24,null );
+            g2d.drawString(":  " + player1.slingshotDamageReduction, 280, 1010);
+
+            g2d.drawImage(schildImage, 380, 956,schildImage.getWidth(null)/3, schildImage.getHeight(null)/3,null );
+            g2d.setColor(Color.red);
+            g2d.fillOval(395,975,30,30);
+            g2d.setColor(Color.white);
+            g2d.drawString(":  " + player1.minenDamageReduction, 460, 1010);
+
+            g2d.drawImage(swordImage,563, 960, swordImage.getWidth(null)/3, swordImage.getHeight(null)/5,null );
+            g2d.drawString(":  " + player1.swordDamage, 610, 1010);
+
+            g2d.drawImage(bowImage,700, 970, bowImage.getWidth(null)/24, bowImage.getHeight(null)/24,null );
+            g2d.drawString(":  " + player1.slingshotDamageReduction, 280, 1010);
+
+            g2d.setColor(Color.red);
+            g2d.fillOval(395,975,30,30);
+            g2d.setColor(Color.white);
+            g2d.drawString(":  " + player1.minenDamageReduction, 460, 1010);
         }
     }
 
