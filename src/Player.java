@@ -8,7 +8,7 @@ public class Player implements Serializable {
     int y;
     int width;
     int height;
-    int speed = 5;
+    double speed = 5;
     boolean downPressed, rightPressed, leftPressed, upPressed;
     boolean downCollides, rightCollides, leftCollides, upCollides;
     double xVel, yVel;
@@ -27,7 +27,7 @@ public class Player implements Serializable {
     double healtime = 4;
     double swordDamage =2.5;
     double slingshotDamage=1;
-    double minenDemage=10;
+    double minenDamage =10;
     double arrowTime = 1;
     double minenTime = 4;
     double iFrametime = 0.5;

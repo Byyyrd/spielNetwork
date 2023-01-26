@@ -34,7 +34,7 @@ public class UpgradeButton extends JButton implements ActionListener {
             player.slingshotDamage += 0.25;
         }
         if (Objects.equals(attribute, "Minedamage")) {
-            player.minenDemage += 0.5;
+            player.minenDamage += 0.5;
         }
         if (Objects.equals(attribute, "Slingshot-Cooldown")) {
             player.arrowTime -= 0.125;

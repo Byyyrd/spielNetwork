@@ -179,28 +179,28 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
             g2d.rotate(Math.PI, 23 + swordImage.getWidth(null)/6,960 +swordImage.getHeight(null)/10);
             g2d.drawImage(swordImage,23, 960, swordImage.getWidth(null)/3, swordImage.getHeight(null)/5,null );
             g2d.rotate(-Math.PI, 23 + swordImage.getWidth(null)/6,960 +swordImage.getHeight(null)/10);
-            g2d.drawString(":  " + player1.melieDamageReduction, 100, 1010);
+            g2d.drawString(":  " + player1.melieDamageReduction, 80, 1010);
 
             g2d.drawImage(schildImage, 200, 956,schildImage.getWidth(null)/3, schildImage.getHeight(null)/3,null );
             g2d.drawImage(bowImage,208, 970, bowImage.getWidth(null)/24, bowImage.getHeight(null)/24,null );
-            g2d.drawString(":  " + player1.slingshotDamageReduction, 280, 1010);
+            g2d.drawString(":  " + ((int) (player1.slingshotDamageReduction * 10f))/10f, 260, 1010);
 
             g2d.drawImage(schildImage, 380, 956,schildImage.getWidth(null)/3, schildImage.getHeight(null)/3,null );
             g2d.setColor(Color.red);
             g2d.fillOval(395,975,30,30);
             g2d.setColor(Color.white);
-            g2d.drawString(":  " + player1.minenDamageReduction, 460, 1010);
+            g2d.drawString(":  " + player1.minenDamageReduction, 440, 1010);
 
             g2d.drawImage(swordImage,563, 960, swordImage.getWidth(null)/3, swordImage.getHeight(null)/5,null );
-            g2d.drawString(":  " + player1.swordDamage, 610, 1010);
+            g2d.drawString(":  " + ((int) (player1.swordDamage * 10f))/10f, 610, 1010);
 
             g2d.drawImage(bowImage,703, 973, bowImage.getWidth(null)/24, bowImage.getHeight(null)/24,null );
-            g2d.drawString(":  " + player1.slingshotDamage, 750, 1010);
+            g2d.drawString(":  " + ((int) (player1.slingshotDamage * 10f))/10f, 750, 1010);
 
             g2d.setColor(Color.red);
             g2d.fillOval(853,985,30,30);
             g2d.setColor(Color.white);
-            g2d.drawString(":  " + player1.minenDamageReduction, 900, 1010);
+            g2d.drawString(":  " + (int)player1.minenDamage, 900, 1010);
 
             g2d.setColor(new Color(12, 255,0, 142));
             g2d.fillOval(1000,980,40,40);
@@ -209,10 +209,10 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
             g2d.drawString("+",1002,1020);
             g2d.setFont(new Font("Arial", Font.PLAIN, 40));
             g2d.setColor(Color.white);
-            g2d.drawString(":  " + player1.healtime + "s", 1050, 1010);
+            g2d.drawString(":  " + ((int) (player1.healtime * 10f))/10f + "s", 1050, 1010);
 
             g2d.drawImage(bowImage,1155, 973, bowImage.getWidth(null)/24, bowImage.getHeight(null)/24,null );
-            g2d.drawString(":  " + player1.arrowTime + "s", 1200, 1010);
+            g2d.drawString(":  " + ((int) (player1.arrowTime * 10f))/10f + "s", 1200, 1010);
 
             g2d.setColor(new Color(255, 0,0, 142));
             g2d.fillOval(1320,980,40,40);
@@ -221,7 +221,7 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
             g2d.drawString("+",1322,1020);
             g2d.setFont(new Font("Arial", Font.PLAIN, 40));
             g2d.setColor(Color.white);
-            g2d.drawString(":  " + player1.minenTime + "s", 1370, 1010);
+            g2d.drawString(":  " + ((int) (player1.minenTime * 10f))/10f + "s", 1370, 1010);
 
             g2d.drawImage(speedImage,1500, 975, speedImage.getWidth(null)/3, speedImage.getHeight(null)/3,null );
             g2d.drawString(":  " + player1.speed , 1550, 1010);
@@ -256,6 +256,9 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
             messageOutput.setText("");
         }
         if(e.getKeyCode() == 71){
+            p1Inv.death2++;
+            p1Inv.death2++;
+            p1Inv.death2++;
             p1Inv.death2++;
         }
         if (e.getKeyCode() == 130) {
