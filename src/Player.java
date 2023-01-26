@@ -13,7 +13,7 @@ public class Player implements Serializable {
     boolean downCollides, rightCollides, leftCollides, upCollides;
     double xVel, yVel;
     double xDir, yDir;
-    double iFrame;
+    double iFrame = 0.5;
     String name = "";
     Player player2;
     Sword enemySword;
@@ -23,12 +23,18 @@ public class Player implements Serializable {
     boolean swordPickedup;
     Panel panel;
     double hp;
-    double healtime;
-    double swortDamage=2.5;
+    double healtimer;
+    double healtime = 4;
+    double swordDamage =2.5;
     double slingshotDamage=1;
     double minenDemage=10;
-    int arrowCount;
-    double iFrametime;
+    double arrowTime = 1;
+    double minenTime;
+    double iFrametime = 0.5;
+    double melieDamageReduction = 0;
+    double slingshotDamageReduction = 0;
+    double minenDamageReduction = 0;
+
 
     public Player(int x, int y, int width, int height, Player player2, Sword enemySword, Panel panel) {
         slingshotPickedup = true;
@@ -50,7 +56,7 @@ public class Player implements Serializable {
         }
 
         iFrame -= 0.1;
-        healtime -= 0.1;
+        healtimer -= 0.1;
         if (x > panel.getWidth()) {
             x = -width;
         }
@@ -68,13 +74,13 @@ public class Player implements Serializable {
     public void checkCollision() {
         if (enemySword != null && player2.swordPickedup) {
             if (inRectangle((int) (enemySword.x + 21 + Math.sin(enemySword.rotation) * 21), (int) (enemySword.y + width / 2 + Math.cos(enemySword.rotation) * -25), x, y, width, height) || inRectangle((int) (enemySword.x + 21 + Math.sin(enemySword.rotation) * 40), (int) (enemySword.y + width / 2 + Math.cos(enemySword.rotation) * -40), x, y, width, height) || inRectangle((int) (enemySword.x + 21 + Math.sin(enemySword.rotation) * 55), (int) (enemySword.y + width / 2 + Math.cos(enemySword.rotation) * -55), x, y, width, height)) {
-                panel.p1Inv.playerHit(player2.swortDamage);
+                panel.p1Inv.playerHit(player2.swordDamage * (1 - melieDamageReduction / 100));
             }
         }
         if (allArrows != null) {
             for (Double[] allArrow : allArrows) {
                 if (inRectangle((int) (allArrow[0] + 5), (int) (allArrow[1] + 5), x, y, width, height)) {
-                    panel.p1Inv.playerHit(player2.slingshotDamage);
+                    panel.p1Inv.playerHit(player2.slingshotDamage * (1 - slingshotDamageReduction / 100));
                 }
             }
         }
@@ -208,17 +214,17 @@ public class Player implements Serializable {
     }
 
     public void heal() {
-        if (explosionColision(x + width / 2, y + height / 2, 195, 845, 45) && healtime <= 0) {
+        if (explosionColision(x + width / 2, y + height / 2, 195, 845, 45) && healtimer <= 0) {
             if (panel.p1Inv.hp < panel.p1Inv.maxHp) {
                 panel.p1Inv.hp++;
             }
-            healtime = 4;
+            healtimer = healtime;
         }
-        if (explosionColision(x + width / 2, y + height / 2, 1745, 245, 45) && healtime <= 0) {
+        if (explosionColision(x + width / 2, y + height / 2, 1745, 245, 45) && healtimer <= 0) {
             if (panel.p1Inv.hp < panel.p1Inv.maxHp) {
                 panel.p1Inv.hp++;
             }
-            healtime = 4;
+            healtimer = healtime;
         }
     }
 
