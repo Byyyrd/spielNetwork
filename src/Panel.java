@@ -59,6 +59,8 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
 
         font = new Font("Arial", Font.PLAIN, 40);
 
+        addKeyListener(this);
+
         this.client = client;
         client.setClientPanel(this);
         allObsticals = new ArrayList<int[]>();
@@ -264,7 +266,6 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
                 remove(messageOutput);
                 messageInput.setFont(new Font("Arial", Font.PLAIN, 20));
                 messageInput.setBounds(1600, 725, 300, 175);
-                addKeyListener(this);
                 this.grabFocus();
             } else {
                 inChat = true;
@@ -274,7 +275,6 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
                 messageInput.setBounds(0, 0, 1900, 800);
                 messageInput.setFont(font);
                 messageOutput.grabFocus();
-                removeKeyListener(this);
             }
         }
     }
@@ -297,6 +297,7 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
             mine.minePlased = false;
             mine.explodet = false;
         }
+        this.requestFocusInWindow();
         repaint();
     }
 

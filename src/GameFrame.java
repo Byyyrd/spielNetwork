@@ -11,8 +11,7 @@ public class GameFrame extends JFrame implements KeyListener {
         GraphicsEnvironment graphics =GraphicsEnvironment.getLocalGraphicsEnvironment();
         GraphicsDevice device = graphics.getDefaultScreenDevice();
         device.setFullScreenWindow(this);
-        this.setContentPane(panel);
-        this.addKeyListener(this);
+        this.add(panel);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setTitle("Game");
     }
