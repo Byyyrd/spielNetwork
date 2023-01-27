@@ -103,7 +103,7 @@ public class Player implements Serializable {
     }
 
     public void drawPlayer(Graphics2D g2d, Image playerImage, Client client, Sword sword) {
-        //heal
+        //Heal
         g2d.setColor(new Color(0, 255, 13));
         g2d.drawOval(150, 800, 90, 90);
         g2d.drawOval(95, 745, 200, 200);

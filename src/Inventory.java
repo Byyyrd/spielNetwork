@@ -43,10 +43,6 @@ public class Inventory {
             player.swordPickedUp = false;
             player.slingshotPickedUp = true;
         }
-        if (enemyHp <= 0) {
-            death2++;
-
-        }
     }
 
     public void drawInventory(Graphics2D g2d, Image hpImage) {
