@@ -28,10 +28,11 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
     Image swordImage;
     Image slingshotImage;
     Image bgrImage;
-    Image projImage;
     Image hpImage;
     Image schildImage;
     Image speedImage;
+    Image arrowVelosety;
+    Image houerglas;
     int bgrWidth;
     int bgrHeight;
     ArrayList<int[]> allObstacles;
@@ -49,10 +50,11 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
         swordImage = new ImageIcon("resources/Sword.png").getImage();
         slingshotImage = new ImageIcon("resources/bow.png").getImage();
         bgrImage = new ImageIcon("resources/Background.jpg").getImage();
-        projImage = new ImageIcon("resources/Projectile.png").getImage();
         hpImage = new ImageIcon("resources/HealthBar.png").getImage();
         schildImage = new ImageIcon("resources/Shield.png").getImage();
         speedImage = new ImageIcon("resources/Speed.png").getImage();
+        arrowVelosety = new ImageIcon("resources/ArrowVel.png").getImage();
+        houerglas = new ImageIcon("resources/Hourglas.png").getImage();
         bgrHeight = bgrImage.getHeight(null);
         bgrWidth = bgrImage.getWidth(null);
 
