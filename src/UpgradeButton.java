@@ -77,6 +77,15 @@ public class UpgradeButton extends JButton implements ActionListener {
                 player.mineTime -= 0.19;
             }
         }
+        if (Objects.equals(attribute, "MaxHp")) {
+            panel.p1Inv.maxHp++;
+        }
+        if (Objects.equals(attribute, "ArrowVelocity")) {
+            if(player.arrowVelocity < 4){
+                player.arrowVelocity += 0.125;
+            }
+        }
+
         panel.grabFocus();
         for (int i = 0; i <= 2; i++) {
             panel.remove(panel.p1Inv.allButtons.get(i));
