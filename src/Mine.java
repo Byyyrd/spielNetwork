@@ -29,7 +29,7 @@ public class Mine{
        mine.mineTimer -= 0.1;
        if (explosionCollision(player.x + player.width/2, player.y + player.height/2, 1000,500, 100) && mineTimer <= 0 && minesLeft < player.maxMines){
            minesLeft++;
-           mineTimer = player.mineTime;
+           mineTimer = player.mineTime + panel.inventory.getMineTime();
        }
 
         if (explosionCollision(player2.x + player2.width/2, player2.y + player2.height/2, 1000,500, 100) && mineTimer <= 0 && mine.minesLeft < player2.maxMines){
@@ -52,7 +52,7 @@ public class Mine{
         if (mine.allMines.size() != 0 && mine.allMines != null) {
             for (int i = mine.allMines.size(); i > 0; i--) {
                 if (explosionCollision(mine.allMines.get(i-1)[0], mine.allMines.get(i-1)[1], player.x, player.y, 90) || explosionCollision(mine.allMines.get(i -1)[0], mine.allMines.get(i -1 )[1], player.x + player.width, player.y, 90) || explosionCollision(mine.allMines.get(i -1 )[0], mine.allMines.get(i-1)[1], player.x + player.width / 2, player.y, 90) || explosionCollision(mine.allMines.get(i-1)[0], mine.allMines.get(i-1)[1], player.x + player.width, player.y + player.height / 2, 90) || explosionCollision(mine.allMines.get(i-1)[0], mine.allMines.get(i-1)[1], player.x + player.width, player.y + player.height, 90) || explosionCollision(mine.allMines.get(i-1)[0], mine.allMines.get(i-1)[1], player.x + player.width / 2, player.y + player.height, 90) || explosionCollision(mine.allMines.get(i-1)[0], mine.allMines.get(i-1)[1], player.x, player.y + player.height, 90) || explosionCollision(mine.allMines.get(i-1)[0], mine.allMines.get(i-1)[1], player.x, player.y + player.height / 2, 90)) {
-                    panel.ui.playerHit(panel.player2.mineDamage * (1 - panel.player1.mineDamageReduction / 100));
+                    panel.ui.playerHit(panel.player2.mineDamage * (1 - panel.player1.mineDamageReduction + panel.player2.mineDamageReduction/ 100));
                 }
             }
             mine.delete = true;

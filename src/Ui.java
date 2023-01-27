@@ -39,7 +39,7 @@ public class Ui {
             player.x = 0;
             player.y = 0;
             death++;
-            hp = maxHp;
+            hp = maxHp + panel.inventory.getMaxHp();
             player.swordPickedUp = false;
             player.slingshotPickedUp = true;
         }
@@ -56,7 +56,7 @@ public class Ui {
         //Hp
         g2d.setColor(Color.red);
         //g2d.fillRect(0, 975, (int) (hp * 50), 50);
-        normHp = hp/maxHp;
+        normHp = hp/maxHp + panel.inventory.getMaxHp();
         g2d.fillRect(0, 975, (int) (normHp * 500), 50);
         g2d.drawImage(hpImage, 0, 975, hpImage.getWidth(null), hpImage.getHeight(null), null);
         //DashCoolDown & Mines left
@@ -178,7 +178,7 @@ public class Ui {
         g2d.drawString("+", 1032, 1020);
         g2d.setFont(new Font("Arial", Font.PLAIN, 40));
         g2d.setColor(Color.white);
-        if (player.healTime <= 1){
+        if (player.healTime + panel.inventory.getHealTime() <= 1){
             g2d.setColor(Color.yellow);
         }else {
             g2d.setColor(Color.white);

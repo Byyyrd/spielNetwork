@@ -69,7 +69,7 @@ public class UpgradeButton extends JButton implements ActionListener {
             player.speed += 0.125;
         }
         if (Objects.equals(attribute, "MaxMines")) {
-            if (player.maxMines < 55) {
+            if (player.maxMines < 125) {
                 player.maxMines += 5;
             }
         }
@@ -91,14 +91,14 @@ public class UpgradeButton extends JButton implements ActionListener {
             int rand = (int) (Math.random() * 3 + 1);
             switch (rand) {
                 case 1:
-                    item.sort = "chain";
+                    item.setImage(panel.armorImage1);
                     item.setRangeSlingshotDamageReduction(5,10);
                     item.setRangeMeleeDamageReduction(5,10);
                     item.setRangeSpeed(-1,0);
                     item.setRangeArrowTime(0,1);
                     break;
                 case 2:
-                    item.sort = "heavy";
+                    item.setImage(panel.armorImage2);
                     item.setRangeSlingshotDamageReduction(10,15);
                     item.setRangeMeleeDamageReduction(10,15);
                     item.setRangeMineDamageReduction(0,10);
@@ -106,7 +106,7 @@ public class UpgradeButton extends JButton implements ActionListener {
                     item.setRangeArrowTime(1,2);
                     break;
                 case 3:
-                    item.sort = "light";
+                    item.setImage(panel.armorImage3);
                     item.setRangeSlingshotDamageReduction(5,10);
                     item.setRangeMeleeDamageReduction(5,10);
                     item.setRangeSpeed(0,1);
@@ -123,21 +123,21 @@ public class UpgradeButton extends JButton implements ActionListener {
             int rand = (int) (Math.random() * 3 + 1);
             switch (rand) {
                 case 1:
-                    item.sort = "lang";
+                    item.setImage(panel.swordImage1);
                     item.setRangeSwordDamage(3,7);
                     item.setRangeMineTime(0,1);
                     item.setRangeSpeed(-1,0);
                     item.setRangeArrowTime(0,1);
                     break;
                 case 2:
-                    item.sort = "short";
+                    item.setImage(panel.swordImage2);
                     item.setRangeSwordDamage(2,6);
                     item.setRangeMineTime(0,0.5);
                     item.setRangeSpeed(-0.5,0.5);
                     item.setRangeArrowTime(0,0.5);
                     break;
                 case 3:
-                    item.sort = "dager";
+                    item.setImage(panel.swordImage3);
                     item.setRangeSwordDamage(1,5);
                     item.setRangeMineTime(0,0.5);
                     item.setRangeSpeed(-1,0);
@@ -154,7 +154,7 @@ public class UpgradeButton extends JButton implements ActionListener {
             int rand = (int) (Math.random() * 3 + 1);
             switch (rand) {
                 case 1:
-                    item.sort = "";
+                    item.setImage(panel.slingshotImage1);
                     item.setRangeSlingshotDamage(3,7);
                     item.setRangeMaxMines(1,2);
                     item.setRangeArrowTime(-0.5,0.5);
@@ -162,7 +162,7 @@ public class UpgradeButton extends JButton implements ActionListener {
                     item.setRangeArrowVelocity(-1,0.5);
                     break;
                 case 2:
-                    item.sort = "";
+                    item.setImage(panel.slingshotImage2);
                     item.setRangeSlingshotDamage(1,4);
                     item.setRangeMaxMines(4,6);
                     item.setRangeArrowTime(-2,0);
@@ -170,7 +170,7 @@ public class UpgradeButton extends JButton implements ActionListener {
                     item.setRangeArrowVelocity(-0.5,1);
                     break;
                 case 3:
-                    item.sort = "";
+                    item.setImage(panel.slingshotImage3);
                     item.setRangeSlingshotDamage(3,6);
                     item.setRangeMaxMines(2,4);
                     item.setRangeArrowTime(-1,0);
@@ -187,21 +187,21 @@ public class UpgradeButton extends JButton implements ActionListener {
             int rand = (int) (Math.random() * 3 + 1);
             switch (rand) {
                 case 1:
-                    item.sort = "";
+                    item.setImage(panel.mineImage1);
                     item.setRangeMineDamage(3,7);
                     item.setRangeMaxMines(1,2);
                     item.setRangeMineTime(-0.5,0.5);
                     item.setRangeMineDamageReduction(0,5);
                     break;
                 case 2:
-                    item.sort = "";
+                    item.setImage(panel.mineImage2);
                     item.setRangeMineDamage(1,4);
                     item.setRangeMaxMines(4,6);
                     item.setRangeMineTime(-2,0);
                     item.setRangeMineDamageReduction(0,7);
                     break;
                 case 3:
-                    item.sort = "";
+                    item.setImage(panel.mineImage3);
                     item.setRangeMineDamage(3,6);
                     item.setRangeMaxMines(2,4);
                     item.setRangeMineTime(-1,0);
@@ -217,21 +217,21 @@ public class UpgradeButton extends JButton implements ActionListener {
             int rand = (int) (Math.random() * 3 + 1);
             switch (rand) {
                 case 1:
-                    item.sort = "";
+                    item.setImage(panel.ringImage1);
                     item.setRangeMineTime(-1,0);
                     item.setRangeMaxMines(2,7);
                     item.setRangeMineDamage(4,9);
                     item.setRangeMineDamageReduction(4,8);
                     break;
                 case 2:
-                    item.sort = "";
+                    item.setImage(panel.ringImage2);
                     item.setRangeSlingshotDamage(3,7);
                     item.setRangeSlingshotDamageReduction(4,8);
                     item.setRangeArrowVelocity(0,1);
                     item.setRangeArrowTime(-1,0);
                     break;
                 case 3:
-                    item.sort = "";
+                    item.setImage(panel.ringImage3);
                     item.setRangeSwordDamage(4,7);
                     item.setRangeMeleeDamageReduction(5,8);
                     break;
@@ -245,18 +245,18 @@ public class UpgradeButton extends JButton implements ActionListener {
             int rand = (int) (Math.random() * 3 + 1);
             switch (rand) {
                 case 1:
-                    item.sort = "";
+                    item.setImage(panel.chainImage1);
                     item.setRangeHealTime(0,1);
                     item.setRangeMaxHp(1,5);
                     item.setRangeMineTime(-0.5,0.5);
                 case 2:
-                    item.sort = "";
+                    item.setImage(panel.chainImage1);
                     item.setRangeHealTime(-0.5,0.5);
                     item.setRangeMaxHp(-5,0);
                     item.setRangeMineTime(-1,0);
                     break;
                 case 3:
-                    item.sort = "";
+                    item.setImage(panel.chainImage1);
                     item.setRangeHealTime(-1,0);
                     item.setRangeMaxHp(2,2);
                     item.setRangeMineTime(0,1);
@@ -271,16 +271,16 @@ public class UpgradeButton extends JButton implements ActionListener {
             int rand = (int) (Math.random() * 3 + 1);
             switch (rand) {
                 case 1:
-                    item.sort = "";
+                    item.setImage(panel.shoeImage1);
                     item.setRangeSpeed(1,2);
                     item.setRangeSlingshotDamageReduction(2,7);
                 case 2:
-                    item.sort = "";
+                    item.setImage(panel.shoeImage1);
                     item.setRangeSpeed(1,2);
                     item.setRangeMeleeDamageReduction(2,7);
                     break;
                 case 3:
-                    item.sort = "";
+                    item.setImage(panel.shoeImage1);
                     item.setRangeSpeed(1,2);
                     item.setRangeMineDamageReduction(2,7);
                     break;

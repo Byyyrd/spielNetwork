@@ -34,6 +34,28 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
     Image speedImage;
     Image arrowVelocity;
     Image hourglass;
+    Image armorImage1;
+    Image armorImage2;
+    Image armorImage3;
+    Image swordImage1;
+    Image swordImage2;
+    Image swordImage3;
+    Image slingshotImage1;
+    Image slingshotImage2;
+    Image slingshotImage3;
+    Image mineImage1;
+    Image mineImage2;
+    Image mineImage3;
+    Image ringImage1;
+    Image ringImage2;
+    Image ringImage3;
+
+    Image chainImage1;
+    Image chainImage2;
+    Image chainImage3;
+    Image shoeImage1;
+    Image shoeImage2;
+    Image shoeImage3;
     int bgrWidth;
     int bgrHeight;
     ArrayList<int[]> allObstacles;

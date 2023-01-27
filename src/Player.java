@@ -35,7 +35,7 @@ public class Player implements Serializable {
     double slingshotDamageReduction = 75;
     double mineDamageReduction = 75;
     double arrowVelocity = 1;
-    int maxMines = 55;
+    int maxMines = 125;
 
 
     public Player(int x, int y, int width, int height, Player player2, Sword enemySword, Panel panel) {
@@ -76,13 +76,13 @@ public class Player implements Serializable {
     public void checkCollision() {
         if (enemySword != null && player2.swordPickedUp) {
             if (inRectangle((int) (enemySword.x + 21 + Math.sin(enemySword.rotation) * 21), (int) (enemySword.y + width / 2 + Math.cos(enemySword.rotation) * -25), x, y, width, height) || inRectangle((int) (enemySword.x + 21 + Math.sin(enemySword.rotation) * 40), (int) (enemySword.y + width / 2 + Math.cos(enemySword.rotation) * -40), x, y, width, height) || inRectangle((int) (enemySword.x + 21 + Math.sin(enemySword.rotation) * 55), (int) (enemySword.y + width / 2 + Math.cos(enemySword.rotation) * -55), x, y, width, height)) {
-                panel.ui.playerHit(player2.swordDamage * (1 - meleeDamageReduction / 100));
+                panel.ui.playerHit(player2.swordDamage * (1 - meleeDamageReduction + panel.inventory.getMeleeDamageReduction() / 100));
             }
         }
         if (allArrows != null) {
             for (Double[] allArrow : allArrows) {
                 if (inRectangle((int) (allArrow[0] + 5), (int) (allArrow[1] + 5), x, y, width, height)) {
-                    panel.ui.playerHit(player2.slingshotDamage * (1 - slingshotDamageReduction / 100));
+                    panel.ui.playerHit(player2.slingshotDamage * (1 - slingshotDamageReduction + panel.inventory.getSlingshotDamage() / 100));
                 }
             }
         }
@@ -167,13 +167,13 @@ public class Player implements Serializable {
 
     public void applyVel() {
         if (xDir != 0) {
-            xVel = Lerp(xVel, speed * xDir, 1);
+            xVel = Lerp(xVel, (speed + panel.inventory.getSpeed()) * xDir, 1);
         } else {
             xVel = Lerp(xVel, 0, 1);
         }
         x += xVel;
         if (yDir != 0) {
-            yVel = Lerp(yVel, speed * yDir, 1);
+            yVel = Lerp(yVel, (speed + panel.inventory.getSpeed()) * yDir, 1);
         } else {
             yVel = Lerp(yVel, 0, 1);
         }
@@ -220,13 +220,13 @@ public class Player implements Serializable {
             if (panel.ui.hp < panel.ui.maxHp) {
                 panel.ui.hp++;
             }
-            healTimer = healTime;
+            healTimer = healTime + panel.inventory.getHealTime();
         }
         if (explosionCollision(x + width / 2, y + height / 2, 1745, 245, 45) && healTimer <= 0) {
             if (panel.ui.hp < panel.ui.maxHp) {
                 panel.ui.hp++;
             }
-            healTimer = healTime;
+            healTimer = healTime + panel.inventory.getHealTime();
         }
     }
 

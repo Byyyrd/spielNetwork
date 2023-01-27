@@ -73,8 +73,8 @@ public class Slingshot implements MouseListener, ActionListener {
             }
         }
         for (int i = allArrows.size(); i >= 1; i--) {
-            allArrows.get(i - 1)[0] = (allArrows.get(i - 1)[0] + allArrows.get(i - 1)[2] * 1500 * 0.01 * player.arrowVelocity);//xMovement
-            allArrows.get(i - 1)[1] = (allArrows.get(i - 1)[1] + allArrows.get(i - 1)[3] * 1500 * 0.01 * player.arrowVelocity);//yMovement
+            allArrows.get(i - 1)[0] = (allArrows.get(i - 1)[0] + allArrows.get(i - 1)[2] * 1500 * 0.01 * (player.arrowVelocity + panel.inventory.getArrowVelocity()));//xMovement
+            allArrows.get(i - 1)[1] = (allArrows.get(i - 1)[1] + allArrows.get(i - 1)[3] * 1500 * 0.01 * (player.arrowVelocity + panel.inventory.getArrowVelocity()));//yMovement
         }
     }
 
@@ -109,7 +109,7 @@ public class Slingshot implements MouseListener, ActionListener {
                 if (time <= 0) {
                     CreateArrow();
                     client.setClicked(true);
-                    time = player.arrowTime;
+                    time = player.arrowTime + panel.inventory.getArrowTime();
                 }
             }
         }
