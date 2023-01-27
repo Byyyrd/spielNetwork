@@ -86,7 +86,7 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
         sword2.setPlayer2(player1);
         this.addMouseListener(sword);
 
-        p1Inv = new Inventory(10, player1, player2, this);
+        p1Inv = new Inventory(20, player1, player2, this);
 
 
         player1.setEnemySword(sword2);

@@ -53,7 +53,7 @@ public class Client {
                     if(!recievedObject.message.equals("")) {
                         panel.messageInput.setText(recievedObject.getName() + ": " + recievedObject.message + "\n" + panel.messageInput.getText());
                     }
-                    panel.p1Inv.enemyHp = recievedObject.hp;
+                    panel.p1Inv.p2normHp = recievedObject.normHp;
                     panel.p1Inv.death2 = recievedObject.death;
                     panel.player2.swordDamage = recievedObject.swordDamage;
                     panel.player2.slingshotDamage = recievedObject.slingshotDamage;
@@ -81,7 +81,7 @@ public class Client {
             if(!panel.message.equals("")) {
                 panel.messageInput.setText(name + ": " + panel.message + "\n" + panel.messageInput.getText());
             }
-            message = new Message(player.x, player.y,name, sword.rotation, slingshot.playerRotation,player.isSlingshotPickedUp(), slingshot.mousePos.getX(), slingshot.mousePos.getY(),isClicked, player.swordPickedUp, minePlaced, exploded,panel.message, panel.p1Inv.hp, panel.p1Inv.death, player.swordDamage, player.slingshotDamage, player.mineDamage, player.mineTime, player.maxMines);
+            message = new Message(player.x, player.y,name, sword.rotation, slingshot.playerRotation,player.isSlingshotPickedUp(), slingshot.mousePos.getX(), slingshot.mousePos.getY(),isClicked, player.swordPickedUp, minePlaced, exploded,panel.message, panel.p1Inv.normHp, panel.p1Inv.death, player.swordDamage, player.slingshotDamage, player.mineDamage, player.mineTime, player.maxMines);
             if(!panel.serverDown) {
                 outputStream.writeObject(message);
             }

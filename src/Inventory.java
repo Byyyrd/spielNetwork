@@ -16,6 +16,8 @@ public class Inventory {
     double exp;
     int level;
     Panel panel;
+    double normHp;
+    double p2normHp;
     ArrayList<UpgradeButton> allButtons = new ArrayList<>();
 
     public Inventory(int maxHp, Player player, Player player2, Panel panel) {
@@ -57,7 +59,9 @@ public class Inventory {
         g2d.fillRect(0, 950, 1920, 150);
         //Hp
         g2d.setColor(Color.red);
-        g2d.fillRect(0, 975, (int) (hp * 50), 50);
+        //g2d.fillRect(0, 975, (int) (hp * 50), 50);
+        normHp = hp/maxHp;
+        g2d.fillRect(0, 975, (int) (normHp * 500), 50);
         g2d.drawImage(hpImage, 0, 975, hpImage.getWidth(null), hpImage.getHeight(null), null);
         //DashCoolDown & Mines left
         g2d.setFont(new Font("Arial", Font.PLAIN, 40));
