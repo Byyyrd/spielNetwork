@@ -34,17 +34,17 @@ public class UpgradeButton extends JButton implements ActionListener {
                 player.swordDamage += 0.25;
             }
         }
-        if (Objects.equals(attribute, "Slingshotdamage")) {
+        if (Objects.equals(attribute, "SlingshotDamage")) {
             if (player.slingshotDamage < 7.5) {
                 player.slingshotDamage += 0.25;
             }
         }
-        if (Objects.equals(attribute, "Minedamage")) {
+        if (Objects.equals(attribute, "MineDamage")) {
             if (player.mineDamage < 35) {
                 player.mineDamage += 0.5;
             }
         }
-        if (Objects.equals(attribute, "Slingshot-Cooldown")) {
+        if (Objects.equals(attribute, "Slingshot-CoolDown")) {
             if (player.arrowTime > 0){
                 player.arrowTime -= 0.125;
             }

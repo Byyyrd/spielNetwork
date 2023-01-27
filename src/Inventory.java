@@ -7,7 +7,7 @@ public class Inventory {
     int mines;
     double dashCoolDown;
 
-    int maxHp = 10;
+    int maxHp;
     Player player;
     Player player2;
     int death;
@@ -16,7 +16,6 @@ public class Inventory {
     double exp;
     int level;
     Panel panel;
-    UpgradeButton button;
     ArrayList<UpgradeButton> allButtons = new ArrayList<>();
 
     public Inventory(int maxHp, Player player, Player player2, Panel panel) {
@@ -78,9 +77,9 @@ public class Inventory {
             switch (rand) {
                 case 1 -> allButtons.add(new UpgradeButton(panel, i * 600 + 100, "Heal"));
                 case 2 -> allButtons.add(new UpgradeButton(panel, i * 600 + 100, "SwordDamage"));
-                case 3 -> allButtons.add(new UpgradeButton(panel, i * 600 + 100, "Slingshotdamage"));
-                case 4 -> allButtons.add(new UpgradeButton(panel, i * 600 + 100, "Minedamage"));
-                case 5 -> allButtons.add(new UpgradeButton(panel, i * 600 + 100, "Slingshot-Cooldown"));
+                case 3 -> allButtons.add(new UpgradeButton(panel, i * 600 + 100, "SlingshotDamage"));
+                case 4 -> allButtons.add(new UpgradeButton(panel, i * 600 + 100, "MineDamage"));
+                case 5 -> allButtons.add(new UpgradeButton(panel, i * 600 + 100, "Slingshot-CoolDown"));
                 case 6 -> allButtons.add(new UpgradeButton(panel, i * 600 + 100, "Sword-DmgReduction"));
                 case 7 -> allButtons.add(new UpgradeButton(panel, i * 600 + 100, "Slingshot-DmgReduction"));
                 case 8 -> allButtons.add(new UpgradeButton(panel, i * 600 + 100, "Mines-DmgReduction"));
@@ -100,16 +99,15 @@ public class Inventory {
     public void setDashCoolDown(double dashCoolDown) {
         this.dashCoolDown = dashCoolDown;
     }
-
     public void drawIcons(Graphics2D g2d, Image schildImage, Image swordImage, Image slingshotImage, Image speedImage) {
         g2d.setColor(new Color(1, 1, 1));
         g2d.fillRect(0, 950, 1920, 150);
         g2d.setColor(Color.white);
         g2d.setFont(new Font("Arial", Font.PLAIN, 40));
         g2d.drawImage(schildImage, 20, 956, schildImage.getWidth(null) / 3, schildImage.getHeight(null) / 3, null);
-        g2d.rotate(Math.PI, 23 + swordImage.getWidth(null) / 6, 960 + swordImage.getHeight(null) / 10);
+        g2d.rotate(Math.PI, 23 + swordImage.getWidth(null) / 6.0, 960 + swordImage.getHeight(null) / 10.0);
         g2d.drawImage(swordImage, 23, 960, swordImage.getWidth(null) / 3, swordImage.getHeight(null) / 5, null);
-        g2d.rotate(-Math.PI, 23 + swordImage.getWidth(null) / 6, 960 + swordImage.getHeight(null) / 10);
+        g2d.rotate(-Math.PI, 23 + swordImage.getWidth(null) / 6.0, 960 + swordImage.getHeight(null) / 10.0);
         if (player.meleeDamageReduction >= 75){
             g2d.setColor(Color.yellow);
         }else {

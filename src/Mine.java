@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Mine{
     int minesLeft = 10;
-    ArrayList<int[]> allMines = new ArrayList<int[]>();
+    ArrayList<int[]> allMines = new ArrayList<>();
     Player player;
     Player player2;
     boolean minePlaced;
@@ -27,21 +27,16 @@ public class Mine{
        mine.time = mine.time - 0.1;
        mineTimer -= 0.1;
        mine.mineTimer -= 0.1;
-       if (explosionColision(player.x + player.width/2, player.y + player.height/2, 1000,500, 100) && mineTimer <= 0 && minesLeft < player.maxMines){
+       if (explosionCollision(player.x + player.width/2, player.y + player.height/2, 1000,500, 100) && mineTimer <= 0 && minesLeft < player.maxMines){
            minesLeft++;
            mineTimer = player.mineTime;
        }
 
-        if (explosionColision(player2.x + player2.width/2, player2.y + player2.height/2, 1000,500, 100) && mineTimer <= 0 && mine.minesLeft < player2.maxMines){
+        if (explosionCollision(player2.x + player2.width/2, player2.y + player2.height/2, 1000,500, 100) && mineTimer <= 0 && mine.minesLeft < player2.maxMines){
             mine.minesLeft++;
             mine.mineTimer = player2.mineTime;
         }
-        if (explosionColision(player.x + player.width/2, player.y + player.height/2, 1000,500, 200)||explosionColision(player.x + player.width/2, player.y + player.height/2, 1745,245, 100)||explosionColision(player.x + player.width/2, player.y +player.height/2, 195,845, 100)){
-            canPlace = false;
-        } else {
-            canPlace = true;
-
-        }
+        canPlace = !explosionCollision(player.x + player.width / 2, player.y + player.height / 2, 1000, 500, 200) && !explosionCollision(player.x + player.width / 2, player.y + player.height / 2, 1745, 245, 100) && !explosionCollision(player.x + player.width / 2, player.y + player.height / 2, 195, 845, 100);
         panel.p1Inv.setMines(minesLeft);
     }
 
@@ -53,10 +48,10 @@ public class Mine{
         minePlaced = true;
     }
 
-    public void explodemines(){
+    public void explodeMines(){
         if (mine.allMines.size() != 0 && mine.allMines != null) {
             for (int i = mine.allMines.size(); i > 0; i--) {
-                if (explosionColision(mine.allMines.get(i-1)[0], mine.allMines.get(i-1)[1], player.x, player.y, 90) || explosionColision(mine.allMines.get(i -1)[0], mine.allMines.get(i -1 )[1], player.x + player.width, player.y, 90) || explosionColision(mine.allMines.get(i -1 )[0], mine.allMines.get(i-1)[1], player.x + player.width / 2, player.y, 90) || explosionColision(mine.allMines.get(i-1)[0], mine.allMines.get(i-1)[1], player.x + player.width, player.y + player.height / 2, 90) || explosionColision(mine.allMines.get(i-1)[0], mine.allMines.get(i-1)[1], player.x + player.width, player.y + player.height, 90) || explosionColision(mine.allMines.get(i-1)[0], mine.allMines.get(i-1)[1], player.x + player.width / 2, player.y + player.height, 90) || explosionColision(mine.allMines.get(i-1)[0], mine.allMines.get(i-1)[1], player.x, player.y + player.height, 90) || explosionColision(mine.allMines.get(i-1)[0], mine.allMines.get(i-1)[1], player.x, player.y + player.height / 2, 90)) {
+                if (explosionCollision(mine.allMines.get(i-1)[0], mine.allMines.get(i-1)[1], player.x, player.y, 90) || explosionCollision(mine.allMines.get(i -1)[0], mine.allMines.get(i -1 )[1], player.x + player.width, player.y, 90) || explosionCollision(mine.allMines.get(i -1 )[0], mine.allMines.get(i-1)[1], player.x + player.width / 2, player.y, 90) || explosionCollision(mine.allMines.get(i-1)[0], mine.allMines.get(i-1)[1], player.x + player.width, player.y + player.height / 2, 90) || explosionCollision(mine.allMines.get(i-1)[0], mine.allMines.get(i-1)[1], player.x + player.width, player.y + player.height, 90) || explosionCollision(mine.allMines.get(i-1)[0], mine.allMines.get(i-1)[1], player.x + player.width / 2, player.y + player.height, 90) || explosionCollision(mine.allMines.get(i-1)[0], mine.allMines.get(i-1)[1], player.x, player.y + player.height, 90) || explosionCollision(mine.allMines.get(i-1)[0], mine.allMines.get(i-1)[1], player.x, player.y + player.height / 2, 90)) {
                     panel.p1Inv.playerHit(panel.player2.mineDamage * (1 - panel.player1.mineDamageReduction / 100));
                 }
             }
@@ -91,7 +86,7 @@ public class Mine{
         g2d.setColor(new Color(255, 0, 0, 123));
         g2d.fillOval(900,400,200, 200);
     }
-    public boolean explosionColision(int x, int y, int x2, int y2, int distance){
+    public boolean explosionCollision(int x, int y, int x2, int y2, int distance){
         return Math.abs(x - x2) < distance && Math.abs(y - y2) < distance;
     }
     public void keyPressed(KeyEvent e) {

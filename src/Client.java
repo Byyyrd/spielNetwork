@@ -48,7 +48,7 @@ public class Client {
                     }
                     if (recievedObject.exploded && panel.mine2.allMines.size() != 0 && panel.mine2.allMines != null){
                         panel.mine2.time = 1;
-                        panel.mine.explodemines();
+                        panel.mine.explodeMines();
                     }
                     if(!recievedObject.message.equals("")) {
                         panel.messageInput.setText(recievedObject.getName() + ": " + recievedObject.message + "\n" + panel.messageInput.getText());

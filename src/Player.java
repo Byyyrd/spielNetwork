@@ -167,15 +167,15 @@ public class Player implements Serializable {
 
     public void applyVel() {
         if (xDir != 0) {
-            xVel = lerp(xVel, speed * xDir, 1);
+            xVel = Lerp(xVel, speed * xDir, 1);
         } else {
-            xVel = lerp(xVel, 0, 1);
+            xVel = Lerp(xVel, 0, 1);
         }
         x += xVel;
         if (yDir != 0) {
-            yVel = lerp(yVel, speed * yDir, 1);
+            yVel = Lerp(yVel, speed * yDir, 1);
         } else {
-            yVel = lerp(yVel, 0, 1);
+            yVel = Lerp(yVel, 0, 1);
         }
         y += yVel;
     }
@@ -216,13 +216,13 @@ public class Player implements Serializable {
     }
 
     public void heal() {
-        if (explosionColision(x + width / 2, y + height / 2, 195, 845, 45) && healTimer <= 0) {
+        if (explosionCollision(x + width / 2, y + height / 2, 195, 845, 45) && healTimer <= 0) {
             if (panel.p1Inv.hp < panel.p1Inv.maxHp) {
                 panel.p1Inv.hp++;
             }
             healTimer = healTime;
         }
-        if (explosionColision(x + width / 2, y + height / 2, 1745, 245, 45) && healTimer <= 0) {
+        if (explosionCollision(x + width / 2, y + height / 2, 1745, 245, 45) && healTimer <= 0) {
             if (panel.p1Inv.hp < panel.p1Inv.maxHp) {
                 panel.p1Inv.hp++;
             }
@@ -234,7 +234,7 @@ public class Player implements Serializable {
         this.enemySword = enemySword;
     }
 
-    public double lerp(double start, double end, double amt) {
+    public double Lerp(double start, double end, double amt) {
         return (1 - amt) * start + amt * end;
     }
 
@@ -267,7 +267,7 @@ public class Player implements Serializable {
         this.swordPickedUp = swordPickedUp;
     }
 
-    public boolean explosionColision(int x, int y, int x2, int y2, int distance) {
+    public boolean explosionCollision(int x, int y, int x2, int y2, int distance) {
         return Math.abs(x - x2) < distance && Math.abs(y - y2) < distance;
     }
 }
