@@ -47,6 +47,7 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
     boolean inInv;
     JPanel inventoryPanel;
     Inventory inventory;
+    boolean inUpgradeFenster;
 
     public Panel(Client client) {
         playerImage = new ImageIcon("resources/Player.png").getImage();
@@ -113,7 +114,7 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
         messageInput.setBounds(1600, 725, 300, 175);
         messageInput.setForeground(new Color(255, 255, 255));
         messageInput.setEditable(false);
-        setLayer(messageInput, DRAG_LAYER);
+        setLayer(messageInput, POPUP_LAYER);
 
         add(messageInput);
 
@@ -121,12 +122,24 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
         messageInput.addKeyListener(this);
         messageOutput.addKeyListener(this);
 
-        //Inventory
-        inventoryPanel = new JPanel();
-        inventory = new Inventory();
+
 
         //Ui
         ui = new Ui(20, player1, player2, this);
+
+
+        //Inventory
+        inventoryPanel = new JPanel();
+        inventoryPanel.setBounds(0, 150, 1900, 800);
+        inventoryPanel.setLayout(new GridLayout(7,7));
+        for(int i = 0;i <= 83;i++){
+            JButton button = new JButton();
+
+            inventoryPanel.add(button);
+        }
+        inventory = new Inventory();
+
+
 
         int delay = 10;
         timer = new Timer(delay, this);
@@ -172,18 +185,19 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
         slingshot.drawSlingshot(g2d, player1, player2, slingshotImage, playerImage, slingshot2);
         g2d.setTransform(oldXForm);
 
-        //Inventory
-        ui.drawInventory(g2d, hpImage);
-        super.paint(g);
+        //Ui
+        ui.drawUi(g2d, hpImage);
+
         if (serverDown) {
             g2d.setFont(new Font("Arial", Font.PLAIN, 200));
             g2d.setColor(Color.red);
             g2d.setBackground(Color.BLACK);
             g2d.drawString("Server Shutdown", 100, 500);
         }
-        if (inChat) {
+        if (inChat || inInv) {
             ui.drawIcons(g2d, schildImage, swordImage, slingshotImage, speedImage);
         }
+        super.paint(g);
     }
 
     public void keyTyped(KeyEvent e) {
@@ -223,7 +237,7 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
             } else {
                 inChat = true;
                 add(messageOutput, 1, 1);
-                setLayer(messageOutput, DRAG_LAYER);
+                setLayer(messageOutput, POPUP_LAYER);
                 messageOutput.setBounds(0, 850, 1900, 50);
                 messageInput.setBounds(0, 0, 1900, 800);
                 messageInput.setFont(font);
@@ -235,19 +249,12 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
             e.consume();
             if (inInv) {
                 inInv = false;
-                messageOutput.setText("");
-                remove(messageOutput);
-                messageInput.setFont(new Font("Arial", Font.PLAIN, 20));
-                messageInput.setBounds(1600, 725, 300, 175);
+                remove(inventoryPanel);
                 this.grabFocus();
             } else {
                 inInv = true;
-                add(messageOutput, 1, 1);
-                setLayer(messageOutput, DRAG_LAYER);
-                messageOutput.setBounds(0, 850, 1900, 50);
-                messageInput.setBounds(0, 0, 1900, 800);
-                messageInput.setFont(font);
-                messageOutput.grabFocus();
+                add(inventoryPanel, 1, 1);
+                setLayer(inventoryPanel, DRAG_LAYER);
             }
         }
     }

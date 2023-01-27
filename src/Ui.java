@@ -45,7 +45,7 @@ public class Ui {
         }
     }
 
-    public void drawInventory(Graphics2D g2d, Image hpImage) {
+    public void drawUi(Graphics2D g2d, Image hpImage) {
         exp = death2 * 5 - expSpend;
         if (exp >= 20) {
             levelUp();
