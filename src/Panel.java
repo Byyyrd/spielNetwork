@@ -31,8 +31,8 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
     Image hpImage;
     Image schildImage;
     Image speedImage;
-    Image arrowVelosety;
-    Image houerglas;
+    Image arrowVelocity;
+    Image hourglass;
     int bgrWidth;
     int bgrHeight;
     ArrayList<int[]> allObstacles;
@@ -44,6 +44,7 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
     String message;
     boolean inChat;
     boolean serverDown;
+    boolean inInv;
 
     public Panel(Client client) {
         playerImage = new ImageIcon("resources/Player.png").getImage();
@@ -53,8 +54,8 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
         hpImage = new ImageIcon("resources/HealthBar.png").getImage();
         schildImage = new ImageIcon("resources/Shield.png").getImage();
         speedImage = new ImageIcon("resources/Speed.png").getImage();
-        arrowVelosety = new ImageIcon("resources/ArrowVel.png").getImage();
-        houerglas = new ImageIcon("resources/Hourglas.png").getImage();
+        arrowVelocity = new ImageIcon("resources/ArrowVel.png").getImage();
+        hourglass = new ImageIcon("resources/Hourglass.png").getImage();
         bgrHeight = bgrImage.getHeight(null);
         bgrWidth = bgrImage.getWidth(null);
 
@@ -172,7 +173,7 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
             g2d.drawString("Server Shutdown", 100, 500);
         }
         if (inChat) {
-            ui.drawIcons(g2d,schildImage,swordImage, slingshotImage,speedImage);
+            ui.drawIcons(g2d, schildImage, swordImage, slingshotImage, speedImage);
         }
     }
 
@@ -200,6 +201,7 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
         if (e.getKeyCode() == 71) {
             ui.levelUp();
         }
+        //Chat and Stats
         if (e.getKeyCode() == 130) {
             e.consume();
             if (inChat) {
@@ -211,6 +213,26 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
                 this.grabFocus();
             } else {
                 inChat = true;
+                add(messageOutput, 1, 1);
+                setLayer(messageOutput, DRAG_LAYER);
+                messageOutput.setBounds(0, 850, 1900, 50);
+                messageInput.setBounds(0, 0, 1900, 800);
+                messageInput.setFont(font);
+                messageOutput.grabFocus();
+            }
+        }
+        //Open Inv
+        if (e.getKeyCode() == 27) {
+            e.consume();
+            if (inInv) {
+                inInv = false;
+                messageOutput.setText("");
+                remove(messageOutput);
+                messageInput.setFont(new Font("Arial", Font.PLAIN, 20));
+                messageInput.setBounds(1600, 725, 300, 175);
+                this.grabFocus();
+            } else {
+                inInv = true;
                 add(messageOutput, 1, 1);
                 setLayer(messageOutput, DRAG_LAYER);
                 messageOutput.setBounds(0, 850, 1900, 50);
