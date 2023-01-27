@@ -11,6 +11,7 @@ public class UpgradeButton extends JButton implements ActionListener {
     Player player;
 
     public UpgradeButton(Panel panel, int x, String attribute) {
+        this.setFocusable(false);
         this.panel = panel;
         this.attribute = attribute;
         this.setBorderPainted(true);
@@ -113,7 +114,7 @@ public class UpgradeButton extends JButton implements ActionListener {
                     break;
             }
             item.createStats();
-            panel.inventory.allItams[0].add(item);
+            panel.inventory.allItems[0].add(item);
         }
         if (Objects.equals(attribute, "Sword")) {
             var item = new Item("Sword");
@@ -142,7 +143,7 @@ public class UpgradeButton extends JButton implements ActionListener {
                     break;
             }
             item.createStats();
-            panel.inventory.allItams[1].add(item);
+            panel.inventory.allItems[1].add(item);
         }
         if (Objects.equals(attribute, "Slingshot")) {
             var item = new Item("Slingshot");
@@ -174,7 +175,7 @@ public class UpgradeButton extends JButton implements ActionListener {
                     break;
             }
             item.createStats();
-            panel.inventory.allItams[2].add(item);
+            panel.inventory.allItems[2].add(item);
         }
         if (Objects.equals(attribute, "Mine")) {
             var item = new Item("Mine");
@@ -203,7 +204,7 @@ public class UpgradeButton extends JButton implements ActionListener {
                     break;
             }
             item.createStats();
-            panel.inventory.allItams[3].add(item);
+            panel.inventory.allItems[3].add(item);
         }
         if (Objects.equals(attribute, "Ring")) {
             var item = new Item("Ring");
@@ -230,7 +231,7 @@ public class UpgradeButton extends JButton implements ActionListener {
                     break;
             }
             item.createStats();
-            panel.inventory.allItams[4].add(item);
+            panel.inventory.allItems[4].add(item);
         }
         if (Objects.equals(attribute, "Chain")) {
             var item = new Item("Chain");
@@ -255,7 +256,7 @@ public class UpgradeButton extends JButton implements ActionListener {
                     break;
             }
             item.createStats();
-            panel.inventory.allItams[5].add(item);
+            panel.inventory.allItems[5].add(item);
         }
         if (Objects.equals(attribute, "Shoes")) {
             var item = new Item("Shoes");
@@ -277,7 +278,7 @@ public class UpgradeButton extends JButton implements ActionListener {
                     break;
             }
             item.createStats();
-            panel.inventory.allItams[6].add(item);
+            panel.inventory.allItems[6].add(item);
         }
         panel.grabFocus();
         for (int i = 0; i <= 2; i++) {

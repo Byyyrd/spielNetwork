@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.geom.AffineTransform;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Panel extends JLayeredPane implements ActionListener, KeyListener {
@@ -49,6 +50,7 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
     Inventory inventory;
     boolean inUpgradeFenster;
 
+
     public Panel(Client client) {
         playerImage = new ImageIcon("resources/Player.png").getImage();
         swordImage = new ImageIcon("resources/Sword.png").getImage();
@@ -65,7 +67,6 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
         font = new Font("Arial", Font.PLAIN, 40);
 
         addKeyListener(this);
-
 
 
         this.client = client;
@@ -95,7 +96,6 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
         this.addMouseListener(sword);
 
 
-
         player1.setEnemySword(sword2);
         player2.setEnemySword(sword);
 
@@ -123,7 +123,6 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
         messageOutput.addKeyListener(this);
 
 
-
         //Ui
         ui = new Ui(20, player1, player2, this);
 
@@ -131,13 +130,15 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
         //Inventory
         inventoryPanel = new JPanel();
         inventoryPanel.setBounds(0, 150, 1900, 800);
-        inventoryPanel.setLayout(new GridLayout(7,7));
-        for(int i = 0;i <= 83;i++){
-            JButton button = new JButton();
-
-            inventoryPanel.add(button);
-        }
+        inventoryPanel.setLayout(new GridLayout(7, 7));
         inventory = new Inventory();
+        for (int i = 0; i < 7; i++) {
+            for (int j = 0; j < 12; j++) {
+                InventoryButton button = new InventoryButton(this);
+                inventoryPanel.add(button);
+                inventory.inventoryButtons[i][j] = button;
+            }
+        }
 
 
 
