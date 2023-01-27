@@ -24,18 +24,18 @@ public class Player implements Serializable {
     Panel panel;
     double hp;
     double healTimer;
-    double healTime = 4;
-    double swordDamage =2.5;
-    double slingshotDamage=1;
-    double mineDamage =10;
-    double arrowTime = 1;
-    double mineTime = 4;
+    double healTime = 1;
+    double swordDamage =10;
+    double slingshotDamage=7.5;
+    double mineDamage =75;
+    double arrowTime = 0;
+    double mineTime = 1;
     double iFrameTime = 0.5;
-    double meleeDamageReduction = 0;
-    double slingshotDamageReduction = 0;
-    double mineDamageReduction = 0;
+    double meleeDamageReduction = 75;
+    double slingshotDamageReduction = 75;
+    double mineDamageReduction = 75;
     double arrowVelocity = 1;
-    int maxMines = 10;
+    int maxMines = 55;
 
 
     public Player(int x, int y, int width, int height, Player player2, Sword enemySword, Panel panel) {

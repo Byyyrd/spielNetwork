@@ -110,27 +110,57 @@ public class Inventory {
         g2d.rotate(Math.PI, 23 + swordImage.getWidth(null) / 6, 960 + swordImage.getHeight(null) / 10);
         g2d.drawImage(swordImage, 23, 960, swordImage.getWidth(null) / 3, swordImage.getHeight(null) / 5, null);
         g2d.rotate(-Math.PI, 23 + swordImage.getWidth(null) / 6, 960 + swordImage.getHeight(null) / 10);
+        if (player.meleeDamageReduction >= 75){
+            g2d.setColor(Color.yellow);
+        }else {
+            g2d.setColor(Color.white);
+        }
         g2d.drawString(":  " + player.meleeDamageReduction, 80, 1010);
 
         g2d.drawImage(schildImage, 200, 956, schildImage.getWidth(null) / 3, schildImage.getHeight(null) / 3, null);
         g2d.drawImage(slingshotImage, 208, 970, slingshotImage.getWidth(null) / 24, slingshotImage.getHeight(null) / 24, null);
+        if (player.slingshotDamageReduction >= 75){
+            g2d.setColor(Color.yellow);
+        }else {
+            g2d.setColor(Color.white);
+        }
         g2d.drawString(":  " + ((int) (player.slingshotDamageReduction * 10f)) / 10f, 260, 1010);
 
         g2d.drawImage(schildImage, 380, 956, schildImage.getWidth(null) / 3, schildImage.getHeight(null) / 3, null);
         g2d.setColor(Color.red);
         g2d.fillOval(395, 975, 30, 30);
         g2d.setColor(Color.white);
+        if (player.mineDamageReduction >= 75){
+            g2d.setColor(Color.yellow);
+        }else {
+            g2d.setColor(Color.white);
+        }
         g2d.drawString(":  " + player.mineDamageReduction, 440, 1010);
 
         g2d.drawImage(swordImage, 563, 960, swordImage.getWidth(null) / 3, swordImage.getHeight(null) / 5, null);
+        if (player.swordDamage >= 10){
+            g2d.setColor(Color.yellow);
+        }else {
+            g2d.setColor(Color.white);
+        }
         g2d.drawString(":  " + ((int) (player.swordDamage * 10f)) / 10f, 610, 1010);
 
         g2d.drawImage(slingshotImage, 703, 973, slingshotImage.getWidth(null) / 24, slingshotImage.getHeight(null) / 24, null);
+        if (player.slingshotDamage >= 7.5){
+            g2d.setColor(Color.yellow);
+        }else {
+            g2d.setColor(Color.white);
+        }
         g2d.drawString(":  " + ((int) (player.slingshotDamage * 10f)) / 10f, 750, 1010);
 
         g2d.setColor(Color.red);
         g2d.fillOval(853, 985, 30, 30);
         g2d.setColor(Color.white);
+        if (player.mineDamage >= 75){
+            g2d.setColor(Color.yellow);
+        }else {
+            g2d.setColor(Color.white);
+        }
         g2d.drawString(":  " + (int) player.mineDamage, 900, 1010);
 
         g2d.setColor(new Color(12, 255, 0, 142));
@@ -140,9 +170,19 @@ public class Inventory {
         g2d.drawString("+", 1002, 1020);
         g2d.setFont(new Font("Arial", Font.PLAIN, 40));
         g2d.setColor(Color.white);
+        if (player.healTime <= 1){
+            g2d.setColor(Color.yellow);
+        }else {
+            g2d.setColor(Color.white);
+        }
         g2d.drawString(":  " + ((int) (player.healTime * 10f)) / 10f + "s", 1050, 1010);
 
         g2d.drawImage(slingshotImage, 1155, 973, slingshotImage.getWidth(null) / 24, slingshotImage.getHeight(null) / 24, null);
+        if (player.arrowTime <= 0){
+            g2d.setColor(Color.yellow);
+        }else {
+            g2d.setColor(Color.white);
+        }
         g2d.drawString(":  " + ((int) (player.arrowTime * 10f)) / 10f + "s", 1200, 1010);
 
         g2d.setColor(new Color(255, 0, 0, 142));
@@ -152,15 +192,26 @@ public class Inventory {
         g2d.drawString("+", 1322, 1020);
         g2d.setFont(new Font("Arial", Font.PLAIN, 40));
         g2d.setColor(Color.white);
+        if (player.mineTime <= 1){
+            g2d.setColor(Color.yellow);
+        }else {
+            g2d.setColor(Color.white);
+        }
         g2d.drawString(":  " + ((int) (player.mineTime * 10f)) / 10f + "s", 1370, 1010);
 
         g2d.drawImage(speedImage, 1500, 975, speedImage.getWidth(null) / 3, speedImage.getHeight(null) / 3, null);
+        g2d.setColor(Color.white);
         g2d.drawString(":  " + ((int) (player.speed * 10f)) / 10f, 1550, 1010);
 
         g2d.setColor(Color.red);
         g2d.drawString("MAX", 1650, 1015);
         g2d.fillOval(1760, 980, 40, 40);
         g2d.setColor(Color.white);
+        if (player.maxMines >= 55){
+            g2d.setColor(Color.yellow);
+        }else {
+            g2d.setColor(Color.white);
+        }
         g2d.drawString(":  " + player.maxMines, 1800, 1010);
     }
 }

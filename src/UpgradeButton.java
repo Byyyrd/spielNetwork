@@ -25,37 +25,57 @@ public class UpgradeButton extends JButton implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (Objects.equals(attribute, "Heal")) {
-            player.healTime -= 0.19;
+            if (player.healTime > 1) {
+                player.healTime -= 0.19;
+            }
         }
         if (Objects.equals(attribute, "SwordDamage")) {
-            player.swordDamage += 0.25;
+            if (player.swordDamage < 10) {
+                player.swordDamage += 0.25;
+            }
         }
         if (Objects.equals(attribute, "Slingshotdamage")) {
-            player.slingshotDamage += 0.25;
+            if (player.slingshotDamage < 7.5) {
+                player.slingshotDamage += 0.25;
+            }
         }
         if (Objects.equals(attribute, "Minedamage")) {
-            player.mineDamage += 0.5;
+            if (player.mineDamage < 35) {
+                player.mineDamage += 0.5;
+            }
         }
         if (Objects.equals(attribute, "Slingshot-Cooldown")) {
-            player.arrowTime -= 0.125;
+            if (player.arrowTime > 0){
+                player.arrowTime -= 0.125;
+            }
         }
         if (Objects.equals(attribute, "Sword-DmgReduction")) {
-            player.meleeDamageReduction += 2.5;
+            if (player.meleeDamageReduction < 75) {
+                player.meleeDamageReduction += 2.5;
+            }
         }
         if (Objects.equals(attribute, "Slingshot-DmgReduction")) {
-            player.slingshotDamageReduction += 2;
+            if (player.slingshotDamageReduction < 75) {
+                player.slingshotDamageReduction += 2;
+            }
         }
         if (Objects.equals(attribute, "Mines-DmgReduction")) {
-            player.mineDamageReduction += 4;
+            if (player.mineDamageReduction < 75) {
+                player.mineDamageReduction += 4;
+            }
         }
         if (Objects.equals(attribute, "Speed")) {
             player.speed += 0.125;
         }
         if (Objects.equals(attribute, "MaxMines")) {
-            player.maxMines += 5;
+            if (player.maxMines < 55) {
+                player.maxMines += 5;
+            }
         }
         if (Objects.equals(attribute, "MineGain")) {
-            player.mineTime -= 0.19;
+            if (player.mineTime > 1) {
+                player.mineTime -= 0.19;
+            }
         }
         panel.grabFocus();
         for (int i = 0; i <= 2; i++) {
