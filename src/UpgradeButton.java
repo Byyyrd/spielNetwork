@@ -114,7 +114,9 @@ public class UpgradeButton extends JButton implements ActionListener {
                     break;
             }
             item.createStats();
+
             panel.inventory.allItems[0].add(item);
+            panel.inventory.updateInv();
         }
         if (Objects.equals(attribute, "Sword")) {
             var item = new Item("Sword");
@@ -143,7 +145,9 @@ public class UpgradeButton extends JButton implements ActionListener {
                     break;
             }
             item.createStats();
+
             panel.inventory.allItems[1].add(item);
+            panel.inventory.updateInv();
         }
         if (Objects.equals(attribute, "Slingshot")) {
             var item = new Item("Slingshot");
@@ -176,6 +180,7 @@ public class UpgradeButton extends JButton implements ActionListener {
             }
             item.createStats();
             panel.inventory.allItems[2].add(item);
+            panel.inventory.updateInv();
         }
         if (Objects.equals(attribute, "Mine")) {
             var item = new Item("Mine");
@@ -205,6 +210,7 @@ public class UpgradeButton extends JButton implements ActionListener {
             }
             item.createStats();
             panel.inventory.allItems[3].add(item);
+            panel.inventory.updateInv();
         }
         if (Objects.equals(attribute, "Ring")) {
             var item = new Item("Ring");
@@ -232,6 +238,7 @@ public class UpgradeButton extends JButton implements ActionListener {
             }
             item.createStats();
             panel.inventory.allItems[4].add(item);
+            panel.inventory.updateInv();
         }
         if (Objects.equals(attribute, "Chain")) {
             var item = new Item("Chain");
@@ -257,6 +264,7 @@ public class UpgradeButton extends JButton implements ActionListener {
             }
             item.createStats();
             panel.inventory.allItems[5].add(item);
+            panel.inventory.updateInv();
         }
         if (Objects.equals(attribute, "Shoes")) {
             var item = new Item("Shoes");
@@ -279,12 +287,14 @@ public class UpgradeButton extends JButton implements ActionListener {
             }
             item.createStats();
             panel.inventory.allItems[6].add(item);
+            panel.inventory.updateInv();
         }
         panel.grabFocus();
         for (int i = 0; i <= 2; i++) {
             panel.remove(panel.ui.allButtons.get(i));
         }
         panel.ui.allButtons.removeAll(panel.ui.allButtons);
+        panel.inventory.updateInv();
         panel.repaint();
     }
 

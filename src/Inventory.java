@@ -12,4 +12,18 @@ public class Inventory {
         allItems[5] = new ArrayList<Item>();
         allItems[6] = new ArrayList<Item>();
     }
+    public void updateInv(){
+        for (int j = 0;j < 7;j++) {
+            for (int i = 0; i < 12; i++) {
+                if (allItems[j].size() > i) {
+                    inventoryButtons[j][i].setItem((Item) allItems[j].get(i));
+                }
+            }
+        }
+        for (int j = 0;j < 7;j++) {
+            for (int i = 0; i < 12; i++) {
+                    inventoryButtons[j][i].updateButton();
+            }
+        }
+    }
 }

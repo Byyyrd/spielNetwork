@@ -1,6 +1,10 @@
+import javax.swing.*;
+import java.awt.*;
+
 public class Item {
     String type;
     String sort;
+    Image image;
     private double speed;
     private double minSpeed = 0;
     private double maxSpeed = 0;
@@ -59,6 +63,7 @@ public class Item {
         arrowVelocity = random(minArrowVelocity, maxArrowVelocity);
         maxMines = (int) random( minMaxMines, maxMaxMines);
         maxHp = (int) random(minMaxHp, maxMaxHp);
+        image = new ImageIcon("resources/Error.png").getImage();
     }
 
     public void setRangeSpeed(double minSpeed, double maxSpeed) {
@@ -124,6 +129,14 @@ public class Item {
     public void setRangeMaxHp(int minMaxHp, int maxMaxHp) {
         this.minMaxHp = minMaxHp;
         this.maxMaxHp = maxMaxHp;
+    }
+
+    public Image getImage() {
+        return image;
+    }
+
+    public void setImage(Image image) {
+        this.image = image;
     }
 
     public double random(double min, double max){
