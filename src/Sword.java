@@ -54,7 +54,7 @@ public class Sword implements MouseListener {
             offset = -Math.PI / 4;
             counterOffset = Math.PI / 4;
         }
-        panel.p1Inv.setDashCooldown(cooldown);
+        panel.p1Inv.setDashCoolDown(cooldown);
     }
     public void drawSword(Graphics2D g2d,Image swordImage,Player player2){
         if(player2.swordPickedUp) {

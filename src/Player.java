@@ -86,16 +86,16 @@ public class Player implements Serializable {
                 }
             }
         }
-        for (int j = 0; j < panel.allObsticals.size(); j++) {
+        for (int j = 0; j < panel.allObstacles.size(); j++) {
             for (int i = 0; i < allArrows.size(); i++) {
-                if (inRectangle((int) (allArrows.get(i)[0] + 5), (int) (allArrows.get(i)[1] + 5), panel.allObsticals.get(j)[0], panel.allObsticals.get(j)[1], panel.allObsticals.get(j)[2], panel.allObsticals.get(j)[3])) {
+                if (inRectangle((int) (allArrows.get(i)[0] + 5), (int) (allArrows.get(i)[1] + 5), panel.allObstacles.get(j)[0], panel.allObstacles.get(j)[1], panel.allObstacles.get(j)[2], panel.allObstacles.get(j)[3])) {
                     allArrows.remove(i);
                 }
             }
         }
-        for (int j = 0; j < panel.allObsticals.size(); j++) {
+        for (int j = 0; j < panel.allObstacles.size(); j++) {
             for (int i = 0; i < allArrowsSelf.size(); i++) {
-                if (inRectangle((int) (allArrowsSelf.get(i)[0] + 5), (int) (allArrowsSelf.get(i)[1] + 5), panel.allObsticals.get(j)[0], panel.allObsticals.get(j)[1], panel.allObsticals.get(j)[2], panel.allObsticals.get(j)[3])) {
+                if (inRectangle((int) (allArrowsSelf.get(i)[0] + 5), (int) (allArrowsSelf.get(i)[1] + 5), panel.allObstacles.get(j)[0], panel.allObstacles.get(j)[1], panel.allObstacles.get(j)[2], panel.allObstacles.get(j)[3])) {
                     allArrowsSelf.remove(i);
                 }
             }
@@ -181,17 +181,17 @@ public class Player implements Serializable {
     }
 
     public void inputs() {
-        for (int i = 0; i < panel.allObsticals.size(); i++) {
-            if (inRectangle(x + 5, y, panel.allObsticals.get(i)[0], panel.allObsticals.get(i)[1], panel.allObsticals.get(i)[2], panel.allObsticals.get(i)[3]) || inRectangle(x + player2.width - 5, y, panel.allObsticals.get(i)[0], panel.allObsticals.get(i)[1], panel.allObsticals.get(i)[2], panel.allObsticals.get(i)[3]) || inRectangle(x + player2.width / 2 - 5, y, panel.allObsticals.get(i)[0], panel.allObsticals.get(i)[1], panel.allObsticals.get(i)[2], panel.allObsticals.get(i)[3])) {
+        for (int i = 0; i < panel.allObstacles.size(); i++) {
+            if (inRectangle(x + 5, y, panel.allObstacles.get(i)[0], panel.allObstacles.get(i)[1], panel.allObstacles.get(i)[2], panel.allObstacles.get(i)[3]) || inRectangle(x + player2.width - 5, y, panel.allObstacles.get(i)[0], panel.allObstacles.get(i)[1], panel.allObstacles.get(i)[2], panel.allObstacles.get(i)[3]) || inRectangle(x + player2.width / 2 - 5, y, panel.allObstacles.get(i)[0], panel.allObstacles.get(i)[1], panel.allObstacles.get(i)[2], panel.allObstacles.get(i)[3])) {
                 upCollides = true;
             }
-            if (inRectangle(x + 5, y + player2.height, panel.allObsticals.get(i)[0], panel.allObsticals.get(i)[1], panel.allObsticals.get(i)[2], panel.allObsticals.get(i)[3]) || inRectangle(x + player2.width - 5, y + player2.height, panel.allObsticals.get(i)[0], panel.allObsticals.get(i)[1], panel.allObsticals.get(i)[2], panel.allObsticals.get(i)[3]) || inRectangle(x + player2.width / 2 - 5, y + player2.height / 2, panel.allObsticals.get(i)[0], panel.allObsticals.get(i)[1], panel.allObsticals.get(i)[2], panel.allObsticals.get(i)[3])) {
+            if (inRectangle(x + 5, y + player2.height, panel.allObstacles.get(i)[0], panel.allObstacles.get(i)[1], panel.allObstacles.get(i)[2], panel.allObstacles.get(i)[3]) || inRectangle(x + player2.width - 5, y + player2.height, panel.allObstacles.get(i)[0], panel.allObstacles.get(i)[1], panel.allObstacles.get(i)[2], panel.allObstacles.get(i)[3]) || inRectangle(x + player2.width / 2 - 5, y + player2.height / 2, panel.allObstacles.get(i)[0], panel.allObstacles.get(i)[1], panel.allObstacles.get(i)[2], panel.allObstacles.get(i)[3])) {
                 downCollides = true;
             }
-            if (inRectangle(x, y + 5, panel.allObsticals.get(i)[0], panel.allObsticals.get(i)[1], panel.allObsticals.get(i)[2], panel.allObsticals.get(i)[3]) || inRectangle(x, y + player2.height - 5, panel.allObsticals.get(i)[0], panel.allObsticals.get(i)[1], panel.allObsticals.get(i)[2], panel.allObsticals.get(i)[3]) || inRectangle(x, y + player2.height / 2 - 5, panel.allObsticals.get(i)[0], panel.allObsticals.get(i)[1], panel.allObsticals.get(i)[2], panel.allObsticals.get(i)[3])) {
+            if (inRectangle(x, y + 5, panel.allObstacles.get(i)[0], panel.allObstacles.get(i)[1], panel.allObstacles.get(i)[2], panel.allObstacles.get(i)[3]) || inRectangle(x, y + player2.height - 5, panel.allObstacles.get(i)[0], panel.allObstacles.get(i)[1], panel.allObstacles.get(i)[2], panel.allObstacles.get(i)[3]) || inRectangle(x, y + player2.height / 2 - 5, panel.allObstacles.get(i)[0], panel.allObstacles.get(i)[1], panel.allObstacles.get(i)[2], panel.allObstacles.get(i)[3])) {
                 leftCollides = true;
             }
-            if (inRectangle(x + player2.width, y - 5, panel.allObsticals.get(i)[0], panel.allObsticals.get(i)[1], panel.allObsticals.get(i)[2], panel.allObsticals.get(i)[3]) || inRectangle(x + player2.width, y + player2.height - 5, panel.allObsticals.get(i)[0], panel.allObsticals.get(i)[1], panel.allObsticals.get(i)[2], panel.allObsticals.get(i)[3]) || inRectangle(x + player2.width / 2, y + player2.height / 2 - 5, panel.allObsticals.get(i)[0], panel.allObsticals.get(i)[1], panel.allObsticals.get(i)[2], panel.allObsticals.get(i)[3])) {
+            if (inRectangle(x + player2.width, y - 5, panel.allObstacles.get(i)[0], panel.allObstacles.get(i)[1], panel.allObstacles.get(i)[2], panel.allObstacles.get(i)[3]) || inRectangle(x + player2.width, y + player2.height - 5, panel.allObstacles.get(i)[0], panel.allObstacles.get(i)[1], panel.allObstacles.get(i)[2], panel.allObstacles.get(i)[3]) || inRectangle(x + player2.width / 2, y + player2.height / 2 - 5, panel.allObstacles.get(i)[0], panel.allObstacles.get(i)[1], panel.allObstacles.get(i)[2], panel.allObstacles.get(i)[3])) {
                 rightCollides = true;
             }
         }

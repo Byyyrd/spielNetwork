@@ -11,18 +11,18 @@ public class Message implements Serializable {
     double mouseY;
     boolean isClicked;
     boolean swordPickedUp;
-    boolean minePlased;
-    boolean explodet;
+    boolean minePlaced;
+    boolean exploded;
     String message;
     double hp;
     int death;
     double swordDamage;
     double slingshotDamage;
-    double minenDemage;
-    double minenTime;
-    int maxMinen;
+    double mineDamage;
+    double mineTime;
+    int maxMines;
 
-    public Message(int x, int y, String name, double swordRotation, double rotation, boolean bowPickedUp, double mouseX, double mouseY, boolean isClicked, boolean swordPickedUp, boolean minePlased, boolean explodet, String message, double hp, int death, double swordDamage, double slingshotDamage, double minenDemage, double minenTime, int maxMinen) {
+    public Message(int x, int y, String name, double swordRotation, double rotation, boolean bowPickedUp, double mouseX, double mouseY, boolean isClicked, boolean swordPickedUp, boolean minePlaced, boolean exploded, String message, double hp, int death, double swordDamage, double slingshotDamage, double mineDamage, double mineTime, int maxMines) {
         this.x = x;
         this.y = y;
         this.name = name;
@@ -33,16 +33,16 @@ public class Message implements Serializable {
         this.mouseY = mouseY;
         this.isClicked = isClicked;
         this.swordPickedUp = swordPickedUp;
-        this.minePlased = minePlased;
-        this.explodet = explodet;
+        this.minePlaced = minePlaced;
+        this.exploded = exploded;
         this.message = message;
         this.hp = hp;
         this.death = death;
         this.swordDamage = swordDamage;
         this.slingshotDamage = slingshotDamage;
-        this.minenDemage = minenDemage;
-        this.minenTime = minenTime;
-        this.maxMinen = maxMinen;
+        this.mineDamage = mineDamage;
+        this.mineTime = mineTime;
+        this.maxMines = maxMines;
     }
 
     public int getX() {

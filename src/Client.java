@@ -16,8 +16,8 @@ public class Client {
     Slingshot slingshot;
     Message message;
     boolean isClicked = false;
-    boolean minePlased = false;
-    boolean explodet = false;
+    boolean minePlaced = false;
+    boolean exploded = false;
     public void setPanel(Panel panel) {
         this.panel = panel;
     }
@@ -43,10 +43,10 @@ public class Client {
                         panel.slingshot2.player2CreateArrow(recievedObject.mouseX,recievedObject.mouseY);
                     }
                     panel.player2.setSlingshotPickedUp(recievedObject.bowPickedUp);
-                    if (recievedObject.minePlased){
+                    if (recievedObject.minePlaced){
                         panel.mine2.createMine();
                     }
-                    if (recievedObject.explodet && panel.mine2.allMines.size() != 0 && panel.mine2.allMines != null){
+                    if (recievedObject.exploded && panel.mine2.allMines.size() != 0 && panel.mine2.allMines != null){
                         panel.mine2.time = 1;
                         panel.mine.explodemines();
                     }
@@ -57,9 +57,9 @@ public class Client {
                     panel.p1Inv.death2 = recievedObject.death;
                     panel.player2.swordDamage = recievedObject.swordDamage;
                     panel.player2.slingshotDamage = recievedObject.slingshotDamage;
-                    panel.player2.mineDamage = recievedObject.minenDemage;
-                    panel.player2.mineTime = recievedObject.minenTime;
-                    panel.player2.maxMines = recievedObject.maxMinen;
+                    panel.player2.mineDamage = recievedObject.mineDamage;
+                    panel.player2.mineTime = recievedObject.mineTime;
+                    panel.player2.maxMines = recievedObject.maxMines;
                 } catch (ClassNotFoundException e) {
                     System.out.println("Client hat Scheiße bekommen");
                 } catch (IOException e) {
@@ -81,7 +81,7 @@ public class Client {
             if(!panel.message.equals("")) {
                 panel.messageInput.setText(name + ": " + panel.message + "\n" + panel.messageInput.getText());
             }
-            message = new Message(player.x, player.y,name, sword.rotation, slingshot.playerRotation,player.isSlingshotPickedUp(), slingshot.mousePos.getX(), slingshot.mousePos.getY(),isClicked, player.swordPickedUp, minePlased,explodet,panel.message, panel.p1Inv.hp, panel.p1Inv.death, player.swordDamage, player.slingshotDamage, player.mineDamage, player.mineTime, player.maxMines);
+            message = new Message(player.x, player.y,name, sword.rotation, slingshot.playerRotation,player.isSlingshotPickedUp(), slingshot.mousePos.getX(), slingshot.mousePos.getY(),isClicked, player.swordPickedUp, minePlaced, exploded,panel.message, panel.p1Inv.hp, panel.p1Inv.death, player.swordDamage, player.slingshotDamage, player.mineDamage, player.mineTime, player.maxMines);
             if(!panel.serverDown) {
                 outputStream.writeObject(message);
             }
@@ -103,11 +103,11 @@ public class Client {
         isClicked = clicked;
     }
 
-    public void setMinePlased(boolean minePlased) {
-        this.minePlased = minePlased;
+    public void setMinePlaced(boolean minePlaced) {
+        this.minePlaced = minePlaced;
     }
 
-    public void setExplodet(boolean explodet) {
-        this.explodet = explodet;
+    public void setExploded(boolean exploded) {
+        this.exploded = exploded;
     }
 }

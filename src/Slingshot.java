@@ -9,8 +9,8 @@ import java.util.ArrayList;
 public class Slingshot implements MouseListener, ActionListener {
     double y1;
     double x1;
-    long yLenght;
-    long xLenght;
+    long yLength;
+    long xLength;
     double playerRotation;
     double time;
     Player player;
@@ -60,9 +60,9 @@ public class Slingshot implements MouseListener, ActionListener {
         x1 = player.x;
         y1 = player.y;
         if (mousePos != null) {
-            yLenght = (long) ((mousePos.getY()) - y1);
-            xLenght = (long) ((mousePos.getX()) - x1);
-            playerRotation = Math.atan2(yLenght, xLenght);
+            yLength = (long) ((mousePos.getY()) - y1);
+            xLength = (long) ((mousePos.getX()) - x1);
+            playerRotation = Math.atan2(yLength, xLength);
         }
 
         for (int i = allArrows.size(); i >= 1; i--) {
@@ -90,9 +90,9 @@ public class Slingshot implements MouseListener, ActionListener {
     public void player2CreateArrow(double mouseX, double mouseY) {
 
         if (mousePos != null) {
-            long yLenght = (long) (mouseY - player.y);
-            long xLenght = (long) (mouseX - player.x);
-            double Rotation = Math.atan2(yLenght, xLenght);
+            long yLength = (long) (mouseY - player.y);
+            long xLength = (long) (mouseX - player.x);
+            double Rotation = Math.atan2(yLength, xLength);
             Double[] Arrow = new Double[4];
             Arrow[0] = ((double) player.x);// x1 Index = 0
             Arrow[1] = ((double) player.y);// y1 Index = 1
@@ -105,7 +105,7 @@ public class Slingshot implements MouseListener, ActionListener {
     public void tick(){
         time -= 0.1;
         if (mouseDown) {
-            if (!explosionColision(player.x + player.width / 2, player.y + player.height / 2, 1745, 245, 100) && !explosionColision(player.x + player.width / 2, player.y + player.height / 2, 195, 845, 100)) {
+            if (!explosionCollision(player.x + player.width / 2, player.y + player.height / 2, 1745, 245, 100) && !explosionCollision(player.x + player.width / 2, player.y + player.height / 2, 195, 845, 100)) {
                 if (time <= 0) {
                     CreateArrow();
                     client.setClicked(true);
@@ -129,7 +129,7 @@ public class Slingshot implements MouseListener, ActionListener {
             mouseDown = true;
         }
     }
-    public boolean explosionColision(int x, int y, int x2, int y2, int distance) {
+    public boolean explosionCollision(int x, int y, int x2, int y2, int distance) {
         return Math.abs(x - x2) < distance && Math.abs(y - y2) < distance;
     }
     @Override

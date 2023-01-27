@@ -34,8 +34,7 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
     Image speedImage;
     int bgrWidth;
     int bgrHeight;
-    ArrayList<Double[]> allArrows;
-    ArrayList<int[]> allObsticals;
+    ArrayList<int[]> allObstacles;
     Inventory p1Inv;
     JTextArea messageOutput;
     JTextArea messageInput;
@@ -51,8 +50,8 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
         slingshotImage = new ImageIcon("resources/bow.png").getImage();
         bgrImage = new ImageIcon("resources/Background.jpg").getImage();
         projImage = new ImageIcon("resources/Projectile.png").getImage();
-        hpImage = new ImageIcon("resources/Healthbar.png").getImage();
-        schildImage = new ImageIcon("resources/Schield.png").getImage();
+        hpImage = new ImageIcon("resources/HealthBar.png").getImage();
+        schildImage = new ImageIcon("resources/Shield.png").getImage();
         speedImage = new ImageIcon("resources/Speed.png").getImage();
         bgrHeight = bgrImage.getHeight(null);
         bgrWidth = bgrImage.getWidth(null);
@@ -63,7 +62,7 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
 
         this.client = client;
         client.setClientPanel(this);
-        allObsticals = new ArrayList<int[]>();
+        allObstacles = new ArrayList<>();
         addObstacles();
 
         player2 = new Player(100, 100, playerImage.getWidth(null) * 3, playerImage.getHeight(null) * 3, player2, sword, this);
@@ -140,12 +139,12 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
         }
         g2d.setTransform(oldXForm);
         //Obstacles
-        for (int i = 0; i < allObsticals.size(); i++) {
+        for (int[] allObstacle : allObstacles) {
             g2d.setColor(new Color(48, 61, 61));
-            g2d.fillRect(allObsticals.get(i)[0], allObsticals.get(i)[1], allObsticals.get(i)[2], allObsticals.get(i)[3]);
+            g2d.fillRect(allObstacle[0], allObstacle[1], allObstacle[2], allObstacle[3]);
         }
         g2d.setTransform(oldXForm);
-        //Minen
+        //Mines
         mine.drawMine(g2d);
         g2d.setTransform(oldXForm);
 
@@ -226,8 +225,8 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
             message = "";
         }
         if (slingshot.mousePos != null) {
-            client.setMinePlased(mine.minePlaced);
-            client.setExplodet(mine.exploded);
+            client.setMinePlaced(mine.minePlaced);
+            client.setExploded(mine.exploded);
             client.setWeapon(slingshot);
             client.sendMessage(player1, sword);
             player1.tick();
@@ -246,33 +245,33 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
     }
 
     public void addObstacles() {
-        var obstical = new int[4];
-        addObstical(900, 300, 200, 30, obstical);
-        var obstical1 = new int[4];
-        addObstical(390, 730, 50, 190, obstical1);
-        var obstical2 = new int[4];
-        addObstical(550, 90, 30, 30, obstical2);
-        var obstical3 = new int[4];
-        addObstical(200, 90, 40, 600, obstical3);
-        var obstical4 = new int[4];
-        addObstical(1290, 600, 100, 90, obstical4);
-        var obstical5 = new int[4];
-        addObstical(670, 740, 370, 50, obstical5);
-        var obstical6 = new int[4];
-        addObstical(1300, 50, 70, 370, obstical6);
-        var obstical7 = new int[4];
-        addObstical(1500, 470, 370, 70, obstical7);
-        var obstical8 = new int[4];
-        addObstical(730, 190, 20, 400, obstical8);
-        var obstical9 = new int[4];
-        addObstical(360, 470, 250, 40, obstical9);
+        var obstacles = new int[4];
+        addObstacles(900, 300, 200, 30, obstacles);
+        var obstacles1 = new int[4];
+        addObstacles(390, 730, 50, 190, obstacles1);
+        var obstacles2 = new int[4];
+        addObstacles(550, 90, 30, 30, obstacles2);
+        var obstacles3 = new int[4];
+        addObstacles(200, 90, 40, 600, obstacles3);
+        var obstacles4 = new int[4];
+        addObstacles(1290, 600, 100, 90, obstacles4);
+        var obstacles5 = new int[4];
+        addObstacles(670, 740, 370, 50, obstacles5);
+        var obstacles6 = new int[4];
+        addObstacles(1300, 50, 70, 370, obstacles6);
+        var obstacles7 = new int[4];
+        addObstacles(1500, 470, 370, 70, obstacles7);
+        var obstacles8 = new int[4];
+        addObstacles(730, 190, 20, 400, obstacles8);
+        var obstacles9 = new int[4];
+        addObstacles(360, 470, 250, 40, obstacles9);
     }
 
-    public void addObstical(int x, int y, int wight, int hight, int[] obstical) {
-        obstical[0] = x;
-        obstical[1] = y;
-        obstical[2] = wight;
-        obstical[3] = hight;
-        allObsticals.add(obstical);
+    public void addObstacles(int x, int y, int wight, int height, int[] obstacles) {
+        obstacles[0] = x;
+        obstacles[1] = y;
+        obstacles[2] = wight;
+        obstacles[3] = height;
+        allObstacles.add(obstacles);
     }
 }
