@@ -45,6 +45,8 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
     boolean inChat;
     boolean serverDown;
     boolean inInv;
+    JPanel inventoryPanel;
+    Inventory inventory;
 
     public Panel(Client client) {
         playerImage = new ImageIcon("resources/Player.png").getImage();
@@ -62,6 +64,8 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
         font = new Font("Arial", Font.PLAIN, 40);
 
         addKeyListener(this);
+
+
 
         this.client = client;
         client.setClientPanel(this);
@@ -89,7 +93,6 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
         sword2.setPlayer2(player1);
         this.addMouseListener(sword);
 
-        ui = new Ui(20, player1, player2, this);
 
 
         player1.setEnemySword(sword2);
@@ -118,6 +121,12 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
         messageInput.addKeyListener(this);
         messageOutput.addKeyListener(this);
 
+        //Inventory
+        inventoryPanel = new JPanel();
+        inventory = new Inventory();
+
+        //Ui
+        ui = new Ui(20, player1, player2, this);
 
         int delay = 10;
         timer = new Timer(delay, this);
