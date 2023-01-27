@@ -78,7 +78,7 @@ public class UpgradeButton extends JButton implements ActionListener {
             }
         }
         if (Objects.equals(attribute, "MaxHp")) {
-            panel.p1Inv.maxHp++;
+            panel.ui.maxHp++;
         }
         if (Objects.equals(attribute, "ArrowVelocity")) {
             if(player.arrowVelocity < 4){
@@ -88,9 +88,9 @@ public class UpgradeButton extends JButton implements ActionListener {
 
         panel.grabFocus();
         for (int i = 0; i <= 2; i++) {
-            panel.remove(panel.p1Inv.allButtons.get(i));
+            panel.remove(panel.ui.allButtons.get(i));
         }
-        panel.p1Inv.allButtons.removeAll(panel.p1Inv.allButtons);
+        panel.ui.allButtons.removeAll(panel.ui.allButtons);
         panel.repaint();
     }
 }

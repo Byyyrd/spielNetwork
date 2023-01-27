@@ -35,7 +35,7 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
     int bgrWidth;
     int bgrHeight;
     ArrayList<int[]> allObstacles;
-    Inventory p1Inv;
+    Ui ui;
     JTextArea messageOutput;
     JTextArea messageInput;
     Font font;
@@ -86,7 +86,7 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
         sword2.setPlayer2(player1);
         this.addMouseListener(sword);
 
-        p1Inv = new Inventory(20, player1, player2, this);
+        ui = new Ui(20, player1, player2, this);
 
 
         player1.setEnemySword(sword2);
@@ -161,7 +161,7 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
         g2d.setTransform(oldXForm);
 
         //Inventory
-        p1Inv.drawInventory(g2d, hpImage);
+        ui.drawInventory(g2d, hpImage);
         super.paint(g);
         if (serverDown) {
             g2d.setFont(new Font("Arial", Font.PLAIN, 200));
@@ -170,7 +170,7 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
             g2d.drawString("Server Shutdown", 100, 500);
         }
         if (inChat) {
-            p1Inv.drawIcons(g2d,schildImage,swordImage, slingshotImage,speedImage);
+            ui.drawIcons(g2d,schildImage,swordImage, slingshotImage,speedImage);
         }
     }
 
@@ -196,7 +196,7 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
             messageOutput.setText("");
         }
         if (e.getKeyCode() == 71) {
-            p1Inv.levelUp();
+            ui.levelUp();
         }
         if (e.getKeyCode() == 130) {
             e.consume();

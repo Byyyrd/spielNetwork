@@ -76,13 +76,13 @@ public class Player implements Serializable {
     public void checkCollision() {
         if (enemySword != null && player2.swordPickedUp) {
             if (inRectangle((int) (enemySword.x + 21 + Math.sin(enemySword.rotation) * 21), (int) (enemySword.y + width / 2 + Math.cos(enemySword.rotation) * -25), x, y, width, height) || inRectangle((int) (enemySword.x + 21 + Math.sin(enemySword.rotation) * 40), (int) (enemySword.y + width / 2 + Math.cos(enemySword.rotation) * -40), x, y, width, height) || inRectangle((int) (enemySword.x + 21 + Math.sin(enemySword.rotation) * 55), (int) (enemySword.y + width / 2 + Math.cos(enemySword.rotation) * -55), x, y, width, height)) {
-                panel.p1Inv.playerHit(player2.swordDamage * (1 - meleeDamageReduction / 100));
+                panel.ui.playerHit(player2.swordDamage * (1 - meleeDamageReduction / 100));
             }
         }
         if (allArrows != null) {
             for (Double[] allArrow : allArrows) {
                 if (inRectangle((int) (allArrow[0] + 5), (int) (allArrow[1] + 5), x, y, width, height)) {
-                    panel.p1Inv.playerHit(player2.slingshotDamage * (1 - slingshotDamageReduction / 100));
+                    panel.ui.playerHit(player2.slingshotDamage * (1 - slingshotDamageReduction / 100));
                 }
             }
         }
@@ -121,10 +121,10 @@ public class Player implements Serializable {
         g2d.drawString(player2.name + "  " + ((int) (enemySword.cooldown * 10f)) / 10f, player2.x, player2.y);
 
         g2d.setColor(Color.red);
-        g2d.fillRect(x, y + height + 3, (int) (48*panel.p1Inv.normHp),10);
+        g2d.fillRect(x, y + height + 3, (int) (48*panel.ui.normHp),10);
         g2d.drawImage(panel.hpImage,x, y + height + 3, width,10,null);
         g2d.setColor(Color.red);
-        g2d.fillRect(player2.x, player2.y + player2.height + 3, (int) ((48*panel.p1Inv.p2normHp)),10);
+        g2d.fillRect(player2.x, player2.y + player2.height + 3, (int) ((48*panel.ui.p2normHp)),10);
         g2d.drawImage(panel.hpImage,player2.x, player2.y + player2.height + 3, player2.width,10,null);
 
         //Player
@@ -217,14 +217,14 @@ public class Player implements Serializable {
 
     public void heal() {
         if (explosionCollision(x + width / 2, y + height / 2, 195, 845, 45) && healTimer <= 0) {
-            if (panel.p1Inv.hp < panel.p1Inv.maxHp) {
-                panel.p1Inv.hp++;
+            if (panel.ui.hp < panel.ui.maxHp) {
+                panel.ui.hp++;
             }
             healTimer = healTime;
         }
         if (explosionCollision(x + width / 2, y + height / 2, 1745, 245, 45) && healTimer <= 0) {
-            if (panel.p1Inv.hp < panel.p1Inv.maxHp) {
-                panel.p1Inv.hp++;
+            if (panel.ui.hp < panel.ui.maxHp) {
+                panel.ui.hp++;
             }
             healTimer = healTime;
         }

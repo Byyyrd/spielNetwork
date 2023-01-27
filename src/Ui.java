@@ -1,7 +1,7 @@
 import java.awt.*;
 import java.util.ArrayList;
 
-public class Inventory {
+public class Ui {
     double hp;
     double enemyHp;
     int mines;
@@ -20,7 +20,7 @@ public class Inventory {
     double p2normHp;
     ArrayList<UpgradeButton> allButtons = new ArrayList<>();
 
-    public Inventory(int maxHp, Player player, Player player2, Panel panel) {
+    public Ui(int maxHp, Player player, Player player2, Panel panel) {
         this.maxHp = maxHp;
         this.player = player;
         this.player2 = player2;
