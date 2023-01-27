@@ -5,7 +5,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class Slingshot implements MouseListener, ActionListener {
     double y1;
@@ -33,7 +32,7 @@ public class Slingshot implements MouseListener, ActionListener {
     }
 
     public void drawSlingshot(Graphics2D g2d, Player player, Player player2, Image image, Image playerImage, Slingshot slingshot2) {
-        if (player.isSlingshotPickedup()) {
+        if (player.isSlingshotPickedUp()) {
             g2d.rotate(this.playerRotation, player.x + playerImage.getWidth(null) * 1.5, player.y + playerImage.getHeight(null) * 1.5);
             g2d.drawImage(image, player.x + playerImage.getWidth(null) * 3 / 2 - image.getWidth(null) / 48, player.y + playerImage.getHeight(null) * 3 / 2 - image.getHeight(null) / 48, image.getWidth(null) / 24, image.getHeight(null) / 24, null);
             g2d.rotate(-this.playerRotation, player.x + playerImage.getWidth(null) * 1.5, player.y + playerImage.getHeight(null) * 1.5);
@@ -42,7 +41,7 @@ public class Slingshot implements MouseListener, ActionListener {
             g2d.setColor(new Color(12, 255, 0));
             g2d.fillOval((int) (this.allArrows.get(i - 1)[0] + 5), (int) (this.allArrows.get(i - 1)[1] + 5), 10, 10);
         }
-        if (player2.isSlingshotPickedup()) {
+        if (player2.isSlingshotPickedUp()) {
             g2d.rotate(panel.rotation2, player2.x + playerImage.getWidth(null) * 1.5, player2.y + playerImage.getHeight(null) * 1.5);
             g2d.drawImage(image, player2.x + playerImage.getWidth(null) * 3 / 2 - image.getWidth(null) / 48, player2.y + playerImage.getHeight(null) * 3 / 2 - image.getHeight(null) / 48, image.getWidth(null) / 24, image.getHeight(null) / 24, null);
             g2d.rotate(-panel.rotation2, player2.x + playerImage.getWidth(null) * 1.5, player2.y + playerImage.getHeight(null) * 1.5);
@@ -74,8 +73,8 @@ public class Slingshot implements MouseListener, ActionListener {
             }
         }
         for (int i = allArrows.size(); i >= 1; i--) {
-            allArrows.get(i - 1)[0] = (allArrows.get(i - 1)[0] + allArrows.get(i - 1)[2] * 1500 * 0.01 * player.arrowVelosety);//xMovement
-            allArrows.get(i - 1)[1] = (allArrows.get(i - 1)[1] + allArrows.get(i - 1)[3] * 1500 * 0.01 * player.arrowVelosety);//yMovement
+            allArrows.get(i - 1)[0] = (allArrows.get(i - 1)[0] + allArrows.get(i - 1)[2] * 1500 * 0.01 * player.arrowVelocity);//xMovement
+            allArrows.get(i - 1)[1] = (allArrows.get(i - 1)[1] + allArrows.get(i - 1)[3] * 1500 * 0.01 * player.arrowVelocity);//yMovement
         }
     }
 
@@ -126,7 +125,7 @@ public class Slingshot implements MouseListener, ActionListener {
 
     @Override
     public void mousePressed(MouseEvent e) {
-        if (player.isSlingshotPickedup()) {
+        if (player.isSlingshotPickedUp()) {
             mouseDown = true;
         }
     }

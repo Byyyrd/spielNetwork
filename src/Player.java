@@ -18,29 +18,29 @@ public class Player implements Serializable {
     Player player2;
     Sword enemySword;
     ArrayList<Double[]> allArrows;
-    ArrayList<Double[]> allArrowsself;
-    boolean slingshotPickedup;
-    boolean swordPickedup;
+    ArrayList<Double[]> allArrowsSelf;
+    boolean slingshotPickedUp;
+    boolean swordPickedUp;
     Panel panel;
     double hp;
-    double healtimer;
-    double healtime = 4;
+    double healTimer;
+    double healTime = 4;
     double swordDamage =2.5;
     double slingshotDamage=1;
-    double minenDamage =10;
+    double mineDamage =10;
     double arrowTime = 1;
-    double minenTime = 4;
-    double iFrametime = 0.5;
-    double melieDamageReduction = 0;
+    double mineTime = 4;
+    double iFrameTime = 0.5;
+    double meleeDamageReduction = 0;
     double slingshotDamageReduction = 0;
-    double minenDamageReduction = 0;
-    double arrowVelosety = 1;
-    int maxMinen = 10;
+    double mineDamageReduction = 0;
+    double arrowVelocity = 1;
+    int maxMines = 10;
 
 
     public Player(int x, int y, int width, int height, Player player2, Sword enemySword, Panel panel) {
-        slingshotPickedup = true;
-        swordPickedup = false;
+        slingshotPickedUp = true;
+        swordPickedUp = false;
         this.player2 = player2;
         this.x = x;
         this.y = y;
@@ -58,7 +58,7 @@ public class Player implements Serializable {
         }
 
         iFrame -= 0.1;
-        healtimer -= 0.1;
+        healTimer -= 0.1;
         if (x > panel.getWidth()) {
             x = -width;
         }
@@ -74,9 +74,9 @@ public class Player implements Serializable {
     }
 
     public void checkCollision() {
-        if (enemySword != null && player2.swordPickedup) {
+        if (enemySword != null && player2.swordPickedUp) {
             if (inRectangle((int) (enemySword.x + 21 + Math.sin(enemySword.rotation) * 21), (int) (enemySword.y + width / 2 + Math.cos(enemySword.rotation) * -25), x, y, width, height) || inRectangle((int) (enemySword.x + 21 + Math.sin(enemySword.rotation) * 40), (int) (enemySword.y + width / 2 + Math.cos(enemySword.rotation) * -40), x, y, width, height) || inRectangle((int) (enemySword.x + 21 + Math.sin(enemySword.rotation) * 55), (int) (enemySword.y + width / 2 + Math.cos(enemySword.rotation) * -55), x, y, width, height)) {
-                panel.p1Inv.playerHit(player2.swordDamage * (1 - melieDamageReduction / 100));
+                panel.p1Inv.playerHit(player2.swordDamage * (1 - meleeDamageReduction / 100));
             }
         }
         if (allArrows != null) {
@@ -94,9 +94,9 @@ public class Player implements Serializable {
             }
         }
         for (int j = 0; j < panel.allObsticals.size(); j++) {
-            for (int i = 0; i < allArrowsself.size(); i++) {
-                if (inRectangle((int) (allArrowsself.get(i)[0] + 5), (int) (allArrowsself.get(i)[1] + 5), panel.allObsticals.get(j)[0], panel.allObsticals.get(j)[1], panel.allObsticals.get(j)[2], panel.allObsticals.get(j)[3])) {
-                    allArrowsself.remove(i);
+            for (int i = 0; i < allArrowsSelf.size(); i++) {
+                if (inRectangle((int) (allArrowsSelf.get(i)[0] + 5), (int) (allArrowsSelf.get(i)[1] + 5), panel.allObsticals.get(j)[0], panel.allObsticals.get(j)[1], panel.allObsticals.get(j)[2], panel.allObsticals.get(j)[3])) {
+                    allArrowsSelf.remove(i);
                 }
             }
         }
@@ -216,17 +216,17 @@ public class Player implements Serializable {
     }
 
     public void heal() {
-        if (explosionColision(x + width / 2, y + height / 2, 195, 845, 45) && healtimer <= 0) {
+        if (explosionColision(x + width / 2, y + height / 2, 195, 845, 45) && healTimer <= 0) {
             if (panel.p1Inv.hp < panel.p1Inv.maxHp) {
                 panel.p1Inv.hp++;
             }
-            healtimer = healtime;
+            healTimer = healTime;
         }
-        if (explosionColision(x + width / 2, y + height / 2, 1745, 245, 45) && healtimer <= 0) {
+        if (explosionColision(x + width / 2, y + height / 2, 1745, 245, 45) && healTimer <= 0) {
             if (panel.p1Inv.hp < panel.p1Inv.maxHp) {
                 panel.p1Inv.hp++;
             }
-            healtimer = healtime;
+            healTimer = healTime;
         }
     }
 
@@ -243,28 +243,28 @@ public class Player implements Serializable {
 
     }
 
-    public boolean isSlingshotPickedup() {
-        return slingshotPickedup;
+    public boolean isSlingshotPickedUp() {
+        return slingshotPickedUp;
     }
 
-    public void setSlingshotPickedup(boolean slingshotPickedup) {
-        this.slingshotPickedup = slingshotPickedup;
+    public void setSlingshotPickedUp(boolean slingshotPickedUp) {
+        this.slingshotPickedUp = slingshotPickedUp;
     }
 
     public void setAllArrows(ArrayList<Double[]> allArrows) {
         this.allArrows = allArrows;
     }
 
-    public void setAllArrowsself(ArrayList<Double[]> allArrowsself) {
-        this.allArrowsself = allArrowsself;
+    public void setAllArrowsSelf(ArrayList<Double[]> allArrowsSelf) {
+        this.allArrowsSelf = allArrowsSelf;
     }
 
-    public boolean isSwordPickedup() {
-        return swordPickedup;
+    public boolean isSwordPickedUp() {
+        return swordPickedUp;
     }
 
-    public void setSwordPickedup(boolean swordPickedup) {
-        this.swordPickedup = swordPickedup;
+    public void setSwordPickedUp(boolean swordPickedUp) {
+        this.swordPickedUp = swordPickedUp;
     }
 
     public boolean explosionColision(int x, int y, int x2, int y2, int distance) {

@@ -31,7 +31,7 @@ public class Inventory {
         if (player.iFrame <= 0) {
             hp -= damage;
             player.hp = hp;
-            player.iFrame = player.iFrametime;
+            player.iFrame = player.iFrameTime;
         }
 
         if (hp <= 0) {
@@ -39,8 +39,8 @@ public class Inventory {
             player.y = 0;
             death++;
             hp = maxHp;
-            player.swordPickedup = false;
-            player.slingshotPickedup = true;
+            player.swordPickedUp = false;
+            player.slingshotPickedUp = true;
         }
         if (enemyHp <= 0) {
             death2++;
@@ -76,15 +76,15 @@ public class Inventory {
         for (int i = 0; i <= 2; i++) {
             int rand = (int) (Math.random() * 11 + 1);
             switch (rand) {
-                case 1 ->  allButtons.add(new UpgradeButton(panel, i * 600 + 100, "Heal"));
-                case 2 ->  allButtons.add(new UpgradeButton(panel, i * 600 + 100, "SwordDamage"));
-                case 3 ->  allButtons.add(new UpgradeButton(panel, i * 600 + 100, "Slingshotdamage"));
-                case 4 ->  allButtons.add(new UpgradeButton(panel, i * 600 + 100, "Minedamage"));
-                case 5 ->  allButtons.add(new UpgradeButton(panel, i * 600 + 100, "Slingshot-Cooldown"));
-                case 6 ->  allButtons.add(new UpgradeButton(panel, i * 600 + 100, "Sword-DmgReduction"));
-                case 7 ->  allButtons.add(new UpgradeButton(panel, i * 600 + 100, "Slingshot-DmgReduction"));
-                case 8 ->  allButtons.add(new UpgradeButton(panel, i * 600 + 100, "Mines-DmgReduction"));
-                case 9 ->  allButtons.add(new UpgradeButton(panel, i * 600 + 100, "Speed"));
+                case 1 -> allButtons.add(new UpgradeButton(panel, i * 600 + 100, "Heal"));
+                case 2 -> allButtons.add(new UpgradeButton(panel, i * 600 + 100, "SwordDamage"));
+                case 3 -> allButtons.add(new UpgradeButton(panel, i * 600 + 100, "Slingshotdamage"));
+                case 4 -> allButtons.add(new UpgradeButton(panel, i * 600 + 100, "Minedamage"));
+                case 5 -> allButtons.add(new UpgradeButton(panel, i * 600 + 100, "Slingshot-Cooldown"));
+                case 6 -> allButtons.add(new UpgradeButton(panel, i * 600 + 100, "Sword-DmgReduction"));
+                case 7 -> allButtons.add(new UpgradeButton(panel, i * 600 + 100, "Slingshot-DmgReduction"));
+                case 8 -> allButtons.add(new UpgradeButton(panel, i * 600 + 100, "Mines-DmgReduction"));
+                case 9 -> allButtons.add(new UpgradeButton(panel, i * 600 + 100, "Speed"));
                 case 10 -> allButtons.add(new UpgradeButton(panel, i * 600 + 100, "MaxMines"));
                 case 11 -> allButtons.add(new UpgradeButton(panel, i * 600 + 100, "MineGain"));
             }
@@ -99,5 +99,68 @@ public class Inventory {
 
     public void setDashCooldown(double dashCooldown) {
         this.dashCooldown = dashCooldown;
+    }
+
+    public void drawIcons(Graphics2D g2d, Image schildImage, Image swordImage, Image slingshotImage, Image speedImage) {
+        g2d.setColor(new Color(1, 1, 1));
+        g2d.fillRect(0, 950, 1920, 150);
+        g2d.setColor(Color.white);
+        g2d.setFont(new Font("Arial", Font.PLAIN, 40));
+        g2d.drawImage(schildImage, 20, 956, schildImage.getWidth(null) / 3, schildImage.getHeight(null) / 3, null);
+        g2d.rotate(Math.PI, 23 + swordImage.getWidth(null) / 6, 960 + swordImage.getHeight(null) / 10);
+        g2d.drawImage(swordImage, 23, 960, swordImage.getWidth(null) / 3, swordImage.getHeight(null) / 5, null);
+        g2d.rotate(-Math.PI, 23 + swordImage.getWidth(null) / 6, 960 + swordImage.getHeight(null) / 10);
+        g2d.drawString(":  " + player.meleeDamageReduction, 80, 1010);
+
+        g2d.drawImage(schildImage, 200, 956, schildImage.getWidth(null) / 3, schildImage.getHeight(null) / 3, null);
+        g2d.drawImage(slingshotImage, 208, 970, slingshotImage.getWidth(null) / 24, slingshotImage.getHeight(null) / 24, null);
+        g2d.drawString(":  " + ((int) (player.slingshotDamageReduction * 10f)) / 10f, 260, 1010);
+
+        g2d.drawImage(schildImage, 380, 956, schildImage.getWidth(null) / 3, schildImage.getHeight(null) / 3, null);
+        g2d.setColor(Color.red);
+        g2d.fillOval(395, 975, 30, 30);
+        g2d.setColor(Color.white);
+        g2d.drawString(":  " + player.mineDamageReduction, 440, 1010);
+
+        g2d.drawImage(swordImage, 563, 960, swordImage.getWidth(null) / 3, swordImage.getHeight(null) / 5, null);
+        g2d.drawString(":  " + ((int) (player.swordDamage * 10f)) / 10f, 610, 1010);
+
+        g2d.drawImage(slingshotImage, 703, 973, slingshotImage.getWidth(null) / 24, slingshotImage.getHeight(null) / 24, null);
+        g2d.drawString(":  " + ((int) (player.slingshotDamage * 10f)) / 10f, 750, 1010);
+
+        g2d.setColor(Color.red);
+        g2d.fillOval(853, 985, 30, 30);
+        g2d.setColor(Color.white);
+        g2d.drawString(":  " + (int) player.mineDamage, 900, 1010);
+
+        g2d.setColor(new Color(12, 255, 0, 142));
+        g2d.fillOval(1000, 980, 40, 40);
+        g2d.setColor(Color.green);
+        g2d.setFont(new Font("Arial", Font.PLAIN, 60));
+        g2d.drawString("+", 1002, 1020);
+        g2d.setFont(new Font("Arial", Font.PLAIN, 40));
+        g2d.setColor(Color.white);
+        g2d.drawString(":  " + ((int) (player.healTime * 10f)) / 10f + "s", 1050, 1010);
+
+        g2d.drawImage(slingshotImage, 1155, 973, slingshotImage.getWidth(null) / 24, slingshotImage.getHeight(null) / 24, null);
+        g2d.drawString(":  " + ((int) (player.arrowTime * 10f)) / 10f + "s", 1200, 1010);
+
+        g2d.setColor(new Color(255, 0, 0, 142));
+        g2d.fillOval(1320, 980, 40, 40);
+        g2d.setColor(Color.red);
+        g2d.setFont(new Font("Arial", Font.PLAIN, 60));
+        g2d.drawString("+", 1322, 1020);
+        g2d.setFont(new Font("Arial", Font.PLAIN, 40));
+        g2d.setColor(Color.white);
+        g2d.drawString(":  " + ((int) (player.mineTime * 10f)) / 10f + "s", 1370, 1010);
+
+        g2d.drawImage(speedImage, 1500, 975, speedImage.getWidth(null) / 3, speedImage.getHeight(null) / 3, null);
+        g2d.drawString(":  " + ((int) (player.speed * 10f)) / 10f, 1550, 1010);
+
+        g2d.setColor(Color.red);
+        g2d.drawString("MAX", 1650, 1015);
+        g2d.fillOval(1760, 980, 40, 40);
+        g2d.setColor(Color.white);
+        g2d.drawString(":  " + player.maxMines, 1800, 1010);
     }
 }

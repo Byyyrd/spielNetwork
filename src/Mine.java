@@ -3,18 +3,18 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 public class Mine{
-    int minenUeber = 10;
-    ArrayList<int[]> alleMinen = new ArrayList<int[]>();
+    int minesLeft = 10;
+    ArrayList<int[]> allMines = new ArrayList<int[]>();
     Player player;
     Player player2;
-    boolean minePlased;
-    boolean explodet;
+    boolean minePlaced;
+    boolean exploded;
     Mine mine;
     Panel panel;
     double time;
-    double minenTimer;
-    boolean loesche;
-    boolean canPlase;
+    double mineTimer;
+    boolean delete;
+    boolean canPlace;
 
     public Mine(Player player,Player player2, Mine mine, Panel panel) {
         this.player = player;
@@ -25,63 +25,63 @@ public class Mine{
     public void tick(){
        time = time - 0.1;
        mine.time = mine.time - 0.1;
-       minenTimer -= 0.1;
-       mine.minenTimer -= 0.1;
-       if (explosionColision(player.x + player.width/2, player.y + player.height/2, 1000,500, 100) && minenTimer <= 0 && minenUeber < player.maxMinen){
-           minenUeber++;
-           minenTimer = player.minenTime;
+       mineTimer -= 0.1;
+       mine.mineTimer -= 0.1;
+       if (explosionColision(player.x + player.width/2, player.y + player.height/2, 1000,500, 100) && mineTimer <= 0 && minesLeft < player.maxMines){
+           minesLeft++;
+           mineTimer = player.mineTime;
        }
 
-        if (explosionColision(player2.x + player2.width/2, player2.y + player2.height/2, 1000,500, 100) && minenTimer <= 0 && mine.minenUeber < player2.maxMinen){
-            mine.minenUeber++;
-            mine.minenTimer = player2.minenTime;
+        if (explosionColision(player2.x + player2.width/2, player2.y + player2.height/2, 1000,500, 100) && mineTimer <= 0 && mine.minesLeft < player2.maxMines){
+            mine.minesLeft++;
+            mine.mineTimer = player2.mineTime;
         }
         if (explosionColision(player.x + player.width/2, player.y + player.height/2, 1000,500, 200)||explosionColision(player.x + player.width/2, player.y + player.height/2, 1745,245, 100)||explosionColision(player.x + player.width/2, player.y +player.height/2, 195,845, 100)){
-            canPlase = false;
+            canPlace = false;
         } else {
-            canPlase = true;
+            canPlace = true;
 
         }
-        panel.p1Inv.setMines(minenUeber);
+        panel.p1Inv.setMines(minesLeft);
     }
 
     public void createMine(){
         int[] mine = new int[2];
         mine[0] = player.x + player.width/2 ;
         mine[1] = player.y + player.height/2;
-        alleMinen.add(mine);
-        minePlased = true;
+        allMines.add(mine);
+        minePlaced = true;
     }
 
     public void explodemines(){
-        if (mine.alleMinen.size() != 0 && mine.alleMinen != null) {
-            for (int i = mine.alleMinen.size(); i > 0; i--) {
-                if (explosionColision(mine.alleMinen.get(i-1)[0], mine.alleMinen.get(i-1)[1], player.x, player.y, 90) || explosionColision(mine.alleMinen.get(i -1)[0], mine.alleMinen.get(i -1 )[1], player.x + player.width, player.y, 90) || explosionColision(mine.alleMinen.get(i -1 )[0], mine.alleMinen.get(i-1)[1], player.x + player.width / 2, player.y, 90) || explosionColision(mine.alleMinen.get(i-1)[0], mine.alleMinen.get(i-1)[1], player.x + player.width, player.y + player.height / 2, 90) || explosionColision(mine.alleMinen.get(i-1)[0], mine.alleMinen.get(i-1)[1], player.x + player.width, player.y + player.height, 90) || explosionColision(mine.alleMinen.get(i-1)[0], mine.alleMinen.get(i-1)[1], player.x + player.width / 2, player.y + player.height, 90) || explosionColision(mine.alleMinen.get(i-1)[0], mine.alleMinen.get(i-1)[1], player.x, player.y + player.height, 90) || explosionColision(mine.alleMinen.get(i-1)[0], mine.alleMinen.get(i-1)[1], player.x, player.y + player.height / 2, 90)) {
-                    panel.p1Inv.playerHit(panel.player2.minenDamage * (1 - panel.player1.minenDamageReduction / 100));
+        if (mine.allMines.size() != 0 && mine.allMines != null) {
+            for (int i = mine.allMines.size(); i > 0; i--) {
+                if (explosionColision(mine.allMines.get(i-1)[0], mine.allMines.get(i-1)[1], player.x, player.y, 90) || explosionColision(mine.allMines.get(i -1)[0], mine.allMines.get(i -1 )[1], player.x + player.width, player.y, 90) || explosionColision(mine.allMines.get(i -1 )[0], mine.allMines.get(i-1)[1], player.x + player.width / 2, player.y, 90) || explosionColision(mine.allMines.get(i-1)[0], mine.allMines.get(i-1)[1], player.x + player.width, player.y + player.height / 2, 90) || explosionColision(mine.allMines.get(i-1)[0], mine.allMines.get(i-1)[1], player.x + player.width, player.y + player.height, 90) || explosionColision(mine.allMines.get(i-1)[0], mine.allMines.get(i-1)[1], player.x + player.width / 2, player.y + player.height, 90) || explosionColision(mine.allMines.get(i-1)[0], mine.allMines.get(i-1)[1], player.x, player.y + player.height, 90) || explosionColision(mine.allMines.get(i-1)[0], mine.allMines.get(i-1)[1], player.x, player.y + player.height / 2, 90)) {
+                    panel.p1Inv.playerHit(panel.player2.mineDamage * (1 - panel.player1.mineDamageReduction / 100));
                 }
             }
-            mine.loesche = true;
+            mine.delete = true;
         }
     }
     public void drawMine(Graphics2D g2d){
         g2d.setColor(new Color(255, 0, 0));
-        for(int i = 0; i < alleMinen.size(); i++){
-            g2d.fillOval(alleMinen.get(i)[0], alleMinen.get(i)[1],10,10);
+        for(int i = 0; i < allMines.size(); i++){
+            g2d.fillOval(allMines.get(i)[0], allMines.get(i)[1],10,10);
             if (time >= 0) {
-                g2d.fillOval(alleMinen.get(i)[0]-45, alleMinen.get(i)[1]-45, 90, 90);
-            } else if (loesche) {
-                alleMinen.removeAll(alleMinen);
-                loesche = false;
+                g2d.fillOval(allMines.get(i)[0]-45, allMines.get(i)[1]-45, 90, 90);
+            } else if (delete) {
+                allMines.removeAll(allMines);
+                delete = false;
             }
         }
         if (mine != null){
-            for (int i = 0; i < mine.alleMinen.size(); i++){
-                g2d.fillOval(mine.alleMinen.get(i)[0], mine.alleMinen.get(i)[1],10,10);
+            for (int i = 0; i < mine.allMines.size(); i++){
+                g2d.fillOval(mine.allMines.get(i)[0], mine.allMines.get(i)[1],10,10);
                 if (mine.time >= 0) {
-                    g2d.fillOval(mine.alleMinen.get(i)[0]-45, mine.alleMinen.get(i)[1]-45, 90, 90);
-                }else if (mine.loesche) {
-                    mine.alleMinen.removeAll(mine.alleMinen);
-                    mine.loesche = false;
+                    g2d.fillOval(mine.allMines.get(i)[0]-45, mine.allMines.get(i)[1]-45, 90, 90);
+                }else if (mine.delete) {
+                    mine.allMines.removeAll(mine.allMines);
+                    mine.delete = false;
                 }
             }
         }
@@ -97,15 +97,15 @@ public class Mine{
     public void keyPressed(KeyEvent e) {
         if (time<= 0) {
             if (e.getKeyCode() == 32) {
-                if (minenUeber > 0 && canPlase) {
-                    minenUeber--;
+                if (minesLeft > 0 && canPlace) {
+                    minesLeft--;
                     createMine();
                 }
             }
             if (e.getKeyCode() == 69) {
-                explodet = true;
+                exploded = true;
                 time = 1;
-                loesche = true;
+                delete = true;
             }
         }
     }

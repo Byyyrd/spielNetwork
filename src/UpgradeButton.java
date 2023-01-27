@@ -25,7 +25,7 @@ public class UpgradeButton extends JButton implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (Objects.equals(attribute, "Heal")) {
-            player.healtime -= 0.19;
+            player.healTime -= 0.19;
         }
         if (Objects.equals(attribute, "SwordDamage")) {
             player.swordDamage += 0.25;
@@ -34,28 +34,28 @@ public class UpgradeButton extends JButton implements ActionListener {
             player.slingshotDamage += 0.25;
         }
         if (Objects.equals(attribute, "Minedamage")) {
-            player.minenDamage += 0.5;
+            player.mineDamage += 0.5;
         }
         if (Objects.equals(attribute, "Slingshot-Cooldown")) {
             player.arrowTime -= 0.125;
         }
         if (Objects.equals(attribute, "Sword-DmgReduction")) {
-            player.melieDamageReduction += 2.5;
+            player.meleeDamageReduction += 2.5;
         }
         if (Objects.equals(attribute, "Slingshot-DmgReduction")) {
             player.slingshotDamageReduction += 2;
         }
         if (Objects.equals(attribute, "Mines-DmgReduction")) {
-            player.minenDamageReduction += 4;
+            player.mineDamageReduction += 4;
         }
         if (Objects.equals(attribute, "Speed")) {
             player.speed += 0.125;
         }
         if (Objects.equals(attribute, "MaxMines")) {
-            player.maxMinen += 5;
+            player.maxMines += 5;
         }
         if (Objects.equals(attribute, "MineGain")) {
-            player.minenTime -= 0.19;
+            player.mineTime -= 0.19;
         }
         panel.grabFocus();
         for (int i = 0; i <= 2; i++) {

@@ -38,15 +38,15 @@ public class Client {
                     panel.setPlayer2(recievedObject.getX(), recievedObject.getY(), recievedObject.getName());
                     panel.sword2.rotation = recievedObject.getSwordRotation();
                     panel.setRotation2(recievedObject.rotation);
-                    panel.player2.setSwordPickedup(recievedObject.swordPickedUp);
+                    panel.player2.setSwordPickedUp(recievedObject.swordPickedUp);
                     if (recievedObject.isClicked){
                         panel.slingshot2.player2CreateArrow(recievedObject.mouseX,recievedObject.mouseY);
                     }
-                    panel.player2.setSlingshotPickedup(recievedObject.bowPickedUp);
+                    panel.player2.setSlingshotPickedUp(recievedObject.bowPickedUp);
                     if (recievedObject.minePlased){
                         panel.mine2.createMine();
                     }
-                    if (recievedObject.explodet && panel.mine2.alleMinen.size() != 0 && panel.mine2.alleMinen != null){
+                    if (recievedObject.explodet && panel.mine2.allMines.size() != 0 && panel.mine2.allMines != null){
                         panel.mine2.time = 1;
                         panel.mine.explodemines();
                     }
@@ -57,9 +57,9 @@ public class Client {
                     panel.p1Inv.death2 = recievedObject.death;
                     panel.player2.swordDamage = recievedObject.swordDamage;
                     panel.player2.slingshotDamage = recievedObject.slingshotDamage;
-                    panel.player2.minenDamage = recievedObject.minenDemage;
-                    panel.player2.minenTime = recievedObject.minenTime;
-                    panel.player2.maxMinen = recievedObject.maxMinen;
+                    panel.player2.mineDamage = recievedObject.minenDemage;
+                    panel.player2.mineTime = recievedObject.minenTime;
+                    panel.player2.maxMines = recievedObject.maxMinen;
                 } catch (ClassNotFoundException e) {
                     System.out.println("Client hat Scheiße bekommen");
                 } catch (IOException e) {
@@ -81,7 +81,7 @@ public class Client {
             if(!panel.message.equals("")) {
                 panel.messageInput.setText(name + ": " + panel.message + "\n" + panel.messageInput.getText());
             }
-            message = new Message(player.x, player.y,name, sword.rotation, slingshot.playerRotation,player.isSlingshotPickedup(), slingshot.mousePos.getX(), slingshot.mousePos.getY(),isClicked, player.swordPickedup, minePlased,explodet,panel.message, panel.p1Inv.hp, panel.p1Inv.death, player.swordDamage, player.slingshotDamage, player.minenDamage, player.minenTime, player.maxMinen);
+            message = new Message(player.x, player.y,name, sword.rotation, slingshot.playerRotation,player.isSlingshotPickedUp(), slingshot.mousePos.getX(), slingshot.mousePos.getY(),isClicked, player.swordPickedUp, minePlased,explodet,panel.message, panel.p1Inv.hp, panel.p1Inv.death, player.swordDamage, player.slingshotDamage, player.mineDamage, player.mineTime, player.maxMines);
             if(!panel.serverDown) {
                 outputStream.writeObject(message);
             }
