@@ -24,17 +24,17 @@ public class Player implements Serializable {
     Panel panel;
     double hp;
     double healtimer;
-    double healtime = 1;
-    double swordDamage =100;
-    double slingshotDamage=100;
-    double minenDamage =100;
-    double arrowTime = 0;
-    double minenTime = 1;
-    double iFrametime = 9;
-    double melieDamageReduction = 100;
-    double slingshotDamageReduction = 100;
-    double minenDamageReduction = 100;
-    double arrowVelosety = 4;
+    double healtime = 4;
+    double swordDamage =2.5;
+    double slingshotDamage=1;
+    double minenDamage =10;
+    double arrowTime = 1;
+    double minenTime = 4;
+    double iFrametime = 0.5;
+    double melieDamageReduction = 0;
+    double slingshotDamageReduction = 0;
+    double minenDamageReduction = 0;
+    double arrowVelosety = 1;
     int maxMinen = 10;
 
 
