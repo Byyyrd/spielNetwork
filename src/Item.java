@@ -2,44 +2,44 @@ public class Item {
     String type;
     String sort;
     private double speed;
-    private double minSpeed;
-    private double maxSpeed;
-    private double healTime;
-    private double minHealTime;
-    private double maxHealTime;
-    private double swordDamage;
-    private double minSwordDamage;
-    private double maxSwordDamage;
-    private double slingshotDamage;
-    private double minSlingshotDamage;
-    private double maxSlingshotDamage;
-    private double mineDamage;
-    private double minMineDamage;
-    private double maxMineDamage;
-    private double arrowTime;
-    private double minArrowTime;
-    private double maxArrowTime;
-    private double mineTime;
-    private double minMineTime;
-    private double maxMineTime;
-    private double meleeDamageReduction;
-    private double minMeleeDamageReduction;
-    private double maxMeleeDamageReduction;
-    private double slingshotDamageReduction;
-    private double minSlingshotDamageReduction;
-    private double maxSlingshotDamageReduction;
-    private double mineDamageReduction;
-    private double minMineDamageReduction;
-    private double maxMineDamageReduction;
-    private double arrowVelocity;
-    private double minArrowVelocity;
-    private double maxArrowVelocity;
-    private int maxMines;
-    private int minMaxMines;
-    private int maxMaxMines;
-    private int maxHp;
-    private int minMaxHp;
-    private int maxMaxHp;
+    private double minSpeed = 0;
+    private double maxSpeed = 0;
+    private double healTime = 0;
+    private double minHealTime = 0;
+    private double maxHealTime = 0;
+    private double swordDamage = 0;
+    private double minSwordDamage = 0;
+    private double maxSwordDamage = 0;
+    private double slingshotDamage = 0;
+    private double minSlingshotDamage = 0;
+    private double maxSlingshotDamage = 0;
+    private double mineDamage = 0;
+    private double minMineDamage = 0;
+    private double maxMineDamage = 0;
+    private double arrowTime = 0;
+    private double minArrowTime = 0;
+    private double maxArrowTime = 0;
+    private double mineTime = 0;
+    private double minMineTime = 0;
+    private double maxMineTime = 0;
+    private double meleeDamageReduction = 0;
+    private double minMeleeDamageReduction = 0;
+    private double maxMeleeDamageReduction = 0;
+    private double slingshotDamageReduction = 0;
+    private double minSlingshotDamageReduction = 0;
+    private double maxSlingshotDamageReduction = 0;
+    private double mineDamageReduction = 0;
+    private double minMineDamageReduction = 0;
+    private double maxMineDamageReduction = 0;
+    private double arrowVelocity = 0;
+    private double minArrowVelocity = 0;
+    private double maxArrowVelocity = 0;
+    private int maxMines = 0;
+    private int minMaxMines = 0;
+    private int maxMaxMines = 0;
+    private int maxHp = 0;
+    private int minMaxHp = 0;
+    private int maxMaxHp = 0;
 
     public Item(String type) {
         this.type = type;
@@ -103,7 +103,7 @@ public class Item {
 
     public void setRangeSlingshotDamageReduction(double minSlingshotDamageReduction, double maxSlingshotDamageReduction) {
         this.minSlingshotDamageReduction = minSlingshotDamageReduction;
-        this.maxSlingshotDamage = maxSlingshotDamageReduction;
+        this.maxSlingshotDamageReduction = maxSlingshotDamageReduction;
     }
 
     public void setRangeMineDamageReduction(double minMineDamageReduction, double maxMineDamageReduction) {
@@ -128,5 +128,57 @@ public class Item {
 
     public double random(double min, double max){
         return ((int)(((Math.random()*((max-min))+ min))*10f)+1)/10.0;
+    }
+
+    public double getSpeed() {
+        return speed;
+    }
+
+    public double getHealTime() {
+        return healTime;
+    }
+
+    public double getSwordDamage() {
+        return swordDamage;
+    }
+
+    public double getSlingshotDamage() {
+        return slingshotDamage;
+    }
+
+    public double getMineDamage() {
+        return mineDamage;
+    }
+
+    public double getArrowTime() {
+        return arrowTime;
+    }
+
+    public double getMineTime() {
+        return mineTime;
+    }
+
+    public double getMeleeDamageReduction() {
+        return meleeDamageReduction;
+    }
+
+    public double getSlingshotDamageReduction() {
+        return slingshotDamageReduction;
+    }
+
+    public double getMineDamageReduction() {
+        return mineDamageReduction;
+    }
+
+    public double getArrowVelocity() {
+        return arrowVelocity;
+    }
+
+    public int getMaxMines() {
+        return maxMines;
+    }
+
+    public int getMaxHp() {
+        return maxHp;
     }
 }

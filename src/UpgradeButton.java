@@ -154,6 +154,7 @@ public class UpgradeButton extends JButton implements ActionListener {
                     item.setRangeMaxMines(1,2);
                     item.setRangeArrowTime(-0.5,0.5);
                     item.setRangeMeleeDamageReduction(-5,0);
+                    item.setRangeArrowVelocity(-1,0.5);
                     break;
                 case 2:
                     item.sort = "";
@@ -161,6 +162,7 @@ public class UpgradeButton extends JButton implements ActionListener {
                     item.setRangeMaxMines(4,6);
                     item.setRangeArrowTime(-2,0);
                     item.setRangeMeleeDamageReduction(-5,3);
+                    item.setRangeArrowVelocity(-0.5,1);
                     break;
                 case 3:
                     item.sort = "";
@@ -168,6 +170,7 @@ public class UpgradeButton extends JButton implements ActionListener {
                     item.setRangeMaxMines(2,4);
                     item.setRangeArrowTime(-1,0);
                     item.setRangeMeleeDamageReduction(-3,0);
+                    item.setRangeArrowVelocity(0,1);
                     break;
             }
             item.createStats();
@@ -208,28 +211,73 @@ public class UpgradeButton extends JButton implements ActionListener {
             switch (rand) {
                 case 1:
                     item.sort = "";
-                    item.setRangeMineDamage(3,7);
-                    item.setRangeMaxMines(1,2);
-                    item.setRangeMineTime(-0.5,0.5);
-                    item.setRangeMineDamageReduction(0,5);
+                    item.setRangeMineTime(-1,0);
+                    item.setRangeMaxMines(2,7);
+                    item.setRangeMineDamage(4,9);
+                    item.setRangeMineDamageReduction(4,8);
                     break;
                 case 2:
                     item.sort = "";
-                    item.setRangeMineDamage(1,4);
-                    item.setRangeMaxMines(4,6);
-                    item.setRangeMineTime(-2,0);
-                    item.setRangeMineDamageReduction(0,7);
+                    item.setRangeSlingshotDamage(3,7);
+                    item.setRangeSlingshotDamageReduction(4,8);
+                    item.setRangeArrowVelocity(0,1);
+                    item.setRangeArrowTime(-1,0);
                     break;
                 case 3:
                     item.sort = "";
-                    item.setRangeMineDamage(3,6);
-                    item.setRangeMaxMines(2,4);
-                    item.setRangeMineTime(-1,0);
-                    item.setRangeMineDamageReduction(0,10);
+                    item.setRangeSwordDamage(4,7);
+                    item.setRangeMeleeDamageReduction(5,8);
                     break;
             }
             item.createStats();
-            panel.inventory.allItams[3].add(item);
+            panel.inventory.allItams[4].add(item);
+        }
+        if (Objects.equals(attribute, "Chain")) {
+            var item = new Item("Chain");
+            int rand = (int) (Math.random() * 3 + 1);
+            switch (rand) {
+                case 1:
+                    item.sort = "";
+                    item.setRangeHealTime(0,1);
+                    item.setRangeMaxHp(1,5);
+                    item.setRangeMineTime(-0.5,0.5);
+                case 2:
+                    item.sort = "";
+                    item.setRangeHealTime(-0.5,0.5);
+                    item.setRangeMaxHp(-5,0);
+                    item.setRangeMineTime(-1,0);
+                    break;
+                case 3:
+                    item.sort = "";
+                    item.setRangeHealTime(-1,0);
+                    item.setRangeMaxHp(2,2);
+                    item.setRangeMineTime(0,1);
+                    break;
+            }
+            item.createStats();
+            panel.inventory.allItams[5].add(item);
+        }
+        if (Objects.equals(attribute, "Shoes")) {
+            var item = new Item("Shoes");
+            int rand = (int) (Math.random() * 3 + 1);
+            switch (rand) {
+                case 1:
+                    item.sort = "";
+                    item.setRangeSpeed(1,2);
+                    item.setRangeSlingshotDamageReduction(2,7);
+                case 2:
+                    item.sort = "";
+                    item.setRangeSpeed(1,2);
+                    item.setRangeMeleeDamageReduction(2,7);
+                    break;
+                case 3:
+                    item.sort = "";
+                    item.setRangeSpeed(1,2);
+                    item.setRangeMineDamageReduction(2,7);
+                    break;
+            }
+            item.createStats();
+            panel.inventory.allItams[6].add(item);
         }
         panel.grabFocus();
         for (int i = 0; i <= 2; i++) {
