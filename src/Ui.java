@@ -131,7 +131,7 @@ public class Ui {
         g2d.setFont(new Font("Arial", Font.PLAIN, 30));
 
         g2d.drawImage(schildImage, 200, 956, schildImage.getWidth(null) / 3, schildImage.getHeight(null) / 3, null);
-        g2d.drawImage(slingshotImage, 208, 970, slingshotImage.getWidth(null) / 24, slingshotImage.getHeight(null) / 24, null);
+        g2d.drawImage(slingshotImage, 203, 965, slingshotImage.getWidth(null) / 30, slingshotImage.getHeight(null) /30, null);
         if (player.slingshotDamageReduction >= 75){
             g2d.setColor(Color.yellow);
         }else {
@@ -173,7 +173,7 @@ public class Ui {
         g2d.setColor(Color.white);
         g2d.setFont(new Font("Arial", Font.PLAIN, 30));
 
-        g2d.drawImage(slingshotImage, 733, 973, slingshotImage.getWidth(null) / 24, slingshotImage.getHeight(null) / 24, null);
+        g2d.drawImage(slingshotImage, 728, 968, slingshotImage.getWidth(null) / 30, slingshotImage.getHeight(null) / 30, null);
         if (player.slingshotDamage >= 7.5){
             g2d.setColor(Color.yellow);
         }else {
@@ -220,8 +220,8 @@ public class Ui {
         g2d.setColor(Color.white);
         g2d.setFont(new Font("Arial", Font.PLAIN, 30));
 
-        g2d.drawImage(slingshotImage, 1205, 978, slingshotImage.getWidth(null) / 24, slingshotImage.getHeight(null) / 24, null);
-        g2d.drawImage(panel.hourglass, 1245, 973, slingshotImage.getWidth(null) / 20, slingshotImage.getHeight(null) / 20, null);
+        g2d.drawImage(slingshotImage, 1200, 973, slingshotImage.getWidth(null) / 30, slingshotImage.getHeight(null) / 30, null);
+        g2d.drawImage(panel.hourglass, 1245, 968, slingshotImage.getWidth(null) / 24, slingshotImage.getHeight(null) / 24, null);
         if (player.arrowTime <= 0){
             g2d.setColor(Color.yellow);
         }else {
