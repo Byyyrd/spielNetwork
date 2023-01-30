@@ -34,7 +34,7 @@ public class Player implements Serializable {
     double meleeDamageReduction = 0;
     double slingshotDamageReduction = 0;
     double mineDamageReduction = 0;
-    double arrowVelocity = 1;
+    double arrowVelocity = 0.05;
     int maxMines = 10;
 
 

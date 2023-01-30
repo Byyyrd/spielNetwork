@@ -38,6 +38,7 @@ public class Slingshot implements MouseListener, ActionListener {
             g2d.rotate(-this.playerRotation, player.x + playerImage.getWidth(null) * 1.5, player.y + playerImage.getHeight(null) * 1.5);
         }
         for (int i = allArrows.size(); i >= 1; i--) {
+            g2d.drawOval((int)(allArrows.get(i - 1)[0]+1-1), (int)(allArrows.get(i - 1)[1]+1-1), 10,10);
             g2d.rotate(this.allArrows.get(i - 1)[4] + Math.PI/2, (int) (allArrows.get(i - 1)[0] +1-1), (int) (allArrows.get(i - 1)[1] + 1 - 1));
             g2d.drawImage(panel.arrow, (int) (allArrows.get(i - 1)[0] +1-1) - panel.arrow.getWidth(null) / 2, (int) (allArrows.get(i - 1)[1] + 1 - 1) -panel.arrow.getHeight(null) / 2, panel.arrow.getWidth(null), panel.arrow.getHeight(null), null);
             g2d.rotate(-this.allArrows.get(i - 1)[4] - Math.PI/2, (int) (allArrows.get(i - 1)[0] +1-1), (int) (allArrows.get(i - 1)[1] + 1 - 1));
