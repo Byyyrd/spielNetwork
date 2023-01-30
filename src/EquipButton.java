@@ -5,12 +5,12 @@ import java.awt.event.ActionListener;
 
 public class EquipButton extends JButton implements ActionListener {
     private String attribute;
-    private InventoryButton button;
+    private InventoryButton button = new InventoryButton(null);
     public EquipButton(String attribute) {
         this.attribute = attribute;
         this.setBackground(new Color(56, 56, 56));
         this.addActionListener(this);
-
+        button.setItem( new Item(""));
         this.setFocusable(false);
     }
 

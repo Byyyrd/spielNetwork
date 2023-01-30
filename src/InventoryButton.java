@@ -25,6 +25,7 @@ public class InventoryButton extends JButton implements ActionListener {
     public void updateButton() {
         if (item != null) {
             image = new ImageIcon(item.getImage().getScaledInstance(getWidth()+1, getHeight()+1, java.awt.Image.SCALE_SMOOTH));
+            System.out.println(item.getImage());
             this.setIcon(image);
         }
     }

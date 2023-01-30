@@ -140,7 +140,7 @@ public class UpgradeButton extends JButton implements ActionListener {
                     item.setImage(panel.swordImage3);
                     item.setRangeSwordDamage(1,5);
                     item.setRangeMineTime(0,0.5);
-                    item.setRangeSpeed(-1,0);
+                    item.setRangeSpeed(0,1);
                     item.setRangeArrowTime(-1,0);
                     break;
             }
@@ -250,13 +250,13 @@ public class UpgradeButton extends JButton implements ActionListener {
                     item.setRangeMaxHp(1,5);
                     item.setRangeMineTime(-0.5,0.5);
                 case 2:
-                    item.setImage(panel.chainImage1);
+                    item.setImage(panel.chainImage2);
                     item.setRangeHealTime(-0.5,0.5);
                     item.setRangeMaxHp(-5,0);
                     item.setRangeMineTime(-1,0);
                     break;
                 case 3:
-                    item.setImage(panel.chainImage1);
+                    item.setImage(panel.chainImage3);
                     item.setRangeHealTime(-1,0);
                     item.setRangeMaxHp(2,2);
                     item.setRangeMineTime(0,1);
@@ -275,12 +275,12 @@ public class UpgradeButton extends JButton implements ActionListener {
                     item.setRangeSpeed(1,2);
                     item.setRangeSlingshotDamageReduction(2,7);
                 case 2:
-                    item.setImage(panel.shoeImage1);
+                    item.setImage(panel.shoeImage2);
                     item.setRangeSpeed(1,2);
                     item.setRangeMeleeDamageReduction(2,7);
                     break;
                 case 3:
-                    item.setImage(panel.shoeImage1);
+                    item.setImage(panel.shoeImage3);
                     item.setRangeSpeed(1,2);
                     item.setRangeMineDamageReduction(2,7);
                     break;

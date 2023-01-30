@@ -24,18 +24,18 @@ public class Player implements Serializable {
     Panel panel;
     double hp;
     double healTimer;
-    double healTime = 1;
-    double swordDamage =10;
-    double slingshotDamage=7.5;
-    double mineDamage =75;
-    double arrowTime = 0;
-    double mineTime = 1;
+    double healTime = 4;
+    double swordDamage =2.5;
+    double slingshotDamage=1;
+    double mineDamage =10;
+    double arrowTime = 1;
+    double mineTime = 4;
     double iFrameTime = 0.5;
-    double meleeDamageReduction = 75;
-    double slingshotDamageReduction = 75;
-    double mineDamageReduction = 75;
+    double meleeDamageReduction = 0;
+    double slingshotDamageReduction = 0;
+    double mineDamageReduction = 0;
     double arrowVelocity = 1;
-    int maxMines = 125;
+    int maxMines = 10;
 
 
     public Player(int x, int y, int width, int height, Player player2, Sword enemySword, Panel panel) {
@@ -75,14 +75,18 @@ public class Player implements Serializable {
 
     public void checkCollision() {
         if (enemySword != null && player2.swordPickedUp) {
+            double reduction;
+            if (panel.player1.meleeDamageReduction + panel.inventory.getMeleeDamageReduction() <= 100){reduction = panel.player1.meleeDamageReduction + panel.inventory.getMeleeDamageReduction();}else {reduction = 100;}
             if (inRectangle((int) (enemySword.x + 21 + Math.sin(enemySword.rotation) * 21), (int) (enemySword.y + width / 2 + Math.cos(enemySword.rotation) * -25), x, y, width, height) || inRectangle((int) (enemySword.x + 21 + Math.sin(enemySword.rotation) * 40), (int) (enemySword.y + width / 2 + Math.cos(enemySword.rotation) * -40), x, y, width, height) || inRectangle((int) (enemySword.x + 21 + Math.sin(enemySword.rotation) * 55), (int) (enemySword.y + width / 2 + Math.cos(enemySword.rotation) * -55), x, y, width, height)) {
-                panel.ui.playerHit(player2.swordDamage * (1 - meleeDamageReduction + panel.inventory.getMeleeDamageReduction() / 100));
+                panel.ui.playerHit(player2.swordDamage * (1 - (reduction/ 100)));
             }
         }
         if (allArrows != null) {
             for (Double[] allArrow : allArrows) {
+                double reduction;
+                if (panel.player1.slingshotDamageReduction + panel.inventory.getSlingshotDamageReduction() <= 100){reduction = panel.player1.slingshotDamageReduction + panel.inventory.getSlingshotDamageReduction();}else {reduction = 100;}
                 if (inRectangle((int) (allArrow[0] + 5), (int) (allArrow[1] + 5), x, y, width, height)) {
-                    panel.ui.playerHit(player2.slingshotDamage * (1 - slingshotDamageReduction + panel.inventory.getSlingshotDamage() / 100));
+                    panel.ui.playerHit(player2.slingshotDamage * (1 -(reduction/ 100)));
                 }
             }
         }

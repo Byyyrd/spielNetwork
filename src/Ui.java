@@ -62,7 +62,7 @@ public class Ui {
         //DashCoolDown & Mines left
         g2d.setFont(new Font("Arial", Font.PLAIN, 40));
         g2d.drawString("Mines: " + mines + "/" + player.maxMines, 1225, 1015);
-        g2d.drawString("Dash: " + ((int) (dashCoolDown * 10f)) / 10f, 1455, 1015);
+        g2d.drawString("Dash: " + ((int) (dashCoolDown * 10f)) / 10f, 1485, 1015);
         //Points
         g2d.setColor(Color.green);
         g2d.fillRect(600, 975, (int) (exp * 25), 50);
@@ -113,7 +113,7 @@ public class Ui {
         g2d.setColor(new Color(1, 1, 1));
         g2d.fillRect(0, 950, 1920, 150);
         g2d.setColor(Color.white);
-        g2d.setFont(new Font("Arial", Font.PLAIN, 40));
+        g2d.setFont(new Font("Arial", Font.PLAIN, 30));
         g2d.drawImage(schildImage, 20, 956, schildImage.getWidth(null) / 3, schildImage.getHeight(null) / 3, null);
         g2d.rotate(Math.PI, 23 + swordImage.getWidth(null) / 6.0, 960 + swordImage.getHeight(null) / 10.0);
         g2d.drawImage(swordImage, 23, 960, swordImage.getWidth(null) / 3, swordImage.getHeight(null) / 5, null);
@@ -123,7 +123,12 @@ public class Ui {
         }else {
             g2d.setColor(Color.white);
         }
-        g2d.drawString(":  " + player.meleeDamageReduction, 80, 1010);
+        g2d.drawString(":  " + player.meleeDamageReduction, 80, 1000);
+        g2d.setFont(new Font("Arial", Font.PLAIN, 20));
+        g2d.setColor(Color.green);
+        g2d.drawString("+  " + panel.inventory.getMeleeDamageReduction(), 87, 1020);
+        g2d.setColor(Color.white);
+        g2d.setFont(new Font("Arial", Font.PLAIN, 30));
 
         g2d.drawImage(schildImage, 200, 956, schildImage.getWidth(null) / 3, schildImage.getHeight(null) / 3, null);
         g2d.drawImage(slingshotImage, 208, 970, slingshotImage.getWidth(null) / 24, slingshotImage.getHeight(null) / 24, null);
@@ -132,7 +137,12 @@ public class Ui {
         }else {
             g2d.setColor(Color.white);
         }
-        g2d.drawString(":  " + ((int) (player.slingshotDamageReduction * 10f)) / 10f, 260, 1010);
+        g2d.drawString(":  " + ((int) (player.slingshotDamageReduction * 10f)) / 10f, 260, 1000);
+        g2d.setFont(new Font("Arial", Font.PLAIN, 20));
+        g2d.setColor(Color.green);
+        g2d.drawString("+  " + panel.inventory.getSlingshotDamageReduction(), 267, 1020);
+        g2d.setColor(Color.white);
+        g2d.setFont(new Font("Arial", Font.PLAIN, 30));
 
         g2d.drawImage(schildImage, 380, 956, schildImage.getWidth(null) / 3, schildImage.getHeight(null) / 3, null);
         g2d.setColor(Color.red);
@@ -143,7 +153,12 @@ public class Ui {
         }else {
             g2d.setColor(Color.white);
         }
-        g2d.drawString(":  " + player.mineDamageReduction, 440, 1010);
+        g2d.drawString(":  " + player.mineDamageReduction, 440, 1000);
+        g2d.setFont(new Font("Arial", Font.PLAIN, 20));
+        g2d.setColor(Color.green);
+        g2d.drawString("+  " + panel.inventory.getMineDamageReduction(), 447, 1020);
+        g2d.setColor(Color.white);
+        g2d.setFont(new Font("Arial", Font.PLAIN, 30));
 
         g2d.drawImage(swordImage, 563, 960, swordImage.getWidth(null) / 3, swordImage.getHeight(null) / 5, null);
         if (player.swordDamage >= 10){
@@ -151,7 +166,12 @@ public class Ui {
         }else {
             g2d.setColor(Color.white);
         }
-        g2d.drawString(":  " + ((int) (player.swordDamage * 10f)) / 10f, 610, 1010);
+        g2d.drawString(":  " + ((int) (player.swordDamage * 10f)) / 10f, 610, 1000);
+        g2d.setFont(new Font("Arial", Font.PLAIN, 20));
+        g2d.setColor(Color.green);
+        g2d.drawString("+  " + panel.inventory.getSwordDamage(), 617, 1020);
+        g2d.setColor(Color.white);
+        g2d.setFont(new Font("Arial", Font.PLAIN, 30));
 
         g2d.drawImage(slingshotImage, 733, 973, slingshotImage.getWidth(null) / 24, slingshotImage.getHeight(null) / 24, null);
         if (player.slingshotDamage >= 7.5){
@@ -159,7 +179,12 @@ public class Ui {
         }else {
             g2d.setColor(Color.white);
         }
-        g2d.drawString(":  " + ((int) (player.slingshotDamage * 10f)) / 10f, 780, 1010);
+        g2d.drawString(":  " + ((int) (player.slingshotDamage * 10f)) / 10f, 780, 1000);
+        g2d.setFont(new Font("Arial", Font.PLAIN, 20));
+        g2d.setColor(Color.green);
+        g2d.drawString("+  " + panel.inventory.getSlingshotDamage(), 787, 1020);
+        g2d.setColor(Color.white);
+        g2d.setFont(new Font("Arial", Font.PLAIN, 30));
 
         g2d.setColor(Color.red);
         g2d.fillOval(883, 985, 30, 30);
@@ -169,21 +194,31 @@ public class Ui {
         }else {
             g2d.setColor(Color.white);
         }
-        g2d.drawString(":  " + (int) player.mineDamage, 930, 1010);
+        g2d.drawString(":  " + (int) player.mineDamage, 930, 1000);
+        g2d.setFont(new Font("Arial", Font.PLAIN, 20));
+        g2d.setColor(Color.green);
+        g2d.drawString("+  " + panel.inventory.getMineDamage(), 937, 1020);
+        g2d.setColor(Color.white);
+        g2d.setFont(new Font("Arial", Font.PLAIN, 30));
 
         g2d.setColor(new Color(12, 255, 0, 142));
         g2d.fillOval(1030, 980, 40, 40);
         g2d.setColor(Color.green);
         g2d.setFont(new Font("Arial", Font.PLAIN, 60));
         g2d.drawString("+", 1032, 1020);
-        g2d.setFont(new Font("Arial", Font.PLAIN, 40));
+        g2d.setFont(new Font("Arial", Font.PLAIN, 30));
         g2d.setColor(Color.white);
         if (player.healTime + panel.inventory.getHealTime() <= 1){
             g2d.setColor(Color.yellow);
         }else {
             g2d.setColor(Color.white);
         }
-        g2d.drawString(":  " + ((int) (player.healTime * 10f)) / 10f + "s", 1080, 1010);
+        g2d.drawString(":  " + ((int) (player.healTime * 10f)) / 10f + "s", 1080, 1000);
+        g2d.setFont(new Font("Arial", Font.PLAIN, 20));
+        g2d.setColor(Color.green);
+        g2d.drawString("-  " + Math.abs(panel.inventory.getHealTime()), 1087, 1020);
+        g2d.setColor(Color.white);
+        g2d.setFont(new Font("Arial", Font.PLAIN, 30));
 
         g2d.drawImage(slingshotImage, 1205, 978, slingshotImage.getWidth(null) / 24, slingshotImage.getHeight(null) / 24, null);
         g2d.drawImage(panel.hourglass, 1245, 973, slingshotImage.getWidth(null) / 20, slingshotImage.getHeight(null) / 20, null);
@@ -192,25 +227,51 @@ public class Ui {
         }else {
             g2d.setColor(Color.white);
         }
-        g2d.drawString(":  " + ((int) (player.arrowTime * 10f)) / 10f + "s", 1300, 1010);
+        g2d.drawString(":  " + ((int) (player.arrowTime * 10f)) / 10f + "s", 1300, 1000);
+        g2d.setFont(new Font("Arial", Font.PLAIN, 20));
+        if (panel.inventory.getArrowTime() > 0 ){
+            g2d.setColor(Color.red);
+            g2d.drawString("+  " + Math.abs(panel.inventory.getArrowTime()), 1307, 1020);
+        } else {
+            g2d.setColor(Color.green);
+            g2d.drawString("-  " + Math.abs(panel.inventory.getArrowTime()), 1307, 1020);
+        }
+        g2d.setColor(Color.white);
+        g2d.setFont(new Font("Arial", Font.PLAIN, 30));
+
 
         g2d.setColor(new Color(255, 0, 0, 142));
         g2d.fillOval(1420, 980, 40, 40);
         g2d.setColor(Color.red);
         g2d.setFont(new Font("Arial", Font.PLAIN, 60));
         g2d.drawString("+", 1422, 1020);
-        g2d.setFont(new Font("Arial", Font.PLAIN, 40));
+        g2d.setFont(new Font("Arial", Font.PLAIN, 30));
         g2d.setColor(Color.white);
         if (player.mineTime <= 1){
             g2d.setColor(Color.yellow);
         }else {
             g2d.setColor(Color.white);
         }
-        g2d.drawString(":  " + ((int) (player.mineTime * 10f)) / 10f + "s", 1470, 1010);
+        g2d.drawString(":  " + ((int) (player.mineTime * 10f)) / 10f + "s", 1470, 1000);
+        g2d.setFont(new Font("Arial", Font.PLAIN, 20));
+        g2d.setColor(Color.green);
+        g2d.drawString("-  " + Math.abs(panel.inventory.getMineTime()), 1477, 1020);
+        g2d.setColor(Color.white);
+        g2d.setFont(new Font("Arial", Font.PLAIN, 30));
 
         g2d.drawImage(speedImage, 1600, 975, speedImage.getWidth(null) / 3, speedImage.getHeight(null) / 3, null);
         g2d.setColor(Color.white);
-        g2d.drawString(":  " + ((int) (player.speed * 10f)) / 10f, 1650, 1010);
+        g2d.drawString(":  " + ((int) (player.speed * 10f)) / 10f, 1650, 1000);
+        g2d.setFont(new Font("Arial", Font.PLAIN, 20));
+        if (panel.inventory.getSpeed() < 0){
+            g2d.setColor(Color.red);
+            g2d.drawString("-  " + Math.abs(panel.inventory.getSpeed()), 1657, 1020);
+        } else {
+            g2d.setColor(Color.green);
+            g2d.drawString("+  " + panel.inventory.getSpeed(), 1657, 1020);
+        }
+        g2d.setColor(Color.white);
+        g2d.setFont(new Font("Arial", Font.PLAIN, 30));
 
         g2d.drawImage(panel.arrowVelocity, 1750, 980, speedImage.getWidth(null) / 3, speedImage.getHeight(null) / 4, null);
         if (player.arrowVelocity >= 4){
@@ -218,6 +279,11 @@ public class Ui {
         }else {
             g2d.setColor(Color.white);
         }
-        g2d.drawString(":  " + player.arrowVelocity, 1800, 1010);
+        g2d.drawString(":  " + player.arrowVelocity, 1800, 1000);
+        g2d.setFont(new Font("Arial", Font.PLAIN, 20));
+        g2d.setColor(Color.green);
+        g2d.drawString("+  " + panel.inventory.getArrowVelocity(), 1807, 1020);
+        g2d.setColor(Color.white);
+        g2d.setFont(new Font("Arial", Font.PLAIN, 30));
     }
 }

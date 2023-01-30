@@ -85,6 +85,27 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
         speedImage = new ImageIcon("resources/Speed.png").getImage();
         arrowVelocity = new ImageIcon("resources/ArrowVel.png").getImage();
         hourglass = new ImageIcon("resources/Hourglass.png").getImage();
+        swordImage1 = new ImageIcon("resources/Heavy_Sword.png").getImage();
+        swordImage2 = new ImageIcon("resources/Normal_Sword.png").getImage();
+        swordImage3 = new ImageIcon("resources/Light_Sword.png").getImage();
+        armorImage1 = new ImageIcon("resources/Heavy_Armor.png").getImage();
+        armorImage2 = new ImageIcon("resources/Armor.png").getImage();
+        armorImage3 = new ImageIcon("resources/Light_Armor.png").getImage();
+        shoeImage1 = new ImageIcon("resources/Heavy_Boots.png").getImage();
+        shoeImage2 = new ImageIcon("resources/Boots.png").getImage();
+        shoeImage3 = new ImageIcon("resources/Light_Boots.png").getImage();
+        slingshotImage1 = new ImageIcon("resources/Heavy_Bow.png").getImage();
+        slingshotImage2 = new ImageIcon("resources/Normal_Bow.png").getImage();
+        slingshotImage3 = new ImageIcon("resources/Light_Bow.png").getImage();
+        ringImage1 = new ImageIcon("resources/Green_Ring.png").getImage();
+        ringImage2 = new ImageIcon("resources/Red_Ring.png").getImage();
+        ringImage3 = new ImageIcon("resources/Blue_Ring.png").getImage();
+        chainImage1 = new ImageIcon("resources/Green_Charm.png").getImage();
+        chainImage2 = new ImageIcon("resources/Red_Charm.png").getImage();
+        chainImage3 = new ImageIcon("resources/Blue_Charm.png").getImage();
+        mineImage1 = new ImageIcon("resources/Heavy_Mine.png").getImage();
+        mineImage2 = new ImageIcon("resources/Mine.png").getImage();
+        mineImage3 = new ImageIcon("resources/Light_Mine.png").getImage();
         bgrHeight = bgrImage.getHeight(null);
         bgrWidth = bgrImage.getWidth(null);
 
@@ -171,6 +192,7 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
             }
         }
         inventory.updateInv();
+
         EquipButton button = new EquipButton("Armor");
         equipPanel.add(button);
         inventory.equipButtons[0] = button;

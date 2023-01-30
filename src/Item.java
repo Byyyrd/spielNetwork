@@ -47,6 +47,7 @@ public class Item {
 
     public Item(String type) {
         this.type = type;
+        image = new ImageIcon("resources/Error.png").getImage();
     }
 
     public void createStats(){
@@ -63,7 +64,7 @@ public class Item {
         arrowVelocity = random(minArrowVelocity, maxArrowVelocity);
         maxMines = (int) random( minMaxMines, maxMaxMines);
         maxHp = (int) random(minMaxHp, maxMaxHp);
-        image = new ImageIcon("resources/Error.png").getImage();
+
     }
 
     public void setRangeSpeed(double minSpeed, double maxSpeed) {
