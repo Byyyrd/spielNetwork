@@ -6,7 +6,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 
-public class InventoryButton extends JButton implements ActionListener {
+public class InventoryButton extends JButton implements ActionListener{
 
     Panel panel;
     Item item = new Item("");
@@ -24,58 +24,57 @@ public class InventoryButton extends JButton implements ActionListener {
         this.panel = panel;
         this.addActionListener(this);
         item.setImage(null);
-
-        this.setFont(new Font("Arial",Font.PLAIN,50));
+        this.setFont(new Font("Arial", Font.PLAIN, 10));
         this.setToolTipText("Hallo");
     }
 
     public void updateButton() {
         if (item != null && item.getImage() != null) {
-           if (item.getSpeed() != 0){
-               toolTip = toolTip + item.getSpeed();
-           }
-            if (item.getArrowTime() != 0){
-                toolTip = toolTip + item.getArrowTime();
+            if (item.getSpeed() != 0.00) {
+                toolTip = toolTip + "\n"+ item.getSpeed();
             }
-            if (item.getHealTime() != 0){
-                toolTip = toolTip + item.getHealTime();
+            if (item.getArrowTime() != 0.00) {
+                toolTip = toolTip + "\n"+item.getArrowTime();
             }
-            if (item.getArrowVelocity() != 0){
-                toolTip = toolTip + item.getArrowVelocity();
+            if (item.getHealTime() != 0.00) {
+                toolTip = toolTip + "\n"+ item.getHealTime();
             }
-            if (item.getMaxHp() != 0){
-                toolTip = toolTip + item.getMaxHp();
+            if (item.getArrowVelocity() != 0.00) {
+                toolTip = toolTip + "\n"+ item.getArrowVelocity();
             }
-            if (item.getMaxMines() != 0){
-                toolTip = toolTip + item.getMaxMines();
+            if (item.getMaxHp() != 0.00) {
+                toolTip = toolTip + "\n"+ item.getMaxHp();
             }
-            if (item.getMeleeDamageReduction() != 0){
-                toolTip = toolTip + item.getMeleeDamageReduction();
+            if (item.getMaxMines() != 0.00) {
+                toolTip = toolTip + "\n"+ item.getMaxMines();
             }
-            if (item.getMeleeDamageReduction() != 0){
-                toolTip = toolTip + item.getMeleeDamageReduction();
+            if (item.getMeleeDamageReduction() != 0.00) {
+                toolTip = toolTip + "\n"+ item.getMeleeDamageReduction();
             }
-            if (item.getMineDamageReduction() != 0){
-                toolTip = toolTip + item.getMineDamageReduction();
+            if (item.getMeleeDamageReduction() != 0.00) {
+                toolTip = toolTip + "\n"+ item.getMeleeDamageReduction();
             }
-            if (item.getSlingshotDamageReduction() != 0){
-                toolTip = toolTip + item.getSlingshotDamageReduction();
+            if (item.getMineDamageReduction() != 0.00) {
+                toolTip = toolTip + "\n"+ item.getMineDamageReduction();
             }
-            if (item.getMineTime() != 0){
-                toolTip = toolTip + item.getMineTime();
+            if (item.getSlingshotDamageReduction() != 0.00) {
+                toolTip = toolTip + "\n"+ item.getSlingshotDamageReduction();
             }
-            if (item.getSwordDamage() != 0){
-                toolTip = toolTip + item.getSwordDamage();
+            if (item.getMineTime() != 0.00) {
+                toolTip = toolTip + "\n"+ item.getMineTime();
             }
-            if (item.getMineDamage() != 0){
-                toolTip = toolTip + item.getMineDamage();
+            if (item.getSwordDamage() != 0.00) {
+                toolTip = toolTip + "\n"+ item.getSwordDamage();
             }
-            if (item.getSlingshotDamage() != 0){
-                toolTip = toolTip + item.getSlingshotDamage();
+            if (item.getMineDamage() != 0.00) {
+                toolTip = toolTip + "\n"+ item.getMineDamage();
             }
-            this.setFont(new Font("Arial",Font.PLAIN,50));
+            if (item.getSlingshotDamage() != 0.00) {
+                toolTip = toolTip + "\n"+ item.getSlingshotDamage();
+            }
+            this.setFont(new Font("Arial",Font.PLAIN,10));
             this.setToolTipText(toolTip);
-            image = new ImageIcon(item.getImage().getScaledInstance(getWidth()+1, getHeight()+1, Image.SCALE_DEFAULT));
+            image = new ImageIcon(item.getImage().getScaledInstance(getWidth() + 1, getHeight() + 1, Image.SCALE_DEFAULT));
             this.setIcon(image);
         }
     }
@@ -109,4 +108,6 @@ public class InventoryButton extends JButton implements ActionListener {
     public void setRow(int row) {
         this.row = row;
     }
+
+
 }
