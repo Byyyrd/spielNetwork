@@ -78,7 +78,7 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
     public Panel(Client client) {
         playerImage = new ImageIcon("resources/Player.png").getImage();
         swordImage = new ImageIcon("resources/Sword.png").getImage();
-        slingshotImage = new ImageIcon("resources/bow.png").getImage();
+        slingshotImage = new ImageIcon("resources/bow2.png").getImage();
         bgrImage = new ImageIcon("resources/Background.jpg").getImage();
         hpImage = new ImageIcon("resources/HealthBar.png").getImage();
         schildImage = new ImageIcon("resources/Shield.png").getImage();
