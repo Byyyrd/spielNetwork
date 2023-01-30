@@ -49,8 +49,9 @@ public class Slingshot implements MouseListener, ActionListener {
         }
         if (slingshot2.allArrows != null) {
             for (int i = slingshot2.allArrows.size(); i >= 1; i--) {
-                g2d.setColor(new Color(12, 255, 0));
-                g2d.fillOval((int) (slingshot2.allArrows.get(i - 1)[0] + 1 - 1), (int) (slingshot2.allArrows.get(i - 1)[1] + 1 - 1), 10, 10);
+                g2d.rotate(slingshot2.allArrows.get(i - 1)[4] + Math.PI/2, (int) (slingshot2.allArrows.get(i - 1)[0] +1-1), (int) (slingshot2.allArrows.get(i - 1)[1] + 1 - 1));
+                g2d.drawImage(panel.arrow, (int) (slingshot2.allArrows.get(i - 1)[0] +1-1) - panel.arrow.getWidth(null) / 2, (int) (slingshot2.allArrows.get(i - 1)[1] + 1 - 1) -panel.arrow.getHeight(null) / 2, panel.arrow.getWidth(null), panel.arrow.getHeight(null), null);
+                g2d.rotate(-slingshot2.allArrows.get(i - 1)[4] - Math.PI/2, (int) (slingshot2.allArrows.get(i - 1)[0] +1-1), (int) (slingshot2.allArrows.get(i - 1)[1] + 1 - 1));
             }
         }
     }
