@@ -85,7 +85,7 @@ public class Player implements Serializable {
             for (Double[] allArrow : allArrows) {
                 double reduction;
                 if (panel.player1.slingshotDamageReduction + panel.inventory.getSlingshotDamageReduction() <= 100){reduction = panel.player1.slingshotDamageReduction + panel.inventory.getSlingshotDamageReduction();}else {reduction = 100;}
-                if (inRectangle((int) (allArrow[0] + 5), (int) (allArrow[1] + 5), x, y, width, height)) {
+                if (inRectangle((int) (allArrow[0]+1-1), (int) (allArrow[1] +1-1), x, y, width, height)) {
                     panel.ui.playerHit(player2.slingshotDamage * (1 -(reduction/ 100)));
                 }
             }

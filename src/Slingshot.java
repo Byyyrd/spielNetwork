@@ -38,8 +38,9 @@ public class Slingshot implements MouseListener, ActionListener {
             g2d.rotate(-this.playerRotation, player.x + playerImage.getWidth(null) * 1.5, player.y + playerImage.getHeight(null) * 1.5);
         }
         for (int i = allArrows.size(); i >= 1; i--) {
-            g2d.setColor(new Color(12, 255, 0));
-            g2d.fillOval((int) (this.allArrows.get(i - 1)[0] + 1 - 1), (int) (this.allArrows.get(i - 1)[1] + 1 - 1), 10, 10);
+            g2d.rotate(this.allArrows.get(i - 1)[4] + Math.PI/2, (int) (allArrows.get(i - 1)[0] +1-1), (int) (allArrows.get(i - 1)[1] + 1 - 1));
+            g2d.drawImage(panel.arrow, (int) (allArrows.get(i - 1)[0] +1-1) - panel.arrow.getWidth(null) / 2, (int) (allArrows.get(i - 1)[1] + 1 - 1) -panel.arrow.getHeight(null) / 2, panel.arrow.getWidth(null), panel.arrow.getHeight(null), null);
+            g2d.rotate(-this.allArrows.get(i - 1)[4] - Math.PI/2, (int) (allArrows.get(i - 1)[0] +1-1), (int) (allArrows.get(i - 1)[1] + 1 - 1));
         }
         if (player2.isSlingshotPickedUp()) {
             g2d.rotate(panel.rotation2, player2.x + playerImage.getWidth(null) * 1.5, player2.y + playerImage.getHeight(null) * 1.5);
@@ -79,11 +80,12 @@ public class Slingshot implements MouseListener, ActionListener {
     }
 
     public void CreateArrow() {
-        Double[] Arrow = new Double[4];
+        Double[] Arrow = new Double[5];
         Arrow[0] = ((double) player.x + player.width / 2);// x1 Index = 0
         Arrow[1] = ((double) player.y + player.height / 2);// y1 Index = 1
         Arrow[2] = Math.cos(playerRotation);//xVel
         Arrow[3] = Math.sin(playerRotation);//yVel
+        Arrow[4] = playerRotation;
         allArrows.add(Arrow);
     }
 
@@ -93,11 +95,12 @@ public class Slingshot implements MouseListener, ActionListener {
             long yLength = (long) (mouseY - player.y);
             long xLength = (long) (mouseX - player.x);
             double Rotation = Math.atan2(yLength, xLength);
-            Double[] Arrow = new Double[4];
+            Double[] Arrow = new Double[5];
             Arrow[0] = ((double) player.x + player.width);// x1 Index = 0
             Arrow[1] = ((double) player.y + player.height);// y1 Index = 1
             Arrow[2] = Math.cos(Rotation);//xVel
             Arrow[3] = Math.sin(Rotation);//yVel
+            Arrow[4] = playerRotation;
             allArrows.add(Arrow);
         }
     }
