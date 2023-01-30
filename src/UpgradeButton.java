@@ -91,14 +91,14 @@ public class UpgradeButton extends JButton implements ActionListener {
             int rand = (int) (Math.random() * 3 + 1);
             switch (rand) {
                 case 1:
-                    item.setImage(panel.armorImage1);
+                    item.setImage(panel.armorImage2);
                     item.setRangeSlingshotDamageReduction(5,10);
                     item.setRangeMeleeDamageReduction(5,10);
                     item.setRangeSpeed(-1,0);
                     item.setRangeArrowTime(0,1);
                     break;
                 case 2:
-                    item.setImage(panel.armorImage2);
+                    item.setImage(panel.armorImage1);
                     item.setRangeSlingshotDamageReduction(10,15);
                     item.setRangeMeleeDamageReduction(10,15);
                     item.setRangeMineDamageReduction(0,10);
@@ -107,8 +107,8 @@ public class UpgradeButton extends JButton implements ActionListener {
                     break;
                 case 3:
                     item.setImage(panel.armorImage3);
-                    item.setRangeSlingshotDamageReduction(5,10);
-                    item.setRangeMeleeDamageReduction(5,10);
+                    item.setRangeSlingshotDamageReduction(5,7);
+                    item.setRangeMeleeDamageReduction(5,7);
                     item.setRangeSpeed(0,1);
                     item.setRangeArrowTime(-0.5,0);
                     break;
@@ -156,23 +156,20 @@ public class UpgradeButton extends JButton implements ActionListener {
                 case 1:
                     item.setImage(panel.slingshotImage1);
                     item.setRangeSlingshotDamage(3,7);
-                    item.setRangeMaxMines(1,2);
                     item.setRangeArrowTime(-0.5,0.5);
                     item.setRangeMeleeDamageReduction(-5,0);
                     item.setRangeArrowVelocity(-1,0.5);
                     break;
                 case 2:
-                    item.setImage(panel.slingshotImage2);
+                    item.setImage(panel.slingshotImage3);
                     item.setRangeSlingshotDamage(1,4);
-                    item.setRangeMaxMines(4,6);
                     item.setRangeArrowTime(-2,0);
                     item.setRangeMeleeDamageReduction(-5,3);
                     item.setRangeArrowVelocity(-0.5,1);
                     break;
                 case 3:
-                    item.setImage(panel.slingshotImage3);
+                    item.setImage(panel.slingshotImage2);
                     item.setRangeSlingshotDamage(3,6);
-                    item.setRangeMaxMines(2,4);
                     item.setRangeArrowTime(-1,0);
                     item.setRangeMeleeDamageReduction(-3,0);
                     item.setRangeArrowVelocity(0,1);
@@ -194,14 +191,14 @@ public class UpgradeButton extends JButton implements ActionListener {
                     item.setRangeMineDamageReduction(0,5);
                     break;
                 case 2:
-                    item.setImage(panel.mineImage2);
+                    item.setImage(panel.mineImage3);
                     item.setRangeMineDamage(1,4);
                     item.setRangeMaxMines(4,6);
                     item.setRangeMineTime(-2,0);
                     item.setRangeMineDamageReduction(0,7);
                     break;
                 case 3:
-                    item.setImage(panel.mineImage3);
+                    item.setImage(panel.mineImage2);
                     item.setRangeMineDamage(3,6);
                     item.setRangeMaxMines(2,4);
                     item.setRangeMineTime(-1,0);
@@ -217,21 +214,21 @@ public class UpgradeButton extends JButton implements ActionListener {
             int rand = (int) (Math.random() * 3 + 1);
             switch (rand) {
                 case 1:
-                    item.setImage(panel.ringImage1);
+                    item.setImage(panel.ringImage2);
                     item.setRangeMineTime(-1,0);
                     item.setRangeMaxMines(2,7);
                     item.setRangeMineDamage(4,9);
                     item.setRangeMineDamageReduction(4,8);
                     break;
                 case 2:
-                    item.setImage(panel.ringImage2);
+                    item.setImage(panel.ringImage3);
                     item.setRangeSlingshotDamage(3,7);
                     item.setRangeSlingshotDamageReduction(4,8);
                     item.setRangeArrowVelocity(0,1);
                     item.setRangeArrowTime(-1,0);
                     break;
                 case 3:
-                    item.setImage(panel.ringImage3);
+                    item.setImage(panel.ringImage1);
                     item.setRangeSwordDamage(4,7);
                     item.setRangeMeleeDamageReduction(5,8);
                     break;
@@ -245,20 +242,21 @@ public class UpgradeButton extends JButton implements ActionListener {
             int rand = (int) (Math.random() * 3 + 1);
             switch (rand) {
                 case 1:
-                    item.setImage(panel.chainImage1);
+                    item.setImage(panel.chainImage3);
                     item.setRangeHealTime(0,1);
-                    item.setRangeMaxHp(1,5);
+                    item.setRangeArrowTime(-1,0);
                     item.setRangeMineTime(-0.5,0.5);
+                    break;
                 case 2:
                     item.setImage(panel.chainImage2);
                     item.setRangeHealTime(-0.5,0.5);
-                    item.setRangeMaxHp(-5,0);
+                    item.setRangeArrowTime(0,1);
                     item.setRangeMineTime(-1,0);
                     break;
                 case 3:
-                    item.setImage(panel.chainImage3);
+                    item.setImage(panel.chainImage1);
                     item.setRangeHealTime(-1,0);
-                    item.setRangeMaxHp(2,2);
+                    item.setRangeArrowTime(-0.5,0.5);
                     item.setRangeMineTime(0,1);
                     break;
             }
@@ -272,17 +270,24 @@ public class UpgradeButton extends JButton implements ActionListener {
             switch (rand) {
                 case 1:
                     item.setImage(panel.shoeImage1);
-                    item.setRangeSpeed(1,2);
-                    item.setRangeSlingshotDamageReduction(2,7);
+                    item.setRangeSpeed(-1,0);
+                    item.setRangeMineDamageReduction(2,5);
+                    item.setRangeMeleeDamageReduction(2,5);
+                    item.setRangeSlingshotDamageReduction(2,5);
+                    break;
                 case 2:
                     item.setImage(panel.shoeImage2);
-                    item.setRangeSpeed(1,2);
-                    item.setRangeMeleeDamageReduction(2,7);
+                    item.setRangeSpeed(-0.5,0.5);
+                    item.setRangeMineDamageReduction(1,3);
+                    item.setRangeMeleeDamageReduction(1,3);
+                    item.setRangeSlingshotDamageReduction(1,3);
                     break;
                 case 3:
                     item.setImage(panel.shoeImage3);
-                    item.setRangeSpeed(1,2);
-                    item.setRangeMineDamageReduction(2,7);
+                    item.setRangeSpeed(1,3);
+                    item.setRangeMineDamageReduction(0,2);
+                    item.setRangeMeleeDamageReduction(0,2);
+                    item.setRangeSlingshotDamageReduction(0,2);
                     break;
             }
             item.createStats();

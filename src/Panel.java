@@ -178,7 +178,7 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
         inventoryPanel.setLayout(new GridLayout(7, 7));
         
         equipPanel = new JPanel();
-        equipPanel.setBounds(0, 0, 1900, 200);
+        equipPanel.setBounds(0, 0, 1900, 150);
         equipPanel.setLayout(new GridLayout(1, 7));
         
         inventory = new Inventory();

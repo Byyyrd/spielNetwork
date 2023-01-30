@@ -34,5 +34,6 @@ public class EquipButton extends JButton implements ActionListener {
         button.setBackground(new Color(24, 24, 24));
         this.setIcon(null);
         this.setBackground(new Color(56, 56, 56));
+        button.panel.inventory.updateInv();
     }
 }

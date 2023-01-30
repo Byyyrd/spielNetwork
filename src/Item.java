@@ -141,6 +141,9 @@ public class Item {
     }
 
     public double random(double min, double max){
+        if (min == 0 && max == 0){
+            return 0;
+        }
         return ((int)(((Math.random()*((max-min))+ min))*10f)+1)/10.0;
     }
 

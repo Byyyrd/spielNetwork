@@ -34,6 +34,7 @@ public class InventoryButton extends JButton implements ActionListener {
         equipButtons[row].getButton().setBackground(color);
         equipButtons[row].setButton(this);
         this.setBackground(Color.green);
+        panel.inventory.updateInv();
     }
 
     public ImageIcon getImage() {
