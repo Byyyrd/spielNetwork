@@ -6,6 +6,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.geom.AffineTransform;
 import java.lang.reflect.Array;
+import java.nio.BufferUnderflowException;
 import java.util.ArrayList;
 
 public class Panel extends JLayeredPane implements ActionListener, KeyListener {
@@ -69,6 +70,7 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
     boolean serverDown;
     boolean inInv;
     JPanel inventoryPanel;
+    JPanel equipPanel;
     Inventory inventory;
     boolean inUpgradeFenster;
 
@@ -153,16 +155,43 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
         inventoryPanel = new JPanel();
         inventoryPanel.setBounds(0, 150, 1900, 800);
         inventoryPanel.setLayout(new GridLayout(7, 7));
+        
+        equipPanel = new JPanel();
+        equipPanel.setBounds(0, 0, 1900, 200);
+        equipPanel.setLayout(new GridLayout(1, 7));
+        
         inventory = new Inventory();
+
         for (int i = 0; i < 7; i++) {
             for (int j = 0; j < 12; j++) {
                 InventoryButton button = new InventoryButton(this);
+                button.setRow(i);
                 inventoryPanel.add(button);
                 inventory.inventoryButtons[i][j] = button;
             }
         }
-
-
+        inventory.updateInv();
+        EquipButton button = new EquipButton("Armor");
+        equipPanel.add(button);
+        inventory.equipButtons[0] = button;
+        EquipButton button1 = new EquipButton("Sword");
+        equipPanel.add(button1);
+        inventory.equipButtons[1] = button1;
+        EquipButton button2 = new EquipButton("Slingshot");
+        equipPanel.add(button2);
+        inventory.equipButtons[2] = button2;
+        EquipButton button3 = new EquipButton("Mine");
+        equipPanel.add(button3);
+        inventory.equipButtons[3] = button3;
+        EquipButton button4 = new EquipButton("Ring");
+        equipPanel.add(button4);
+        inventory.equipButtons[4] = button4;
+        EquipButton button5 = new EquipButton("Chain");
+        equipPanel.add(button5);
+        inventory.equipButtons[5] = button5;
+        EquipButton button6 = new EquipButton("Shoes");
+        equipPanel.add(button6);
+        inventory.equipButtons[6] = button6;
 
         int delay = 10;
         timer = new Timer(delay, this);
@@ -273,11 +302,14 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
             if (inInv) {
                 inInv = false;
                 remove(inventoryPanel);
+                remove(equipPanel);
                 this.grabFocus();
             } else {
                 inInv = true;
+                add(equipPanel, 1, 1);
                 add(inventoryPanel, 1, 1);
                 setLayer(inventoryPanel, DRAG_LAYER);
+                setLayer(equipPanel, DRAG_LAYER);
             }
         }
     }
