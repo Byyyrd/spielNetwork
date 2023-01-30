@@ -31,6 +31,7 @@ public class InventoryButton extends JButton implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        equipButtons[row].getButton().setBackground(color);
         equipButtons[row].setButton(this);
         this.setBackground(Color.green);
     }
