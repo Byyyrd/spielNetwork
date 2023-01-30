@@ -106,7 +106,7 @@ public class Slingshot implements MouseListener, ActionListener {
             Arrow[1] = ((double) player.y + player.height);// y1 Index = 1
             Arrow[2] = Math.cos(Rotation);//xVel
             Arrow[3] = Math.sin(Rotation);//yVel
-            Arrow[4] = playerRotation;
+            Arrow[4] = panel.rotation2;
             allArrows.add(Arrow);
         }
     }
