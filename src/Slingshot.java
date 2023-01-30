@@ -39,7 +39,7 @@ public class Slingshot implements MouseListener, ActionListener {
         }
         for (int i = allArrows.size(); i >= 1; i--) {
             g2d.setColor(new Color(12, 255, 0));
-            g2d.fillOval((int) (this.allArrows.get(i - 1)[0] + 5), (int) (this.allArrows.get(i - 1)[1] + 5), 10, 10);
+            g2d.fillOval((int) (this.allArrows.get(i - 1)[0] + 1 - 1), (int) (this.allArrows.get(i - 1)[1] + 1 - 1), 10, 10);
         }
         if (player2.isSlingshotPickedUp()) {
             g2d.rotate(panel.rotation2, player2.x + playerImage.getWidth(null) * 1.5, player2.y + playerImage.getHeight(null) * 1.5);
@@ -49,7 +49,7 @@ public class Slingshot implements MouseListener, ActionListener {
         if (slingshot2.allArrows != null) {
             for (int i = slingshot2.allArrows.size(); i >= 1; i--) {
                 g2d.setColor(new Color(12, 255, 0));
-                g2d.fillOval((int) (slingshot2.allArrows.get(i - 1)[0] + 5), (int) (slingshot2.allArrows.get(i - 1)[1] + 5), 10, 10);
+                g2d.fillOval((int) (slingshot2.allArrows.get(i - 1)[0] + 1 - 1), (int) (slingshot2.allArrows.get(i - 1)[1] + 1 - 1), 10, 10);
             }
         }
     }
@@ -60,8 +60,8 @@ public class Slingshot implements MouseListener, ActionListener {
         x1 = player.x;
         y1 = player.y;
         if (mousePos != null) {
-            yLength = (long) ((mousePos.getY()) - y1);
-            xLength = (long) ((mousePos.getX()) - x1);
+            yLength = (long) ((mousePos.getY()) - (y1 + player.height / 2));
+            xLength = (long) ((mousePos.getX()) - (x1 + player.width / 2));
             playerRotation = Math.atan2(yLength, xLength);
         }
 
@@ -80,8 +80,8 @@ public class Slingshot implements MouseListener, ActionListener {
 
     public void CreateArrow() {
         Double[] Arrow = new Double[4];
-        Arrow[0] = ((double) player.x);// x1 Index = 0
-        Arrow[1] = ((double) player.y);// y1 Index = 1
+        Arrow[0] = ((double) player.x + player.width / 2);// x1 Index = 0
+        Arrow[1] = ((double) player.y + player.height / 2);// y1 Index = 1
         Arrow[2] = Math.cos(playerRotation);//xVel
         Arrow[3] = Math.sin(playerRotation);//yVel
         allArrows.add(Arrow);
@@ -94,15 +94,15 @@ public class Slingshot implements MouseListener, ActionListener {
             long xLength = (long) (mouseX - player.x);
             double Rotation = Math.atan2(yLength, xLength);
             Double[] Arrow = new Double[4];
-            Arrow[0] = ((double) player.x);// x1 Index = 0
-            Arrow[1] = ((double) player.y);// y1 Index = 1
+            Arrow[0] = ((double) player.x + player.width);// x1 Index = 0
+            Arrow[1] = ((double) player.y + player.height);// y1 Index = 1
             Arrow[2] = Math.cos(Rotation);//xVel
             Arrow[3] = Math.sin(Rotation);//yVel
             allArrows.add(Arrow);
         }
     }
 
-    public void tick(){
+    public void tick() {
         time -= 0.1;
         if (mouseDown) {
             if (!explosionCollision(player.x + player.width / 2, player.y + player.height / 2, 1745, 245, 100) && !explosionCollision(player.x + player.width / 2, player.y + player.height / 2, 195, 845, 100)) {
@@ -120,8 +120,10 @@ public class Slingshot implements MouseListener, ActionListener {
             this.mousePos = mousePos;
         }
     }
+
     @Override
-    public void mouseClicked(MouseEvent e) {}
+    public void mouseClicked(MouseEvent e) {
+    }
 
     @Override
     public void mousePressed(MouseEvent e) {
@@ -129,17 +131,21 @@ public class Slingshot implements MouseListener, ActionListener {
             mouseDown = true;
         }
     }
+
     public boolean explosionCollision(int x, int y, int x2, int y2, int distance) {
         return Math.abs(x - x2) < distance && Math.abs(y - y2) < distance;
     }
+
     @Override
     public void mouseReleased(MouseEvent e) {
         mouseDown = false;
     }
 
     @Override
-    public void mouseEntered(MouseEvent e) {}
+    public void mouseEntered(MouseEvent e) {
+    }
 
     @Override
-    public void mouseExited(MouseEvent e) {}
+    public void mouseExited(MouseEvent e) {
+    }
 }
