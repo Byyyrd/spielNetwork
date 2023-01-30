@@ -126,7 +126,7 @@ public class Ui {
         g2d.drawString(":  " + player.meleeDamageReduction, 80, 1000);
         g2d.setFont(new Font("Arial", Font.PLAIN, 20));
         g2d.setColor(Color.green);
-        g2d.drawString("+  " + panel.inventory.getMeleeDamageReduction(), 87, 1020);
+        g2d.drawString("+  " +(int)( panel.inventory.getMeleeDamageReduction()*10f)/10f, 87, 1020);
         g2d.setColor(Color.white);
         g2d.setFont(new Font("Arial", Font.PLAIN, 30));
 
@@ -140,7 +140,7 @@ public class Ui {
         g2d.drawString(":  " + ((int) (player.slingshotDamageReduction * 10f)) / 10f, 260, 1000);
         g2d.setFont(new Font("Arial", Font.PLAIN, 20));
         g2d.setColor(Color.green);
-        g2d.drawString("+  " + panel.inventory.getSlingshotDamageReduction(), 267, 1020);
+        g2d.drawString("+  " + (int)(panel.inventory.getSlingshotDamageReduction()*10f)/10f, 267, 1020);
         g2d.setColor(Color.white);
         g2d.setFont(new Font("Arial", Font.PLAIN, 30));
 
@@ -156,7 +156,7 @@ public class Ui {
         g2d.drawString(":  " + player.mineDamageReduction, 440, 1000);
         g2d.setFont(new Font("Arial", Font.PLAIN, 20));
         g2d.setColor(Color.green);
-        g2d.drawString("+  " + panel.inventory.getMineDamageReduction(), 447, 1020);
+        g2d.drawString("+  " + (int)(panel.inventory.getMineDamageReduction()*10f)/10f, 447, 1020);
         g2d.setColor(Color.white);
         g2d.setFont(new Font("Arial", Font.PLAIN, 30));
 
@@ -169,7 +169,7 @@ public class Ui {
         g2d.drawString(":  " + ((int) (player.swordDamage * 10f)) / 10f, 610, 1000);
         g2d.setFont(new Font("Arial", Font.PLAIN, 20));
         g2d.setColor(Color.green);
-        g2d.drawString("+  " + panel.inventory.getSwordDamage(), 617, 1020);
+        g2d.drawString("+  " +(int)( panel.inventory.getSwordDamage()*10f)/10f, 617, 1020);
         g2d.setColor(Color.white);
         g2d.setFont(new Font("Arial", Font.PLAIN, 30));
 
@@ -182,7 +182,7 @@ public class Ui {
         g2d.drawString(":  " + ((int) (player.slingshotDamage * 10f)) / 10f, 780, 1000);
         g2d.setFont(new Font("Arial", Font.PLAIN, 20));
         g2d.setColor(Color.green);
-        g2d.drawString("+  " + panel.inventory.getSlingshotDamage(), 787, 1020);
+        g2d.drawString("+  " + (int)(panel.inventory.getSlingshotDamage()*10f)/10f, 787, 1020);
         g2d.setColor(Color.white);
         g2d.setFont(new Font("Arial", Font.PLAIN, 30));
 
@@ -197,7 +197,7 @@ public class Ui {
         g2d.drawString(":  " + (int) player.mineDamage, 930, 1000);
         g2d.setFont(new Font("Arial", Font.PLAIN, 20));
         g2d.setColor(Color.green);
-        g2d.drawString("+  " + panel.inventory.getMineDamage(), 937, 1020);
+        g2d.drawString("+  " +(int)( panel.inventory.getMineDamage()*10f)/10f, 937, 1020);
         g2d.setColor(Color.white);
         g2d.setFont(new Font("Arial", Font.PLAIN, 30));
 
@@ -216,7 +216,7 @@ public class Ui {
         g2d.drawString(":  " + ((int) (player.healTime * 10f)) / 10f + "s", 1080, 1000);
         g2d.setFont(new Font("Arial", Font.PLAIN, 20));
         g2d.setColor(Color.green);
-        g2d.drawString("-  " + Math.abs(panel.inventory.getHealTime()), 1087, 1020);
+        g2d.drawString("-  " +(int)( Math.abs(panel.inventory.getHealTime())*10f)/10f, 1087, 1020);
         g2d.setColor(Color.white);
         g2d.setFont(new Font("Arial", Font.PLAIN, 30));
 
@@ -231,10 +231,10 @@ public class Ui {
         g2d.setFont(new Font("Arial", Font.PLAIN, 20));
         if (panel.inventory.getArrowTime() > 0 ){
             g2d.setColor(Color.red);
-            g2d.drawString("+  " + Math.abs(panel.inventory.getArrowTime()), 1307, 1020);
+            g2d.drawString("+  " +(int)( Math.abs(panel.inventory.getArrowTime())*10f)/10f, 1307, 1020);
         } else {
             g2d.setColor(Color.green);
-            g2d.drawString("-  " + Math.abs(panel.inventory.getArrowTime()), 1307, 1020);
+            g2d.drawString("-  " +(int)( Math.abs(panel.inventory.getArrowTime())*10f)/10f, 1307, 1020);
         }
         g2d.setColor(Color.white);
         g2d.setFont(new Font("Arial", Font.PLAIN, 30));
@@ -255,7 +255,7 @@ public class Ui {
         g2d.drawString(":  " + ((int) (player.mineTime * 10f)) / 10f + "s", 1470, 1000);
         g2d.setFont(new Font("Arial", Font.PLAIN, 20));
         g2d.setColor(Color.green);
-        g2d.drawString("-  " + Math.abs(panel.inventory.getMineTime()), 1477, 1020);
+        g2d.drawString("-  " + (int)(Math.abs(panel.inventory.getMineTime())*10f)/10f, 1477, 1020);
         g2d.setColor(Color.white);
         g2d.setFont(new Font("Arial", Font.PLAIN, 30));
 
@@ -265,10 +265,10 @@ public class Ui {
         g2d.setFont(new Font("Arial", Font.PLAIN, 20));
         if (panel.inventory.getSpeed() < 0){
             g2d.setColor(Color.red);
-            g2d.drawString("-  " + Math.abs(panel.inventory.getSpeed()), 1657, 1020);
+            g2d.drawString("-  " + (int)(Math.abs(panel.inventory.getSpeed())*10f)/10f, 1657, 1020);
         } else {
             g2d.setColor(Color.green);
-            g2d.drawString("+  " + panel.inventory.getSpeed(), 1657, 1020);
+            g2d.drawString("+  " + (int)(panel.inventory.getSpeed()*10f)/10f, 1657, 1020);
         }
         g2d.setColor(Color.white);
         g2d.setFont(new Font("Arial", Font.PLAIN, 30));
@@ -282,7 +282,7 @@ public class Ui {
         g2d.drawString(":  " + player.arrowVelocity, 1800, 1000);
         g2d.setFont(new Font("Arial", Font.PLAIN, 20));
         g2d.setColor(Color.green);
-        g2d.drawString("+  " + panel.inventory.getArrowVelocity(), 1807, 1020);
+        g2d.drawString("+  " + (int)(panel.inventory.getArrowVelocity()*10f)/10f, 1807, 1020);
         g2d.setColor(Color.white);
         g2d.setFont(new Font("Arial", Font.PLAIN, 30));
     }

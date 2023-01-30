@@ -221,13 +221,13 @@ public class Player implements Serializable {
 
     public void heal() {
         if (explosionCollision(x + width / 2, y + height / 2, 195, 845, 45) && healTimer <= 0) {
-            if (panel.ui.hp < panel.ui.maxHp) {
+            if (panel.ui.hp < panel.ui.maxHp + panel.inventory.getMaxHp()) {
                 panel.ui.hp++;
             }
             healTimer = healTime + panel.inventory.getHealTime();
         }
         if (explosionCollision(x + width / 2, y + height / 2, 1745, 245, 45) && healTimer <= 0) {
-            if (panel.ui.hp < panel.ui.maxHp) {
+            if (panel.ui.hp < panel.ui.maxHp + panel.inventory.getMaxHp()) {
                 panel.ui.hp++;
             }
             healTimer = healTime + panel.inventory.getHealTime();
