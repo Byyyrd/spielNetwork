@@ -76,6 +76,8 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
     Inventory inventory;
     boolean inUpgradeFenster;
 
+    AffineTransform oldXForm;
+
 
     public Panel(Client client) {
         playerImage = new ImageIcon("resources/Player.png").getImage();
@@ -233,7 +235,7 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
     @Override
     public void paint(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
-        AffineTransform oldXForm = g2d.getTransform();
+        oldXForm = g2d.getTransform();
         //Background
         for (int j = 0; j <= this.getHeight() / bgrHeight; j++) {
             for (int i = 0; i <= this.getWidth() / bgrWidth; i++) {

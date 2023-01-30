@@ -36,23 +36,27 @@ public class Slingshot implements MouseListener, ActionListener {
             g2d.rotate(this.playerRotation, player.x + playerImage.getWidth(null) * 1.5, player.y + playerImage.getHeight(null) * 1.5);
             g2d.drawImage(image, player.x + playerImage.getWidth(null) * 3 / 2 - image.getWidth(null) / 48, player.y + playerImage.getHeight(null) * 3 / 2 - image.getHeight(null) / 48, image.getWidth(null) / 24, image.getHeight(null) / 24, null);
             g2d.rotate(-this.playerRotation, player.x + playerImage.getWidth(null) * 1.5, player.y + playerImage.getHeight(null) * 1.5);
+            g2d.setTransform(panel.oldXForm);
         }
         for (int i = allArrows.size(); i >= 1; i--) {
             g2d.drawOval((int)(allArrows.get(i - 1)[0]+1-1), (int)(allArrows.get(i - 1)[1]+1-1), 10,10);
             g2d.rotate(this.allArrows.get(i - 1)[4] + Math.PI/2, (int) (allArrows.get(i - 1)[0] +1-1), (int) (allArrows.get(i - 1)[1] + 1 - 1));
             g2d.drawImage(panel.arrow, (int) (allArrows.get(i - 1)[0] +1-1) - panel.arrow.getWidth(null) / 2, (int) (allArrows.get(i - 1)[1] + 1 - 1) -panel.arrow.getHeight(null) / 2, panel.arrow.getWidth(null), panel.arrow.getHeight(null), null);
             g2d.rotate(-this.allArrows.get(i - 1)[4] - Math.PI/2, (int) (allArrows.get(i - 1)[0] +1-1), (int) (allArrows.get(i - 1)[1] + 1 - 1));
+            g2d.setTransform(panel.oldXForm);
         }
         if (player2.isSlingshotPickedUp()) {
             g2d.rotate(panel.rotation2, player2.x + playerImage.getWidth(null) * 1.5, player2.y + playerImage.getHeight(null) * 1.5);
             g2d.drawImage(image, player2.x + playerImage.getWidth(null) * 3 / 2 - image.getWidth(null) / 48, player2.y + playerImage.getHeight(null) * 3 / 2 - image.getHeight(null) / 48, image.getWidth(null) / 24, image.getHeight(null) / 24, null);
             g2d.rotate(-panel.rotation2, player2.x + playerImage.getWidth(null) * 1.5, player2.y + playerImage.getHeight(null) * 1.5);
+            g2d.setTransform(panel.oldXForm);
         }
         if (slingshot2.allArrows != null) {
             for (int i = slingshot2.allArrows.size(); i >= 1; i--) {
                 g2d.rotate(slingshot2.allArrows.get(i - 1)[4] + Math.PI/2, (int) (slingshot2.allArrows.get(i - 1)[0] +1-1), (int) (slingshot2.allArrows.get(i - 1)[1] + 1 - 1));
                 g2d.drawImage(panel.arrow, (int) (slingshot2.allArrows.get(i - 1)[0] +1-1) - panel.arrow.getWidth(null) / 2, (int) (slingshot2.allArrows.get(i - 1)[1] + 1 - 1) -panel.arrow.getHeight(null) / 2, panel.arrow.getWidth(null), panel.arrow.getHeight(null), null);
                 g2d.rotate(-slingshot2.allArrows.get(i - 1)[4] - Math.PI/2, (int) (slingshot2.allArrows.get(i - 1)[0] +1-1), (int) (slingshot2.allArrows.get(i - 1)[1] + 1 - 1));
+                g2d.setTransform(panel.oldXForm);
             }
         }
     }
