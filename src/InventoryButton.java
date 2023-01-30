@@ -25,55 +25,52 @@ public class InventoryButton extends JButton implements ActionListener{
         this.addActionListener(this);
         item.setImage(null);
         this.setFont(new Font("Arial", Font.PLAIN, 10));
-        this.setToolTipText("Hallo");
     }
 
     public void updateButton() {
         if (item != null && item.getImage() != null) {
+            toolTip = "<strong>Stats:</strong>";
             if (item.getSpeed() != 0.00) {
-                toolTip = toolTip + "\n"+ item.getSpeed();
+                toolTip = toolTip +"<br>Speed: "+ item.getSpeed();
             }
             if (item.getArrowTime() != 0.00) {
-                toolTip = toolTip + "\n"+item.getArrowTime();
+                toolTip = toolTip +"<br>ArrowTime: "+item.getArrowTime();
             }
             if (item.getHealTime() != 0.00) {
-                toolTip = toolTip + "\n"+ item.getHealTime();
+                toolTip = toolTip +"<br>HealTime: "+ item.getHealTime();
             }
             if (item.getArrowVelocity() != 0.00) {
-                toolTip = toolTip + "\n"+ item.getArrowVelocity();
+                toolTip = toolTip +"<br>ArrowVelocity: "+ item.getArrowVelocity();
             }
             if (item.getMaxHp() != 0.00) {
-                toolTip = toolTip + "\n"+ item.getMaxHp();
+                toolTip = toolTip +"<br>MaxHp: "+ item.getMaxHp();
             }
             if (item.getMaxMines() != 0.00) {
-                toolTip = toolTip + "\n"+ item.getMaxMines();
+                toolTip = toolTip +"<br>MaxMines: "+ item.getMaxMines();
             }
             if (item.getMeleeDamageReduction() != 0.00) {
-                toolTip = toolTip + "\n"+ item.getMeleeDamageReduction();
-            }
-            if (item.getMeleeDamageReduction() != 0.00) {
-                toolTip = toolTip + "\n"+ item.getMeleeDamageReduction();
+                toolTip = toolTip +"<br>MeleeDamageReduction: "+ item.getMeleeDamageReduction();
             }
             if (item.getMineDamageReduction() != 0.00) {
-                toolTip = toolTip + "\n"+ item.getMineDamageReduction();
+                toolTip = toolTip +"<br>MineDmgRed: "+ item.getMineDamageReduction();
             }
             if (item.getSlingshotDamageReduction() != 0.00) {
-                toolTip = toolTip + "\n"+ item.getSlingshotDamageReduction();
+                toolTip = toolTip +"<br>SlingshotDmgRed: "+ item.getSlingshotDamageReduction();
             }
             if (item.getMineTime() != 0.00) {
-                toolTip = toolTip + "\n"+ item.getMineTime();
+                toolTip = toolTip +"<br>MineTime: "+ item.getMineTime();
             }
             if (item.getSwordDamage() != 0.00) {
-                toolTip = toolTip + "\n"+ item.getSwordDamage();
+                toolTip = toolTip +"<br>SwordDamage: "+ item.getSwordDamage();
             }
             if (item.getMineDamage() != 0.00) {
-                toolTip = toolTip + "\n"+ item.getMineDamage();
+                toolTip = toolTip +"<br>MineDamage: "+ item.getMineDamage();
             }
             if (item.getSlingshotDamage() != 0.00) {
-                toolTip = toolTip + "\n"+ item.getSlingshotDamage();
+                toolTip = toolTip +"<br>SlingshotDamage: "+ item.getSlingshotDamage();
             }
             this.setFont(new Font("Arial",Font.PLAIN,10));
-            this.setToolTipText(toolTip);
+            this.setToolTipText("<html>"+toolTip+"</html>");
             image = new ImageIcon(item.getImage().getScaledInstance(getWidth() + 1, getHeight() + 1, Image.SCALE_DEFAULT));
             this.setIcon(image);
         }
