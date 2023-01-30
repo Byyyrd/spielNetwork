@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 public class InventoryButton extends JButton implements ActionListener {
 
     Panel panel;
-    Item item;
+    Item item = new Item("");
     ImageIcon image;
     EquipButton[] equipButtons;
     boolean equipped;
@@ -20,21 +20,24 @@ public class InventoryButton extends JButton implements ActionListener {
         this.setBackground(color);
         this.panel = panel;
         this.addActionListener(this);
+        item.setImage(null);
     }
 
     public void updateButton() {
-        if (item != null) {
-            image = new ImageIcon(item.getImage().getScaledInstance(getWidth()+1, getHeight()+1, java.awt.Image.SCALE_SMOOTH));
+        if (item != null && item.getImage() != null) {
+            image = new ImageIcon(item.getImage().getScaledInstance(getWidth()+1, getHeight()+1, Image.SCALE_DEFAULT));
             this.setIcon(image);
         }
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        equipButtons[row].getButton().setBackground(color);
-        equipButtons[row].setButton(this);
-        this.setBackground(Color.green);
-        panel.inventory.updateInv();
+        if (item != null && item.getImage() != null) {
+            equipButtons[row].getButton().setBackground(color);
+            equipButtons[row].setButton(this);
+            this.setBackground(Color.green);
+            panel.inventory.updateInv();
+        }
     }
 
     public ImageIcon getImage() {
