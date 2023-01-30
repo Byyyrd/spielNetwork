@@ -2,6 +2,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 
 public class InventoryButton extends JButton implements ActionListener {
@@ -13,6 +15,7 @@ public class InventoryButton extends JButton implements ActionListener {
     boolean equipped;
     int row;
     Color color;
+    String toolTip;
 
     public InventoryButton(Panel panel) {
         color = new Color(24, 24, 24);
@@ -21,10 +24,57 @@ public class InventoryButton extends JButton implements ActionListener {
         this.panel = panel;
         this.addActionListener(this);
         item.setImage(null);
+
+        this.setFont(new Font("Arial",Font.PLAIN,50));
+        this.setToolTipText("Hallo");
     }
 
     public void updateButton() {
         if (item != null && item.getImage() != null) {
+           if (item.getSpeed() != 0){
+               toolTip = toolTip + item.getSpeed();
+           }
+            if (item.getArrowTime() != 0){
+                toolTip = toolTip + item.getArrowTime();
+            }
+            if (item.getHealTime() != 0){
+                toolTip = toolTip + item.getHealTime();
+            }
+            if (item.getArrowVelocity() != 0){
+                toolTip = toolTip + item.getArrowVelocity();
+            }
+            if (item.getMaxHp() != 0){
+                toolTip = toolTip + item.getMaxHp();
+            }
+            if (item.getMaxMines() != 0){
+                toolTip = toolTip + item.getMaxMines();
+            }
+            if (item.getMeleeDamageReduction() != 0){
+                toolTip = toolTip + item.getMeleeDamageReduction();
+            }
+            if (item.getMeleeDamageReduction() != 0){
+                toolTip = toolTip + item.getMeleeDamageReduction();
+            }
+            if (item.getMineDamageReduction() != 0){
+                toolTip = toolTip + item.getMineDamageReduction();
+            }
+            if (item.getSlingshotDamageReduction() != 0){
+                toolTip = toolTip + item.getSlingshotDamageReduction();
+            }
+            if (item.getMineTime() != 0){
+                toolTip = toolTip + item.getMineTime();
+            }
+            if (item.getSwordDamage() != 0){
+                toolTip = toolTip + item.getSwordDamage();
+            }
+            if (item.getMineDamage() != 0){
+                toolTip = toolTip + item.getMineDamage();
+            }
+            if (item.getSlingshotDamage() != 0){
+                toolTip = toolTip + item.getSlingshotDamage();
+            }
+            this.setFont(new Font("Arial",Font.PLAIN,50));
+            this.setToolTipText(toolTip);
             image = new ImageIcon(item.getImage().getScaledInstance(getWidth()+1, getHeight()+1, Image.SCALE_DEFAULT));
             this.setIcon(image);
         }
