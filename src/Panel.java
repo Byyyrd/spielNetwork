@@ -20,6 +20,9 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
     Slingshot slingshot2;
     double rotation2;
 
+    Fist fist1;
+    Fist fist2;
+
     Mine mine;
     Mine mine2;
 
@@ -59,6 +62,7 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
     Image shoeImage3;
     Image errorImage;
     Image arrow;
+    Image fist;
     int bgrWidth;
     int bgrHeight;
     ArrayList<int[]> allObstacles;
@@ -112,6 +116,7 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
         mineImage3 = new ImageIcon("resources/Light_Mine.png").getImage();
         errorImage = new ImageIcon("resources/Error.png").getImage();
         arrow = new ImageIcon("resources/Arrow.png").getImage();
+        fist = new ImageIcon("resources/Fist.png").getImage();
         bgrHeight = bgrImage.getHeight(null);
         bgrWidth = bgrImage.getWidth(null);
 
@@ -146,6 +151,8 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
         sword2.setPlayer2(player1);
         this.addMouseListener(sword);
 
+        fist1 = new Fist(this, player1);
+        fist2 = new Fist(this, player2);
 
         player1.setEnemySword(sword2);
         player2.setEnemySword(sword);
@@ -261,6 +268,10 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
         sword.drawSword(g2d, swordImage, player2);
         g2d.setTransform(oldXForm);
 
+        //Fist
+        fist1.drawFist(g2d);
+        this.addMouseListener(fist1);
+
         //Slingshot
         slingshot.drawSlingshot(g2d, player1, player2, slingshotImage, playerImage, slingshot2);
         g2d.setTransform(oldXForm);
@@ -356,6 +367,7 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
             sword.tick();
             mine.tick();
             slingshot.tick();
+            fist1.tick();
             player1.heal();
             mine.minePlaced = false;
             mine.exploded = false;

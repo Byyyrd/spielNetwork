@@ -21,6 +21,7 @@ public class Player implements Serializable {
     ArrayList<Double[]> allArrowsSelf;
     boolean slingshotPickedUp;
     boolean swordPickedUp;
+    boolean fistequiped = true;
     Panel panel;
     double hp;
     double healTimer;
@@ -28,18 +29,18 @@ public class Player implements Serializable {
     double swordDamage =2.5;
     double slingshotDamage=1;
     double mineDamage =10;
-    double arrowTime = 1;
+    double arrowTime = 0;
     double mineTime = 4;
     double iFrameTime = 0.5;
     double meleeDamageReduction = 0;
     double slingshotDamageReduction = 0;
     double mineDamageReduction = 0;
-    double arrowVelocity = 0.05;
+    double arrowVelocity = 1;
     int maxMines = 10;
 
 
     public Player(int x, int y, int width, int height, Player player2, Sword enemySword, Panel panel) {
-        slingshotPickedUp = true;
+        slingshotPickedUp = false;
         swordPickedUp = false;
         this.player2 = player2;
         this.x = x;
