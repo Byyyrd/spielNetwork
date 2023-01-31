@@ -40,8 +40,8 @@ public class Ui {
             player.y = 0;
             death++;
             hp = maxHp + panel.inventory.getMaxHp();
-            player.swordPickedUp = false;
-            player.slingshotPickedUp = true;
+            player.swordEquipde = false;
+            player.slingshotEquipde = true;
         }
     }
 

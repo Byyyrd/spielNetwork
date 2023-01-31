@@ -19,8 +19,10 @@ public class Player implements Serializable {
     Sword enemySword;
     ArrayList<Double[]> allArrows;
     ArrayList<Double[]> allArrowsSelf;
-    boolean slingshotPickedUp;
-    boolean swordPickedUp;
+    boolean slingshotEquipde;
+    boolean swordEquipde;
+    boolean slingshotPickedUp = false;
+    boolean swordPickedUp = false;
     boolean fistequiped = true;
     Panel panel;
     double hp;
@@ -39,9 +41,10 @@ public class Player implements Serializable {
     int maxMines = 10;
 
 
+
     public Player(int x, int y, int width, int height, Player player2, Sword enemySword, Panel panel) {
-        slingshotPickedUp = false;
-        swordPickedUp = false;
+        slingshotEquipde = false;
+        swordEquipde = false;
         this.player2 = player2;
         this.x = x;
         this.y = y;
@@ -75,7 +78,7 @@ public class Player implements Serializable {
     }
 
     public void checkCollision() {
-        if (enemySword != null && player2.swordPickedUp) {
+        if (enemySword != null && player2.swordEquipde) {
             double reduction;
             if (panel.player1.meleeDamageReduction + panel.inventory.getMeleeDamageReduction() <= 100){reduction = panel.player1.meleeDamageReduction + panel.inventory.getMeleeDamageReduction();}else {reduction = 100;}
             if (inRectangle((int) (enemySword.x + 21 + Math.sin(enemySword.rotation) * 21), (int) (enemySword.y + width / 2 + Math.cos(enemySword.rotation) * -25), x, y, width, height) || inRectangle((int) (enemySword.x + 21 + Math.sin(enemySword.rotation) * 40), (int) (enemySword.y + width / 2 + Math.cos(enemySword.rotation) * -40), x, y, width, height) || inRectangle((int) (enemySword.x + 21 + Math.sin(enemySword.rotation) * 55), (int) (enemySword.y + width / 2 + Math.cos(enemySword.rotation) * -55), x, y, width, height)) {
@@ -135,7 +138,6 @@ public class Player implements Serializable {
         //Player
         g2d.drawImage(playerImage, x, y, width, height, null);
         g2d.drawImage(playerImage, player2.x, player2.y, player2.width, player2.height, null);
-
 
     }
 
@@ -248,12 +250,12 @@ public class Player implements Serializable {
 
     }
 
-    public boolean isSlingshotPickedUp() {
-        return slingshotPickedUp;
+    public boolean isSlingshotEquipde() {
+        return slingshotEquipde;
     }
 
-    public void setSlingshotPickedUp(boolean slingshotPickedUp) {
-        this.slingshotPickedUp = slingshotPickedUp;
+    public void setSlingshotEquipde(boolean slingshotEquipde) {
+        this.slingshotEquipde = slingshotEquipde;
     }
 
     public void setAllArrows(ArrayList<Double[]> allArrows) {
@@ -264,15 +266,16 @@ public class Player implements Serializable {
         this.allArrowsSelf = allArrowsSelf;
     }
 
-    public boolean isSwordPickedUp() {
-        return swordPickedUp;
+    public boolean isSwordEquipde() {
+        return swordEquipde;
     }
 
-    public void setSwordPickedUp(boolean swordPickedUp) {
-        this.swordPickedUp = swordPickedUp;
+    public void setSwordEquipde(boolean swordEquipde) {
+        this.swordEquipde = swordEquipde;
     }
 
     public boolean explosionCollision(int x, int y, int x2, int y2, int distance) {
         return Math.abs(x - x2) < distance && Math.abs(y - y2) < distance;
     }
+
 }

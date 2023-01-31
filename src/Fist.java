@@ -53,13 +53,7 @@ public class Fist implements MouseListener {
             g2d.rotate(-panel.rotation2, panel.player2.x + player.width / 2 + x2, panel.player2.y + player.height / 2 + y2);
         }
     }
-    /**
-     * Wenn Rotation = 0: x = player.x + player.width/2
-     * Wenn Rotation = Pi/2(1/4): x = player.x + player.width/2
-     * Wenn Rotation = Pi(2/4)<: x = player.x
-     * Wenn rotation = 1.5*PI(3/4)^: x = player.x
-     *
-    **/
+
     @Override
     public void mouseClicked(MouseEvent e) {
 
