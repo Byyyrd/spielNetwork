@@ -198,4 +198,108 @@ public class Item {
     public int getMaxHp() {
         return maxHp;
     }
+
+    public double getMinSpeed() {
+        return minSpeed;
+    }
+
+    public double getMaxSpeed() {
+        return maxSpeed;
+    }
+
+    public double getMinHealTime() {
+        return minHealTime;
+    }
+
+    public double getMaxHealTime() {
+        return maxHealTime;
+    }
+
+    public double getMinSwordDamage() {
+        return minSwordDamage;
+    }
+
+    public double getMaxSwordDamage() {
+        return maxSwordDamage;
+    }
+
+    public double getMinSlingshotDamage() {
+        return minSlingshotDamage;
+    }
+
+    public double getMaxSlingshotDamage() {
+        return maxSlingshotDamage;
+    }
+
+    public double getMinMineDamage() {
+        return minMineDamage;
+    }
+
+    public double getMaxMineDamage() {
+        return maxMineDamage;
+    }
+
+    public double getMinArrowTime() {
+        return minArrowTime;
+    }
+
+    public double getMaxArrowTime() {
+        return maxArrowTime;
+    }
+
+    public double getMinMineTime() {
+        return minMineTime;
+    }
+
+    public double getMaxMineTime() {
+        return maxMineTime;
+    }
+
+    public double getMinMeleeDamageReduction() {
+        return minMeleeDamageReduction;
+    }
+
+    public double getMaxMeleeDamageReduction() {
+        return maxMeleeDamageReduction;
+    }
+
+    public double getMinSlingshotDamageReduction() {
+        return minSlingshotDamageReduction;
+    }
+
+    public double getMaxSlingshotDamageReduction() {
+        return maxSlingshotDamageReduction;
+    }
+
+    public double getMinMineDamageReduction() {
+        return minMineDamageReduction;
+    }
+
+    public double getMaxMineDamageReduction() {
+        return maxMineDamageReduction;
+    }
+
+    public double getMinArrowVelocity() {
+        return minArrowVelocity;
+    }
+
+    public double getMaxArrowVelocity() {
+        return maxArrowVelocity;
+    }
+
+    public int getMinMaxMines() {
+        return minMaxMines;
+    }
+
+    public int getMaxMaxMines() {
+        return maxMaxMines;
+    }
+
+    public int getMinMaxHp() {
+        return minMaxHp;
+    }
+
+    public int getMaxMaxHp() {
+        return maxMaxHp;
+    }
 }

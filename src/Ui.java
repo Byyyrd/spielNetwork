@@ -60,7 +60,7 @@ public class Ui {
         g2d.fillRect(0, 975, (int) (normHp * 500), 50);
         g2d.drawImage(hpImage, 0, 975, hpImage.getWidth(null), hpImage.getHeight(null), null);
         g2d.setFont(new Font("Arial", Font.PLAIN, 40));
-        g2d.drawString(hp + "/" + maxHp, 525, 1015);
+        g2d.drawString(hp + "/" + (maxHp+panel.inventory.getMaxHp()), 525, 1015);
         //DashCoolDown & Mines left
         g2d.setFont(new Font("Arial", Font.PLAIN, 40));
         g2d.drawString("Mines: " + mines + "/" + player.maxMines, 1375, 1015);
@@ -69,7 +69,7 @@ public class Ui {
         g2d.setColor(Color.green);
         g2d.fillRect(700, 975, (int) (exp * 25), 50);
         g2d.drawImage(hpImage, 700, 975, hpImage.getWidth(null), hpImage.getHeight(null), null);
-        g2d.drawString(exp + "/" + "20", 1225, 1015);
+        g2d.drawString(exp + "/" +"20", 1225, 1015);
     }
 
     public void levelUp() {

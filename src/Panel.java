@@ -183,7 +183,7 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
 
 
         //Ui
-        ui = new Ui(20, player1, player2, this);
+        ui = new Ui(10, player1, player2, this);
 
 
         //Inventory
@@ -305,28 +305,26 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
         player1.keyPressed(e);
         if (e.getKeyCode() == 70) {
             wepon++;
-            if (wepon > 3) {
+            if (wepon > 2) {
                 wepon = 1;
             }
             switch (wepon) {
                 case 1:
-                    player1.fistequiped = true;
-                    player1.slingshotPickedUp = false;
-                    player1.swordPickedUp = false;
-                    break;
-                case 2:
                     player1.fistequiped = false;
                     player1.setSlingshotPickedUp(true);
                     player1.setSwordPickedUp(false);
                     break;
-                case 3:
+                case 2:
                     player1.fistequiped = false;
                     player1.setSlingshotPickedUp(false);
                     player1.setSwordPickedUp(true);
                     break;
             }
-            //player1.setSlingshotPickedUp(!player1.isSlingshotPickedUp());
-            //player1.setSwordPickedUp(!player1.isSwordPickedUp());
+        }
+        if (e.getKeyCode() == 81){
+            player1.fistequiped = true;
+            player1.slingshotPickedUp = false;
+            player1.swordPickedUp = false;
         }
         if (e.getKeyCode() == 10) {
             e.consume();
