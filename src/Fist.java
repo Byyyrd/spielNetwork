@@ -19,10 +19,12 @@ public class Fist implements MouseListener {
         time = 1;
     }
     public void tick(){
+
         time -= 0.1;
         if (time > 0){
-            y = Math.sin(panel.slingshot.playerRotation) * 21;
-            x = Math.cos(panel.slingshot.playerRotation) * -25;
+            System.out.println(panel.slingshot.playerRotation);
+            y = Math.sin(panel.slingshot.playerRotation) * 25;
+            x = Math.cos(panel.slingshot.playerRotation) * 25;
         }else {
             x = 0;
             y = 0;
@@ -30,9 +32,9 @@ public class Fist implements MouseListener {
     }
     public void drawFist(Graphics2D g2d){
         if (player.fistequiped){
-            g2d.rotate(panel.slingshot.playerRotation, player.x + player.width/2, player.y + player.height/2);
+            g2d.rotate(panel.slingshot.playerRotation, player.x + player.width/2 +x, player.y + player.height/2 +y);
             g2d.drawImage(panel.fist, (int)(x + player.x + player.width/2 - panel.fist.getWidth(null)/2), (int)(y + player.y + player.height/2 - panel.fist.getHeight(null)/2), panel.fist.getWidth(null), panel.fist.getHeight(null), null);
-            g2d.rotate(-panel.slingshot.playerRotation, player.x + player.width/2, player.y + player.height/2);
+            g2d.rotate(-panel.slingshot.playerRotation, player.x + player.width/2 +x, player.y + player.height/2 +y);
         }
         if (panel.player2.fistequiped){
             g2d.rotate(panel.rotation2, panel.player2.x + player.width/2, panel.player2.y + player.height/2);
