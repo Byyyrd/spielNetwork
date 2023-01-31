@@ -2,6 +2,8 @@ import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.*;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
 
 public class InventoryButton extends JButton implements ActionListener {
 
@@ -13,6 +15,8 @@ public class InventoryButton extends JButton implements ActionListener {
     int row;
     Color color;
     String toolTip;
+    ArrayList<String> names = new ArrayList<>();
+    ArrayList<String> methodNames = new ArrayList<>();
 
     public InventoryButton(Panel panel) {
         color = new Color(24, 24, 24);
@@ -22,30 +26,73 @@ public class InventoryButton extends JButton implements ActionListener {
         this.addActionListener(this);
         item.setImage(null);
         this.setFont(new Font("Arial", Font.PLAIN, 10));
+        methodNames.add("Speed");
+        methodNames.add("SwordDamage");
+        methodNames.add("SlingshotDamage");
+        methodNames.add("MineDamage");
+        methodNames.add("MeleeDamageReduction");
+        methodNames.add("SlingshotDamageReduction");
+        methodNames.add("MineDamageReduction");
+        methodNames.add("ArrowVelocity");
+        methodNames.add("MaxMines");
+        methodNames.add("MaxHp");
+
+        names.add("Speed");
+        names.add("Sword Damage");
+        names.add("Slingshot Damage");
+        names.add("Mine Damage");
+        names.add("Melee Dmg-Red");
+        names.add("Slingshot Dmg-Red");
+        names.add("Mine Dmg-Red");
+        names.add("Arrow Velocity");
+        names.add("max Mines");
+        names.add("max Hp");
+
+        UIManager.put("ToolTip.background", Color.lightGray);
+        UIManager.put("ToolTip.border", new LineBorder(Color.GRAY, 1));
+        ToolTipManager.sharedInstance().setInitialDelay(0);
+        ToolTipManager.sharedInstance().setDismissDelay(500000);
     }
 
     public void updateButton() {
+
         if (item != null && item.getImage() != null) {
+            //Generate Tooltips
             toolTip = "<strong>Stats:</strong>";
-            if (item.getSpeed() != 0.00) {
-                if (item.getSpeed() > 0) {
-
-
-                    if (item.getSpeed() == item.getMaxSpeed()) {
-                        toolTip = toolTip + "<br>Speed: <font color = \"#0000ff\">" + item.getSpeed() + "</font>";
-                    } else if (item.getSpeed() > item.getMaxSpeed() / 2) {
-                        toolTip = toolTip + "<br>Speed: <font color = \"green\">" + item.getSpeed() + "</font>";
+            for (int i = 0; i < names.size(); i++) {
+                double gotValue = 0.00;
+                double gotMaxValue = 0.00;
+                double gotMinValue = 0.00;
+                try {
+                    Method getterMethod = item.getClass().getMethod("get" + methodNames.get(i));
+                    Object value = getterMethod.invoke(item);
+                    gotValue = (double) value;
+                    Method maxMethod = item.getClass().getMethod("getMax" + methodNames.get(i));
+                    Object maxValue = maxMethod.invoke(item);
+                    gotMaxValue = (double) maxValue;
+                    Method minMethod = item.getClass().getMethod("getMin" + methodNames.get(i));
+                    Object minValue = minMethod.invoke(item);
+                    gotMinValue = (double) minValue;
+                } catch (Exception e) {
+                }
+                if (gotValue != 0.00) {
+                    if (gotValue > 0) {
+                        if (gotValue == gotMaxValue) {
+                            toolTip = toolTip + "<br>"+names.get(i)+": <font color = \"#0000ff\">" + gotValue + "</font>";
+                        } else if (gotValue > gotMaxValue / 2) {
+                            toolTip = toolTip + "<br>"+names.get(i)+": <font color = \"green\">" + gotValue + "</font>";
+                        } else {
+                            toolTip = toolTip + "<br>"+names.get(i)+": <font color = \"lime\">" + gotValue + "</font>";
+                        }
                     } else {
-                        toolTip = toolTip + "<br>Speed: <font color = \"lime\">" + item.getSpeed() + "</font>";
-                    }
-                } else {
 
-                    if (item.getSpeed() == item.getMinSpeed()) {
-                        toolTip = toolTip + "<br>Speed: <font color = \"#551606\">" + item.getSpeed() + "</font>";
-                    } else if (item.getSpeed() < item.getMinSpeed() / 2) {
-                        toolTip = toolTip + "<br>Speed: <font color = \"orange\">" + item.getSpeed() + "</font>";
-                    } else {
-                        toolTip = toolTip + "<br>Speed: <font color = \"#F7EF8A\">" + item.getSpeed() + "</font>";
+                        if (gotValue == gotMinValue) {
+                            toolTip = toolTip + "<br>"+names.get(i)+": <font color = \"red\">" + gotValue + "</font>";
+                        } else if (gotValue < gotMinValue / 2) {
+                            toolTip = toolTip + "<br>"+names.get(i)+": <font color = \"orange\">" + gotValue + "</font>";
+                        } else {
+                            toolTip = toolTip + "<br>"+names.get(i)+": <font color = \"#F7EF8A\">" + gotValue + "</font>";
+                        }
                     }
                 }
             }
@@ -53,86 +100,20 @@ public class InventoryButton extends JButton implements ActionListener {
                 if (item.getHealTime() < 0) {
 
                     if (item.getHealTime() == item.getMinHealTime()) {
-                        toolTip = toolTip + "<br>Speed: <font color = \"#0000ff\">" + item.getHealTime() + "</font>";
+                        toolTip = toolTip + "<br>Heal Time: <font color = \"#0000ff\">" + item.getHealTime() + "</font>";
                     } else if (item.getHealTime() < item.getMinHealTime() / 2) {
-                        toolTip = toolTip + "<br>Speed: <font color = \"green\">" + item.getHealTime() + "</font>";
+                        toolTip = toolTip + "<br>Heal Time: <font color = \"green\">" + item.getHealTime() + "</font>";
                     } else {
-                        toolTip = toolTip + "<br>Speed: <font color = \"lime\">" + item.getHealTime() + "</font>";
+                        toolTip = toolTip + "<br>Heal Time: <font color = \"lime\">" + item.getHealTime() + "</font>";
                     }
                 } else {
 
                     if (item.getHealTime() == item.getMaxHealTime()) {
-                        toolTip = toolTip + "<br>Speed: <font color = \"#551606\">" + item.getHealTime() + "</font>";
+                        toolTip = toolTip + "<br>Heal Time: <font color = \"red\">" + item.getHealTime() + "</font>";
                     } else if (item.getHealTime() > item.getMaxHealTime() / 2) {
-                        toolTip = toolTip + "<br>Speed: <font color = \"orange\">" + item.getHealTime() + "</font>";
+                        toolTip = toolTip + "<br>Heal Time: <font color = \"orange\">" + item.getHealTime() + "</font>";
                     } else {
-                        toolTip = toolTip + "<br>Speed: <font color = \"#F7EF8A\">" + item.getHealTime() + "</font>";
-                    }
-                }
-            }
-            if (item.getSwordDamage() != 0.00) {
-
-                if (item.getSwordDamage() > 0) {
-
-                    if (item.getSwordDamage() == item.getMaxSwordDamage()) {
-                        toolTip = toolTip + "<br>Speed: <font color = \"#0000ff\">" + item.getSwordDamage() + "</font>";
-                    } else if (item.getSwordDamage() > item.getMaxSwordDamage() / 2) {
-                        toolTip = toolTip + "<br>Speed: <font color = \"green\">" + item.getSwordDamage() + "</font>";
-                    } else {
-                        toolTip = toolTip + "<br>Speed: <font color = \"lime\">" + item.getSwordDamage() + "</font>";
-                    }
-                } else {
-
-                    if (item.getSwordDamage() == item.getMinSwordDamage()) {
-                        toolTip = toolTip + "<br>Speed: <font color = \"#551606\">" + item.getSwordDamage() + "</font>";
-                    } else if (item.getSwordDamage() < item.getMinSwordDamage() / 2) {
-                        toolTip = toolTip + "<br>Speed: <font color = \"orange\">" + item.getSwordDamage() + "</font>";
-                    } else {
-                        toolTip = toolTip + "<br>Speed: <font color = \"#F7EF8A\">" + item.getSwordDamage() + "</font>";
-                    }
-                }
-            }
-            if (item.getSlingshotDamage() != 0.00) {
-
-                if (item.getSlingshotDamage() > 0) {
-
-                    if (item.getSlingshotDamage() == item.getMaxSlingshotDamage()) {
-                        toolTip = toolTip + "<br>Speed: <font color = \"#0000ff\">" + item.getSlingshotDamage() + "</font>";
-                    } else if (item.getSlingshotDamage() > item.getMaxSlingshotDamage() / 2) {
-                        toolTip = toolTip + "<br>Speed: <font color = \"green\">" + item.getSlingshotDamage() + "</font>";
-                    } else {
-                        toolTip = toolTip + "<br>Speed: <font color = \"lime\">" + item.getSlingshotDamage() + "</font>";
-                    }
-                } else {
-
-                    if (item.getSlingshotDamage() == item.getMinSlingshotDamage()) {
-                        toolTip = toolTip + "<br>Speed: <font color = \"#551606\">" + item.getSlingshotDamage() + "</font>";
-                    } else if (item.getSlingshotDamage() < item.getMinSlingshotDamage() / 2) {
-                        toolTip = toolTip + "<br>Speed: <font color = \"orange\">" + item.getSlingshotDamage() + "</font>";
-                    } else {
-                        toolTip = toolTip + "<br>Speed: <font color = \"#F7EF8A\">" + item.getSlingshotDamage() + "</font>";
-                    }
-                }
-            }
-            if (item.getMineDamage() != 0.00) {
-
-                if (item.getMineDamage() > 0) {
-
-                    if (item.getMineDamage() == item.getMaxMineDamage()) {
-                        toolTip = toolTip + "<br>Speed: <font color = \"#0000ff\">" + item.getMineDamage() + "</font>";
-                    } else if (item.getMineDamage() > item.getMaxMineDamage() / 2) {
-                        toolTip = toolTip + "<br>Speed: <font color = \"green\">" + item.getMineDamage() + "</font>";
-                    } else {
-                        toolTip = toolTip + "<br>Speed: <font color = \"lime\">" + item.getMineDamage() + "</font>";
-                    }
-                } else {
-
-                    if (item.getMineDamage() == item.getMinMineDamage()) {
-                        toolTip = toolTip + "<br>Speed: <font color = \"#551606\">" + item.getMineDamage() + "</font>";
-                    } else if (item.getMineDamage() < item.getMinMineDamage() / 2) {
-                        toolTip = toolTip + "<br>Speed: <font color = \"orange\">" + item.getMineDamage() + "</font>";
-                    } else {
-                        toolTip = toolTip + "<br>Speed: <font color = \"#F7EF8A\">" + item.getMineDamage() + "</font>";
+                        toolTip = toolTip + "<br>Heal Time: <font color = \"#F7EF8A\">" + item.getHealTime() + "</font>";
                     }
                 }
             }
@@ -141,20 +122,20 @@ public class InventoryButton extends JButton implements ActionListener {
                 if (item.getArrowTime() < 0) {
 
                     if (item.getArrowTime() == item.getMinArrowTime()) {
-                        toolTip = toolTip + "<br>Speed: <font color = \"#0000ff\">" + item.getArrowTime() + "</font>";
+                        toolTip = toolTip + "<br>Arrow Time: <font color = \"#0000ff\">" + item.getArrowTime() + "</font>";
                     } else if (item.getArrowTime() < item.getMinArrowTime() / 2) {
-                        toolTip = toolTip + "<br>Speed: <font color = \"green\">" + item.getArrowTime() + "</font>";
+                        toolTip = toolTip + "<br>Arrow Time: <font color = \"green\">" + item.getArrowTime() + "</font>";
                     } else {
-                        toolTip = toolTip + "<br>Speed: <font color = \"lime\">" + item.getArrowTime() + "</font>";
+                        toolTip = toolTip + "<br>Arrow Time: <font color = \"lime\">" + item.getArrowTime() + "</font>";
                     }
                 } else {
 
                     if (item.getArrowTime() == item.getMaxArrowTime()) {
-                        toolTip = toolTip + "<br>Speed: <font color = \"#551606\">" + item.getArrowTime() + "</font>";
+                        toolTip = toolTip + "<br>Arrow Time: <font color = \"red\">" + item.getArrowTime() + "</font>";
                     } else if (item.getArrowTime() > item.getMaxArrowTime() / 2) {
-                        toolTip = toolTip + "<br>Speed: <font color = \"orange\">" + item.getArrowTime() + "</font>";
+                        toolTip = toolTip + "<br>Arrow Time: <font color = \"orange\">" + item.getArrowTime() + "</font>";
                     } else {
-                        toolTip = toolTip + "<br>Speed: <font color = \"#F7EF8A\">" + item.getArrowTime() + "</font>";
+                        toolTip = toolTip + "<br>Arrow Time: <font color = \"#F7EF8A\">" + item.getArrowTime() + "</font>";
                     }
                 }
             }
@@ -163,159 +144,24 @@ public class InventoryButton extends JButton implements ActionListener {
                 if (item.getMineTime() < 0) {
 
                     if (item.getMineTime() == item.getMinMineTime()) {
-                        toolTip = toolTip + "<br>Speed: <font color = \"#0000ff\">" + item.getMineTime() + "</font>";
+                        toolTip = toolTip + "<br>Mine Time: <font color = \"#0000ff\">" + item.getMineTime() + "</font>";
                     } else if (item.getMineTime() < item.getMaxMineTime() / 2) {
-                        toolTip = toolTip + "<br>Speed: <font color = \"green\">" + item.getMineTime() + "</font>";
+                        toolTip = toolTip + "<br>Mine Time: <font color = \"green\">" + item.getMineTime() + "</font>";
                     } else {
-                        toolTip = toolTip + "<br>Speed: <font color = \"lime\">" + item.getMineTime() + "</font>";
+                        toolTip = toolTip + "<br>Mine Time: <font color = \"lime\">" + item.getMineTime() + "</font>";
                     }
                 } else {
 
                     if (item.getMineTime() == item.getMaxMineTime()) {
-                        toolTip = toolTip + "<br>Speed: <font color = \"#551606\">" + item.getMineTime() + "</font>";
+                        toolTip = toolTip + "<br>Mine Time: <font color = \"red\">" + item.getMineTime() + "</font>";
                     } else if (item.getMineTime() > item.getMaxMineTime() / 2) {
-                        toolTip = toolTip + "<br>Speed: <font color = \"orange\">" + item.getMineTime() + "</font>";
+                        toolTip = toolTip + "<br>Mine Time: <font color = \"orange\">" + item.getMineTime() + "</font>";
                     } else {
-                        toolTip = toolTip + "<br>Speed: <font color = \"#F7EF8A\">" + item.getMineTime() + "</font>";
+                        toolTip = toolTip + "<br>Mine Time: <font color = \"#F7EF8A\">" + item.getMineTime() + "</font>";
                     }
                 }
             }
-            if (item.getSlingshotDamageReduction() != 0.00) {
-
-                if (item.getSlingshotDamageReduction() > 0) {
-
-                    if (item.getSlingshotDamageReduction() == item.getMaxSlingshotDamageReduction()) {
-                        toolTip = toolTip + "<br>Speed: <font color = \"#0000ff\">" + item.getSlingshotDamageReduction() + "</font>";
-                    } else if (item.getSlingshotDamageReduction() > item.getMaxSlingshotDamageReduction() / 2) {
-                        toolTip = toolTip + "<br>Speed: <font color = \"green\">" + item.getSlingshotDamageReduction() + "</font>";
-                    } else {
-                        toolTip = toolTip + "<br>Speed: <font color = \"lime\">" + item.getSlingshotDamageReduction() + "</font>";
-                    }
-                } else {
-
-                    if (item.getSlingshotDamageReduction() == item.getMinSlingshotDamageReduction()) {
-                        toolTip = toolTip + "<br>Speed: <font color = \"#551606\">" + item.getSlingshotDamageReduction() + "</font>";
-                    } else if (item.getSlingshotDamageReduction() < item.getMinSlingshotDamageReduction() / 2) {
-                        toolTip = toolTip + "<br>Speed: <font color = \"orange\">" + item.getSlingshotDamageReduction() + "</font>";
-                    } else {
-                        toolTip = toolTip + "<br>Speed: <font color = \"#F7EF8A\">" + item.getSlingshotDamageReduction() + "</font>";
-                    }
-                }
-            }
-            if (item.getMeleeDamageReduction() != 0.00) {
-
-                if (item.getMeleeDamageReduction() > 0) {
-
-                    if (item.getMeleeDamageReduction() == item.getMaxMeleeDamageReduction()) {
-                        toolTip = toolTip + "<br>Speed: <font color = \"#0000ff\">" + item.getMeleeDamageReduction() + "</font>";
-                    } else if (item.getMaxArrowVelocity() > item.getMaxMeleeDamageReduction() / 2) {
-                        toolTip = toolTip + "<br>Speed: <font color = \"green\">" + item.getMeleeDamageReduction() + "</font>";
-                    } else {
-                        toolTip = toolTip + "<br>Speed: <font color = \"lime\">" + item.getMeleeDamageReduction() + "</font>";
-                    }
-                } else {
-
-                    if (item.getMeleeDamageReduction() == item.getMinMeleeDamageReduction()) {
-                        toolTip = toolTip + "<br>Speed: <font color = \"#551606\">" + item.getMeleeDamageReduction() + "</font>";
-                    } else if (item.getMeleeDamageReduction() < item.getMinMeleeDamageReduction() / 2) {
-                        toolTip = toolTip + "<br>Speed: <font color = \"orange\">" + item.getMeleeDamageReduction() + "</font>";
-                    } else {
-                        toolTip = toolTip + "<br>Speed: <font color = \"#F7EF8A\">" + item.getMeleeDamageReduction() + "</font>";
-                    }
-                }
-            }
-            if (item.getMineDamageReduction() != 0.00) {
-
-                if (item.getMineDamageReduction() > 0) {
-
-                    if (item.getMineDamageReduction() == item.getMaxMineDamageReduction()) {
-                        toolTip = toolTip + "<br>Speed: <font color = \"#0000ff\">" + item.getMineDamageReduction() + "</font>";
-                    } else if (item.getMaxArrowVelocity() > item.getMaxMineDamageReduction() / 2) {
-                        toolTip = toolTip + "<br>Speed: <font color = \"green\">" + item.getMineDamageReduction() + "</font>";
-                    } else {
-                        toolTip = toolTip + "<br>Speed: <font color = \"lime\">" + item.getMineDamageReduction() + "</font>";
-                    }
-                } else {
-
-                    if (item.getMineDamageReduction() == item.getMinMineDamageReduction()) {
-                        toolTip = toolTip + "<br>Speed: <font color = \"#551606\">" + item.getMineDamageReduction() + "</font>";
-                    } else if (item.getMineDamageReduction() < item.getMinMineDamageReduction() / 2) {
-                        toolTip = toolTip + "<br>Speed: <font color = \"orange\">" + item.getMineDamageReduction() + "</font>";
-                    } else {
-                        toolTip = toolTip + "<br>Speed: <font color = \"#F7EF8A\">" + item.getMineDamageReduction() + "</font>";
-                    }
-                }
-            }
-            if (item.getArrowVelocity() != 0.00) {
-
-                if (item.getArrowVelocity() > 0) {
-
-                    if (item.getArrowVelocity() == item.getMaxArrowVelocity()) {
-                        toolTip = toolTip + "<br>Speed: <font color = \"#0000ff\">" + item.getArrowVelocity() + "</font>";
-                    } else if (item.getMaxArrowVelocity() > item.getMaxArrowVelocity() / 2) {
-                        toolTip = toolTip + "<br>Speed: <font color = \"green\">" + item.getArrowVelocity() + "</font>";
-                    } else {
-                        toolTip = toolTip + "<br>Speed: <font color = \"lime\">" + item.getArrowVelocity() + "</font>";
-                    }
-                } else {
-
-                    if (item.getArrowVelocity() == item.getMinArrowVelocity()) {
-                        toolTip = toolTip + "<br>Speed: <font color = \"#551606\">" + item.getArrowVelocity() + "</font>";
-                    } else if (item.getArrowVelocity() < item.getMinArrowVelocity() / 2) {
-                        toolTip = toolTip + "<br>Speed: <font color = \"orange\">" + item.getArrowVelocity() + "</font>";
-                    } else {
-                        toolTip = toolTip + "<br>Speed: <font color = \"#F7EF8A\">" + item.getArrowVelocity() + "</font>";
-                    }
-                }
-            }
-            if (item.getMaxMines() != 0.00) {
-
-                if (item.getMaxMines() > 0) {
-
-                    if (item.getMaxMines() == item.getMaxMaxMines()) {
-                        toolTip = toolTip + "<br>Speed: <font color = \"#0000ff\">" + item.getMaxMines() + "</font>";
-                    } else if (item.getMaxMines() > item.getMaxMaxMines() / 2) {
-                        toolTip = toolTip + "<br>Speed: <font color = \"green\">" + item.getMaxMines() + "</font>";
-                    } else {
-                        toolTip = toolTip + "<br>Speed: <font color = \"lime\">" + item.getMaxHp() + "</font>";
-                    }
-                } else {
-
-                    if (item.getMaxMines() == item.getMinMaxMines()) {
-                        toolTip = toolTip + "<br>Speed: <font color = \"#551606\">" + item.getMaxMines() + "</font>";
-                    } else if (item.getMaxMines() < item.getMinMaxMines() / 2) {
-                        toolTip = toolTip + "<br>Speed: <font color = \"orange\">" + item.getMaxMines() + "</font>";
-                    } else {
-                        toolTip = toolTip + "<br>Speed: <font color = \"#F7EF8A\">" + item.getMaxMines() + "</font>";
-                    }
-                }
-            }
-            if (item.getMaxHp() != 0.00) {
-
-                if (item.getMaxHp() > 0) {
-
-                    if (item.getMaxHp() == item.getMaxMaxHp()) {
-                        toolTip = toolTip + "<br>Speed: <font color = \"#0000ff\">" + item.getMaxHp() + "</font>";
-                    } else if (item.getMaxHp() > item.getMaxMaxHp() / 2) {
-                        toolTip = toolTip + "<br>Speed: <font color = \"green\">" + item.getMaxHp() + "</font>";
-                    } else {
-                        toolTip = toolTip + "<br>Speed: <font color = \"lime\">" + item.getMaxHp() + "</font>";
-                    }
-                } else {
-
-                    if (item.getMaxHp() == item.getMinMaxHp()) {
-                        toolTip = toolTip + "<br>Speed: <font color = \"#551606\">" + item.getMaxHp() + "</font>";
-                    } else if (item.getMaxHp() < item.getMinMaxHp() / 2) {
-                        toolTip = toolTip + "<br>Speed: <font color = \"orange\">" + item.getMaxHp() + "</font>";
-                    } else {
-                        toolTip = toolTip + "<br>Speed: <font color = \"#F7EF8A\">" + item.getMaxHp() + "</font>";
-                    }
-                }
-            }
-            UIManager.put("ToolTip.background", Color.lightGray);
-            UIManager.put("ToolTip.border", new LineBorder(Color.GRAY, 1));
-            ToolTipManager.sharedInstance().setInitialDelay(0);
-            ToolTipManager.sharedInstance().setDismissDelay(500000);
+            //ToolTip Settings
             this.setFont(new Font("Arial", Font.PLAIN, 10));
             this.setToolTipText(("<html>" + toolTip + "</html>"));
             image = new ImageIcon(item.getImage().getScaledInstance(getWidth() + 1, getHeight() + 1, Image.SCALE_DEFAULT));
