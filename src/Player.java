@@ -29,7 +29,7 @@ public class Player implements Serializable {
     double swordDamage =2.5;
     double slingshotDamage=1;
     double mineDamage =10;
-    double arrowTime = 0;
+    double arrowTime = 1;
     double mineTime = 4;
     double iFrameTime = 0.5;
     double meleeDamageReduction = 0;
