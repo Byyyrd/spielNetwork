@@ -81,6 +81,7 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
     boolean inUpgradeFenster;
 
     AffineTransform oldXForm;
+    int wepon = 1;
 
 
     public Panel(Client client) {
@@ -303,6 +304,25 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
         mine.keyPressed(e);
         player1.keyPressed(e);
         if (e.getKeyCode() == 70) {
+            wepon++;
+            if (wepon > 3){wepon = 1;}
+            switch (wepon) {
+                case 1 -> {
+                    player1.fistequiped = true;
+                    player1.slingshotPickedUp = false;
+                    player1.swordPickedUp = false;
+                }
+                case 2 -> {
+                    player1.fistequiped = false;
+                    player1.setSlingshotPickedUp(true);
+                    player1.setSwordPickedUp(false);
+                }
+                case 3 -> {
+                    player1.fistequiped = false;
+                    player1.setSlingshotPickedUp(false);
+                    player1.setSwordPickedUp(true);
+                }
+            }
             player1.setSlingshotPickedUp(!player1.isSlingshotPickedUp());
             player1.setSwordPickedUp(!player1.isSwordPickedUp());
         }

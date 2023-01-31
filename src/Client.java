@@ -60,6 +60,8 @@ public class Client {
                     panel.player2.mineDamage = recievedObject.mineDamage;
                     panel.player2.mineTime = recievedObject.mineTime;
                     panel.player2.maxMines = recievedObject.maxMines;
+                    panel.fist1.x2 = recievedObject.fistX;
+                    panel.fist2.y2 = recievedObject.fistY;
                 } catch (ClassNotFoundException e) {
                     System.out.println("Client hat Scheiße bekommen");
                 } catch (IOException e) {
