@@ -23,14 +23,13 @@ public class Fist implements MouseListener {
 
         time -= 0.1;
         if (time > 0){
-            System.out.println(panel.slingshot.playerRotation);
             y = Math.sin(panel.slingshot.playerRotation) * 25;
             x = Math.cos(panel.slingshot.playerRotation) * 25;
         }else {
             x = 0;
             y = 0;
         }
-        if(inRectangle((int)(x2+panel.player2.x + panel.player2.width/2 - panel.fist.getWidth(null)/2),(int)(y2+ panel.player2.y + panel.player2.height/2 - panel.fist.getHeight(null)/2), player.x, player.y, player.width, player.height)){
+        if(inRectangle((int)(x2+panel.player2.x + panel.player2.width/2 - panel.fist.getWidth(null)/2) + panel.fist.getWidth(null),(int)(y2+ panel.player2.y + panel.player2.height/2 - panel.fist.getHeight(null)/2) + panel.fist.getHeight(null), player.x, player.y, player.width, player.height)||inRectangle((int)(x2+panel.player2.x + panel.player2.width/2 - panel.fist.getWidth(null)/2) + panel.fist.getWidth(null),(int)(y2+ panel.player2.y + panel.player2.height/2 - panel.fist.getHeight(null)/2) + panel.fist.getHeight(null)/2, player.x, player.y, player.width, player.height)||inRectangle((int)(x2+panel.player2.x + panel.player2.width/2 - panel.fist.getWidth(null)/2) + panel.fist.getWidth(null),(int)(y2+ panel.player2.y + panel.player2.height/2 - panel.fist.getHeight(null)/2), player.x, player.y, player.width, player.height)){
             panel.ui.playerHit(2);
         }
     }
