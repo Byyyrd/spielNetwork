@@ -33,17 +33,33 @@ public class InventoryButton extends JButton implements ActionListener {
                 String color;
                 if (item.getSpeed() > 0) {
                     //color = "\"green\">";
-                    toolTip = toolTip + "<br>Speed: <font color = \"green\">" + item.getSpeed() + "</font>";
+                    if (item.getSpeed() == item.getMaxSpeed()){
+                        toolTip = toolTip + "<br>Speed: <font color = \"deepyellow\">" + item.getSpeed() + "</font>";
+                    }
+                    else if(item.getSpeed() > item.getMaxSpeed()/2){
+                        toolTip = toolTip + "<br>Speed: <font color = \"green\">" + item.getSpeed() + "</font>";
+                    }
+                    else {
+                        toolTip = toolTip + "<br>Speed: <font color = \"lime\">" + item.getSpeed() + "</font>";
+                    }
                 } else {
                     //color = "\"red\">";
-                    toolTip = toolTip + "<br>Speed: <font color = \"red\">" + item.getSpeed() + "</font>";
+                    if (item.getSpeed() == item.getMinSpeed()){
+                        toolTip = toolTip + "<br>Speed: <font color = \"#551606\">" + item.getSpeed() + "</font>";
+                    }
+                    else if(item.getSpeed() < item.getMinSpeed()/2){
+                        toolTip = toolTip + "<br>Speed: <font color = \"orange\">" + item.getSpeed() + "</font>";
+                    }
+                    else {
+                        toolTip = toolTip + "<br>Speed: <font color = \"yellow\">" + item.getSpeed() + "</font>";
+                    }
                 }
             }
             if (item.getArrowTime() != 0.00) {
                 if (item.getArrowTime() < 0) {
-                    toolTip = toolTip + "<br>ArrowTime: <font color = \"green\"> " + item.getArrowTime() + "</font>";
+                    toolTip = toolTip + "<br>ArrowTime: <font color = \"#808000\"> "+ item.getArrowTime() + "</font>";
                 } else {
-                    toolTip = toolTip + "<br>ArrowTime: <font color = \"red\"> " + item.getArrowTime() + "</font>";
+                    toolTip = toolTip + "<br>ArrowTime: <font color = \"#808000\"> " + item.getArrowTime() + "</font>";
                 }
             }
             if (item.getHealTime() != 0.00) {
