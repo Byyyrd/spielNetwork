@@ -41,7 +41,8 @@ public class Ui {
             death++;
             hp = maxHp + panel.inventory.getMaxHp();
             player.swordEquipde = false;
-            player.slingshotEquipde = true;
+            player.slingshotEquipde = false;
+            player.fistequiped = true;
         }
     }
 
