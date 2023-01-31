@@ -190,11 +190,11 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
         inventoryPanel = new JPanel();
         inventoryPanel.setBounds(0, 150, 1900, 800);
         inventoryPanel.setLayout(new GridLayout(7, 7));
-        
+
         equipPanel = new JPanel();
         equipPanel.setBounds(0, 0, 1900, 150);
         equipPanel.setLayout(new GridLayout(1, 7));
-        
+
         inventory = new Inventory();
 
         for (int i = 0; i < 7; i++) {
@@ -207,25 +207,25 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
         }
         inventory.updateInv();
 
-        EquipButton button = new EquipButton("Armor",this);
+        EquipButton button = new EquipButton("Armor", this);
         equipPanel.add(button);
         inventory.equipButtons[0] = button;
-        EquipButton button1 = new EquipButton("Sword",this);
+        EquipButton button1 = new EquipButton("Sword", this);
         equipPanel.add(button1);
         inventory.equipButtons[1] = button1;
-        EquipButton button2 = new EquipButton("Slingshot",this);
+        EquipButton button2 = new EquipButton("Slingshot", this);
         equipPanel.add(button2);
         inventory.equipButtons[2] = button2;
-        EquipButton button3 = new EquipButton("Mine",this);
+        EquipButton button3 = new EquipButton("Mine", this);
         equipPanel.add(button3);
         inventory.equipButtons[3] = button3;
-        EquipButton button4 = new EquipButton("Ring",this);
+        EquipButton button4 = new EquipButton("Ring", this);
         equipPanel.add(button4);
         inventory.equipButtons[4] = button4;
-        EquipButton button5 = new EquipButton("Chain",this);
+        EquipButton button5 = new EquipButton("Chain", this);
         equipPanel.add(button5);
         inventory.equipButtons[5] = button5;
-        EquipButton button6 = new EquipButton("Shoes",this);
+        EquipButton button6 = new EquipButton("Shoes", this);
         equipPanel.add(button6);
         inventory.equipButtons[6] = button6;
 
@@ -305,26 +305,28 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
         player1.keyPressed(e);
         if (e.getKeyCode() == 70) {
             wepon++;
-            if (wepon > 3){wepon = 1;}
+            if (wepon > 3) {
+                wepon = 1;
+            }
             switch (wepon) {
-                case 1 -> {
+                case 1:
                     player1.fistequiped = true;
                     player1.slingshotPickedUp = false;
                     player1.swordPickedUp = false;
-                }
-                case 2 -> {
+                    break;
+                case 2:
                     player1.fistequiped = false;
                     player1.setSlingshotPickedUp(true);
                     player1.setSwordPickedUp(false);
-                }
-                case 3 -> {
+                    break;
+                case 3:
                     player1.fistequiped = false;
                     player1.setSlingshotPickedUp(false);
                     player1.setSwordPickedUp(true);
-                }
+                    break;
             }
-            player1.setSlingshotPickedUp(!player1.isSlingshotPickedUp());
-            player1.setSwordPickedUp(!player1.isSwordPickedUp());
+            //player1.setSlingshotPickedUp(!player1.isSlingshotPickedUp());
+            //player1.setSwordPickedUp(!player1.isSwordPickedUp());
         }
         if (e.getKeyCode() == 10) {
             e.consume();

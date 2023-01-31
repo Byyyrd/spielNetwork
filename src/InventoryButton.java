@@ -5,8 +5,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import static java.awt.Color.red;
 
-public class InventoryButton extends JButton implements ActionListener{
+
+public class InventoryButton extends JButton implements ActionListener {
 
     Panel panel;
     Item item = new Item("");
@@ -31,46 +33,51 @@ public class InventoryButton extends JButton implements ActionListener{
         if (item != null && item.getImage() != null) {
             toolTip = "<strong>Stats:</strong>";
             if (item.getSpeed() != 0.00) {
-                toolTip = toolTip +"<br>Speed: "+ item.getSpeed();
+                if (item.getSpeed() > 0){
+                    toolTip = toolTip + "<br>Speed: <font color=\"green\">" + item.getSpeed() + "</font>";
+                }else{
+                    toolTip = toolTip + "<br>Speed: <font color=\"red\">" + item.getSpeed() + "</font>";
+                }
+
             }
             if (item.getArrowTime() != 0.00) {
-                toolTip = toolTip +"<br>ArrowTime: "+item.getArrowTime();
+                toolTip = toolTip + "<br>ArrowTime: <font color \"green\"> " + item.getArrowTime()+"</font>";
             }
             if (item.getHealTime() != 0.00) {
-                toolTip = toolTip +"<br>HealTime: "+ item.getHealTime();
+                toolTip = toolTip + "<br>HealTime: <font color \"green\"> " + item.getHealTime()+"</font>";
             }
             if (item.getArrowVelocity() != 0.00) {
-                toolTip = toolTip +"<br>ArrowVelocity: "+ item.getArrowVelocity();
+                toolTip = toolTip + "<br>ArrowVelocity: <font color \"green\"> " + item.getArrowVelocity()+"</font>";
             }
             if (item.getMaxHp() != 0.00) {
-                toolTip = toolTip +"<br>MaxHp: "+ item.getMaxHp();
+                toolTip = toolTip + "<br>MaxHp: <font color \"green\"> " + item.getMaxHp()+"</font>";
             }
             if (item.getMaxMines() != 0.00) {
-                toolTip = toolTip +"<br>MaxMines: "+ item.getMaxMines();
+                toolTip = toolTip + "<br>MaxMines: <font color \"green\"> " + item.getMaxMines()+"</font>";
             }
             if (item.getMeleeDamageReduction() != 0.00) {
-                toolTip = toolTip +"<br>MeleeDamageReduction: "+ item.getMeleeDamageReduction();
+                toolTip = toolTip + "<br>MeleeDamageReduction: <font color \"green\"> " + item.getMeleeDamageReduction()+"</font>";
             }
             if (item.getMineDamageReduction() != 0.00) {
-                toolTip = toolTip +"<br>MineDmgRed: "+ item.getMineDamageReduction();
+                toolTip = toolTip + "<br>MineDmgRed: <font color \"green\"> " + item.getMineDamageReduction()+"</font>";
             }
             if (item.getSlingshotDamageReduction() != 0.00) {
-                toolTip = toolTip +"<br>SlingshotDmgRed: "+ item.getSlingshotDamageReduction();
+                toolTip = toolTip + "<br>SlingshotDmgRed: <font color \"green\"> " + item.getSlingshotDamageReduction()+"</font>";
             }
             if (item.getMineTime() != 0.00) {
-                toolTip = toolTip +"<br>MineTime: "+ item.getMineTime();
+                toolTip = toolTip + "<br>MineTime: <font color \"green\"> " + item.getMineTime()+"</font>";
             }
             if (item.getSwordDamage() != 0.00) {
-                toolTip = toolTip +"<br>SwordDamage: "+ item.getSwordDamage();
+                toolTip = toolTip + "<br>SwordDamage: <font color \"green\"> " + item.getSwordDamage()+"</font>";
             }
             if (item.getMineDamage() != 0.00) {
-                toolTip = toolTip +"<br>MineDamage: "+ item.getMineDamage();
+                toolTip = toolTip + "<br>MineDamage: <font color \"green\"> " + item.getMineDamage()+"</font>";
             }
             if (item.getSlingshotDamage() != 0.00) {
-                toolTip = toolTip +"<br>SlingshotDamage: "+ item.getSlingshotDamage();
+                toolTip = toolTip + "<br>SlingshotDamage: <font color \"green\"> " + item.getSlingshotDamage()+"</font>";
             }
-            this.setFont(new Font("Arial",Font.PLAIN,10));
-            this.setToolTipText("<html>"+toolTip+"</html>");
+            this.setFont(new Font("Arial", Font.PLAIN, 10));
+            this.setToolTipText("<html>" + toolTip + "</html>");
             image = new ImageIcon(item.getImage().getScaledInstance(getWidth() + 1, getHeight() + 1, Image.SCALE_DEFAULT));
             this.setIcon(image);
         }
