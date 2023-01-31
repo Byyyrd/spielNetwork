@@ -306,7 +306,7 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
         if (e.getKeyCode() == 70) {
             wepon++;
             if (wepon > 3) {
-                wepon = 1;
+                wepon = 2;
             }
             switch (wepon) {
                 case 1:
