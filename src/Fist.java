@@ -4,7 +4,6 @@ import java.awt.event.MouseListener;
 
 public class Fist implements MouseListener {
     Panel panel;
-    boolean punched;
     double x;
     double y;
     double x2;
@@ -30,6 +29,9 @@ public class Fist implements MouseListener {
         }else {
             x = 0;
             y = 0;
+        }
+        if(inRectangle((int)(x2+panel.player2.x + panel.player2.width/2 - panel.fist.getWidth(null)/2),(int)(y2+ panel.player2.y + panel.player2.height/2 - panel.fist.getHeight(null)/2), player.x, player.y, player.width, player.height)){
+            panel.ui.playerHit(2);
         }
     }
     public void drawFist(Graphics2D g2d){
@@ -69,4 +71,9 @@ public class Fist implements MouseListener {
     public void mouseExited(MouseEvent e) {
 
     }
+    public boolean inRectangle(int px, int py, int rx, int ry, int rb, int rh) {
+        return rx < px && px < rx + rb && ry < py && py < ry + rh;
+
+    }
+
 }
