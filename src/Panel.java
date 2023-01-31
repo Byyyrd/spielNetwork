@@ -321,7 +321,7 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
                     break;
             }
         }
-        if (e.getKeyCode() == 81){
+        if (e.getKeyCode() == 81) {
             player1.fistequiped = true;
             player1.slingshotPickedUp = false;
             player1.swordPickedUp = false;
@@ -373,6 +373,7 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
                 setLayer(equipPanel, DRAG_LAYER);
             }
         }
+
     }
 
     @Override

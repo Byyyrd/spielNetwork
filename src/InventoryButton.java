@@ -1,16 +1,9 @@
+import com.sun.jdi.event.Event;
+
 import javax.swing.*;
 import javax.swing.border.LineBorder;
-import javax.swing.text.html.HTML;
-import javax.swing.text.html.HTMLDocument;
-import javax.tools.Tool;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-
-import static java.awt.Color.red;
-
+import java.awt.event.*;
 
 public class InventoryButton extends JButton implements ActionListener {
 
@@ -119,23 +112,23 @@ public class InventoryButton extends JButton implements ActionListener {
             if (item.getMineDamage() != 0.00) {
                 if (item.getMineDamage() > 0) {
                     toolTip = toolTip + "<br>MineDamage: <font color = \"green\"> " + item.getMineDamage() + "</font>";
-                }else {
+                } else {
                     toolTip = toolTip + "<br>MineDamage: <font color = \"red\"> " + item.getMineDamage() + "</font>";
                 }
             }
             if (item.getSlingshotDamage() != 0.00) {
                 if (item.getSlingshotDamage() > 0) {
                     toolTip = toolTip + "<br>SlingshotDamage: <font color = \"green\"> " + item.getSlingshotDamage() + "</font>";
-                }else{
+                } else {
                     toolTip = toolTip + "<br>SlingshotDamage: <font color = \"red\"> " + item.getSlingshotDamage() + "</font>";
                 }
             }
             UIManager.put("ToolTip.background", Color.lightGray);
-            UIManager.put("ToolTip.border",new LineBorder(Color.GRAY,1));
+            UIManager.put("ToolTip.border", new LineBorder(Color.GRAY, 1));
             ToolTipManager.sharedInstance().setInitialDelay(0);
-            ToolTipManager.sharedInstance().setDismissDelay(2100000000);
+            ToolTipManager.sharedInstance().setDismissDelay(500000);
             this.setFont(new Font("Arial", Font.PLAIN, 10));
-            this.setToolTipText( ("<html>" + toolTip + "</html>"));
+            this.setToolTipText(("<html>" + toolTip + "</html>"));
             image = new ImageIcon(item.getImage().getScaledInstance(getWidth() + 1, getHeight() + 1, Image.SCALE_DEFAULT));
             this.setIcon(image);
         }

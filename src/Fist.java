@@ -16,40 +16,50 @@ public class Fist implements MouseListener {
         this.player = player;
 
     }
-    public void punch(){
+
+    public void punch() {
         time = 1;
     }
-    public void tick(){
+
+    public void tick() {
 
         time -= 0.1;
-        if (time > 0){
+        if (time > 0) {
             y = Math.sin(panel.slingshot.playerRotation) * 25;
             x = Math.cos(panel.slingshot.playerRotation) * 25;
-        }else {
+        } else {
             x = 0;
             y = 0;
         }
-        if(inRectangle((int)(x2+panel.player2.x + panel.player2.width/2 - panel.fist.getWidth(null)/2) + panel.fist.getWidth(null),(int)(y2+ panel.player2.y + panel.player2.height/2 - panel.fist.getHeight(null)/2) + panel.fist.getHeight(null), player.x, player.y, player.width, player.height)||inRectangle((int)(x2+panel.player2.x + panel.player2.width/2 - panel.fist.getWidth(null)/2) + panel.fist.getWidth(null),(int)(y2+ panel.player2.y + panel.player2.height/2 - panel.fist.getHeight(null)/2) + panel.fist.getHeight(null)/2, player.x, player.y, player.width, player.height)||inRectangle((int)(x2+panel.player2.x + panel.player2.width/2 - panel.fist.getWidth(null)/2) + panel.fist.getWidth(null),(int)(y2+ panel.player2.y + panel.player2.height/2 - panel.fist.getHeight(null)/2), player.x, player.y, player.width, player.height)){
+        if (inRectangle((int) (x2 + panel.player2.x + panel.player2.width / 2 - panel.fist.getWidth(null) / 2) + panel.fist.getWidth(null), (int) (y2 + panel.player2.y + panel.player2.height / 2 - panel.fist.getHeight(null) / 2) + panel.fist.getHeight(null), player.x, player.y, player.width, player.height) || inRectangle((int) (x2 + panel.player2.x + panel.player2.width / 2 - panel.fist.getWidth(null) / 2) + panel.fist.getWidth(null), (int) (y2 + panel.player2.y + panel.player2.height / 2 - panel.fist.getHeight(null) / 2) + panel.fist.getHeight(null) / 2, player.x, player.y, player.width, player.height) || inRectangle((int) (x2 + panel.player2.x + panel.player2.width / 2 - panel.fist.getWidth(null) / 2) + panel.fist.getWidth(null), (int) (y2 + panel.player2.y + panel.player2.height / 2 - panel.fist.getHeight(null) / 2), player.x, player.y, player.width, player.height)) {
             panel.ui.playerHit(2);
         }
     }
-    public void drawFist(Graphics2D g2d){
-        if (player.fistequiped){
-            g2d.rotate(panel.slingshot.playerRotation, player.x + player.width/2 +x, player.y + player.height/2 +y);
-            g2d.drawImage(panel.fist, (int)(x + player.x + player.width/2 - panel.fist.getWidth(null)/2), (int)(y + player.y + player.height/2 - panel.fist.getHeight(null)/2), panel.fist.getWidth(null), panel.fist.getHeight(null), null);
-            g2d.rotate(-panel.slingshot.playerRotation, player.x + player.width/2 +x, player.y + player.height/2 +y);
-            g2d.fillOval((int)(x+panel.player1.x + panel.player1.width/2  +Math.cos(panel.slingshot.playerRotation) * panel.fist.getWidth(null)/2),(int)(y+ panel.player1.y + panel.player1.height/2  + Math.sin(panel.slingshot.playerRotation) * panel.fist.getHeight(null)),5,5);
-            g2d.fillOval((int)(x+panel.player1.x + panel.player1.width/2  +Math.cos(panel.slingshot.playerRotation) * panel.fist.getWidth(null)/2),(int)(y+ panel.player1.y + panel.player1.height/2  + Math.sin(panel.slingshot.playerRotation) * panel.fist.getHeight(null)/2), 5,5);
-            g2d.fillOval((int)(x+panel.player1.x + panel.player1.width/2  +Math.cos(panel.slingshot.playerRotation) * panel.fist.getWidth(null)/2),(int)(y+ panel.player1.y + panel.player1.height/2  + Math.sin(panel.slingshot.playerRotation)), 5,5);
 
+    public void drawFist(Graphics2D g2d) {
+        if (player.fistequiped) {
+            g2d.rotate(panel.slingshot.playerRotation, player.x + player.width / 2 + x, player.y + player.height / 2 + y);
+            g2d.drawImage(panel.fist, (int) (x + player.x + player.width / 2 - panel.fist.getWidth(null) / 2), (int) (y + player.y + player.height / 2 - panel.fist.getHeight(null) / 2), panel.fist.getWidth(null), panel.fist.getHeight(null), null);
+            g2d.rotate(-panel.slingshot.playerRotation, player.x + player.width / 2 + x, player.y + player.height / 2 + y);
+
+
+            g2d.fillOval((int) (player.x + player.width/2+Math.cos(panel.slingshot.playerRotation) * player.width/2), (int)(player.y + player.height / 2 + Math.sin(panel.slingshot.playerRotation)* player.width/2), 5, 5);
+            g2d.fillOval((int) (player.x + player.width/2+Math.cos(panel.slingshot.playerRotation + 0.5) * player.width/2), (int)(player.y + player.height / 2 + Math.sin(panel.slingshot.playerRotation + 0.5)* player.width/2), 5, 5);
+            g2d.fillOval((int) (player.x + player.width/2+Math.cos(panel.slingshot.playerRotation - 0.5) * player.width/2), (int)(player.y + player.height / 2 + Math.sin(panel.slingshot.playerRotation - 0.5)* player.width/2), 5, 5);
         }
-        if (panel.player2.fistequiped){
-            g2d.rotate(panel.rotation2, panel.player2.x + player.width/2 +x2, panel.player2.y + player.height/2+y2);
-            g2d.drawImage(panel.fist, (int)(x2+panel.player2.x + panel.player2.width/2 - panel.fist.getWidth(null)/2),(int)(y2+ panel.player2.y + panel.player2.height/2 - panel.fist.getHeight(null)/2), panel.fist.getWidth(null), panel.fist.getHeight(null), null);
-            g2d.rotate(-panel.rotation2, panel.player2.x + player.width/2+x2, panel.player2.y + player.height/2+y2);
+        if (panel.player2.fistequiped) {
+            g2d.rotate(panel.rotation2, panel.player2.x + player.width / 2 + x2, panel.player2.y + player.height / 2 + y2);
+            g2d.drawImage(panel.fist, (int) (x2 + panel.player2.x + panel.player2.width / 2 - panel.fist.getWidth(null) / 2), (int) (y2 + panel.player2.y + panel.player2.height / 2 - panel.fist.getHeight(null) / 2), panel.fist.getWidth(null), panel.fist.getHeight(null), null);
+            g2d.rotate(-panel.rotation2, panel.player2.x + player.width / 2 + x2, panel.player2.y + player.height / 2 + y2);
         }
     }
-
+    /**
+     * Wenn Rotation = 0: x = player.x + player.width/2
+     * Wenn Rotation = Pi/2(1/4): x = player.x + player.width/2
+     * Wenn Rotation = Pi(2/4)<: x = player.x
+     * Wenn rotation = 1.5*PI(3/4)^: x = player.x
+     *
+    **/
     @Override
     public void mouseClicked(MouseEvent e) {
 
@@ -74,6 +84,7 @@ public class Fist implements MouseListener {
     public void mouseExited(MouseEvent e) {
 
     }
+
     public boolean inRectangle(int px, int py, int rx, int ry, int rb, int rh) {
         return rx < px && px < rx + rb && ry < py && py < ry + rh;
 
