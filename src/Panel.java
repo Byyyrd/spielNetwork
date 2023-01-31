@@ -363,6 +363,7 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
                 inInv = false;
                 remove(inventoryPanel);
                 remove(equipPanel);
+                repaint();
                 this.grabFocus();
             } else {
                 inInv = true;
