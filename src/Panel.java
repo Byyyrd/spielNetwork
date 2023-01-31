@@ -5,8 +5,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.geom.AffineTransform;
-import java.lang.reflect.Array;
-import java.nio.BufferUnderflowException;
 import java.util.ArrayList;
 
 public class Panel extends JLayeredPane implements ActionListener, KeyListener {
@@ -82,6 +80,10 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
 
     AffineTransform oldXForm;
     int wepon = 1;
+    int bowX;
+    int bowY;
+    int swordX;
+    int swordY;
 
 
     public Panel(Client client) {
@@ -232,6 +234,11 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
         int delay = 10;
         timer = new Timer(delay, this);
         timer.start();
+
+        bowX = (int) random(200, 1800);
+        bowY = (int) random(20 , 1000);
+        swordX = (int) random(200, 1800);
+        swordY = (int) random(20 , 1000);
     }
 
     public void setPlayer2(int x, int y, String name) {
@@ -289,6 +296,12 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
         if (inChat || inInv) {
             ui.drawIcons(g2d, schildImage, swordImage, slingshotImage, speedImage);
         }
+        if (!player1.slingshotPickedUp){
+            g2d.drawImage(slingshotImage, bowX, bowY, slingshotImage.getWidth(null)/24, slingshotImage.getHeight(null)/24,null );
+        }
+        if (!player1.swordPickedUp){
+            g2d.drawImage(swordImage, swordX, swordY,player1.width, player1.height * 2, null);
+        }
         super.paint(g);
     }
 
@@ -308,23 +321,31 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
             if (wepon > 2) {
                 wepon = 1;
             }
-            switch (wepon) {
-                case 1:
-                    player1.fistequiped = false;
-                    player1.setSlingshotPickedUp(true);
-                    player1.setSwordPickedUp(false);
-                    break;
-                case 2:
-                    player1.fistequiped = false;
-                    player1.setSlingshotPickedUp(false);
-                    player1.setSwordPickedUp(true);
-                    break;
+
+            if (wepon == 1 && player1.swordPickedUp) {
+                player1.fistequiped = false;
+                player1.setSlingshotEquipde(false);
+                player1.setSwordEquipde(true);
+            }else if (wepon == 1){
+                player1.fistequiped = true;
+                player1.slingshotEquipde = false;
+                player1.swordEquipde = false;
             }
+            if (wepon == 2 && player1.slingshotPickedUp) {
+                player1.fistequiped = false;
+                player1.setSlingshotEquipde(true);
+                player1.setSwordEquipde(false);
+            }else if (wepon == 2){
+                player1.fistequiped = true;
+                player1.slingshotEquipde = false;
+                player1.swordEquipde = false;
+            }
+
         }
         if (e.getKeyCode() == 81) {
             player1.fistequiped = true;
-            player1.slingshotPickedUp = false;
-            player1.swordPickedUp = false;
+            player1.slingshotEquipde = false;
+            player1.swordEquipde = false;
         }
         if (e.getKeyCode() == 10) {
             e.consume();
@@ -394,6 +415,12 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
             player1.heal();
             mine.minePlaced = false;
             mine.exploded = false;
+            if (!player1.slingshotPickedUp && inRectangle(bowX + slingshotImage.getWidth(null)/48, bowY + slingshotImage.getHeight(null)/48, player1.x, player1.y, player1.width, player1.height)){
+                player1.slingshotPickedUp = true;
+            }
+            if (!player1.swordPickedUp && inRectangle(swordX + player2.width/2, swordY + player2.height , player1.x, player1.y, player1.width, player1.height)) {
+                player1.swordPickedUp = true;
+            }
         }
         repaint();
     }
@@ -431,5 +458,15 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
         obstacles[2] = wight;
         obstacles[3] = height;
         allObstacles.add(obstacles);
+    }
+    public double random(double min, double max){
+        if (min == 0 && max == 0){
+            return 0;
+        }
+        return ((int)(((Math.random()*((max-min))+ min))*10f)+1)/10.0;
+    }
+    public boolean inRectangle(int px, int py, int rx, int ry, int rb, int rh) {
+        return rx < px && px < rx + rb && ry < py && py < ry + rh;
+
     }
 }
