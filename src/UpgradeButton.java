@@ -19,7 +19,30 @@ public class UpgradeButton extends JButton implements ActionListener {
         this.setBackground(new Color(94, 94, 94));
         this.setFont(new Font("Arial", Font.PLAIN, 40));
         this.setBounds(x, 400, 500, 200);
-        this.setText(this.attribute);
+        if (attribute.equals("Armor")){
+            var image = new ImageIcon(panel.mysterieArmor.getScaledInstance(150, 150, Image.SCALE_DEFAULT));
+            this.setIcon(image);
+        } else if (attribute.equals("Sword")) {
+            var image = new ImageIcon(panel.mysterieSword.getScaledInstance(150, 150, Image.SCALE_DEFAULT));
+            this.setIcon(image);
+        } else if (attribute.equals("Slingshot")) {
+            var image = new ImageIcon(panel.mysterieBow.getScaledInstance(150, 150, Image.SCALE_DEFAULT));
+            this.setIcon(image);
+        } else if (attribute.equals("Mine")) {
+            var image = new ImageIcon(panel.mysterieMine.getScaledInstance(150, 150, Image.SCALE_DEFAULT));
+            this.setIcon(image);;
+        } else if (attribute.equals("Ring")) {
+            var image = new ImageIcon(panel.mysterieRing.getScaledInstance(150, 150, Image.SCALE_DEFAULT));
+            this.setIcon(image);
+        } else if (attribute.equals("Chain")) {
+            var image = new ImageIcon(panel.mysterieCharm.getScaledInstance(150, 150, Image.SCALE_DEFAULT));
+            this.setIcon(image);
+        } else if (attribute.equals("Shoes")) {
+            var image = new ImageIcon(panel.mysterieShoe.getScaledInstance(150, 150, Image.SCALE_DEFAULT));
+            this.setIcon(image);
+        }else {
+            this.setText(attribute);
+        }
         this.player = panel.player1;
     }
 

@@ -61,6 +61,13 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
     Image errorImage;
     Image arrow;
     Image fist;
+    Image mysterieArmor;
+    Image mysterieSword;
+    Image mysterieBow;
+    Image mysterieMine;
+    Image mysterieRing;
+    Image mysterieCharm;
+    Image mysterieShoe;
     int bgrWidth;
     int bgrHeight;
     ArrayList<int[]> allObstacles;
@@ -120,6 +127,13 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
         errorImage = new ImageIcon("resources/Error.png").getImage();
         arrow = new ImageIcon("resources/Arrow.png").getImage();
         fist = new ImageIcon("resources/Fist.png").getImage();
+        mysterieArmor = new ImageIcon("resources/Mysterie_Armor.png").getImage();
+        mysterieSword = new ImageIcon("resources/Mysterie_Sword.png").getImage();
+        mysterieBow = new ImageIcon("resources/Mysterie_Bow.png").getImage();
+        mysterieMine = new ImageIcon("resources/Mysterie_Mine.png").getImage();
+        mysterieRing = new ImageIcon("resources/Mysterie_Ring.png").getImage();
+        mysterieCharm = new ImageIcon("resources/Mysterie_Charm.png").getImage();
+        mysterieShoe = new ImageIcon("resources/Mysterie_Shoe.png").getImage();
         bgrHeight = bgrImage.getHeight(null);
         bgrWidth = bgrImage.getWidth(null);
 
