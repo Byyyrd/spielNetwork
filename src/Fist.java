@@ -38,6 +38,10 @@ public class Fist implements MouseListener {
             g2d.rotate(panel.slingshot.playerRotation, player.x + player.width/2 +x, player.y + player.height/2 +y);
             g2d.drawImage(panel.fist, (int)(x + player.x + player.width/2 - panel.fist.getWidth(null)/2), (int)(y + player.y + player.height/2 - panel.fist.getHeight(null)/2), panel.fist.getWidth(null), panel.fist.getHeight(null), null);
             g2d.rotate(-panel.slingshot.playerRotation, player.x + player.width/2 +x, player.y + player.height/2 +y);
+            g2d.fillOval((int)(x+panel.player1.x + panel.player1.width/2  +Math.cos(panel.slingshot.playerRotation) * panel.fist.getWidth(null)/2),(int)(y+ panel.player1.y + panel.player1.height/2  + Math.sin(panel.slingshot.playerRotation) * panel.fist.getHeight(null)),5,5);
+            g2d.fillOval((int)(x+panel.player1.x + panel.player1.width/2  +Math.cos(panel.slingshot.playerRotation) * panel.fist.getWidth(null)/2),(int)(y+ panel.player1.y + panel.player1.height/2  + Math.sin(panel.slingshot.playerRotation) * panel.fist.getHeight(null)/2), 5,5);
+            g2d.fillOval((int)(x+panel.player1.x + panel.player1.width/2  +Math.cos(panel.slingshot.playerRotation) * panel.fist.getWidth(null)/2),(int)(y+ panel.player1.y + panel.player1.height/2  + Math.sin(panel.slingshot.playerRotation)), 5,5);
+
         }
         if (panel.player2.fistequiped){
             g2d.rotate(panel.rotation2, panel.player2.x + player.width/2 +x2, panel.player2.y + player.height/2+y2);
