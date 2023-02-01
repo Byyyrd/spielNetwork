@@ -13,7 +13,7 @@ public class Boss {
         this.damage = damage;
     }
     public void drawBoss(Graphics2D g2d,Image bossImage){
-
+        g2d.drawImage(bossImage,x,y,bossImage.getWidth(null)*2,bossImage.getHeight(null)*2,null);
     }
     public void tick(double dt){
 

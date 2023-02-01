@@ -70,6 +70,7 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
     Image mysteryRing;
     Image mysteryCharm;
     Image mysteryShoe;
+    Image bossImage;
     int bgrWidth;
     int bgrHeight;
     ArrayList<int[]> allObstacles;
@@ -138,6 +139,7 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
         mysteryRing = new ImageIcon("resources/Mystery_Ring.png").getImage();
         mysteryCharm = new ImageIcon("resources/Mystery_Charm.png").getImage();
         mysteryShoe = new ImageIcon("resources/Mystery_Shoe.png").getImage();
+        bossImage = new ImageIcon("resources/Boss.png").getImage();
         bgrHeight = bgrImage.getHeight(null)/2;
         bgrWidth = bgrImage.getWidth(null)/2;
 
@@ -158,6 +160,7 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
         bow = new Bow(player1, this, bowImage);
         bow2 = new Bow(player2, this, bowImage);
         this.addMouseListener(bow);
+
 
         player1.setAllArrows(bow2.allArrows);
         player1.setAllArrowsSelf(bow.allArrows);
@@ -306,8 +309,15 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
         bow.drawBow(g2d, player1, player2, bowImage, playerImage, bow2);
         g2d.setTransform(oldXForm);
 
+        if (!player1.bowPickedUp){
+            g2d.drawImage(bowImage, bowX, bowY, bowImage.getWidth(null)/24, bowImage.getHeight(null)/24,null );
+        }
+        if (!player1.swordPickedUp){
+            g2d.drawImage(swordImage, swordX, swordY,player1.width, player1.height * 2, null);
+        }
+
         //Boss
-        boss.drawBoss(g2d,playerImage);
+        boss.drawBoss(g2d,bossImage);
 
         //Ui
         ui.drawUi(g2d, hpImage);
@@ -321,12 +331,7 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
         if (inChat || inInv) {
             ui.drawIcons(g2d, schildImage, swordImage, bowImage, speedImage);
         }
-        if (!player1.bowPickedUp){
-            g2d.drawImage(bowImage, bowX, bowY, bowImage.getWidth(null)/24, bowImage.getHeight(null)/24,null );
-        }
-        if (!player1.swordPickedUp){
-            g2d.drawImage(swordImage, swordX, swordY,player1.width, player1.height * 2, null);
-        }
+
         super.paint(g);
     }
 
