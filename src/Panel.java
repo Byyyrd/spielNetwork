@@ -409,12 +409,13 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
                 add(inventoryPanel, 1, 1);
                 setLayer(inventoryPanel, DRAG_LAYER);
                 setLayer(equipPanel, DRAG_LAYER);
+                inventory.updateInv();
             }
         }
         if (e.getKeyCode() == 80){
             var item = new Item("Chain");
             item.setImage(chainImage2);
-            item.setSpeed(100);
+            item.setSpeed(10);
             item.setHealTime(-2);
             item.setSwordDamage(10);
             item.setBowDamage(7.5);
@@ -428,7 +429,7 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
             item.setMaxMines(50);
             item.setMaxHp(40);
 
-            item.setMaxSpeed(100);
+            item.setMaxSpeed(10);
             item.setMinHealTime(-2);
             item.setMaxSwordDamage(10);
             item.setMaxBowDamage(7.5);

@@ -31,6 +31,7 @@ public class Inventory {
         this.panel = panel;
     }
     public void updateInv() {
+
         for (int j = 0; j < 7; j++) {
             for (int i = 0; i < 12; i++) {
                 if (allItems[j].size() > i) {
@@ -58,6 +59,9 @@ public class Inventory {
             arrowVelocity = equipButtons[0].getButton().item.getArrowVelocity() + equipButtons[1].getButton().item.getArrowVelocity() + equipButtons[2].getButton().item.getArrowVelocity() + equipButtons[3].getButton().item.getArrowVelocity() + equipButtons[4].getButton().item.getArrowVelocity() + equipButtons[5].getButton().item.getArrowVelocity() + equipButtons[6].getButton().item.getArrowVelocity();
             maxMines = equipButtons[0].getButton().item.getMaxMines() + equipButtons[1].getButton().item.getMaxMines() + equipButtons[2].getButton().item.getMaxMines() + equipButtons[3].getButton().item.getMaxMines() + equipButtons[4].getButton().item.getMaxMines() + equipButtons[5].getButton().item.getMaxMines() + equipButtons[6].getButton().item.getMaxMines();
             maxHp = equipButtons[0].getButton().item.getMaxHp() + equipButtons[1].getButton().item.getMaxMines() + equipButtons[2].getButton().item.getMaxMines() + equipButtons[3].getButton().item.getMaxMines() + equipButtons[4].getButton().item.getMaxMines() + equipButtons[5].getButton().item.getMaxMines() + equipButtons[6].getButton().item.getMaxMines();
+        }
+        if(panel.ui.hp > panel.ui.maxHp + panel.inventory.getMaxHp()) {
+            panel.ui.hp = panel.ui.maxHp + panel.inventory.getMaxHp();
         }
     }
 

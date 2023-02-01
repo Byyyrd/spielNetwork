@@ -27,7 +27,7 @@ public class Mine{
        mine.time = mine.time - 0.1;
        mineTimer -= 0.1;
        mine.mineTimer -= 0.1;
-       if (explosionCollision(player.x + player.width/2, player.y + player.height/2, 1000,500, 100) && mineTimer <= 0 && minesLeft < player.maxMines){
+       if (explosionCollision(player.x + player.width/2, player.y + player.height/2, 1000,500, 100) && mineTimer <= 0 && minesLeft < player.maxMines + panel.inventory.getMaxMines()){
            minesLeft++;
            mineTimer = player.mineTime + panel.inventory.getMineTime();
        }

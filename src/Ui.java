@@ -64,8 +64,8 @@ public class Ui {
         g2d.drawString(hp + "/" + (maxHp+panel.inventory.getMaxHp()), 525, 1015);
         //DashCoolDown & Mines left
         g2d.setFont(new Font("Arial", Font.PLAIN, 40));
-        g2d.drawString("Mines: " + mines + "/" + player.maxMines, 1375, 1015);
-        g2d.drawString("Dash: " + ((int) (dashCoolDown * 10f)) / 10f, 1635, 1015);
+        g2d.drawString("Mines: " + mines + "/" + (player.maxMines + panel.inventory.getMaxMines()), 1375, 1015);
+        g2d.drawString("Dash: " + ((int) (dashCoolDown * 10f)) / 10f, 1685, 1015);
         //Points
         g2d.setColor(Color.green);
         g2d.fillRect(700, 975, (int) (exp * 25), 50);
