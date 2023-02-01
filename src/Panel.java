@@ -368,7 +368,7 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
             messageOutput.setText("");
         }
         if (e.getKeyCode() == 71) {
-            ui.expSpend -= 20;
+            ui.expSpend -= 10;
             ui.levelUp();
         }
         //Chat and Stats

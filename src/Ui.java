@@ -73,7 +73,7 @@ public class Ui {
     }
 
     public void levelUp() {
-        expSpend += 20;
+        expSpend += 10;
         level++;
         for (int i = 0; i <= 2; i++) {
             int rand = (int) (Math.random() * 20 + 1);
