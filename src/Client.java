@@ -13,7 +13,7 @@ public class Client {
     ObjectInputStream inputStream;
     ConnectionFrame conFrame;
     Panel panel;
-    Slingshot slingshot;
+    Bow bow;
     Message message;
     boolean isClicked = false;
     boolean minePlaced = false;
@@ -34,35 +34,35 @@ public class Client {
             while (true) {
                 try {
                     inputStream = new ObjectInputStream(socket.getInputStream());
-                    Message recievedObject = (Message) inputStream.readObject();
-                    panel.setPlayer2(recievedObject.getX(), recievedObject.getY(), recievedObject.getName());
-                    panel.sword2.rotation = recievedObject.getSwordRotation();
-                    panel.setRotation2(recievedObject.rotation);
-                    panel.player2.setSwordEquipde(recievedObject.swordPickedUp);
-                    if (recievedObject.isClicked){
-                        panel.slingshot2.player2CreateArrow(recievedObject.mouseX,recievedObject.mouseY);
+                    Message receivedObject = (Message) inputStream.readObject();
+                    panel.setPlayer2(receivedObject.getX(), receivedObject.getY(), receivedObject.getName());
+                    panel.sword2.rotation = receivedObject.getSwordRotation();
+                    panel.setRotation2(receivedObject.rotation);
+                    panel.player2.setSwordEquipde(receivedObject.swordPickedUp);
+                    if (receivedObject.isClicked){
+                        panel.bow2.player2CreateArrow(receivedObject.mouseX,receivedObject.mouseY);
                     }
-                    panel.player2.setSlingshotEquipde(recievedObject.bowPickedUp);
-                    if (recievedObject.minePlaced){
+                    panel.player2.setBowEquipde(receivedObject.bowPickedUp);
+                    if (receivedObject.minePlaced){
                         panel.mine2.createMine();
                     }
-                    if (recievedObject.exploded && panel.mine2.allMines.size() != 0 && panel.mine2.allMines != null){
+                    if (receivedObject.exploded && panel.mine2.allMines.size() != 0 && panel.mine2.allMines != null){
                         panel.mine2.time = 1;
                         panel.mine.explodeMines();
                     }
-                    if(!recievedObject.message.equals("")) {
-                        panel.messageInput.setText(recievedObject.getName() + ": " + recievedObject.message + "\n" + panel.messageInput.getText());
+                    if(!receivedObject.message.equals("")) {
+                        panel.messageInput.setText(receivedObject.getName() + ": " + receivedObject.message + "\n" + panel.messageInput.getText());
                     }
-                    panel.ui.p2normHp = recievedObject.normHp;
-                    panel.ui.death2 = recievedObject.death;
-                    panel.player2.swordDamage = recievedObject.swordDamage;
-                    panel.player2.slingshotDamage = recievedObject.slingshotDamage;
-                    panel.player2.mineDamage = recievedObject.mineDamage;
-                    panel.player2.mineTime = recievedObject.mineTime;
-                    panel.player2.maxMines = recievedObject.maxMines;
-                    panel.fist1.x2 = recievedObject.fistX;
-                    panel.fist2.y2 = recievedObject.fistY;
-                    panel.player2.fistequiped = recievedObject.fistEquipde;
+                    panel.ui.p2normHp = receivedObject.normHp;
+                    panel.ui.death2 = receivedObject.death;
+                    panel.player2.swordDamage = receivedObject.swordDamage;
+                    panel.player2.bowDamage = receivedObject.bowDamage;
+                    panel.player2.mineDamage = receivedObject.mineDamage;
+                    panel.player2.mineTime = receivedObject.mineTime;
+                    panel.player2.maxMines = receivedObject.maxMines;
+                    panel.fist1.x2 = receivedObject.fistX;
+                    panel.fist2.y2 = receivedObject.fistY;
+                    panel.player2.fistequiped = receivedObject.fistEquipped;
                 } catch (ClassNotFoundException e) {
                     System.out.println("Client hat Scheiße bekommen");
                 } catch (IOException e) {
@@ -84,7 +84,7 @@ public class Client {
             if(!panel.message.equals("")) {
                 panel.messageInput.setText(name + ": " + panel.message + "\n" + panel.messageInput.getText());
             }
-            message = new Message(player.x, player.y,name, sword.rotation, slingshot.playerRotation,player.isSlingshotEquipde(), slingshot.mousePos.getX(), slingshot.mousePos.getY(),isClicked, player.swordEquipde, minePlaced, exploded,panel.message, panel.ui.normHp, panel.ui.death, player.swordDamage + panel.inventory.getSwordDamage(), player.slingshotDamage + panel.inventory.getSlingshotDamage(), player.mineDamage + panel.inventory.getMineDamage(), player.mineTime + panel.inventory.getMineTime(), player.maxMines + panel.inventory.getMaxMines(), panel.fist1.x, panel.fist1.y, panel.player1.fistequiped);
+            message = new Message(player.x, player.y,name, sword.rotation, bow.playerRotation,player.isBowEquipde(), bow.mousePos.getX(), bow.mousePos.getY(),isClicked, player.swordEquipde, minePlaced, exploded,panel.message, panel.ui.normHp, panel.ui.death, player.swordDamage + panel.inventory.getSwordDamage(), player.bowDamage + panel.inventory.getBowDamage(), player.mineDamage + panel.inventory.getMineDamage(), player.mineTime + panel.inventory.getMineTime(), player.maxMines + panel.inventory.getMaxMines(), panel.fist1.x, panel.fist1.y, panel.player1.fistequiped);
             if(!panel.serverDown) {
                 outputStream.writeObject(message);
             }
@@ -98,8 +98,8 @@ public class Client {
         this.panel = panel;
     }
 
-    public void setWeapon(Slingshot slingshot) {
-        this.slingshot = slingshot;
+    public void setWeapon(Bow bow) {
+        this.bow = bow;
     }
 
     public void setClicked(boolean clicked) {

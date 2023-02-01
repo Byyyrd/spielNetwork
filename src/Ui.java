@@ -41,7 +41,7 @@ public class Ui {
             death++;
             hp = maxHp + panel.inventory.getMaxHp();
             player.swordEquipde = false;
-            player.slingshotEquipde = false;
+            player.bowEquipde = false;
             player.fistequiped = true;
         }
     }
@@ -81,11 +81,11 @@ public class Ui {
             switch (rand) {
                 case 1 -> allButtons.add(new UpgradeButton(panel, i * 600 + 100, "Heal"));
                 case 2 -> allButtons.add(new UpgradeButton(panel, i * 600 + 100, "SwordDamage"));
-                case 3 -> allButtons.add(new UpgradeButton(panel, i * 600 + 100, "SlingshotDamage"));
+                case 3 -> allButtons.add(new UpgradeButton(panel, i * 600 + 100, "BowDamage"));
                 case 4 -> allButtons.add(new UpgradeButton(panel, i * 600 + 100, "MineDamage"));
-                case 5 -> allButtons.add(new UpgradeButton(panel, i * 600 + 100, "Slingshot-CoolDown"));
+                case 5 -> allButtons.add(new UpgradeButton(panel, i * 600 + 100, "Bow-CoolDown"));
                 case 6 -> allButtons.add(new UpgradeButton(panel, i * 600 + 100, "Sword-DmgReduction"));
-                case 7 -> allButtons.add(new UpgradeButton(panel, i * 600 + 100, "Slingshot-DmgReduction"));
+                case 7 -> allButtons.add(new UpgradeButton(panel, i * 600 + 100, "Bow-DmgReduction"));
                 case 8 -> allButtons.add(new UpgradeButton(panel, i * 600 + 100, "Mines-DmgReduction"));
                 case 9 -> allButtons.add(new UpgradeButton(panel, i * 600 + 100, "Speed"));
                 case 10 -> allButtons.add(new UpgradeButton(panel, i * 600 + 100, "MaxMines"));
@@ -94,7 +94,7 @@ public class Ui {
                 case 13 -> allButtons.add(new UpgradeButton(panel, i * 600 + 100, "ArrowVelocity"));
                 case 14 -> allButtons.add(new UpgradeButton(panel, i * 600 + 100, "Armor"));
                 case 15 -> allButtons.add(new UpgradeButton(panel, i * 600 + 100, "Sword"));
-                case 16 -> allButtons.add(new UpgradeButton(panel, i * 600 + 100, "Slingshot"));
+                case 16 -> allButtons.add(new UpgradeButton(panel, i * 600 + 100, "Bow"));
                 case 17 -> allButtons.add(new UpgradeButton(panel, i * 600 + 100, "Mine"));
                 case 18 -> allButtons.add(new UpgradeButton(panel, i * 600 + 100, "Ring"));
                 case 19 -> allButtons.add(new UpgradeButton(panel, i * 600 + 100, "Chain"));
@@ -113,7 +113,7 @@ public class Ui {
     public void setDashCoolDown(double dashCoolDown) {
         this.dashCoolDown = dashCoolDown;
     }
-    public void drawIcons(Graphics2D g2d, Image schildImage, Image swordImage, Image slingshotImage, Image speedImage) {
+    public void drawIcons(Graphics2D g2d, Image schildImage, Image swordImage, Image bowImage, Image speedImage) {
         g2d.setColor(new Color(1, 1, 1));
         g2d.fillRect(0, 950, 1920, 150);
         g2d.setColor(Color.white);
@@ -135,16 +135,16 @@ public class Ui {
         g2d.setFont(new Font("Arial", Font.PLAIN, 30));
 
         g2d.drawImage(schildImage, 200, 956, schildImage.getWidth(null) / 3, schildImage.getHeight(null) / 3, null);
-        g2d.drawImage(slingshotImage, 203, 965, slingshotImage.getWidth(null) / 30, slingshotImage.getHeight(null) /30, null);
-        if (player.slingshotDamageReduction >= 75){
+        g2d.drawImage(bowImage, 203, 965, bowImage.getWidth(null) / 30, bowImage.getHeight(null) /30, null);
+        if (player.bowDamageReduction >= 75){
             g2d.setColor(Color.yellow);
         }else {
             g2d.setColor(Color.white);
         }
-        g2d.drawString(":  " + ((int) (player.slingshotDamageReduction * 10f)) / 10f, 260, 1000);
+        g2d.drawString(":  " + ((int) (player.bowDamageReduction * 10f)) / 10f, 260, 1000);
         g2d.setFont(new Font("Arial", Font.PLAIN, 20));
         g2d.setColor(Color.green);
-        g2d.drawString("+  " + (int)(panel.inventory.getSlingshotDamageReduction()*10f)/10f, 267, 1020);
+        g2d.drawString("+  " + (int)(panel.inventory.getBowDamageReduction()*10f)/10f, 267, 1020);
         g2d.setColor(Color.white);
         g2d.setFont(new Font("Arial", Font.PLAIN, 30));
 
@@ -177,16 +177,16 @@ public class Ui {
         g2d.setColor(Color.white);
         g2d.setFont(new Font("Arial", Font.PLAIN, 30));
 
-        g2d.drawImage(slingshotImage, 728, 968, slingshotImage.getWidth(null) / 30, slingshotImage.getHeight(null) / 30, null);
-        if (player.slingshotDamage >= 7.5){
+        g2d.drawImage(bowImage, 728, 968, bowImage.getWidth(null) / 30, bowImage.getHeight(null) / 30, null);
+        if (player.bowDamage >= 7.5){
             g2d.setColor(Color.yellow);
         }else {
             g2d.setColor(Color.white);
         }
-        g2d.drawString(":  " + ((int) (player.slingshotDamage * 10f)) / 10f, 780, 1000);
+        g2d.drawString(":  " + ((int) (player.bowDamage * 10f)) / 10f, 780, 1000);
         g2d.setFont(new Font("Arial", Font.PLAIN, 20));
         g2d.setColor(Color.green);
-        g2d.drawString("+  " + (int)(panel.inventory.getSlingshotDamage()*10f)/10f, 787, 1020);
+        g2d.drawString("+  " + (int)(panel.inventory.getBowDamage()*10f)/10f, 787, 1020);
         g2d.setColor(Color.white);
         g2d.setFont(new Font("Arial", Font.PLAIN, 30));
 
@@ -224,8 +224,8 @@ public class Ui {
         g2d.setColor(Color.white);
         g2d.setFont(new Font("Arial", Font.PLAIN, 30));
 
-        g2d.drawImage(slingshotImage, 1200, 973, slingshotImage.getWidth(null) / 30, slingshotImage.getHeight(null) / 30, null);
-        g2d.drawImage(panel.hourglass, 1245, 968, slingshotImage.getWidth(null) / 24, slingshotImage.getHeight(null) / 24, null);
+        g2d.drawImage(bowImage, 1200, 973, bowImage.getWidth(null) / 30, bowImage.getHeight(null) / 30, null);
+        g2d.drawImage(panel.hourglass, 1245, 968, bowImage.getWidth(null) / 24, bowImage.getHeight(null) / 24, null);
         if (player.arrowTime <= 0){
             g2d.setColor(Color.yellow);
         }else {

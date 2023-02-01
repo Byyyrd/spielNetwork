@@ -1,16 +1,15 @@
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
 public class Sword implements MouseListener {
     double rotation;
-    long yLenght;
-    long xLenght;
+    long yLength;
+    long xLength;
 
     int x;
     int y;
     double offset;
-    double cooldown = 0;
+    double coolDown = 0;
     double counterOffset;
 
     int width;
@@ -18,7 +17,6 @@ public class Sword implements MouseListener {
 
     Player player;
     Panel panel;
-    Timer timer;
     Sword sword2;
     Player player2;
 
@@ -39,13 +37,13 @@ public class Sword implements MouseListener {
         y = player.y;
         sword2.x = player2.x;
         sword2.y = player2.y;
-        if (panel.slingshot.mousePos != null) {
-            yLenght = (long) ((panel.slingshot.mousePos.getY()) - (y + player.height / 2));
-            xLenght = (long) ((panel.slingshot.mousePos.getX()) - (x + player.width / 2));
-            rotation = (Math.atan2(yLenght, xLenght)) + Math.PI / 2 + offset + counterOffset;
+        if (panel.bow.mousePos != null) {
+            yLength = (long) ((panel.bow.mousePos.getY()) - (y + player.height / 2));
+            xLength = (long) ((panel.bow.mousePos.getX()) - (x + player.width / 2));
+            rotation = (Math.atan2(yLength, xLength)) + Math.PI / 2 + offset + counterOffset;
         }
-        if (cooldown > 0) {
-            cooldown -= 0.025;
+        if (coolDown > 0) {
+            coolDown -= 0.025;
         }
         if (offset > -Math.PI / 4) {
             counterOffset = 0;
@@ -54,7 +52,7 @@ public class Sword implements MouseListener {
             offset = -Math.PI / 4;
             counterOffset = Math.PI / 4;
         }
-        panel.ui.setDashCoolDown(cooldown);
+        panel.ui.setDashCoolDown(coolDown);
     }
     public void drawSword(Graphics2D g2d,Image swordImage,Player player2){
         if(player2.swordEquipde) {
@@ -75,7 +73,7 @@ public class Sword implements MouseListener {
     }
     @Override
     public void mousePressed(MouseEvent e) {
-        if (e.getButton() == 3 && cooldown <= 0 && player.isSwordEquipde()) {
+        if (e.getButton() == 3 && coolDown <= 0 && player.isSwordEquipde()) {
             for (int i = 0; i <= 10; i++) {
                 if (!player.inRectangle(player.x + 5, player.y, player.player2.x, player.player2.y, player.player2.width, player.player2.width) && !player.inRectangle(player.x + player.player2.width - 5, player.y, player.player2.x, player.player2.y, player.player2.width, player.player2.width)
                         && !player.inRectangle(x + 5, y + player.player2.height, player.player2.x, player.player2.y, player.player2.width, player.player2.width) && !player.inRectangle(x + player.player2.width - 5, y + player.player2.height, player.player2.x, player.player2.y, player.player2.width, player.player2.width)
@@ -83,11 +81,11 @@ public class Sword implements MouseListener {
                         && !player.inRectangle(x + player.player2.width, y - 5, player.player2.x, player.player2.y, player.player2.width, player.player2.width) && !player.inRectangle(x + player.player2.width, y + player.player2.height - 5, player.player2.x, player.player2.y, player.player2.width, player.player2.width)
                 ) {
                     player.iFrame = 1;
-                    player.x += (int) (Math.cos(Math.atan2(yLenght, xLenght)) * 20);
-                    player.y += (int) (Math.sin(Math.atan2(yLenght, xLenght)) * 20);
+                    player.x += (int) (Math.cos(Math.atan2(yLength, xLength)) * 20);
+                    player.y += (int) (Math.sin(Math.atan2(yLength, xLength)) * 20);
                 }
             }
-            cooldown = 3.1;
+            coolDown = 3.1;
         }
         if (offset == -Math.PI / 4) {
             offset = Math.PI / 4;

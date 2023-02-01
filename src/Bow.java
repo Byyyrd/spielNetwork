@@ -6,7 +6,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
-public class Slingshot implements MouseListener, ActionListener {
+public class Bow implements MouseListener, ActionListener {
     double y1;
     double x1;
     long yLength;
@@ -22,7 +22,7 @@ public class Slingshot implements MouseListener, ActionListener {
     ArrayList<Double[]> allArrows = new ArrayList<>();
     boolean mouseDown;
 
-    public Slingshot(Player player, Panel panel, Image image) {
+    public Bow(Player player, Panel panel, Image image) {
         this.player = player;
         this.panel = panel;
         client = panel.client;
@@ -31,8 +31,8 @@ public class Slingshot implements MouseListener, ActionListener {
         timer.start();
     }
 
-    public void drawSlingshot(Graphics2D g2d, Player player, Player player2, Image image, Image playerImage, Slingshot slingshot2) {
-        if (player.isSlingshotEquipde()) {
+    public void drawBow(Graphics2D g2d, Player player, Player player2, Image image, Image playerImage, Bow bow2) {
+        if (player.isBowEquipde()) {
             g2d.rotate(this.playerRotation, player.x + playerImage.getWidth(null) * 1.5, player.y + playerImage.getHeight(null) * 1.5);
             g2d.drawImage(image, player.x + playerImage.getWidth(null) * 3 / 2 - image.getWidth(null) / 48, player.y + playerImage.getHeight(null) * 3 / 2 - image.getHeight(null) / 48, image.getWidth(null) / 24, image.getHeight(null) / 24, null);
             g2d.rotate(-this.playerRotation, player.x + playerImage.getWidth(null) * 1.5, player.y + playerImage.getHeight(null) * 1.5);
@@ -44,17 +44,17 @@ public class Slingshot implements MouseListener, ActionListener {
             g2d.rotate(-this.allArrows.get(i - 1)[4] - Math.PI/2, (int) (allArrows.get(i - 1)[0] +1-1), (int) (allArrows.get(i - 1)[1] + 1 - 1));
             g2d.setTransform(panel.oldXForm);
         }
-        if (player2.isSlingshotEquipde()) {
+        if (player2.isBowEquipde()) {
             g2d.rotate(panel.rotation2, player2.x + playerImage.getWidth(null) * 1.5, player2.y + playerImage.getHeight(null) * 1.5);
             g2d.drawImage(image, player2.x + playerImage.getWidth(null) * 3 / 2 - image.getWidth(null) / 48, player2.y + playerImage.getHeight(null) * 3 / 2 - image.getHeight(null) / 48, image.getWidth(null) / 24, image.getHeight(null) / 24, null);
             g2d.rotate(-panel.rotation2, player2.x + playerImage.getWidth(null) * 1.5, player2.y + playerImage.getHeight(null) * 1.5);
             g2d.setTransform(panel.oldXForm);
         }
-        if (slingshot2.allArrows != null) {
-            for (int i = slingshot2.allArrows.size(); i >= 1; i--) {
-                g2d.rotate(slingshot2.allArrows.get(i - 1)[4] + Math.PI/2, (int) (slingshot2.allArrows.get(i - 1)[0] +1-1), (int) (slingshot2.allArrows.get(i - 1)[1] + 1 - 1));
-                g2d.drawImage(panel.arrow, (int) (slingshot2.allArrows.get(i - 1)[0] +1-1) - panel.arrow.getWidth(null) / 2, (int) (slingshot2.allArrows.get(i - 1)[1] + 1 - 1) -panel.arrow.getHeight(null) / 2, panel.arrow.getWidth(null), panel.arrow.getHeight(null), null);
-                g2d.rotate(-slingshot2.allArrows.get(i - 1)[4] - Math.PI/2, (int) (slingshot2.allArrows.get(i - 1)[0] +1-1), (int) (slingshot2.allArrows.get(i - 1)[1] + 1 - 1));
+        if (bow2.allArrows != null) {
+            for (int i = bow2.allArrows.size(); i >= 1; i--) {
+                g2d.rotate(bow2.allArrows.get(i - 1)[4] + Math.PI/2, (int) (bow2.allArrows.get(i - 1)[0] +1-1), (int) (bow2.allArrows.get(i - 1)[1] + 1 - 1));
+                g2d.drawImage(panel.arrow, (int) (bow2.allArrows.get(i - 1)[0] +1-1) - panel.arrow.getWidth(null) / 2, (int) (bow2.allArrows.get(i - 1)[1] + 1 - 1) -panel.arrow.getHeight(null) / 2, panel.arrow.getWidth(null), panel.arrow.getHeight(null), null);
+                g2d.rotate(-bow2.allArrows.get(i - 1)[4] - Math.PI/2, (int) (bow2.allArrows.get(i - 1)[0] +1-1), (int) (bow2.allArrows.get(i - 1)[1] + 1 - 1));
                 g2d.setTransform(panel.oldXForm);
             }
         }
@@ -135,7 +135,7 @@ public class Slingshot implements MouseListener, ActionListener {
 
     @Override
     public void mousePressed(MouseEvent e) {
-        if (player.isSlingshotEquipde()) {
+        if (player.isBowEquipde()) {
             mouseDown = true;
         }
     }

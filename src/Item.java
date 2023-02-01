@@ -14,9 +14,9 @@ public class Item {
     private double swordDamage = 0;
     private double minSwordDamage = 0;
     private double maxSwordDamage = 0;
-    private double slingshotDamage = 0;
-    private double minSlingshotDamage = 0;
-    private double maxSlingshotDamage = 0;
+    private double bowDamage = 0;
+    private double minBowDamage = 0;
+    private double maxBowDamage = 0;
     private double mineDamage = 0;
     private double minMineDamage = 0;
     private double maxMineDamage = 0;
@@ -29,9 +29,9 @@ public class Item {
     private double meleeDamageReduction = 0;
     private double minMeleeDamageReduction = 0;
     private double maxMeleeDamageReduction = 0;
-    private double slingshotDamageReduction = 0;
-    private double minSlingshotDamageReduction = 0;
-    private double maxSlingshotDamageReduction = 0;
+    private double bowDamageReduction = 0;
+    private double minBowDamageReduction = 0;
+    private double maxBowDamageReduction = 0;
     private double mineDamageReduction = 0;
     private double minMineDamageReduction = 0;
     private double maxMineDamageReduction = 0;
@@ -54,12 +54,12 @@ public class Item {
         speed = random(minSpeed,maxSpeed);
         healTime = random(minHealTime,maxHealTime);
         swordDamage = random(minSwordDamage, maxSwordDamage);
-        slingshotDamage =  random(minSlingshotDamage, maxSlingshotDamage);
+        bowDamage =  random(minBowDamage, maxBowDamage);
         mineDamage = random(minMineDamage, maxMineDamage);
         arrowTime = random(minArrowTime, maxArrowTime);
         mineTime = random(minMineTime, maxMineTime);
         meleeDamageReduction = random(minMeleeDamageReduction, maxMeleeDamageReduction);
-        slingshotDamageReduction = random(minSlingshotDamageReduction, maxSlingshotDamageReduction);
+        bowDamageReduction = random(minBowDamageReduction, maxBowDamageReduction);
         mineDamageReduction = random(minMineDamageReduction, maxMineDamageReduction);
         arrowVelocity = random(minArrowVelocity, maxArrowVelocity);
         maxMines = (int) random( minMaxMines, maxMaxMines);
@@ -82,9 +82,9 @@ public class Item {
         this.maxSwordDamage = maxSwordDamage;
     }
 
-    public void setRangeSlingshotDamage(double minSlingshotDamage, double maxSlingshotDamage) {
-        this.minSlingshotDamage = minSlingshotDamage;
-        this.maxSlingshotDamage = maxSlingshotDamage;
+    public void setRangeBowDamage(double minBowDamage, double maxBowDamage) {
+        this.minBowDamage = minBowDamage;
+        this.maxBowDamage = maxBowDamage;
     }
 
     public void setRangeMineDamage(double minMineDamage, double maxMineDamage) {
@@ -107,9 +107,9 @@ public class Item {
         this.maxMeleeDamageReduction = maxMeleeDamageReduction;
     }
 
-    public void setRangeSlingshotDamageReduction(double minSlingshotDamageReduction, double maxSlingshotDamageReduction) {
-        this.minSlingshotDamageReduction = minSlingshotDamageReduction;
-        this.maxSlingshotDamageReduction = maxSlingshotDamageReduction;
+    public void setRangeBowDamageReduction(double minBowDamageReduction, double maxBowDamageReduction) {
+        this.minBowDamageReduction = minBowDamageReduction;
+        this.maxBowDamageReduction = maxBowDamageReduction;
     }
 
     public void setRangeMineDamageReduction(double minMineDamageReduction, double maxMineDamageReduction) {
@@ -159,8 +159,8 @@ public class Item {
         return swordDamage;
     }
 
-    public double getSlingshotDamage() {
-        return slingshotDamage;
+    public double getBowDamage() {
+        return bowDamage;
     }
 
     public double getMineDamage() {
@@ -179,8 +179,8 @@ public class Item {
         return meleeDamageReduction;
     }
 
-    public double getSlingshotDamageReduction() {
-        return slingshotDamageReduction;
+    public double getBowDamageReduction() {
+        return bowDamageReduction;
     }
 
     public double getMineDamageReduction() {
@@ -223,12 +223,12 @@ public class Item {
         return maxSwordDamage;
     }
 
-    public double getMinSlingshotDamage() {
-        return minSlingshotDamage;
+    public double getMinBowDamage() {
+        return minBowDamage;
     }
 
-    public double getMaxSlingshotDamage() {
-        return maxSlingshotDamage;
+    public double getMaxBowDamage() {
+        return maxBowDamage;
     }
 
     public double getMinMineDamage() {
@@ -263,12 +263,12 @@ public class Item {
         return maxMeleeDamageReduction;
     }
 
-    public double getMinSlingshotDamageReduction() {
-        return minSlingshotDamageReduction;
+    public double getMinBowDamageReduction() {
+        return minBowDamageReduction;
     }
 
-    public double getMaxSlingshotDamageReduction() {
-        return maxSlingshotDamageReduction;
+    public double getMaxBowDamageReduction() {
+        return maxBowDamageReduction;
     }
 
     public double getMinMineDamageReduction() {

@@ -19,29 +19,36 @@ public class UpgradeButton extends JButton implements ActionListener {
         this.setBackground(new Color(94, 94, 94));
         this.setFont(new Font("Arial", Font.PLAIN, 40));
         this.setBounds(x, 400, 500, 200);
-        if (attribute.equals("Armor")){
-            var image = new ImageIcon(panel.mysterieArmor.getScaledInstance(150, 150, Image.SCALE_DEFAULT));
-            this.setIcon(image);
-        } else if (attribute.equals("Sword")) {
-            var image = new ImageIcon(panel.mysterieSword.getScaledInstance(150, 150, Image.SCALE_DEFAULT));
-            this.setIcon(image);
-        } else if (attribute.equals("Slingshot")) {
-            var image = new ImageIcon(panel.mysterieBow.getScaledInstance(150, 150, Image.SCALE_DEFAULT));
-            this.setIcon(image);
-        } else if (attribute.equals("Mine")) {
-            var image = new ImageIcon(panel.mysterieMine.getScaledInstance(150, 150, Image.SCALE_DEFAULT));
-            this.setIcon(image);;
-        } else if (attribute.equals("Ring")) {
-            var image = new ImageIcon(panel.mysterieRing.getScaledInstance(150, 150, Image.SCALE_DEFAULT));
-            this.setIcon(image);
-        } else if (attribute.equals("Chain")) {
-            var image = new ImageIcon(panel.mysterieCharm.getScaledInstance(150, 150, Image.SCALE_DEFAULT));
-            this.setIcon(image);
-        } else if (attribute.equals("Shoes")) {
-            var image = new ImageIcon(panel.mysterieShoe.getScaledInstance(150, 150, Image.SCALE_DEFAULT));
-            this.setIcon(image);
-        }else {
-            this.setText(attribute);
+        switch (attribute) {
+            case "Armor" -> {
+                var image = new ImageIcon(panel.mysterieArmor.getScaledInstance(150, 150, Image.SCALE_DEFAULT));
+                this.setIcon(image);
+            }
+            case "Sword" -> {
+                var image = new ImageIcon(panel.mysterieSword.getScaledInstance(150, 150, Image.SCALE_DEFAULT));
+                this.setIcon(image);
+            }
+            case "Bow" -> {
+                var image = new ImageIcon(panel.mysterieBow.getScaledInstance(150, 150, Image.SCALE_DEFAULT));
+                this.setIcon(image);
+            }
+            case "Mine" -> {
+                var image = new ImageIcon(panel.mysterieMine.getScaledInstance(150, 150, Image.SCALE_DEFAULT));
+                this.setIcon(image);
+            }
+            case "Ring" -> {
+                var image = new ImageIcon(panel.mysterieRing.getScaledInstance(150, 150, Image.SCALE_DEFAULT));
+                this.setIcon(image);
+            }
+            case "Chain" -> {
+                var image = new ImageIcon(panel.mysterieCharm.getScaledInstance(150, 150, Image.SCALE_DEFAULT));
+                this.setIcon(image);
+            }
+            case "Shoes" -> {
+                var image = new ImageIcon(panel.mysterieShoe.getScaledInstance(150, 150, Image.SCALE_DEFAULT));
+                this.setIcon(image);
+            }
+            default -> this.setText(attribute);
         }
         this.player = panel.player1;
     }
@@ -58,9 +65,9 @@ public class UpgradeButton extends JButton implements ActionListener {
                 player.swordDamage += 0.25;
             }
         }
-        if (Objects.equals(attribute, "SlingshotDamage")) {
-            if (player.slingshotDamage < 7.5) {
-                player.slingshotDamage += 0.25;
+        if (Objects.equals(attribute, "BowDamage")) {
+            if (player.bowDamage < 7.5) {
+                player.bowDamage += 0.25;
             }
         }
         if (Objects.equals(attribute, "MineDamage")) {
@@ -68,7 +75,7 @@ public class UpgradeButton extends JButton implements ActionListener {
                 player.mineDamage += 0.5;
             }
         }
-        if (Objects.equals(attribute, "Slingshot-CoolDown")) {
+        if (Objects.equals(attribute, "Bow-CoolDown")) {
             if (player.arrowTime > 0){
                 player.arrowTime -= 0.125;
             }
@@ -78,9 +85,9 @@ public class UpgradeButton extends JButton implements ActionListener {
                 player.meleeDamageReduction += 2.5;
             }
         }
-        if (Objects.equals(attribute, "Slingshot-DmgReduction")) {
-            if (player.slingshotDamageReduction < 75) {
-                player.slingshotDamageReduction += 2;
+        if (Objects.equals(attribute, "Bow-DmgReduction")) {
+            if (player.bowDamageReduction < 75) {
+                player.bowDamageReduction += 2;
             }
         }
         if (Objects.equals(attribute, "Mines-DmgReduction")) {
@@ -113,28 +120,28 @@ public class UpgradeButton extends JButton implements ActionListener {
             var item = new Item("Armor");
             int rand = (int) (Math.random() * 3 + 1);
             switch (rand) {
-                case 1:
+                case 1 -> {
                     item.setImage(panel.armorImage2);
-                    item.setRangeSlingshotDamageReduction(5,10);
-                    item.setRangeMeleeDamageReduction(5,10);
-                    item.setRangeSpeed(-1,0);
-                    item.setRangeArrowTime(0,1);
-                    break;
-                case 2:
+                    item.setRangeBowDamageReduction(5, 10);
+                    item.setRangeMeleeDamageReduction(5, 10);
+                    item.setRangeSpeed(-1, 0);
+                    item.setRangeArrowTime(0, 1);
+                }
+                case 2 -> {
                     item.setImage(panel.armorImage1);
-                    item.setRangeSlingshotDamageReduction(10,15);
-                    item.setRangeMeleeDamageReduction(10,15);
-                    item.setRangeMineDamageReduction(0,10);
-                    item.setRangeSpeed(-3,-1);
-                    item.setRangeArrowTime(1,2);
-                    break;
-                case 3:
+                    item.setRangeBowDamageReduction(10, 15);
+                    item.setRangeMeleeDamageReduction(10, 15);
+                    item.setRangeMineDamageReduction(0, 10);
+                    item.setRangeSpeed(-3, -1);
+                    item.setRangeArrowTime(1, 2);
+                }
+                case 3 -> {
                     item.setImage(panel.armorImage3);
-                    item.setRangeSlingshotDamageReduction(5,7);
-                    item.setRangeMeleeDamageReduction(5,7);
-                    item.setRangeSpeed(0,1);
-                    item.setRangeArrowTime(-0.5,0);
-                    break;
+                    item.setRangeBowDamageReduction(5, 7);
+                    item.setRangeMeleeDamageReduction(5, 7);
+                    item.setRangeSpeed(0, 1);
+                    item.setRangeArrowTime(-0.5, 0);
+                }
             }
             item.createStats();
 
@@ -145,58 +152,58 @@ public class UpgradeButton extends JButton implements ActionListener {
             var item = new Item("Sword");
             int rand = (int) (Math.random() * 3 + 1);
             switch (rand) {
-                case 1:
+                case 1 -> {
                     item.setImage(panel.swordImage1);
-                    item.setRangeSwordDamage(3,7);
-                    item.setRangeMineTime(0,1);
-                    item.setRangeSpeed(-1,0);
-                    item.setRangeArrowTime(0,1);
-                    break;
-                case 2:
+                    item.setRangeSwordDamage(3, 7);
+                    item.setRangeMineTime(0, 1);
+                    item.setRangeSpeed(-1, 0);
+                    item.setRangeArrowTime(0, 1);
+                }
+                case 2 -> {
                     item.setImage(panel.swordImage2);
-                    item.setRangeSwordDamage(2,6);
-                    item.setRangeMineTime(0,0.5);
-                    item.setRangeSpeed(-0.5,0.5);
-                    item.setRangeArrowTime(0,0.5);
-                    break;
-                case 3:
+                    item.setRangeSwordDamage(2, 6);
+                    item.setRangeMineTime(0, 0.5);
+                    item.setRangeSpeed(-0.5, 0.5);
+                    item.setRangeArrowTime(0, 0.5);
+                }
+                case 3 -> {
                     item.setImage(panel.swordImage3);
-                    item.setRangeSwordDamage(1,5);
-                    item.setRangeMineTime(0,0.5);
-                    item.setRangeSpeed(0,1);
-                    item.setRangeArrowTime(-1,0);
-                    break;
+                    item.setRangeSwordDamage(1, 5);
+                    item.setRangeMineTime(0, 0.5);
+                    item.setRangeSpeed(0, 1);
+                    item.setRangeArrowTime(-1, 0);
+                }
             }
             item.createStats();
 
             panel.inventory.allItems[1].add(item);
             panel.inventory.updateInv();
         }
-        if (Objects.equals(attribute, "Slingshot")) {
-            var item = new Item("Slingshot");
+        if (Objects.equals(attribute, "Bow")) {
+            var item = new Item("Bow");
             int rand = (int) (Math.random() * 3 + 1);
             switch (rand) {
-                case 1:
-                    item.setImage(panel.slingshotImage1);
-                    item.setRangeSlingshotDamage(3,7);
-                    item.setRangeArrowTime(-0.5,0.5);
-                    item.setRangeMeleeDamageReduction(-5,0);
-                    item.setRangeArrowVelocity(-1,0.5);
-                    break;
-                case 2:
-                    item.setImage(panel.slingshotImage3);
-                    item.setRangeSlingshotDamage(1,4);
-                    item.setRangeArrowTime(-2,0);
-                    item.setRangeMeleeDamageReduction(-5,3);
-                    item.setRangeArrowVelocity(-0.5,1);
-                    break;
-                case 3:
-                    item.setImage(panel.slingshotImage2);
-                    item.setRangeSlingshotDamage(3,6);
-                    item.setRangeArrowTime(-1,0);
-                    item.setRangeMeleeDamageReduction(-3,0);
-                    item.setRangeArrowVelocity(0,1);
-                    break;
+                case 1 -> {
+                    item.setImage(panel.bowImage1);
+                    item.setRangeBowDamage(3, 7);
+                    item.setRangeArrowTime(-0.5, 0.5);
+                    item.setRangeMeleeDamageReduction(-5, 0);
+                    item.setRangeArrowVelocity(-1, 0.5);
+                }
+                case 2 -> {
+                    item.setImage(panel.bowImage3);
+                    item.setRangeBowDamage(1, 4);
+                    item.setRangeArrowTime(-2, 0);
+                    item.setRangeMeleeDamageReduction(-5, 3);
+                    item.setRangeArrowVelocity(-0.5, 1);
+                }
+                case 3 -> {
+                    item.setImage(panel.bowImage2);
+                    item.setRangeBowDamage(3, 6);
+                    item.setRangeArrowTime(-1, 0);
+                    item.setRangeMeleeDamageReduction(-3, 0);
+                    item.setRangeArrowVelocity(0, 1);
+                }
             }
             item.createStats();
             panel.inventory.allItems[2].add(item);
@@ -206,27 +213,27 @@ public class UpgradeButton extends JButton implements ActionListener {
             var item = new Item("Mine");
             int rand = (int) (Math.random() * 3 + 1);
             switch (rand) {
-                case 1:
+                case 1 -> {
                     item.setImage(panel.mineImage1);
-                    item.setRangeMineDamage(3,7);
-                    item.setRangeMaxMines(1,2);
-                    item.setRangeMineTime(-0.5,0.5);
-                    item.setRangeMineDamageReduction(0,5);
-                    break;
-                case 2:
+                    item.setRangeMineDamage(3, 7);
+                    item.setRangeMaxMines(1, 2);
+                    item.setRangeMineTime(-0.5, 0.5);
+                    item.setRangeMineDamageReduction(0, 5);
+                }
+                case 2 -> {
                     item.setImage(panel.mineImage3);
-                    item.setRangeMineDamage(1,4);
-                    item.setRangeMaxMines(4,6);
-                    item.setRangeMineTime(-2,0);
-                    item.setRangeMineDamageReduction(0,7);
-                    break;
-                case 3:
+                    item.setRangeMineDamage(1, 4);
+                    item.setRangeMaxMines(4, 6);
+                    item.setRangeMineTime(-2, 0);
+                    item.setRangeMineDamageReduction(0, 7);
+                }
+                case 3 -> {
                     item.setImage(panel.mineImage2);
-                    item.setRangeMineDamage(3,6);
-                    item.setRangeMaxMines(2,4);
-                    item.setRangeMineTime(-1,0);
-                    item.setRangeMineDamageReduction(0,10);
-                    break;
+                    item.setRangeMineDamage(3, 6);
+                    item.setRangeMaxMines(2, 4);
+                    item.setRangeMineTime(-1, 0);
+                    item.setRangeMineDamageReduction(0, 10);
+                }
             }
             item.createStats();
             panel.inventory.allItems[3].add(item);
@@ -236,25 +243,25 @@ public class UpgradeButton extends JButton implements ActionListener {
             var item = new Item("Ring");
             int rand = (int) (Math.random() * 3 + 1);
             switch (rand) {
-                case 1:
+                case 1 -> {
                     item.setImage(panel.ringImage2);
-                    item.setRangeMineTime(-1,0);
-                    item.setRangeMaxMines(2,7);
-                    item.setRangeMineDamage(4,9);
-                    item.setRangeMineDamageReduction(4,8);
-                    break;
-                case 2:
+                    item.setRangeMineTime(-1, 0);
+                    item.setRangeMaxMines(2, 7);
+                    item.setRangeMineDamage(4, 9);
+                    item.setRangeMineDamageReduction(4, 8);
+                }
+                case 2 -> {
                     item.setImage(panel.ringImage3);
-                    item.setRangeSlingshotDamage(3,7);
-                    item.setRangeSlingshotDamageReduction(4,8);
-                    item.setRangeArrowVelocity(0,1);
-                    item.setRangeArrowTime(-1,0);
-                    break;
-                case 3:
+                    item.setRangeBowDamage(3, 7);
+                    item.setRangeBowDamageReduction(4, 8);
+                    item.setRangeArrowVelocity(0, 1);
+                    item.setRangeArrowTime(-1, 0);
+                }
+                case 3 -> {
                     item.setImage(panel.ringImage1);
-                    item.setRangeSwordDamage(4,7);
-                    item.setRangeMeleeDamageReduction(5,8);
-                    break;
+                    item.setRangeSwordDamage(4, 7);
+                    item.setRangeMeleeDamageReduction(5, 8);
+                }
             }
             item.createStats();
             panel.inventory.allItems[4].add(item);
@@ -264,24 +271,24 @@ public class UpgradeButton extends JButton implements ActionListener {
             var item = new Item("Chain");
             int rand = (int) (Math.random() * 3 + 1);
             switch (rand) {
-                case 1:
+                case 1 -> {
                     item.setImage(panel.chainImage3);
-                    item.setRangeHealTime(0,1);
-                    item.setRangeArrowTime(-1,0);
-                    item.setRangeMineTime(-0.5,0.5);
-                    break;
-                case 2:
+                    item.setRangeHealTime(0, 1);
+                    item.setRangeArrowTime(-1, 0);
+                    item.setRangeMineTime(-0.5, 0.5);
+                }
+                case 2 -> {
                     item.setImage(panel.chainImage2);
-                    item.setRangeHealTime(-0.5,0.5);
-                    item.setRangeArrowTime(0,1);
-                    item.setRangeMineTime(-1,0);
-                    break;
-                case 3:
+                    item.setRangeHealTime(-0.5, 0.5);
+                    item.setRangeArrowTime(0, 1);
+                    item.setRangeMineTime(-1, 0);
+                }
+                case 3 -> {
                     item.setImage(panel.chainImage1);
-                    item.setRangeHealTime(-1,0);
-                    item.setRangeArrowTime(-0.5,0.5);
-                    item.setRangeMineTime(0,1);
-                    break;
+                    item.setRangeHealTime(-1, 0);
+                    item.setRangeArrowTime(-0.5, 0.5);
+                    item.setRangeMineTime(0, 1);
+                }
             }
             item.createStats();
             panel.inventory.allItems[5].add(item);
@@ -291,27 +298,27 @@ public class UpgradeButton extends JButton implements ActionListener {
             var item = new Item("Shoes");
             int rand = (int) (Math.random() * 3 + 1);
             switch (rand) {
-                case 1:
+                case 1 -> {
                     item.setImage(panel.shoeImage1);
-                    item.setRangeSpeed(-1,0);
-                    item.setRangeMineDamageReduction(2,5);
-                    item.setRangeMeleeDamageReduction(2,5);
-                    item.setRangeSlingshotDamageReduction(2,5);
-                    break;
-                case 2:
+                    item.setRangeSpeed(-1, 0);
+                    item.setRangeMineDamageReduction(2, 5);
+                    item.setRangeMeleeDamageReduction(2, 5);
+                    item.setRangeBowDamageReduction(2, 5);
+                }
+                case 2 -> {
                     item.setImage(panel.shoeImage2);
-                    item.setRangeSpeed(-0.5,0.5);
-                    item.setRangeMineDamageReduction(1,3);
-                    item.setRangeMeleeDamageReduction(1,3);
-                    item.setRangeSlingshotDamageReduction(1,3);
-                    break;
-                case 3:
+                    item.setRangeSpeed(-0.5, 0.5);
+                    item.setRangeMineDamageReduction(1, 3);
+                    item.setRangeMeleeDamageReduction(1, 3);
+                    item.setRangeBowDamageReduction(1, 3);
+                }
+                case 3 -> {
                     item.setImage(panel.shoeImage3);
-                    item.setRangeSpeed(1,3);
-                    item.setRangeMineDamageReduction(0,2);
-                    item.setRangeMeleeDamageReduction(0,2);
-                    item.setRangeSlingshotDamageReduction(0,2);
-                    break;
+                    item.setRangeSpeed(1, 3);
+                    item.setRangeMineDamageReduction(0, 2);
+                    item.setRangeMeleeDamageReduction(0, 2);
+                    item.setRangeBowDamageReduction(0, 2);
+                }
             }
             item.createStats();
             panel.inventory.allItems[6].add(item);

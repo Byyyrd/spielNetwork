@@ -14,8 +14,8 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
     Sword sword;
     Sword sword2;
 
-    Slingshot slingshot;
-    Slingshot slingshot2;
+    Bow bow;
+    Bow bow2;
     double rotation2;
 
     Fist fist1;
@@ -29,7 +29,7 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
 
     Image playerImage;
     Image swordImage;
-    Image slingshotImage;
+    Image bowImage;
     Image bgrImage;
     Image hpImage;
     Image schildImage;
@@ -42,9 +42,9 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
     Image swordImage1;
     Image swordImage2;
     Image swordImage3;
-    Image slingshotImage1;
-    Image slingshotImage2;
-    Image slingshotImage3;
+    Image bowImage1;
+    Image bowImage2;
+    Image bowImage3;
     Image mineImage1;
     Image mineImage2;
     Image mineImage3;
@@ -96,7 +96,7 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
     public Panel(Client client) {
         playerImage = new ImageIcon("resources/Player.png").getImage();
         swordImage = new ImageIcon("resources/Sword.png").getImage();
-        slingshotImage = new ImageIcon("resources/bow2.png").getImage();
+        bowImage = new ImageIcon("resources/bow2.png").getImage();
         bgrImage = new ImageIcon("resources/Background.jpg").getImage();
         hpImage = new ImageIcon("resources/HealthBar.png").getImage();
         schildImage = new ImageIcon("resources/Shield.png").getImage();
@@ -112,9 +112,9 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
         shoeImage1 = new ImageIcon("resources/Heavy_Boots.png").getImage();
         shoeImage2 = new ImageIcon("resources/Boots.png").getImage();
         shoeImage3 = new ImageIcon("resources/Light_Boots.png").getImage();
-        slingshotImage1 = new ImageIcon("resources/Heavy_Bow.png").getImage();
-        slingshotImage2 = new ImageIcon("resources/Normal_Bow.png").getImage();
-        slingshotImage3 = new ImageIcon("resources/Light_Bow.png").getImage();
+        bowImage1 = new ImageIcon("resources/Heavy_Bow.png").getImage();
+        bowImage2 = new ImageIcon("resources/Normal_Bow.png").getImage();
+        bowImage3 = new ImageIcon("resources/Light_Bow.png").getImage();
         ringImage1 = new ImageIcon("resources/Green_Ring.png").getImage();
         ringImage2 = new ImageIcon("resources/Red_Ring.png").getImage();
         ringImage3 = new ImageIcon("resources/Blue_Ring.png").getImage();
@@ -150,12 +150,12 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
         player2 = new Player(100, 100, playerImage.getWidth(null) * 3, playerImage.getHeight(null) * 3, player2, sword, this);
         player1 = new Player(10, 10, playerImage.getWidth(null) * 3, playerImage.getHeight(null) * 3, player2, sword2, this);
 
-        slingshot = new Slingshot(player1, this, slingshotImage);
-        slingshot2 = new Slingshot(player2, this, slingshotImage);
-        this.addMouseListener(slingshot);
+        bow = new Bow(player1, this, bowImage);
+        bow2 = new Bow(player2, this, bowImage);
+        this.addMouseListener(bow);
 
-        player1.setAllArrows(slingshot2.allArrows);
-        player1.setAllArrowsSelf(slingshot.allArrows);
+        player1.setAllArrows(bow2.allArrows);
+        player1.setAllArrowsSelf(bow.allArrows);
 
         mine2 = new Mine(player2, null, null, null);
         mine = new Mine(player1, player2, mine2, this);
@@ -229,7 +229,7 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
         EquipButton button1 = new EquipButton("Sword", this);
         equipPanel.add(button1);
         inventory.equipButtons[1] = button1;
-        EquipButton button2 = new EquipButton("Slingshot", this);
+        EquipButton button2 = new EquipButton("Bow", this);
         equipPanel.add(button2);
         inventory.equipButtons[2] = button2;
         EquipButton button3 = new EquipButton("Mine", this);
@@ -249,10 +249,10 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
         timer = new Timer(delay, this);
         timer.start();
 
-        bowX = (int) random(200, 1800);
-        bowY = (int) random(20 , 1000);
-        swordX = (int) random(200, 1800);
-        swordY = (int) random(20 , 1000);
+        bowX = (int) random(1150, 1450);
+        bowY = (int) random(725 , 900);
+        swordX = (int) random(250, 675);
+        swordY = (int) random(150 , 425);
     }
 
     public void setPlayer2(int x, int y, String name) {
@@ -265,6 +265,7 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
     public void paint(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
         oldXForm = g2d.getTransform();
+
         //Background
         for (int j = 0; j <= this.getHeight() / bgrHeight; j++) {
             for (int i = 0; i <= this.getWidth() / bgrWidth; i++) {
@@ -294,8 +295,8 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
         fist1.drawFist(g2d);
         this.addMouseListener(fist1);
 
-        //Slingshot
-        slingshot.drawSlingshot(g2d, player1, player2, slingshotImage, playerImage, slingshot2);
+        //Bow
+        bow.drawBow(g2d, player1, player2, bowImage, playerImage, bow2);
         g2d.setTransform(oldXForm);
 
         //Ui
@@ -308,10 +309,10 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
             g2d.drawString("Server Shutdown", 100, 500);
         }
         if (inChat || inInv) {
-            ui.drawIcons(g2d, schildImage, swordImage, slingshotImage, speedImage);
+            ui.drawIcons(g2d, schildImage, swordImage, bowImage, speedImage);
         }
-        if (!player1.slingshotPickedUp){
-            g2d.drawImage(slingshotImage, bowX, bowY, slingshotImage.getWidth(null)/24, slingshotImage.getHeight(null)/24,null );
+        if (!player1.bowPickedUp){
+            g2d.drawImage(bowImage, bowX, bowY, bowImage.getWidth(null)/24, bowImage.getHeight(null)/24,null );
         }
         if (!player1.swordPickedUp){
             g2d.drawImage(swordImage, swordX, swordY,player1.width, player1.height * 2, null);
@@ -338,27 +339,27 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
 
             if (wepon == 1 && player1.swordPickedUp) {
                 player1.fistequiped = false;
-                player1.setSlingshotEquipde(false);
+                player1.setBowEquipde(false);
                 player1.setSwordEquipde(true);
             }else if (wepon == 1){
                 player1.fistequiped = true;
-                player1.slingshotEquipde = false;
+                player1.bowEquipde = false;
                 player1.swordEquipde = false;
             }
-            if (wepon == 2 && player1.slingshotPickedUp) {
+            if (wepon == 2 && player1.bowPickedUp) {
                 player1.fistequiped = false;
-                player1.setSlingshotEquipde(true);
+                player1.setBowEquipde(true);
                 player1.setSwordEquipde(false);
             }else if (wepon == 2){
                 player1.fistequiped = true;
-                player1.slingshotEquipde = false;
+                player1.bowEquipde = false;
                 player1.swordEquipde = false;
             }
 
         }
         if (e.getKeyCode() == 81) {
             player1.fistequiped = true;
-            player1.slingshotEquipde = false;
+            player1.bowEquipde = false;
             player1.swordEquipde = false;
         }
         if (e.getKeyCode() == 10) {
@@ -416,21 +417,21 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
         if (!send) {
             message = "";
         }
-        if (slingshot.mousePos != null) {
+        if (bow.mousePos != null) {
             client.setMinePlaced(mine.minePlaced);
             client.setExploded(mine.exploded);
-            client.setWeapon(slingshot);
+            client.setWeapon(bow);
             client.sendMessage(player1, sword);
             player1.tick();
             sword.tick();
             mine.tick();
-            slingshot.tick();
+            bow.tick();
             fist1.tick();
             player1.heal();
             mine.minePlaced = false;
             mine.exploded = false;
-            if (!player1.slingshotPickedUp && inRectangle(bowX + slingshotImage.getWidth(null)/48, bowY + slingshotImage.getHeight(null)/48, player1.x, player1.y, player1.width, player1.height)){
-                player1.slingshotPickedUp = true;
+            if (!player1.bowPickedUp && inRectangle(bowX + bowImage.getWidth(null)/48, bowY + bowImage.getHeight(null)/48, player1.x, player1.y, player1.width, player1.height)){
+                player1.bowPickedUp = true;
             }
             if (!player1.swordPickedUp && inRectangle(swordX + player2.width/2, swordY + player2.height , player1.x, player1.y, player1.width, player1.height)) {
                 player1.swordPickedUp = true;

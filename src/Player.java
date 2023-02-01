@@ -19,9 +19,9 @@ public class Player implements Serializable {
     Sword enemySword;
     ArrayList<Double[]> allArrows;
     ArrayList<Double[]> allArrowsSelf;
-    boolean slingshotEquipde;
+    boolean bowEquipde;
     boolean swordEquipde;
-    boolean slingshotPickedUp = false;
+    boolean bowPickedUp = false;
     boolean swordPickedUp = false;
     boolean fistequiped = true;
     Panel panel;
@@ -29,13 +29,13 @@ public class Player implements Serializable {
     double healTimer;
     double healTime = 4;
     double swordDamage =2.5;
-    double slingshotDamage=1;
+    double bowDamage =1;
     double mineDamage =10;
     double arrowTime = 1;
     double mineTime = 4;
     double iFrameTime = 1;
     double meleeDamageReduction = 0;
-    double slingshotDamageReduction = 0;
+    double bowDamageReduction = 0;
     double mineDamageReduction = 0;
     double arrowVelocity = 1;
     int maxMines = 10;
@@ -43,7 +43,7 @@ public class Player implements Serializable {
 
 
     public Player(int x, int y, int width, int height, Player player2, Sword enemySword, Panel panel) {
-        slingshotEquipde = false;
+        bowEquipde = false;
         swordEquipde = false;
         this.player2 = player2;
         this.x = x;
@@ -88,9 +88,9 @@ public class Player implements Serializable {
         if (allArrows != null) {
             for (Double[] allArrow : allArrows) {
                 double reduction;
-                if (panel.player1.slingshotDamageReduction + panel.inventory.getSlingshotDamageReduction() <= 100){reduction = panel.player1.slingshotDamageReduction + panel.inventory.getSlingshotDamageReduction();}else {reduction = 100;}
+                if (panel.player1.bowDamageReduction + panel.inventory.getBowDamageReduction() <= 100){reduction = panel.player1.bowDamageReduction + panel.inventory.getBowDamageReduction();}else {reduction = 100;}
                 if (inRectangle((int) (allArrow[0]+1-1), (int) (allArrow[1] +1-1), x, y, width, height)) {
-                    panel.ui.playerHit(player2.slingshotDamage * (1 -(reduction/ 100)));
+                    panel.ui.playerHit(player2.bowDamage * (1 -(reduction/ 100)));
                 }
             }
         }
@@ -125,8 +125,8 @@ public class Player implements Serializable {
 
         //Player Names
         g2d.setColor(Color.red);
-        g2d.drawString(client.name + "  " + ((int) (sword.cooldown * 10f)) / 10f, x, y);
-        g2d.drawString(player2.name + "  " + ((int) (enemySword.cooldown * 10f)) / 10f, player2.x, player2.y);
+        g2d.drawString(client.name + "  " + ((int) (sword.coolDown * 10f)) / 10f, x, y);
+        g2d.drawString(player2.name + "  " + ((int) (enemySword.coolDown * 10f)) / 10f, player2.x, player2.y);
 
         g2d.setColor(Color.red);
         g2d.fillRect(x, y + height + 3, (int) (48*panel.ui.normHp),10);
@@ -250,12 +250,12 @@ public class Player implements Serializable {
 
     }
 
-    public boolean isSlingshotEquipde() {
-        return slingshotEquipde;
+    public boolean isBowEquipde() {
+        return bowEquipde;
     }
 
-    public void setSlingshotEquipde(boolean slingshotEquipde) {
-        this.slingshotEquipde = slingshotEquipde;
+    public void setBowEquipde(boolean bowEquipde) {
+        this.bowEquipde = bowEquipde;
     }
 
     public void setAllArrows(ArrayList<Double[]> allArrows) {

@@ -25,8 +25,8 @@ public class Fist implements MouseListener {
 
         time -= 0.1;
         if (time > 0) {
-            y = Math.sin(panel.slingshot.playerRotation) * 25;
-            x = Math.cos(panel.slingshot.playerRotation) * 25;
+            y = Math.sin(panel.bow.playerRotation) * 25;
+            x = Math.cos(panel.bow.playerRotation) * 25;
         } else {
             x = 0;
             y = 0;
@@ -38,19 +38,19 @@ public class Fist implements MouseListener {
 
     public void drawFist(Graphics2D g2d) {
         if (player.fistequiped) {
-            g2d.rotate(panel.slingshot.playerRotation, player.x + player.width / 2 + x, player.y + player.height / 2 + y);
-            g2d.drawImage(panel.fist, (int) (x + player.x + player.width / 2 - panel.fist.getWidth(null) / 2), (int) (y + player.y + player.height / 2 - panel.fist.getHeight(null) / 2), panel.fist.getWidth(null), panel.fist.getHeight(null), null);
-            g2d.rotate(-panel.slingshot.playerRotation, player.x + player.width / 2 + x, player.y + player.height / 2 + y);
+            g2d.rotate(panel.bow.playerRotation, player.x + player.width * 0.5 + x, player.y + player.height * 0.5 + y);
+            g2d.drawImage(panel.fist, (int) (x + player.x + player.width * 0.5 - panel.fist.getWidth(null) * 0.5), (int) (y + player.y + player.height * 0.5 - panel.fist.getHeight(null) * 0.5), panel.fist.getWidth(null), panel.fist.getHeight(null), null);
+            g2d.rotate(-panel.bow.playerRotation, player.x + player.width * 0.5 + x, player.y + player.height * 0.5 + y);
 
 
-            g2d.fillOval((int) (x + player.x + player.width/2+Math.cos(panel.slingshot.playerRotation) * player.width/2), (int)(y + player.y + player.height / 2 + Math.sin(panel.slingshot.playerRotation)* player.width/2), 5, 5);
-            g2d.fillOval((int) (x + player.x + player.width/2+Math.cos(panel.slingshot.playerRotation + 0.5) * player.width/2), (int)(y + player.y + player.height / 2 + Math.sin(panel.slingshot.playerRotation + 0.5)* player.width/2), 5, 5);
-            g2d.fillOval((int) (x + player.x + player.width/2+Math.cos(panel.slingshot.playerRotation - 0.5) * player.width/2), (int)(y + player.y + player.height / 2 + Math.sin(panel.slingshot.playerRotation - 0.5)* player.width/2), 5, 5);
+            g2d.fillOval((int) (x + player.x + player.width/2+Math.cos(panel.bow.playerRotation) * player.width/2), (int)(y + player.y + player.height / 2 + Math.sin(panel.bow.playerRotation)* player.width/2), 5, 5);
+            g2d.fillOval((int) (x + player.x + player.width/2+Math.cos(panel.bow.playerRotation + 0.5) * player.width/2), (int)(y + player.y + player.height / 2 + Math.sin(panel.bow.playerRotation + 0.5)* player.width/2), 5, 5);
+            g2d.fillOval((int) (x + player.x + player.width/2+Math.cos(panel.bow.playerRotation - 0.5) * player.width/2), (int)(y + player.y + player.height / 2 + Math.sin(panel.bow.playerRotation - 0.5)* player.width/2), 5, 5);
         }
         if (panel.player2.fistequiped) {
-            g2d.rotate(panel.rotation2, panel.player2.x + player.width / 2 + x2, panel.player2.y + player.height / 2 + y2);
-            g2d.drawImage(panel.fist, (int) (x2 + panel.player2.x + panel.player2.width / 2 - panel.fist.getWidth(null) / 2), (int) (y2 + panel.player2.y + panel.player2.height / 2 - panel.fist.getHeight(null) / 2), panel.fist.getWidth(null), panel.fist.getHeight(null), null);
-            g2d.rotate(-panel.rotation2, panel.player2.x + player.width / 2 + x2, panel.player2.y + player.height / 2 + y2);
+            g2d.rotate(panel.rotation2, panel.player2.x + player.width * 0.5 + x2, panel.player2.y + player.height * 0.5 + y2);
+            g2d.drawImage(panel.fist, (int) (x2 + panel.player2.x + panel.player2.width * 0.5 - panel.fist.getWidth(null) * 0.5), (int) (y2 + panel.player2.y + panel.player2.height * 0.5 - panel.fist.getHeight(null) * 0.5), panel.fist.getWidth(null), panel.fist.getHeight(null), null);
+            g2d.rotate(-panel.rotation2, panel.player2.x + player.width * 0.5 + x2, panel.player2.y + player.height * 0.5 + y2);
         }
     }
 

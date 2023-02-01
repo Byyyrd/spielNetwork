@@ -17,15 +17,15 @@ public class Message implements Serializable {
     double normHp;
     int death;
     double swordDamage;
-    double slingshotDamage;
+    double bowDamage;
     double mineDamage;
     double mineTime;
     int maxMines;
     double fistX;
     double fistY;
-    boolean fistEquipde;
+    boolean fistEquipped;
 
-    public Message(int x, int y, String name, double swordRotation, double rotation, boolean bowPickedUp, double mouseX, double mouseY, boolean isClicked, boolean swordPickedUp, boolean minePlaced, boolean exploded, String message, double normHp, int death, double swordDamage, double slingshotDamage, double mineDamage, double mineTime, int maxMines, double fistX, double fistY , boolean fistEquipde) {
+    public Message(int x, int y, String name, double swordRotation, double rotation, boolean bowPickedUp, double mouseX, double mouseY, boolean isClicked, boolean swordPickedUp, boolean minePlaced, boolean exploded, String message, double normHp, int death, double swordDamage, double bowDamage, double mineDamage, double mineTime, int maxMines, double fistX, double fistY , boolean fistEquipped) {
         this.x = x;
         this.y = y;
         this.name = name;
@@ -42,13 +42,13 @@ public class Message implements Serializable {
         this.normHp = normHp;
         this.death = death;
         this.swordDamage = swordDamage;
-        this.slingshotDamage = slingshotDamage;
+        this.bowDamage = bowDamage;
         this.mineDamage = mineDamage;
         this.mineTime = mineTime;
         this.maxMines = maxMines;
         this.fistX = fistX;
         this.fistY = fistY;
-        this.fistEquipde = fistEquipde;
+        this.fistEquipped = fistEquipped;
     }
 
     public int getX() {

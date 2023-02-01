@@ -4,7 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class EquipButton extends JButton implements ActionListener {
-    private String attribute;
+    private final String attribute;
     private InventoryButton button;
     Panel panel;
     public EquipButton(String attribute,Panel panel) {
