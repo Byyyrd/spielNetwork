@@ -1,3 +1,5 @@
+import org.w3c.dom.ranges.Range;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -211,12 +213,12 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
         equipPanel.setBounds(0, 0, 1900, 150);
         equipPanel.setLayout(new GridLayout(1, 7));
 
-        inventory = new Inventory();
+        inventory = new Inventory(this);
 
         for (int i = 0; i < 7; i++) {
             for (int j = 0; j < 12; j++) {
                 InventoryButton button = new InventoryButton(this);
-                button.setRow(i);
+                button.setRow(i, j);
                 inventoryPanel.add(button);
                 inventory.inventoryButtons[i][j] = button;
             }
@@ -409,7 +411,53 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
                 setLayer(equipPanel, DRAG_LAYER);
             }
         }
+        if (e.getKeyCode() == 80){
+            var item = new Item("Chain");
+            item.setImage(chainImage2);
+            item.setSpeed(100);
+            item.setHealTime(-2);
+            item.setSwordDamage(10);
+            item.setBowDamage(7.5);
+            item.setMineDamage(35);
+            item.setArrowTime(-2);
+            item.setMineTime(-2);
+            item.setMeleeDamageReduction(25);
+            item.setBowDamageReduction(25);
+            item.setMineDamageReduction(25);
+            item.setArrowVelocity(2);
+            item.setMaxMines(50);
+            item.setMaxHp(40);
 
+            item.setMaxSpeed(100);
+            item.setMinHealTime(-2);
+            item.setMaxSwordDamage(10);
+            item.setMaxBowDamage(7.5);
+            item.setMaxMineDamage(35);
+            item.setMinArrowTime(-2);
+            item.setMinMineTime(-2);
+            item.setMaxMeleeDamageReduction(25);
+            item.setMaxBowDamageReduction(25);
+            item.setMaxMineDamageReduction(25);
+            item.setMaxArrowVelocity(2);
+            item.setMaxMaxMines(50);
+            item.setMaxMaxHp(30);
+            inventory.allItems[5].add(item);
+
+            inventory.updateInv();
+            player1.setHealTime(1);
+            player1.setSwordDamage(10);
+            player1.setBowDamage(7.5);
+            player1.setMineDamage(35);
+            player1.setArrowTime(0);
+            player1.setMeleeDamageReduction(75);
+            player1.setBowDamageReduction(75);
+            player1.setMineDamageReduction(75);
+            player1.setSpeed(8);
+            player1.setMaxMines(125);
+            player1.setMineTime(1);
+            ui.maxHp = 30;
+            player1.setArrowVelocity(4);
+        }
     }
 
     @Override
