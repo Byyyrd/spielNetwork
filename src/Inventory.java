@@ -63,6 +63,7 @@ public class Inventory {
         if(panel.ui.hp > panel.ui.maxHp + panel.inventory.getMaxHp()) {
             panel.ui.hp = panel.ui.maxHp + panel.inventory.getMaxHp();
         }
+
     }
 
     public double getSpeed() {
