@@ -306,7 +306,8 @@ public class Player implements Serializable {
     public void setMineTime(double mineTime) {
         this.mineTime = mineTime;
     }
-    
+
+
     public void setMeleeDamageReduction(double meleeDamageReduction) {
         this.meleeDamageReduction = meleeDamageReduction;
     }

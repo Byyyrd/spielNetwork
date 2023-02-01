@@ -126,6 +126,7 @@ public class UpgradeButton extends JButton implements ActionListener {
                     item.setRangeMeleeDamageReduction(5, 10);
                     item.setRangeSpeed(-1, 0);
                     item.setRangeArrowTime(0, 1);
+                    item.setRangeMaxHp(1,2);
                 }
                 case 2 -> {
                     item.setImage(panel.armorImage1);
@@ -134,6 +135,7 @@ public class UpgradeButton extends JButton implements ActionListener {
                     item.setRangeMineDamageReduction(0, 10);
                     item.setRangeSpeed(-3, -1);
                     item.setRangeArrowTime(1, 2);
+                    item.setRangeMaxHp(1,5);
                 }
                 case 3 -> {
                     item.setImage(panel.armorImage3);

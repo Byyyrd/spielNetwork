@@ -3,7 +3,6 @@ import java.awt.*;
 
 public class Item {
     String type;
-    String sort;
     Image image;
     private double speed;
     private double minSpeed = 0;
@@ -343,10 +342,6 @@ public class Item {
         this.mineDamageReduction = mineDamageReduction;
     }
 
-    public void setArrowVelocity(double arrowVelocity) {
-        this.arrowVelocity = arrowVelocity;
-    }
-
     public void setMaxMines(int maxMines) {
         this.maxMines = maxMines;
     }
@@ -357,10 +352,6 @@ public class Item {
 
     public void setMaxSpeed(double maxSpeed) {
         this.maxSpeed = maxSpeed;
-    }
-
-    public void setMaxHealTime(double maxHealTime) {
-        this.maxHealTime = maxHealTime;
     }
 
     public void setMaxSwordDamage(double maxSwordDamage) {
@@ -375,14 +366,6 @@ public class Item {
         this.maxMineDamage = maxMineDamage;
     }
 
-    public void setMaxArrowTime(double maxArrowTime) {
-        this.maxArrowTime = maxArrowTime;
-    }
-
-    public void setMaxMineTime(double maxMineTime) {
-        this.maxMineTime = maxMineTime;
-    }
-
     public void setMaxMeleeDamageReduction(double maxMeleeDamageReduction) {
         this.maxMeleeDamageReduction = maxMeleeDamageReduction;
     }
@@ -393,10 +376,6 @@ public class Item {
 
     public void setMaxMineDamageReduction(double maxMineDamageReduction) {
         this.maxMineDamageReduction = maxMineDamageReduction;
-    }
-
-    public void setMaxArrowVelocity(double maxArrowVelocity) {
-        this.maxArrowVelocity = maxArrowVelocity;
     }
 
     public void setMaxMaxMines(int maxMaxMines) {

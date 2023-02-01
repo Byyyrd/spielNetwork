@@ -3,7 +3,6 @@ import java.util.ArrayList;
 
 public class Ui {
     double hp;
-    double enemyHp;
     int mines;
     double dashCoolDown;
 
