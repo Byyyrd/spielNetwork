@@ -278,4 +278,55 @@ public class Player implements Serializable {
         return Math.abs(x - x2) < distance && Math.abs(y - y2) < distance;
     }
 
+    public void setSpeed(double speed) {
+        this.speed = speed;
+    }
+
+    public void setHealTime(double healTime) {
+        this.healTime = healTime;
+    }
+
+    public void setSwordDamage(double swordDamage) {
+        this.swordDamage = swordDamage;
+    }
+
+    public void setBowDamage(double bowDamage) {
+        this.bowDamage = bowDamage;
+    }
+
+    public void setMineDamage(double mineDamage) {
+        this.mineDamage = mineDamage;
+    }
+
+    public void setArrowTime(double arrowTime) {
+        this.arrowTime = arrowTime;
+    }
+
+    public void setMineTime(double mineTime) {
+        this.mineTime = mineTime;
+    }
+
+    public void setiFrameTime(double iFrameTime) {
+        this.iFrameTime = iFrameTime;
+    }
+
+    public void setMeleeDamageReduction(double meleeDamageReduction) {
+        this.meleeDamageReduction = meleeDamageReduction;
+    }
+
+    public void setBowDamageReduction(double bowDamageReduction) {
+        this.bowDamageReduction = bowDamageReduction;
+    }
+
+    public void setMineDamageReduction(double mineDamageReduction) {
+        this.mineDamageReduction = mineDamageReduction;
+    }
+
+    public void setArrowVelocity(double arrowVelocity) {
+        this.arrowVelocity = arrowVelocity;
+    }
+
+    public void setMaxMines(int maxMines) {
+        this.maxMines = maxMines;
+    }
 }

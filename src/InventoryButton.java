@@ -13,6 +13,7 @@ public class InventoryButton extends JButton implements ActionListener {
     EquipButton[] equipButtons;
     boolean equipped;
     int row;
+    int j;
     Color color;
     StringBuilder toolTip = new StringBuilder();
     ArrayList<String> names = new ArrayList<>();
@@ -199,9 +200,8 @@ public class InventoryButton extends JButton implements ActionListener {
         this.equipButtons = equipButtons;
     }
 
-    public void setRow(int row) {
+    public void setRow(int row, int j) {
         this.row = row;
+        this.j = j;
     }
-
-
 }

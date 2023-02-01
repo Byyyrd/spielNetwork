@@ -193,7 +193,7 @@ public class Ui {
         g2d.setColor(Color.red);
         g2d.fillOval(883, 985, 30, 30);
         g2d.setColor(Color.white);
-        if (player.mineDamage >= 75){
+        if (player.mineDamage >= 35){
             g2d.setColor(Color.yellow);
         }else {
             g2d.setColor(Color.white);

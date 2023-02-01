@@ -302,4 +302,120 @@ public class Item {
     public int getMaxMaxHp() {
         return maxMaxHp;
     }
+
+    public void setSpeed(double speed) {
+        this.speed = speed;
+    }
+
+    public void setHealTime(double healTime) {
+        this.healTime = healTime;
+    }
+
+    public void setSwordDamage(double swordDamage) {
+        this.swordDamage = swordDamage;
+    }
+
+    public void setBowDamage(double bowDamage) {
+        this.bowDamage = bowDamage;
+    }
+
+    public void setMineDamage(double mineDamage) {
+        this.mineDamage = mineDamage;
+    }
+
+    public void setArrowTime(double arrowTime) {
+        this.arrowTime = arrowTime;
+    }
+
+    public void setMineTime(double mineTime) {
+        this.mineTime = mineTime;
+    }
+
+    public void setMeleeDamageReduction(double meleeDamageReduction) {
+        this.meleeDamageReduction = meleeDamageReduction;
+    }
+
+    public void setBowDamageReduction(double bowDamageReduction) {
+        this.bowDamageReduction = bowDamageReduction;
+    }
+
+    public void setMineDamageReduction(double mineDamageReduction) {
+        this.mineDamageReduction = mineDamageReduction;
+    }
+
+    public void setArrowVelocity(double arrowVelocity) {
+        this.arrowVelocity = arrowVelocity;
+    }
+
+    public void setMaxMines(int maxMines) {
+        this.maxMines = maxMines;
+    }
+
+    public void setMaxHp(int maxHp) {
+        this.maxHp = maxHp;
+    }
+
+    public void setMaxSpeed(double maxSpeed) {
+        this.maxSpeed = maxSpeed;
+    }
+
+    public void setMaxHealTime(double maxHealTime) {
+        this.maxHealTime = maxHealTime;
+    }
+
+    public void setMaxSwordDamage(double maxSwordDamage) {
+        this.maxSwordDamage = maxSwordDamage;
+    }
+
+    public void setMaxBowDamage(double maxBowDamage) {
+        this.maxBowDamage = maxBowDamage;
+    }
+
+    public void setMaxMineDamage(double maxMineDamage) {
+        this.maxMineDamage = maxMineDamage;
+    }
+
+    public void setMaxArrowTime(double maxArrowTime) {
+        this.maxArrowTime = maxArrowTime;
+    }
+
+    public void setMaxMineTime(double maxMineTime) {
+        this.maxMineTime = maxMineTime;
+    }
+
+    public void setMaxMeleeDamageReduction(double maxMeleeDamageReduction) {
+        this.maxMeleeDamageReduction = maxMeleeDamageReduction;
+    }
+
+    public void setMaxBowDamageReduction(double maxBowDamageReduction) {
+        this.maxBowDamageReduction = maxBowDamageReduction;
+    }
+
+    public void setMaxMineDamageReduction(double maxMineDamageReduction) {
+        this.maxMineDamageReduction = maxMineDamageReduction;
+    }
+
+    public void setMaxArrowVelocity(double maxArrowVelocity) {
+        this.maxArrowVelocity = maxArrowVelocity;
+    }
+
+    public void setMaxMaxMines(int maxMaxMines) {
+        this.maxMaxMines = maxMaxMines;
+    }
+
+    public void setMaxMaxHp(int maxMaxHp) {
+        this.maxMaxHp = maxMaxHp;
+    }
+
+    public void setMinHealTime(double minHealTime) {
+        this.minHealTime = minHealTime;
+    }
+
+    public void setMinArrowTime(double minArrowTime) {
+        this.minArrowTime = minArrowTime;
+    }
+
+    public void setMinMineTime(double minMineTime) {
+        this.minMineTime = minMineTime;
+    }
 }
