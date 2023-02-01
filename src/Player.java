@@ -22,8 +22,8 @@ public class Player implements Serializable {
     ArrayList<Double[]> allArrowsSelf;
     boolean bowEquipped;
     boolean swordEquipped;
-    boolean bowPickedUp = false;
-    boolean swordPickedUp = false;
+    boolean bowPickedUp;
+    boolean swordPickedUp;
     boolean fistEquipped = true;
     Panel panel;
     double hp;
@@ -40,12 +40,20 @@ public class Player implements Serializable {
     double mineDamageReduction = 0;
     double arrowVelocity = 1;
     int maxMines = 10;
+    boolean controled;
 
 
 
     public Player(int x, int y, int width, int height, Player player2, Sword enemySword, Panel panel) {
         bowEquipped = false;
         swordEquipped = false;
+        if (!panel.coop){
+            swordPickedUp = false;
+            bowPickedUp = false;
+        }else {
+            swordPickedUp = true;
+            bowPickedUp = true;
+        }
         this.player2 = player2;
         this.x = x;
         this.y = y;
@@ -81,31 +89,43 @@ public class Player implements Serializable {
     public void checkCollision() {
         if (enemySword != null && player2.swordEquipped) {
             double reduction;
-            if (panel.player1.meleeDamageReduction + panel.inventory.getMeleeDamageReduction() <= 100){reduction = panel.player1.meleeDamageReduction + panel.inventory.getMeleeDamageReduction();}else {reduction = 100;}
+            if (panel.player1.meleeDamageReduction + panel.inventory.getMeleeDamageReduction() <= 100) {
+                reduction = panel.player1.meleeDamageReduction + panel.inventory.getMeleeDamageReduction();
+            } else {
+                reduction = 100;
+            }
             if (inRectangle((int) (enemySword.x + 21 + Math.sin(enemySword.rotation) * 21), (int) (enemySword.y + width / 2 + Math.cos(enemySword.rotation) * -25), x, y, width, height) || inRectangle((int) (enemySword.x + 21 + Math.sin(enemySword.rotation) * 40), (int) (enemySword.y + width / 2 + Math.cos(enemySword.rotation) * -40), x, y, width, height) || inRectangle((int) (enemySword.x + 21 + Math.sin(enemySword.rotation) * 55), (int) (enemySword.y + width / 2 + Math.cos(enemySword.rotation) * -55), x, y, width, height)) {
-                panel.ui.playerHit(player2.swordDamage * (1 - (reduction/ 100)));
+                panel.ui.playerHit(player2.swordDamage * (1 - (reduction / 100)));
+                controled = false;
             }
         }
         if (allArrows != null) {
             for (Double[] allArrow : allArrows) {
                 double reduction;
-                if (panel.player1.bowDamageReduction + panel.inventory.getBowDamageReduction() <= 100){reduction = panel.player1.bowDamageReduction + panel.inventory.getBowDamageReduction();}else {reduction = 100;}
-                if (inRectangle((int) (allArrow[0]+1-1), (int) (allArrow[1] +1-1), x, y, width, height)) {
-                    panel.ui.playerHit(player2.bowDamage * (1 -(reduction/ 100)));
+                if (panel.player1.bowDamageReduction + panel.inventory.getBowDamageReduction() <= 100) {
+                    reduction = panel.player1.bowDamageReduction + panel.inventory.getBowDamageReduction();
+                } else {
+                    reduction = 100;
+                }
+                if (inRectangle((int) (allArrow[0] + 1 - 1), (int) (allArrow[1] + 1 - 1), x, y, width, height)) {
+                    panel.ui.playerHit(player2.bowDamage * (1 - (reduction / 100)));
+                    controled = false;
                 }
             }
         }
-        for (int j = 0; j < panel.allObstacles.size(); j++) {
-            for (int i = 0; i < Objects.requireNonNull(allArrows).size(); i++) {
-                if (inRectangle((int) (allArrows.get(i)[0] + 5), (int) (allArrows.get(i)[1] + 5), panel.allObstacles.get(j)[0], panel.allObstacles.get(j)[1], panel.allObstacles.get(j)[2], panel.allObstacles.get(j)[3])) {
-                    allArrows.remove(i);
+        if (!panel.coop) {
+            for (int j = 0; j < panel.allObstacles.size(); j++) {
+                for (int i = 0; i < Objects.requireNonNull(allArrows).size(); i++) {
+                    if (inRectangle((int) (allArrows.get(i)[0] + 5), (int) (allArrows.get(i)[1] + 5), panel.allObstacles.get(j)[0], panel.allObstacles.get(j)[1], panel.allObstacles.get(j)[2], panel.allObstacles.get(j)[3])) {
+                        allArrows.remove(i);
+                    }
                 }
             }
-        }
-        for (int j = 0; j < panel.allObstacles.size(); j++) {
-            for (int i = 0; i < allArrowsSelf.size(); i++) {
-                if (inRectangle((int) (allArrowsSelf.get(i)[0] + 5), (int) (allArrowsSelf.get(i)[1] + 5), panel.allObstacles.get(j)[0], panel.allObstacles.get(j)[1], panel.allObstacles.get(j)[2], panel.allObstacles.get(j)[3])) {
-                    allArrowsSelf.remove(i);
+            for (int j = 0; j < panel.allObstacles.size(); j++) {
+                for (int i = 0; i < allArrowsSelf.size(); i++) {
+                    if (inRectangle((int) (allArrowsSelf.get(i)[0] + 5), (int) (allArrowsSelf.get(i)[1] + 5), panel.allObstacles.get(j)[0], panel.allObstacles.get(j)[1], panel.allObstacles.get(j)[2], panel.allObstacles.get(j)[3])) {
+                        allArrowsSelf.remove(i);
+                    }
                 }
             }
         }
@@ -174,33 +194,37 @@ public class Player implements Serializable {
     }
 
     public void applyVel() {
-        if (xDir != 0) {
-            xVel = Lerp(xVel, (speed + panel.inventory.getSpeed()) * xDir, 1);
-        } else {
-            xVel = Lerp(xVel, 0, 1);
+        if (!controled) {
+            if (xDir != 0) {
+                xVel = Lerp(xVel, (speed + panel.inventory.getSpeed()) * xDir, 1);
+            } else {
+                xVel = Lerp(xVel, 0, 1);
+            }
+            x += xVel;
+            if (yDir != 0) {
+                yVel = Lerp(yVel, (speed + panel.inventory.getSpeed()) * yDir, 1);
+            } else {
+                yVel = Lerp(yVel, 0, 1);
+            }
+            y += yVel;
         }
-        x += xVel;
-        if (yDir != 0) {
-            yVel = Lerp(yVel, (speed + panel.inventory.getSpeed()) * yDir, 1);
-        } else {
-            yVel = Lerp(yVel, 0, 1);
-        }
-        y += yVel;
     }
 
     public void inputs() {
-        for (int i = 0; i < panel.allObstacles.size(); i++) {
-            if (inRectangle(x + 5, y, panel.allObstacles.get(i)[0], panel.allObstacles.get(i)[1], panel.allObstacles.get(i)[2], panel.allObstacles.get(i)[3]) || inRectangle(x + player2.width - 5, y, panel.allObstacles.get(i)[0], panel.allObstacles.get(i)[1], panel.allObstacles.get(i)[2], panel.allObstacles.get(i)[3]) || inRectangle(x + player2.width / 2 - 5, y, panel.allObstacles.get(i)[0], panel.allObstacles.get(i)[1], panel.allObstacles.get(i)[2], panel.allObstacles.get(i)[3])) {
-                upCollides = true;
-            }
-            if (inRectangle(x + 5, y + player2.height, panel.allObstacles.get(i)[0], panel.allObstacles.get(i)[1], panel.allObstacles.get(i)[2], panel.allObstacles.get(i)[3]) || inRectangle(x + player2.width - 5, y + player2.height, panel.allObstacles.get(i)[0], panel.allObstacles.get(i)[1], panel.allObstacles.get(i)[2], panel.allObstacles.get(i)[3]) || inRectangle(x + player2.width / 2 - 5, y + player2.height / 2, panel.allObstacles.get(i)[0], panel.allObstacles.get(i)[1], panel.allObstacles.get(i)[2], panel.allObstacles.get(i)[3])) {
-                downCollides = true;
-            }
-            if (inRectangle(x, y + 5, panel.allObstacles.get(i)[0], panel.allObstacles.get(i)[1], panel.allObstacles.get(i)[2], panel.allObstacles.get(i)[3]) || inRectangle(x, y + player2.height - 5, panel.allObstacles.get(i)[0], panel.allObstacles.get(i)[1], panel.allObstacles.get(i)[2], panel.allObstacles.get(i)[3]) || inRectangle(x, y + player2.height / 2 - 5, panel.allObstacles.get(i)[0], panel.allObstacles.get(i)[1], panel.allObstacles.get(i)[2], panel.allObstacles.get(i)[3])) {
-                leftCollides = true;
-            }
-            if (inRectangle(x + player2.width, y - 5, panel.allObstacles.get(i)[0], panel.allObstacles.get(i)[1], panel.allObstacles.get(i)[2], panel.allObstacles.get(i)[3]) || inRectangle(x + player2.width, y + player2.height - 5, panel.allObstacles.get(i)[0], panel.allObstacles.get(i)[1], panel.allObstacles.get(i)[2], panel.allObstacles.get(i)[3]) || inRectangle(x + player2.width / 2, y + player2.height / 2 - 5, panel.allObstacles.get(i)[0], panel.allObstacles.get(i)[1], panel.allObstacles.get(i)[2], panel.allObstacles.get(i)[3])) {
-                rightCollides = true;
+        if (!panel.coop) {
+            for (int i = 0; i < panel.allObstacles.size(); i++) {
+                if (inRectangle(x + 5, y, panel.allObstacles.get(i)[0], panel.allObstacles.get(i)[1], panel.allObstacles.get(i)[2], panel.allObstacles.get(i)[3]) || inRectangle(x + player2.width - 5, y, panel.allObstacles.get(i)[0], panel.allObstacles.get(i)[1], panel.allObstacles.get(i)[2], panel.allObstacles.get(i)[3]) || inRectangle(x + player2.width / 2 - 5, y, panel.allObstacles.get(i)[0], panel.allObstacles.get(i)[1], panel.allObstacles.get(i)[2], panel.allObstacles.get(i)[3])) {
+                    upCollides = true;
+                }
+                if (inRectangle(x + 5, y + player2.height, panel.allObstacles.get(i)[0], panel.allObstacles.get(i)[1], panel.allObstacles.get(i)[2], panel.allObstacles.get(i)[3]) || inRectangle(x + player2.width - 5, y + player2.height, panel.allObstacles.get(i)[0], panel.allObstacles.get(i)[1], panel.allObstacles.get(i)[2], panel.allObstacles.get(i)[3]) || inRectangle(x + player2.width / 2 - 5, y + player2.height / 2, panel.allObstacles.get(i)[0], panel.allObstacles.get(i)[1], panel.allObstacles.get(i)[2], panel.allObstacles.get(i)[3])) {
+                    downCollides = true;
+                }
+                if (inRectangle(x, y + 5, panel.allObstacles.get(i)[0], panel.allObstacles.get(i)[1], panel.allObstacles.get(i)[2], panel.allObstacles.get(i)[3]) || inRectangle(x, y + player2.height - 5, panel.allObstacles.get(i)[0], panel.allObstacles.get(i)[1], panel.allObstacles.get(i)[2], panel.allObstacles.get(i)[3]) || inRectangle(x, y + player2.height / 2 - 5, panel.allObstacles.get(i)[0], panel.allObstacles.get(i)[1], panel.allObstacles.get(i)[2], panel.allObstacles.get(i)[3])) {
+                    leftCollides = true;
+                }
+                if (inRectangle(x + player2.width, y - 5, panel.allObstacles.get(i)[0], panel.allObstacles.get(i)[1], panel.allObstacles.get(i)[2], panel.allObstacles.get(i)[3]) || inRectangle(x + player2.width, y + player2.height - 5, panel.allObstacles.get(i)[0], panel.allObstacles.get(i)[1], panel.allObstacles.get(i)[2], panel.allObstacles.get(i)[3]) || inRectangle(x + player2.width / 2, y + player2.height / 2 - 5, panel.allObstacles.get(i)[0], panel.allObstacles.get(i)[1], panel.allObstacles.get(i)[2], panel.allObstacles.get(i)[3])) {
+                    rightCollides = true;
+                }
             }
         }
         if (upPressed && !inRectangle(x + 5, y, player2.x, player2.y, player2.width, player2.width) && !inRectangle(x + player2.width - 5, y, player2.x, player2.y, player2.width, player2.width) && !upCollides) {

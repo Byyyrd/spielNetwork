@@ -28,20 +28,22 @@ public class Ui {
     }
 
     public void playerHit(double damage) {
-        if (player.iFrame <= 0 && !panel.inInv) {
-            hp -= damage;
-            player.hp = hp;
-            player.iFrame = player.iFrameTime;
-        }
+        if (!panel.coop) {
+            if (player.iFrame <= 0 && !panel.inInv) {
+                hp -= damage;
+                player.hp = hp;
+                player.iFrame = player.iFrameTime;
+            }
 
-        if (hp <= 0) {
-            player.x = 0;
-            player.y = 0;
-            death++;
-            hp = maxHp + panel.inventory.getMaxHp();
-            player.swordEquipped = false;
-            player.bowEquipped = false;
-            player.fistEquipped = true;
+            if (hp <= 0) {
+                player.x = 0;
+                player.y = 0;
+                death++;
+                hp = maxHp + panel.inventory.getMaxHp();
+                player.swordEquipped = false;
+                player.bowEquipped = false;
+                player.fistEquipped = true;
+            }
         }
     }
 
