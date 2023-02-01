@@ -47,7 +47,7 @@ public class Ui {
 
     public void drawUi(Graphics2D g2d, Image hpImage) {
         exp = death2 * 5 - expSpend;
-        if (exp >= 20) {
+        if (exp >= 10) {
             levelUp();
         }
         //Background
@@ -67,9 +67,9 @@ public class Ui {
         g2d.drawString("Dash: " + ((int) (dashCoolDown * 10f)) / 10f, 1685, 1015);
         //Points
         g2d.setColor(Color.green);
-        g2d.fillRect(700, 975, (int) (exp * 25), 50);
+        g2d.fillRect(700, 975, (int) (exp * 50), 50);
         g2d.drawImage(hpImage, 700, 975, hpImage.getWidth(null), hpImage.getHeight(null), null);
-        g2d.drawString(exp + "/" +"20", 1225, 1015);
+        g2d.drawString(exp + "/" +"10", 1225, 1015);
     }
 
     public void levelUp() {
