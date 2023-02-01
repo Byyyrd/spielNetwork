@@ -5,8 +5,8 @@ import java.awt.event.KeyListener;
 
 public class GameFrame extends JFrame implements KeyListener {
     Panel panel;
-    public GameFrame(Client client) {
-        panel = new Panel(client);
+    public GameFrame(Client client,boolean coop) {
+        panel = new Panel(client,coop);
         this.setVisible(true);
         GraphicsEnvironment graphics =GraphicsEnvironment.getLocalGraphicsEnvironment();
         GraphicsDevice device = graphics.getDefaultScreenDevice();

@@ -7,14 +7,16 @@ import java.awt.event.KeyListener;
 import java.io.IOException;
 
 public class ConnectionFrame extends JFrame implements ActionListener, KeyListener {
-    JButton button;
+    JButton vsButton;
+    JButton coopButton;
     JTextArea textField1;
     JTextArea textField2;
     public ConnectionFrame() {
         addKeyListener(this);
         Font font = new Font("Arial", Font.PLAIN, 20);
         JPanel panel = new JPanel();
-        button = new JButton();
+        vsButton = new JButton();
+        coopButton = new JButton();
         textField1 = new JTextArea(1,10);
         textField2 = new JTextArea(1,10);
         JTextArea infoText1 = new JTextArea();
@@ -22,9 +24,13 @@ public class ConnectionFrame extends JFrame implements ActionListener, KeyListen
 
 
 
-        button.setBounds(125,200,150,50);
-        button.addActionListener(this);
-        button.setText("Connect");
+        vsButton.setBounds(10,200,170,50);
+        vsButton.addActionListener(this);
+        vsButton.setText("Vs.-Connect");
+
+        coopButton.setBounds(205,200,170,50);
+        coopButton.addActionListener(this);
+        coopButton.setText("Coop.-Connect");
 
         infoText1.setText("Enter host:");
         infoText1.setBounds(10,50,110,20);
@@ -54,7 +60,8 @@ public class ConnectionFrame extends JFrame implements ActionListener, KeyListen
 
         panel.setLayout(null);
         panel.setBackground(new Color(80, 80, 80));
-        panel.add(button);
+        panel.add(vsButton);
+        panel.add(coopButton);
         panel.add(textField1);
         panel.add(infoText1);
         panel.add(textField2);
@@ -70,13 +77,24 @@ public class ConnectionFrame extends JFrame implements ActionListener, KeyListen
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        try {
-            new Client(textField1.getText(),textField2.getText(),this);
-            System.out.println("New Client");
-            this.setVisible(false);
-        } catch (IOException ex) {
-            System.out.println("IOConnectionError");
+        if (e.getSource() == coopButton){
+            try {
+                new Client(textField1.getText(),textField2.getText(),this,true);
+                System.out.println("New Client");
+                this.setVisible(false);
+            } catch (IOException ex) {
+                System.out.println("IOConnectionError");
+            }
+        }else {
+            try {
+                new Client(textField1.getText(),textField2.getText(),this,true);
+                System.out.println("New Client");
+                this.setVisible(false);
+            } catch (IOException ex) {
+                System.out.println("IOConnectionError");
+            }
         }
+
     }
 
     @Override
@@ -86,7 +104,7 @@ public class ConnectionFrame extends JFrame implements ActionListener, KeyListen
 
     @Override
     public void keyPressed(KeyEvent e) {
-        System.out.println("Pressed");
+        /*System.out.println("Pressed");
         if (e.getKeyCode() == 10){
             e.consume();
             System.out.println("Enter");
@@ -97,7 +115,7 @@ public class ConnectionFrame extends JFrame implements ActionListener, KeyListen
             } catch (IOException ex) {
                 System.out.println("IOConnectionError");
             }
-        }
+        }*/
     }
 
     @Override

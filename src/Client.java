@@ -22,12 +22,12 @@ public class Client {
         this.panel = panel;
     }
 
-    public Client(String host, String name, ConnectionFrame conFrame) throws IOException {
+    public Client(String host, String name, ConnectionFrame conFrame, boolean coop) throws IOException {
         this.name = name;
         this.conFrame = conFrame;
 
         conFrame.setVisible(true);
-        frame = new GameFrame(this);
+        frame = new GameFrame(this,coop);
         socket = new Socket(host, 30000);
         outputStream = new ObjectOutputStream(socket.getOutputStream());
         var socketThread = new Thread(() -> {
