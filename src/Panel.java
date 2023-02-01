@@ -91,8 +91,9 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
     int swordX;
     int swordY;
 
+    boolean coop;
 
-    public Panel(Client client) {
+    public Panel(Client client,boolean coop) {
         playerImage = new ImageIcon("resources/Player.png").getImage();
         swordImage = new ImageIcon("resources/Sword.png").getImage();
         bowImage = new ImageIcon("resources/bow2.png").getImage();
@@ -140,6 +141,7 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
 
         addKeyListener(this);
 
+        this.coop = coop;
 
         this.client = client;
         client.setClientPanel(this);

@@ -3,10 +3,10 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class GameFrame extends JFrame implements KeyListener {
+public class CoopGameFrame extends JFrame implements KeyListener {
     Panel panel;
-    public GameFrame(Client client) {
-        panel = new Panel(client);
+    public CoopGameFrame(Client client) {
+        panel = new Panel(client,true);
         this.setVisible(true);
         GraphicsEnvironment graphics =GraphicsEnvironment.getLocalGraphicsEnvironment();
         GraphicsDevice device = graphics.getDefaultScreenDevice();

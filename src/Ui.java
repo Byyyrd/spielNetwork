@@ -28,7 +28,7 @@ public class Ui {
     }
 
     public void playerHit(double damage) {
-        if (player.iFrame <= 0) {
+        if (player.iFrame <= 0 && !panel.inInv) {
             hp -= damage;
             player.hp = hp;
             player.iFrame = player.iFrameTime;
