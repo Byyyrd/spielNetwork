@@ -225,25 +225,25 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
         }
         inventory.updateInv();
 
-        EquipButton button = new EquipButton("Armor", this);
+        EquipButton button = new EquipButton(this);
         equipPanel.add(button);
         inventory.equipButtons[0] = button;
-        EquipButton button1 = new EquipButton("Sword", this);
+        EquipButton button1 = new EquipButton(this);
         equipPanel.add(button1);
         inventory.equipButtons[1] = button1;
-        EquipButton button2 = new EquipButton("Bow", this);
+        EquipButton button2 = new EquipButton(this);
         equipPanel.add(button2);
         inventory.equipButtons[2] = button2;
-        EquipButton button3 = new EquipButton("Mine", this);
+        EquipButton button3 = new EquipButton(this);
         equipPanel.add(button3);
         inventory.equipButtons[3] = button3;
-        EquipButton button4 = new EquipButton("Ring", this);
+        EquipButton button4 = new EquipButton(this);
         equipPanel.add(button4);
         inventory.equipButtons[4] = button4;
-        EquipButton button5 = new EquipButton("Chain", this);
+        EquipButton button5 = new EquipButton(this);
         equipPanel.add(button5);
         inventory.equipButtons[5] = button5;
-        EquipButton button6 = new EquipButton("Shoes", this);
+        EquipButton button6 = new EquipButton(this);
         equipPanel.add(button6);
         inventory.equipButtons[6] = button6;
 

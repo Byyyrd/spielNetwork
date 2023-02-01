@@ -306,10 +306,6 @@ public class Player implements Serializable {
         this.mineTime = mineTime;
     }
 
-    public void setiFrameTime(double iFrameTime) {
-        this.iFrameTime = iFrameTime;
-    }
-
     public void setMeleeDamageReduction(double meleeDamageReduction) {
         this.meleeDamageReduction = meleeDamageReduction;
     }

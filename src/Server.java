@@ -27,10 +27,10 @@ public class Server {
                     while (true) {
 
                         var recievedObject = inputStream.readObject();
-                        for (int i = 0; i < socketList.size(); i++) {
-                            if (socketList.get(i) != socket) {
+                        for (Socket value : socketList) {
+                            if (value != socket) {
                                 try {
-                                    outputstream = new ObjectOutputStream(socketList.get(i).getOutputStream());
+                                    outputstream = new ObjectOutputStream(value.getOutputStream());
                                     outputstream.writeObject(recievedObject);
                                 } catch (IOException e) {
                                     e.printStackTrace();
