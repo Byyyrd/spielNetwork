@@ -458,6 +458,9 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        if(ui.hp > ui.maxHp + inventory.getMaxHp()) {
+            ui.hp = ui.maxHp + inventory.getMaxHp();
+        }
         if (!send) {
             message = "";
         }

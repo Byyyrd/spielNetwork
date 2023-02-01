@@ -58,9 +58,7 @@ public class Inventory {
             maxMines = equipButtons[0].getButton().item.getMaxMines() + equipButtons[1].getButton().item.getMaxMines() + equipButtons[2].getButton().item.getMaxMines() + equipButtons[3].getButton().item.getMaxMines() + equipButtons[4].getButton().item.getMaxMines() + equipButtons[5].getButton().item.getMaxMines() + equipButtons[6].getButton().item.getMaxMines();
             maxHp = equipButtons[0].getButton().item.getMaxHp() + equipButtons[1].getButton().item.getMaxMines() + equipButtons[2].getButton().item.getMaxMines() + equipButtons[3].getButton().item.getMaxMines() + equipButtons[4].getButton().item.getMaxMines() + equipButtons[5].getButton().item.getMaxMines() + equipButtons[6].getButton().item.getMaxMines();
         }
-        if(panel.ui.hp > panel.ui.maxHp + panel.inventory.getMaxHp()) {
-            panel.ui.hp = panel.ui.maxHp + panel.inventory.getMaxHp();
-        }
+
 
     }
 

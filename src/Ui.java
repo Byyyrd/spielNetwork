@@ -60,7 +60,7 @@ public class Ui {
         g2d.fillRect(0, 975, (int) (normHp * 500), 50);
         g2d.drawImage(hpImage, 0, 975, hpImage.getWidth(null), hpImage.getHeight(null), null);
         g2d.setFont(new Font("Arial", Font.PLAIN, 40));
-        g2d.drawString(hp + "/" + (maxHp+panel.inventory.getMaxHp()), 525, 1015);
+        g2d.drawString((int)hp + "/" + (maxHp+panel.inventory.getMaxHp()), 525, 1015);
         //DashCoolDown & Mines left
         g2d.setFont(new Font("Arial", Font.PLAIN, 40));
         g2d.drawString("Mines: " + mines + "/" + (player.maxMines + panel.inventory.getMaxMines()), 1375, 1015);
