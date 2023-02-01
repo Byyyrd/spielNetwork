@@ -24,6 +24,8 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
     Mine mine;
     Mine mine2;
 
+    Boss boss;
+
     Client client;
     Timer timer;
 
@@ -90,6 +92,8 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
     int bowY;
     int swordX;
     int swordY;
+
+    int delay = 10;
 
     boolean coop;
 
@@ -245,8 +249,10 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
         EquipButton button6 = new EquipButton( this);
         equipPanel.add(button6);
         inventory.equipButtons[6] = button6;
+        if(coop) {
+            boss = new Boss(500, 200, 100, 5);
+        }
 
-        int delay = 10;
         timer = new Timer(delay, this);
         timer.start();
 
@@ -299,6 +305,9 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
         //Bow
         bow.drawBow(g2d, player1, player2, bowImage, playerImage, bow2);
         g2d.setTransform(oldXForm);
+
+        //Boss
+        boss.drawBoss(g2d,playerImage);
 
         //Ui
         ui.drawUi(g2d, hpImage);
@@ -467,6 +476,9 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
             message = "";
         }
         if (bow.mousePos != null) {
+            if (coop) {
+                boss.tick(delay / 100);
+            }
             client.setMinePlaced(mine.minePlaced);
             client.setExploded(mine.exploded);
             client.setWeapon(bow);
