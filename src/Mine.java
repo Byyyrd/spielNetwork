@@ -49,7 +49,7 @@ public class Mine{
     }
 
     public void explodeMines(){
-        if (mine.allMines.size() != 0 && mine.allMines != null) {
+        if (mine.allMines.size() != 0) {
             double reduction;
             if (panel.player1.mineDamageReduction + panel.inventory.getMineDamageReduction() <= 100){reduction = panel.player1.mineDamageReduction + panel.inventory.getMineDamageReduction();}else {reduction = 100;}
             for (int i = mine.allMines.size(); i > 0; i--) {
@@ -67,7 +67,7 @@ public class Mine{
             if (time >= 0) {
                 g2d.fillOval(allMines.get(i)[0]-45, allMines.get(i)[1]-45, 90, 90);
             } else if (delete) {
-                allMines.removeAll(allMines);
+                allMines.clear();
                 delete = false;
             }
         }
@@ -77,7 +77,7 @@ public class Mine{
                 if (mine.time >= 0) {
                     g2d.fillOval(mine.allMines.get(i)[0]-45, mine.allMines.get(i)[1]-45, 90, 90);
                 }else if (mine.delete) {
-                    mine.allMines.removeAll(mine.allMines);
+                    mine.allMines.clear();
                     mine.delete = false;
                 }
             }

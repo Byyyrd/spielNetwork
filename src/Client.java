@@ -38,15 +38,15 @@ public class Client {
                     panel.setPlayer2(receivedObject.getX(), receivedObject.getY(), receivedObject.getName());
                     panel.sword2.rotation = receivedObject.getSwordRotation();
                     panel.setRotation2(receivedObject.rotation);
-                    panel.player2.setSwordEquipde(receivedObject.swordPickedUp);
+                    panel.player2.setSwordEquipped(receivedObject.swordPickedUp);
                     if (receivedObject.isClicked){
                         panel.bow2.player2CreateArrow(receivedObject.mouseX,receivedObject.mouseY);
                     }
-                    panel.player2.setBowEquipde(receivedObject.bowPickedUp);
+                    panel.player2.setBowEquipped(receivedObject.bowPickedUp);
                     if (receivedObject.minePlaced){
                         panel.mine2.createMine();
                     }
-                    if (receivedObject.exploded && panel.mine2.allMines.size() != 0 && panel.mine2.allMines != null){
+                    if (receivedObject.exploded && panel.mine2.allMines.size() != 0){
                         panel.mine2.time = 1;
                         panel.mine.explodeMines();
                     }
@@ -62,17 +62,12 @@ public class Client {
                     panel.player2.maxMines = receivedObject.maxMines;
                     panel.fist1.x2 = receivedObject.fistX;
                     panel.fist2.y2 = receivedObject.fistY;
-                    panel.player2.fistequiped = receivedObject.fistEquipped;
+                    panel.player2.fistEquipped = receivedObject.fistEquipped;
                 } catch (ClassNotFoundException e) {
                     System.out.println("Client hat Scheiße bekommen");
                 } catch (IOException e) {
                     System.out.println("Server shutdown");
                     panel.serverDown = true;
-                    try {
-                        Thread.sleep(1000);
-                    } catch (InterruptedException ex) {
-                        //throw new RuntimeException(ex);
-                    }
                     exit(100);
                 }
             }
@@ -84,14 +79,14 @@ public class Client {
             if(!panel.message.equals("")) {
                 panel.messageInput.setText(name + ": " + panel.message + "\n" + panel.messageInput.getText());
             }
-            message = new Message(player.x, player.y,name, sword.rotation, bow.playerRotation,player.isBowEquipde(), bow.mousePos.getX(), bow.mousePos.getY(),isClicked, player.swordEquipde, minePlaced, exploded,panel.message, panel.ui.normHp, panel.ui.death, player.swordDamage + panel.inventory.getSwordDamage(), player.bowDamage + panel.inventory.getBowDamage(), player.mineDamage + panel.inventory.getMineDamage(), player.mineTime + panel.inventory.getMineTime(), player.maxMines + panel.inventory.getMaxMines(), panel.fist1.x, panel.fist1.y, panel.player1.fistequiped);
+            message = new Message(player.x, player.y,name, sword.rotation, bow.playerRotation,player.isBowEquipped(), bow.mousePos.getX(), bow.mousePos.getY(),isClicked, player.swordEquipped, minePlaced, exploded,panel.message, panel.ui.normHp, panel.ui.death, player.swordDamage + panel.inventory.getSwordDamage(), player.bowDamage + panel.inventory.getBowDamage(), player.mineDamage + panel.inventory.getMineDamage(), player.mineTime + panel.inventory.getMineTime(), player.maxMines + panel.inventory.getMaxMines(), panel.fist1.x, panel.fist1.y, panel.player1.fistEquipped);
             if(!panel.serverDown) {
                 outputStream.writeObject(message);
             }
             isClicked = false;
             panel.send = false;
         } catch (IOException e) {
-            System.out.println(e);
+            System.out.println(e.getMessage());
         }
     }
     public void setClientPanel(Panel panel){

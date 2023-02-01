@@ -55,12 +55,12 @@ public class Sword implements MouseListener {
         panel.ui.setDashCoolDown(coolDown);
     }
     public void drawSword(Graphics2D g2d,Image swordImage,Player player2){
-        if(player2.swordEquipde) {
+        if(player2.swordEquipped) {
             g2d.rotate(sword2.rotation, player2.x + player2.width * 0.5, player2.y + player2.height * 0.5);
             g2d.drawImage(swordImage, sword2.x, (int) (sword2.y - (double) player2.width), player2.width, player2.height * 2, null);
             g2d.rotate(-sword2.rotation, player2.x + player2.width * 0.5, player2.y + player2.height * 0.5);
         }
-        if(player.swordEquipde) {
+        if(player.swordEquipped) {
             g2d.rotate(rotation, player.x + player.width * 0.5, player.y + player.height * 0.5);
             g2d.drawImage(swordImage, x, (int) (y - (double) player.width), player.width, player.height * 2, null);
             g2d.rotate(-rotation, player.x + player.width * 0.5, player.y + player.height * 0.5);
@@ -73,7 +73,7 @@ public class Sword implements MouseListener {
     }
     @Override
     public void mousePressed(MouseEvent e) {
-        if (e.getButton() == 3 && coolDown <= 0 && player.isSwordEquipde()) {
+        if (e.getButton() == 3 && coolDown <= 0 && player.isSwordEquipped()) {
             for (int i = 0; i <= 10; i++) {
                 if (!player.inRectangle(player.x + 5, player.y, player.player2.x, player.player2.y, player.player2.width, player.player2.width) && !player.inRectangle(player.x + player.player2.width - 5, player.y, player.player2.x, player.player2.y, player.player2.width, player.player2.width)
                         && !player.inRectangle(x + 5, y + player.player2.height, player.player2.x, player.player2.y, player.player2.width, player.player2.width) && !player.inRectangle(x + player.player2.width - 5, y + player.player2.height, player.player2.x, player.player2.y, player.player2.width, player.player2.width)

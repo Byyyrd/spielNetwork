@@ -21,31 +21,31 @@ public class UpgradeButton extends JButton implements ActionListener {
         this.setBounds(x, 400, 500, 200);
         switch (attribute) {
             case "Armor" -> {
-                var image = new ImageIcon(panel.mysterieArmor.getScaledInstance(150, 150, Image.SCALE_DEFAULT));
+                var image = new ImageIcon(panel.mysteryArmor.getScaledInstance(150, 150, Image.SCALE_DEFAULT));
                 this.setIcon(image);
             }
             case "Sword" -> {
-                var image = new ImageIcon(panel.mysterieSword.getScaledInstance(150, 150, Image.SCALE_DEFAULT));
+                var image = new ImageIcon(panel.mysterySword.getScaledInstance(150, 150, Image.SCALE_DEFAULT));
                 this.setIcon(image);
             }
             case "Bow" -> {
-                var image = new ImageIcon(panel.mysterieBow.getScaledInstance(150, 150, Image.SCALE_DEFAULT));
+                var image = new ImageIcon(panel.mysteryBow.getScaledInstance(150, 150, Image.SCALE_DEFAULT));
                 this.setIcon(image);
             }
             case "Mine" -> {
-                var image = new ImageIcon(panel.mysterieMine.getScaledInstance(150, 150, Image.SCALE_DEFAULT));
+                var image = new ImageIcon(panel.mysteryMine.getScaledInstance(150, 150, Image.SCALE_DEFAULT));
                 this.setIcon(image);
             }
             case "Ring" -> {
-                var image = new ImageIcon(panel.mysterieRing.getScaledInstance(150, 150, Image.SCALE_DEFAULT));
+                var image = new ImageIcon(panel.mysteryRing.getScaledInstance(150, 150, Image.SCALE_DEFAULT));
                 this.setIcon(image);
             }
             case "Chain" -> {
-                var image = new ImageIcon(panel.mysterieCharm.getScaledInstance(150, 150, Image.SCALE_DEFAULT));
+                var image = new ImageIcon(panel.mysteryCharm.getScaledInstance(150, 150, Image.SCALE_DEFAULT));
                 this.setIcon(image);
             }
             case "Shoes" -> {
-                var image = new ImageIcon(panel.mysterieShoe.getScaledInstance(150, 150, Image.SCALE_DEFAULT));
+                var image = new ImageIcon(panel.mysteryShoe.getScaledInstance(150, 150, Image.SCALE_DEFAULT));
                 this.setIcon(image);
             }
             default -> this.setText(attribute);

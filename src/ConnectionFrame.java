@@ -71,7 +71,7 @@ public class ConnectionFrame extends JFrame implements ActionListener, KeyListen
     @Override
     public void actionPerformed(ActionEvent e) {
         try {
-            var client = new Client(textField1.getText(),textField2.getText(),this);
+            new Client(textField1.getText(),textField2.getText(),this);
             System.out.println("New Client");
             this.setVisible(false);
         } catch (IOException ex) {
@@ -91,7 +91,7 @@ public class ConnectionFrame extends JFrame implements ActionListener, KeyListen
             e.consume();
             System.out.println("Enter");
             try {
-                var client = new Client(textField1.getText(),textField2.getText(),this);
+                new Client(textField1.getText(),textField2.getText(),this);
                 System.out.println("New Client");
                 this.setVisible(false);
             } catch (IOException ex) {

@@ -32,7 +32,7 @@ public class Bow implements MouseListener, ActionListener {
     }
 
     public void drawBow(Graphics2D g2d, Player player, Player player2, Image image, Image playerImage, Bow bow2) {
-        if (player.isBowEquipde()) {
+        if (player.isBowEquipped()) {
             g2d.rotate(this.playerRotation, player.x + playerImage.getWidth(null) * 1.5, player.y + playerImage.getHeight(null) * 1.5);
             g2d.drawImage(image, player.x + playerImage.getWidth(null) * 3 / 2 - image.getWidth(null) / 48, player.y + playerImage.getHeight(null) * 3 / 2 - image.getHeight(null) / 48, image.getWidth(null) / 24, image.getHeight(null) / 24, null);
             g2d.rotate(-this.playerRotation, player.x + playerImage.getWidth(null) * 1.5, player.y + playerImage.getHeight(null) * 1.5);
@@ -44,7 +44,7 @@ public class Bow implements MouseListener, ActionListener {
             g2d.rotate(-this.allArrows.get(i - 1)[4] - Math.PI/2, (int) (allArrows.get(i - 1)[0] +1-1), (int) (allArrows.get(i - 1)[1] + 1 - 1));
             g2d.setTransform(panel.oldXForm);
         }
-        if (player2.isBowEquipde()) {
+        if (player2.isBowEquipped()) {
             g2d.rotate(panel.rotation2, player2.x + playerImage.getWidth(null) * 1.5, player2.y + playerImage.getHeight(null) * 1.5);
             g2d.drawImage(image, player2.x + playerImage.getWidth(null) * 3 / 2 - image.getWidth(null) / 48, player2.y + playerImage.getHeight(null) * 3 / 2 - image.getHeight(null) / 48, image.getWidth(null) / 24, image.getHeight(null) / 24, null);
             g2d.rotate(-panel.rotation2, player2.x + playerImage.getWidth(null) * 1.5, player2.y + playerImage.getHeight(null) * 1.5);
@@ -113,7 +113,7 @@ public class Bow implements MouseListener, ActionListener {
     public void tick() {
         time -= 0.1;
         if (mouseDown) {
-            if (!explosionCollision(player.x + player.width / 2, player.y + player.height / 2, 1745, 245, 100) && !explosionCollision(player.x + player.width / 2, player.y + player.height / 2, 195, 845, 100)) {
+            if (explosionCollision(player.x + player.width / 2, player.y + player.height / 2, 1745, 245, 100) && explosionCollision(player.x + player.width / 2, player.y + player.height / 2, 195, 845, 100)) {
                 if (time <= 0) {
                     CreateArrow();
                     client.setClicked(true);
@@ -135,13 +135,13 @@ public class Bow implements MouseListener, ActionListener {
 
     @Override
     public void mousePressed(MouseEvent e) {
-        if (player.isBowEquipde()) {
+        if (player.isBowEquipped()) {
             mouseDown = true;
         }
     }
 
     public boolean explosionCollision(int x, int y, int x2, int y2, int distance) {
-        return Math.abs(x - x2) < distance && Math.abs(y - y2) < distance;
+        return Math.abs(x - x2) >= distance || Math.abs(y - y2) >= distance;
     }
 
     @Override

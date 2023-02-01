@@ -2,6 +2,7 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Player implements Serializable {
     int x;
@@ -19,11 +20,11 @@ public class Player implements Serializable {
     Sword enemySword;
     ArrayList<Double[]> allArrows;
     ArrayList<Double[]> allArrowsSelf;
-    boolean bowEquipde;
-    boolean swordEquipde;
+    boolean bowEquipped;
+    boolean swordEquipped;
     boolean bowPickedUp = false;
     boolean swordPickedUp = false;
-    boolean fistequiped = true;
+    boolean fistEquipped = true;
     Panel panel;
     double hp;
     double healTimer;
@@ -43,8 +44,8 @@ public class Player implements Serializable {
 
 
     public Player(int x, int y, int width, int height, Player player2, Sword enemySword, Panel panel) {
-        bowEquipde = false;
-        swordEquipde = false;
+        bowEquipped = false;
+        swordEquipped = false;
         this.player2 = player2;
         this.x = x;
         this.y = y;
@@ -78,7 +79,7 @@ public class Player implements Serializable {
     }
 
     public void checkCollision() {
-        if (enemySword != null && player2.swordEquipde) {
+        if (enemySword != null && player2.swordEquipped) {
             double reduction;
             if (panel.player1.meleeDamageReduction + panel.inventory.getMeleeDamageReduction() <= 100){reduction = panel.player1.meleeDamageReduction + panel.inventory.getMeleeDamageReduction();}else {reduction = 100;}
             if (inRectangle((int) (enemySword.x + 21 + Math.sin(enemySword.rotation) * 21), (int) (enemySword.y + width / 2 + Math.cos(enemySword.rotation) * -25), x, y, width, height) || inRectangle((int) (enemySword.x + 21 + Math.sin(enemySword.rotation) * 40), (int) (enemySword.y + width / 2 + Math.cos(enemySword.rotation) * -40), x, y, width, height) || inRectangle((int) (enemySword.x + 21 + Math.sin(enemySword.rotation) * 55), (int) (enemySword.y + width / 2 + Math.cos(enemySword.rotation) * -55), x, y, width, height)) {
@@ -95,7 +96,7 @@ public class Player implements Serializable {
             }
         }
         for (int j = 0; j < panel.allObstacles.size(); j++) {
-            for (int i = 0; i < allArrows.size(); i++) {
+            for (int i = 0; i < Objects.requireNonNull(allArrows).size(); i++) {
                 if (inRectangle((int) (allArrows.get(i)[0] + 5), (int) (allArrows.get(i)[1] + 5), panel.allObstacles.get(j)[0], panel.allObstacles.get(j)[1], panel.allObstacles.get(j)[2], panel.allObstacles.get(j)[3])) {
                     allArrows.remove(i);
                 }
@@ -250,12 +251,12 @@ public class Player implements Serializable {
 
     }
 
-    public boolean isBowEquipde() {
-        return bowEquipde;
+    public boolean isBowEquipped() {
+        return bowEquipped;
     }
 
-    public void setBowEquipde(boolean bowEquipde) {
-        this.bowEquipde = bowEquipde;
+    public void setBowEquipped(boolean bowEquipped) {
+        this.bowEquipped = bowEquipped;
     }
 
     public void setAllArrows(ArrayList<Double[]> allArrows) {
@@ -266,12 +267,12 @@ public class Player implements Serializable {
         this.allArrowsSelf = allArrowsSelf;
     }
 
-    public boolean isSwordEquipde() {
-        return swordEquipde;
+    public boolean isSwordEquipped() {
+        return swordEquipped;
     }
 
-    public void setSwordEquipde(boolean swordEquipde) {
-        this.swordEquipde = swordEquipde;
+    public void setSwordEquipped(boolean swordEquipped) {
+        this.swordEquipped = swordEquipped;
     }
 
     public boolean explosionCollision(int x, int y, int x2, int y2, int distance) {
@@ -305,11 +306,7 @@ public class Player implements Serializable {
     public void setMineTime(double mineTime) {
         this.mineTime = mineTime;
     }
-
-    public void setiFrameTime(double iFrameTime) {
-        this.iFrameTime = iFrameTime;
-    }
-
+    
     public void setMeleeDamageReduction(double meleeDamageReduction) {
         this.meleeDamageReduction = meleeDamageReduction;
     }

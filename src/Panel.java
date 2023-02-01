@@ -1,5 +1,3 @@
-import org.w3c.dom.ranges.Range;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -63,13 +61,13 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
     Image errorImage;
     Image arrow;
     Image fist;
-    Image mysterieArmor;
-    Image mysterieSword;
-    Image mysterieBow;
-    Image mysterieMine;
-    Image mysterieRing;
-    Image mysterieCharm;
-    Image mysterieShoe;
+    Image mysteryArmor;
+    Image mysterySword;
+    Image mysteryBow;
+    Image mysteryMine;
+    Image mysteryRing;
+    Image mysteryCharm;
+    Image mysteryShoe;
     int bgrWidth;
     int bgrHeight;
     ArrayList<int[]> allObstacles;
@@ -85,10 +83,9 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
     JPanel inventoryPanel;
     JPanel equipPanel;
     Inventory inventory;
-    boolean inUpgradeFenster;
 
     AffineTransform oldXForm;
-    int wepon = 1;
+    int weapon = 1;
     int bowX;
     int bowY;
     int swordX;
@@ -129,15 +126,15 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
         errorImage = new ImageIcon("resources/Error.png").getImage();
         arrow = new ImageIcon("resources/Arrow.png").getImage();
         fist = new ImageIcon("resources/Fist.png").getImage();
-        mysterieArmor = new ImageIcon("resources/Mysterie_Armor.png").getImage();
-        mysterieSword = new ImageIcon("resources/Mysterie_Sword.png").getImage();
-        mysterieBow = new ImageIcon("resources/Mysterie_Bow.png").getImage();
-        mysterieMine = new ImageIcon("resources/Mysterie_Mine.png").getImage();
-        mysterieRing = new ImageIcon("resources/Mysterie_Ring.png").getImage();
-        mysterieCharm = new ImageIcon("resources/Mysterie_Charm.png").getImage();
-        mysterieShoe = new ImageIcon("resources/Mysterie_Shoe.png").getImage();
-        bgrHeight = bgrImage.getHeight(null);
-        bgrWidth = bgrImage.getWidth(null);
+        mysteryArmor = new ImageIcon("resources/Mystery_Armor.png").getImage();
+        mysterySword = new ImageIcon("resources/Mystery_Sword.png").getImage();
+        mysteryBow = new ImageIcon("resources/Mystery_Bow.png").getImage();
+        mysteryMine = new ImageIcon("resources/Mystery_Mine.png").getImage();
+        mysteryRing = new ImageIcon("resources/Mystery_Ring.png").getImage();
+        mysteryCharm = new ImageIcon("resources/Mystery_Charm.png").getImage();
+        mysteryShoe = new ImageIcon("resources/Mystery_Shoe.png").getImage();
+        bgrHeight = bgrImage.getHeight(null)/2;
+        bgrWidth = bgrImage.getWidth(null)/2;
 
         font = new Font("Arial", Font.PLAIN, 40);
 
@@ -225,25 +222,25 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
         }
         inventory.updateInv();
 
-        EquipButton button = new EquipButton("Armor", this);
+        EquipButton button = new EquipButton( this);
         equipPanel.add(button);
         inventory.equipButtons[0] = button;
-        EquipButton button1 = new EquipButton("Sword", this);
+        EquipButton button1 = new EquipButton( this);
         equipPanel.add(button1);
         inventory.equipButtons[1] = button1;
-        EquipButton button2 = new EquipButton("Bow", this);
+        EquipButton button2 = new EquipButton( this);
         equipPanel.add(button2);
         inventory.equipButtons[2] = button2;
-        EquipButton button3 = new EquipButton("Mine", this);
+        EquipButton button3 = new EquipButton( this);
         equipPanel.add(button3);
         inventory.equipButtons[3] = button3;
-        EquipButton button4 = new EquipButton("Ring", this);
+        EquipButton button4 = new EquipButton( this);
         equipPanel.add(button4);
         inventory.equipButtons[4] = button4;
-        EquipButton button5 = new EquipButton("Chain", this);
+        EquipButton button5 = new EquipButton( this);
         equipPanel.add(button5);
         inventory.equipButtons[5] = button5;
-        EquipButton button6 = new EquipButton("Shoes", this);
+        EquipButton button6 = new EquipButton( this);
         equipPanel.add(button6);
         inventory.equipButtons[6] = button6;
 
@@ -334,35 +331,35 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
         mine.keyPressed(e);
         player1.keyPressed(e);
         if (e.getKeyCode() == 70) {
-            wepon++;
-            if (wepon > 2) {
-                wepon = 1;
+            weapon++;
+            if (weapon > 2) {
+                weapon = 1;
             }
 
-            if (wepon == 1 && player1.swordPickedUp) {
-                player1.fistequiped = false;
-                player1.setBowEquipde(false);
-                player1.setSwordEquipde(true);
-            }else if (wepon == 1){
-                player1.fistequiped = true;
-                player1.bowEquipde = false;
-                player1.swordEquipde = false;
+            if (weapon == 1 && player1.swordPickedUp) {
+                player1.fistEquipped = false;
+                player1.setBowEquipped(false);
+                player1.setSwordEquipped(true);
+            }else if (weapon == 1){
+                player1.fistEquipped = true;
+                player1.bowEquipped = false;
+                player1.swordEquipped = false;
             }
-            if (wepon == 2 && player1.bowPickedUp) {
-                player1.fistequiped = false;
-                player1.setBowEquipde(true);
-                player1.setSwordEquipde(false);
-            }else if (wepon == 2){
-                player1.fistequiped = true;
-                player1.bowEquipde = false;
-                player1.swordEquipde = false;
+            if (weapon == 2 && player1.bowPickedUp) {
+                player1.fistEquipped = false;
+                player1.setBowEquipped(true);
+                player1.setSwordEquipped(false);
+            }else if (weapon == 2){
+                player1.fistEquipped = true;
+                player1.bowEquipped = false;
+                player1.swordEquipped = false;
             }
 
         }
         if (e.getKeyCode() == 81) {
-            player1.fistequiped = true;
-            player1.bowEquipde = false;
-            player1.swordEquipde = false;
+            player1.fistEquipped = true;
+            player1.bowEquipped = false;
+            player1.swordEquipped = false;
         }
         if (e.getKeyCode() == 10) {
             e.consume();

@@ -40,9 +40,9 @@ public class Ui {
             player.y = 0;
             death++;
             hp = maxHp + panel.inventory.getMaxHp();
-            player.swordEquipde = false;
-            player.bowEquipde = false;
-            player.fistequiped = true;
+            player.swordEquipped = false;
+            player.bowEquipped = false;
+            player.fistEquipped = true;
         }
     }
 
