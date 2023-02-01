@@ -120,7 +120,6 @@ public class InventoryButton extends JButton implements ActionListener {
             if (item.getArrowTime() != 0.00) {
 
                 if (item.getArrowTime() < 0) {
-
                     if (item.getArrowTime() == item.getMinArrowTime()) {
                         toolTip = toolTip + "<br>Arrow Time: <font color = \"#0000ff\">" + item.getArrowTime() + "</font>";
                     } else if (item.getArrowTime() < item.getMinArrowTime() / 2) {
