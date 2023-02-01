@@ -70,6 +70,7 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
     Image mysteryRing;
     Image mysteryCharm;
     Image mysteryShoe;
+    Image enemyImage;
     Image bossImage;
     int bgrWidth;
     int bgrHeight;
@@ -97,6 +98,7 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
     int delay = 10;
 
     boolean coop;
+    ArrayList<Enemy> enemies = new ArrayList<>();
 
     public Panel(Client client,boolean coop) {
         playerImage = new ImageIcon("resources/Player.png").getImage();
@@ -140,6 +142,7 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
         mysteryCharm = new ImageIcon("resources/Mystery_Charm.png").getImage();
         mysteryShoe = new ImageIcon("resources/Mystery_Shoe.png").getImage();
         bossImage = new ImageIcon("resources/Boss.png").getImage();
+        enemyImage = new ImageIcon("resources/Enemy.png").getImage();
         bgrHeight = bgrImage.getHeight(null)/2;
         bgrWidth = bgrImage.getWidth(null)/2;
 
@@ -151,16 +154,16 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
 
         this.client = client;
         client.setClientPanel(this);
-        allObstacles = new ArrayList<>();
-        addObstacles();
-
+        if (!coop) {
+            allObstacles = new ArrayList<>();
+            addObstacles();
+        }
         player2 = new Player(100, 100, playerImage.getWidth(null) * 3, playerImage.getHeight(null) * 3, player2, sword, this);
         player1 = new Player(10, 10, playerImage.getWidth(null) * 3, playerImage.getHeight(null) * 3, player2, sword2, this);
 
         bow = new Bow(player1, this, bowImage);
         bow2 = new Bow(player2, this, bowImage);
         this.addMouseListener(bow);
-
 
         player1.setAllArrows(bow2.allArrows);
         player1.setAllArrowsSelf(bow.allArrows);
@@ -277,16 +280,20 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
         oldXForm = g2d.getTransform();
 
         //Background
-        for (int j = 0; j <= this.getHeight() / bgrHeight; j++) {
-            for (int i = 0; i <= this.getWidth() / bgrWidth; i++) {
-                g2d.drawImage(bgrImage, bgrWidth * i, bgrHeight * j, bgrWidth, bgrHeight, null);
+        if (!coop) {
+            for (int j = 0; j <= this.getHeight() / bgrHeight; j++) {
+                for (int i = 0; i <= this.getWidth() / bgrWidth; i++) {
+                    g2d.drawImage(bgrImage, bgrWidth * i, bgrHeight * j, bgrWidth, bgrHeight, null);
+                }
             }
         }
         g2d.setTransform(oldXForm);
         //Obstacles
-        for (int[] allObstacle : allObstacles) {
-            g2d.setColor(new Color(48, 61, 61));
-            g2d.fillRect(allObstacle[0], allObstacle[1], allObstacle[2], allObstacle[3]);
+        if (!coop) {
+            for (int[] allObstacle : allObstacles) {
+                g2d.setColor(new Color(48, 61, 61));
+                g2d.fillRect(allObstacle[0], allObstacle[1], allObstacle[2], allObstacle[3]);
+            }
         }
         g2d.setTransform(oldXForm);
         //Mines
@@ -309,15 +316,19 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
         bow.drawBow(g2d, player1, player2, bowImage, playerImage, bow2);
         g2d.setTransform(oldXForm);
 
-        if (!player1.bowPickedUp){
+        if (!player1.bowPickedUp && !coop){
             g2d.drawImage(bowImage, bowX, bowY, bowImage.getWidth(null)/24, bowImage.getHeight(null)/24,null );
         }
-        if (!player1.swordPickedUp){
+        if (!player1.swordPickedUp && !coop){
             g2d.drawImage(swordImage, swordX, swordY,player1.width, player1.height * 2, null);
         }
 
         //Boss
         boss.drawBoss(g2d,bossImage);
+        boss.drawBoss(g2d,playerImage);
+        for (int i = 0; i < enemies.size() ; i++){
+            enemies.get(i).drawEnemy(g2d);
+        }
 
         //Ui
         ui.drawUi(g2d, hpImage);
@@ -332,6 +343,7 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
             ui.drawIcons(g2d, schildImage, swordImage, bowImage, speedImage);
         }
 
+
         super.paint(g);
     }
 
@@ -339,9 +351,7 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
 
     }
 
-    public void keyReleased(KeyEvent e) {
-        player1.keyReleased(e);
-    }
+    public void keyReleased(KeyEvent e) {player1.keyReleased(e);}
 
     public void keyPressed(KeyEvent e) {
         mine.keyPressed(e);
@@ -477,6 +487,9 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
         if(ui.hp > ui.maxHp + inventory.getMaxHp()) {
             ui.hp = ui.maxHp + inventory.getMaxHp();
         }
+        if(mine.minesLeft > player1.maxMines + inventory.getMaxMines()) {
+            mine.minesLeft = player1.maxMines + inventory.getMaxMines();
+        }
         if (!send) {
             message = "";
         }
@@ -494,6 +507,9 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
             bow.tick();
             fist1.tick();
             player1.heal();
+            for (int i = 0 ; i < enemies.size(); i++){
+                enemies.get(i).tick();
+            }
             mine.minePlaced = false;
             mine.exploded = false;
             if (!player1.bowPickedUp && inRectangle(bowX + bowImage.getWidth(null)/48, bowY + bowImage.getHeight(null)/48, player1.x, player1.y, player1.width, player1.height)){

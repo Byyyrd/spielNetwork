@@ -121,6 +121,9 @@ public class Bow implements MouseListener, ActionListener {
                 }
             }
         }
+        if (player.controled){
+
+        }
     }
 
     public void setMousePos(Point mousePos) {
