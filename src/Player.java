@@ -121,7 +121,7 @@ public class Player implements Serializable {
         }
         for (int i = 0; i < panel.boss.allFireballs.size(); i++){
             if (explosionCollision(x + width/2, y + height/2, (int)(panel.boss.allFireballs.get(i).get("X") + panel.fireballImage.getHeight(null)/8), (int)(panel.boss.allFireballs.get(i).get("Y") + panel.fireballImage.getHeight(null)/8), width/2 + panel.fireballImage.getHeight(null)/8)){
-                panel.ui.playerHitEnemy(2.5);
+                panel.ui.playerHitEnemy(panel.boss.damage);
                 panel.boss.allFireballs.remove(i);
             }
         }
