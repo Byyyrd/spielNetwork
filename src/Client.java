@@ -70,9 +70,9 @@ public class Client {
                         panel.player2.fistEquipped = inMessage.fistEquipped;
                         panel.player2.controled = inMessage.controled;
                     }
-                    if (receivedObject.getClass() == Array.class) {
-                        Array inArray = (Array) receivedObject;
-                        System.out.println(inArray);
+                    if (receivedObject.getClass() == int[].class) {
+                        int[] inArray = (int[]) receivedObject;
+                        System.out.println(Arrays.toString(inArray));
                     }
                     } catch(ClassNotFoundException e){
                         System.out.println("Client hat Scheiße bekommen");
