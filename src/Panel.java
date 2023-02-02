@@ -101,7 +101,7 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
     boolean sparned;
     ArrayList<Enemy> enemies = new ArrayList<>();
 
-    public Panel(Client client,boolean coop) {
+    public Panel(Client client, boolean coop) {
         playerImage = new ImageIcon("resources/Player.png").getImage();
         swordImage = new ImageIcon("resources/Sword.png").getImage();
         bowImage = new ImageIcon("resources/bow2.png").getImage();
@@ -144,8 +144,8 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
         mysteryShoe = new ImageIcon("resources/Mystery_Shoe.png").getImage();
         bossImage = new ImageIcon("resources/Boss.png").getImage();
         enemyImage = new ImageIcon("resources/Enemy.png").getImage();
-        bgrHeight = bgrImage.getHeight(null)/2;
-        bgrWidth = bgrImage.getWidth(null)/2;
+        bgrHeight = bgrImage.getHeight(null) / 2;
+        bgrWidth = bgrImage.getWidth(null) / 2;
 
         font = new Font("Arial", Font.PLAIN, 40);
 
@@ -235,38 +235,38 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
         }
         inventory.updateInv();
 
-        EquipButton button = new EquipButton( this);
+        EquipButton button = new EquipButton(this);
         equipPanel.add(button);
         inventory.equipButtons[0] = button;
-        EquipButton button1 = new EquipButton( this);
+        EquipButton button1 = new EquipButton(this);
         equipPanel.add(button1);
         inventory.equipButtons[1] = button1;
-        EquipButton button2 = new EquipButton( this);
+        EquipButton button2 = new EquipButton(this);
         equipPanel.add(button2);
         inventory.equipButtons[2] = button2;
-        EquipButton button3 = new EquipButton( this);
+        EquipButton button3 = new EquipButton(this);
         equipPanel.add(button3);
         inventory.equipButtons[3] = button3;
-        EquipButton button4 = new EquipButton( this);
+        EquipButton button4 = new EquipButton(this);
         equipPanel.add(button4);
         inventory.equipButtons[4] = button4;
-        EquipButton button5 = new EquipButton( this);
+        EquipButton button5 = new EquipButton(this);
         equipPanel.add(button5);
         inventory.equipButtons[5] = button5;
-        EquipButton button6 = new EquipButton( this);
+        EquipButton button6 = new EquipButton(this);
         equipPanel.add(button6);
         inventory.equipButtons[6] = button6;
-        if(coop) {
+        if (coop) {
             boss = new Boss(500, 200, 100, 5);
         }
-        enemies.add( new Enemy(500,500,this,player1, enemies.size() ));
+        enemies.add(new Enemy(500, 500, this, player1, enemies.size()));
         timer = new Timer(delay, this);
         timer.start();
 
         bowX = (int) random(1150, 1450);
-        bowY = (int) random(725 , 900);
+        bowY = (int) random(725, 900);
         swordX = (int) random(250, 675);
-        swordY = (int) random(150 , 425);
+        swordY = (int) random(150, 425);
     }
 
     public void setPlayer2(int x, int y, String name) {
@@ -317,20 +317,20 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
         bow.drawBow(g2d, player1, player2, bowImage, playerImage, bow2);
         g2d.setTransform(oldXForm);
 
-        if (!player1.bowPickedUp && !coop){
-            g2d.drawImage(bowImage, bowX, bowY, bowImage.getWidth(null)/24, bowImage.getHeight(null)/24,null );
+        if (!player1.bowPickedUp && !coop) {
+            g2d.drawImage(bowImage, bowX, bowY, bowImage.getWidth(null) / 24, bowImage.getHeight(null) / 24, null);
         }
-        if (!player1.swordPickedUp && !coop){
-            g2d.drawImage(swordImage, swordX, swordY,player1.width, player1.height * 2, null);
+        if (!player1.swordPickedUp && !coop) {
+            g2d.drawImage(swordImage, swordX, swordY, player1.width, player1.height * 2, null);
         }
 
         //Boss
-        boss.drawBoss(g2d,bossImage);
-        boss.drawBoss(g2d,playerImage);
-        for (int i = 0; i < enemies.size() ; i++){
+        if (coop) {
+            boss.drawBoss(g2d, bossImage);
+        }
+        for (int i = 0; i < enemies.size(); i++) {
             enemies.get(i).drawEnemy(g2d);
         }
-
         //Ui
         ui.drawUi(g2d, hpImage);
 
@@ -352,7 +352,9 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
 
     }
 
-    public void keyReleased(KeyEvent e) {player1.keyReleased(e);}
+    public void keyReleased(KeyEvent e) {
+        player1.keyReleased(e);
+    }
 
     public void keyPressed(KeyEvent e) {
         mine.keyPressed(e);
@@ -367,7 +369,7 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
                 player1.fistEquipped = false;
                 player1.setBowEquipped(false);
                 player1.setSwordEquipped(true);
-            }else if (weapon == 1){
+            } else if (weapon == 1) {
                 player1.fistEquipped = true;
                 player1.bowEquipped = false;
                 player1.swordEquipped = false;
@@ -376,7 +378,7 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
                 player1.fistEquipped = false;
                 player1.setBowEquipped(true);
                 player1.setSwordEquipped(false);
-            }else if (weapon == 2){
+            } else if (weapon == 2) {
                 player1.fistEquipped = true;
                 player1.bowEquipped = false;
                 player1.swordEquipped = false;
@@ -436,7 +438,7 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
                 inventory.updateInv();
             }
         }
-        if (e.getKeyCode() == 80){
+        if (e.getKeyCode() == 80) {
             var item = new Item("Chain");
             item.setImage(chainImage2);
             item.setSpeed(2);
@@ -485,10 +487,10 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(ui.hp > ui.maxHp + inventory.getMaxHp()) {
+        if (ui.hp > ui.maxHp + inventory.getMaxHp()) {
             ui.hp = ui.maxHp + inventory.getMaxHp();
         }
-        if(mine.minesLeft > player1.maxMines + inventory.getMaxMines()) {
+        if (mine.minesLeft > player1.maxMines + inventory.getMaxMines()) {
             mine.minesLeft = player1.maxMines + inventory.getMaxMines();
         }
         if (!send) {
@@ -508,15 +510,15 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
             bow.tick();
             fist1.tick();
             player1.heal();
-            for (int i = 0 ; i < enemies.size(); i++){
+            for (int i = 0; i < enemies.size(); i++) {
                 enemies.get(i).tick();
             }
             mine.minePlaced = false;
             mine.exploded = false;
-            if (!player1.bowPickedUp && inRectangle(bowX + bowImage.getWidth(null)/48, bowY + bowImage.getHeight(null)/48, player1.x, player1.y, player1.width, player1.height)){
+            if (!player1.bowPickedUp && inRectangle(bowX + bowImage.getWidth(null) / 48, bowY + bowImage.getHeight(null) / 48, player1.x, player1.y, player1.width, player1.height)) {
                 player1.bowPickedUp = true;
             }
-            if (!player1.swordPickedUp && inRectangle(swordX + player2.width/2, swordY + player2.height , player1.x, player1.y, player1.width, player1.height)) {
+            if (!player1.swordPickedUp && inRectangle(swordX + player2.width / 2, swordY + player2.height, player1.x, player1.y, player1.width, player1.height)) {
                 player1.swordPickedUp = true;
             }
         }
@@ -557,12 +559,14 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
         obstacles[3] = height;
         allObstacles.add(obstacles);
     }
-    public double random(double min, double max){
-        if (min == 0 && max == 0){
+
+    public double random(double min, double max) {
+        if (min == 0 && max == 0) {
             return 0;
         }
-        return ((int)(((Math.random()*((max-min))+ min))*10f)+1)/10.0;
+        return ((int) (((Math.random() * ((max - min)) + min)) * 10f) + 1) / 10.0;
     }
+
     public boolean inRectangle(int px, int py, int rx, int ry, int rb, int rh) {
         return rx < px && px < rx + rb && ry < py && py < ry + rh;
 

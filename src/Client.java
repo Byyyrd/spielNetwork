@@ -34,37 +34,39 @@ public class Client {
             while (true) {
                 try {
                     inputStream = new ObjectInputStream(socket.getInputStream());
-                    Message receivedObject = (Message) inputStream.readObject();
-                    panel.setPlayer2(receivedObject.getX(), receivedObject.getY(), receivedObject.getName());
-                    panel.sword2.rotation = receivedObject.getSwordRotation();
-                    panel.setRotation2(receivedObject.rotation);
-                    panel.player2.setSwordEquipped(receivedObject.swordPickedUp);
-                    if (receivedObject.isClicked){
-                        panel.bow2.player2CreateArrow(receivedObject.mouseX,receivedObject.mouseY);
+                    Object receivedObject = inputStream.readObject();
+                    if (receivedObject.getClass() == Message.class) {
+                        Message inMessage = (Message) receivedObject;
+                        panel.setPlayer2(inMessage.getX(), inMessage.getY(), inMessage.getName());
+                        panel.sword2.rotation = inMessage.getSwordRotation();
+                        panel.setRotation2(inMessage.rotation);
+                        panel.player2.setSwordEquipped(inMessage.swordPickedUp);
+                        if (inMessage.isClicked) {
+                            panel.bow2.player2CreateArrow(inMessage.mouseX, inMessage.mouseY);
+                        }
+                        panel.player2.setBowEquipped(inMessage.bowPickedUp);
+                        if (inMessage.minePlaced) {
+                            panel.mine2.createMine();
+                        }
+                        if (inMessage.exploded && panel.mine2.allMines.size() != 0) {
+                            panel.mine2.time = 1;
+                            panel.mine.explodeMines();
+                        }
+                        if (!inMessage.message.equals("")) {
+                            panel.messageInput.setText(inMessage.getName() + ": " + inMessage.message + "\n" + panel.messageInput.getText());
+                        }
+                        panel.ui.p2normHp = inMessage.normHp;
+                        panel.ui.death2 = inMessage.death;
+                        panel.player2.swordDamage = inMessage.swordDamage;
+                        panel.player2.bowDamage = inMessage.bowDamage;
+                        panel.player2.mineDamage = inMessage.mineDamage;
+                        panel.player2.mineTime = inMessage.mineTime;
+                        panel.player2.maxMines = inMessage.maxMines;
+                        panel.fist1.x2 = inMessage.fistX;
+                        panel.fist2.y2 = inMessage.fistY;
+                        panel.player2.fistEquipped = inMessage.fistEquipped;
+                        panel.player2.controled = inMessage.controled;
                     }
-                    panel.player2.setBowEquipped(receivedObject.bowPickedUp);
-                    if (receivedObject.minePlaced){
-                        panel.mine2.createMine();
-                    }
-                    if (receivedObject.exploded && panel.mine2.allMines.size() != 0){
-                        panel.mine2.time = 1;
-                        panel.mine.explodeMines();
-                    }
-                    if(!receivedObject.message.equals("")) {
-                        panel.messageInput.setText(receivedObject.getName() + ": " + receivedObject.message + "\n" + panel.messageInput.getText());
-                    }
-                    panel.ui.p2normHp = receivedObject.normHp;
-                    panel.ui.death2 = receivedObject.death;
-                    panel.player2.swordDamage = receivedObject.swordDamage;
-                    panel.player2.bowDamage = receivedObject.bowDamage;
-                    panel.player2.mineDamage = receivedObject.mineDamage;
-                    panel.player2.mineTime = receivedObject.mineTime;
-                    panel.player2.maxMines = receivedObject.maxMines;
-                    panel.fist1.x2 = receivedObject.fistX;
-                    panel.fist2.y2 = receivedObject.fistY;
-                    panel.player2.fistEquipped = receivedObject.fistEquipped;
-                    panel.sparned = receivedObject.sparned;
-                    panel.player2.controled = receivedObject.controled;
                 } catch (ClassNotFoundException e) {
                     System.out.println("Client hat Scheiße bekommen");
                 } catch (IOException e) {
