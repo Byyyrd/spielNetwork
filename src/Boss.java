@@ -1,6 +1,7 @@
 import java.awt.*;
 
 public class Boss {
+
     int x;
     int y;
     double hp;
