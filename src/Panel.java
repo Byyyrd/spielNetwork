@@ -1,3 +1,4 @@
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -76,8 +77,11 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener, 
     Image enemyImage;
     Image bossImage;
     Image fireballImage;
+    Image bossFloorImage;
     int bgrWidth;
     int bgrHeight;
+    int floorWidth;
+    int floorHeight;
     ArrayList<int[]> allObstacles;
     Ui ui;
     JTextArea messageOutput;
@@ -91,6 +95,8 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener, 
     JPanel inventoryPanel;
     JPanel equipPanel;
     Inventory inventory;
+
+
 
     AffineTransform oldXForm;
     int weapon = 1;
@@ -147,10 +153,15 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener, 
         mysteryCharm = new ImageIcon("resources/Mystery_Charm.png").getImage();
         mysteryShoe = new ImageIcon("resources/Mystery_Shoe.png").getImage();
         bossImage = new ImageIcon("resources/R.gif").getImage();
+        //bossImage = ImageIO.read(new ImageIcon("resources/R.gif"))
         enemyImage = new ImageIcon("resources/Enemy.png").getImage();
         fireballImage = new ImageIcon("resources/Fireball.png").getImage();
+        bossFloorImage = new ImageIcon("resources/BossFloor.jpg").getImage();
         bgrHeight = bgrImage.getHeight(null) / 2;
         bgrWidth = bgrImage.getWidth(null) / 2;
+        floorHeight = bossFloorImage.getHeight(null) /2;
+        floorWidth = bossFloorImage.getWidth(null) /2;
+
 
         font = new Font("Arial", Font.PLAIN, 40);
 
@@ -292,7 +303,13 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener, 
         oldXForm = g2d.getTransform();
 
         //Background
-        if (!coop) {
+        if (coop) {
+            for (int j = 0; j <= this.getHeight() / floorHeight; j++) {
+                for (int i = 0; i <= this.getWidth() / floorWidth; i++) {
+                    g2d.drawImage(bossFloorImage, floorWidth * i, floorHeight * j, floorWidth, floorHeight, null);
+                }
+            }
+        }else{
             for (int j = 0; j <= this.getHeight() / bgrHeight; j++) {
                 for (int i = 0; i <= this.getWidth() / bgrWidth; i++) {
                     g2d.drawImage(bgrImage, bgrWidth * i, bgrHeight * j, bgrWidth, bgrHeight, null);
@@ -338,12 +355,15 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener, 
         //Boss
         if (coop) {
             boss.drawBoss(g2d, bossImage, fireballImage);
+            g2d.setTransform(oldXForm);
         }
         for (Enemy enemy : enemies) {
             enemy.drawEnemy(g2d);
+            g2d.setTransform(oldXForm);
         }
         //Ui
         ui.drawUi(g2d, hpImage);
+        g2d.setTransform(oldXForm);
 
         if (serverDown) {
             System.out.println("Serevrrevevrevr");
@@ -354,6 +374,7 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener, 
         }
         if (inChat || inInv) {
             ui.drawIcons(g2d, schildImage, swordImage, bowImage, speedImage);
+            g2d.setTransform(oldXForm);
         }
         if (player1.controled){
             g2d.setColor(new Color(255,0,0, 105));
