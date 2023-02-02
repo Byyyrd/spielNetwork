@@ -260,7 +260,7 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener, 
         if (coop) {
             boss = new Boss(500, 200, 100, 5);
         }
-        enemies.add(new Enemy(500, 500, this, player1, enemies.size()));
+        //enemies.add(new Enemy(500, 500, this, player1, enemies.size()));
         timer = new Timer(delay, this);
         timer.start();
 
