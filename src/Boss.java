@@ -8,7 +8,7 @@ public class Boss {
     int y;
     double hp;
     double damage;
-    double speed = 10;
+    double speed = 5;
     double rotation = 0;
     Image bossImage;
     Player player;
@@ -30,8 +30,8 @@ public class Boss {
 
     public void drawBoss(Graphics2D g2d, Image bossImage,Image fireballImage) {
         this.bossImage = bossImage;
-        width = bossImage.getWidth(null) * 2;
-        height = bossImage.getHeight(null) * 2;
+        width = bossImage.getWidth(null) * 4;
+        height = bossImage.getHeight(null) * 4;
         g2d.drawImage(bossImage, x, y, width, height, null);
         for(HashMap<String,Double> h: allFireballs){
             int width = fireballImage.getWidth(null)/4;
@@ -44,8 +44,8 @@ public class Boss {
 
     public void tick(double dt) {
         timer -= dt;
-        //x += Math.cos(rotation) * speed;
-        //y += Math.sin(rotation) * speed;
+        x += Math.cos(rotation) * speed;
+        y += Math.sin(rotation) * speed;
         if (x + width > 1900) {
             rotation = random(2, 6);
         }
@@ -60,11 +60,17 @@ public class Boss {
         }
         if (calcRange(x + width / 2, y + height / 2, player.x, player.y) < range && timer <= 0) {
             fireBullet();
-            timer = 10;
+            timer = 30;
         }
         for(HashMap<String,Double> h: allFireballs){
             h.put("X",h.get("X")+h.get("xVel")*-10);
             h.put("Y",h.get("Y")+h.get("yVel")*-10);
+
+        }
+        for(int i = 0;i < allFireballs.size() ;i++) {
+            if (allFireballs.get(i).get("X") > 1950 || allFireballs.get(i).get("X") < -50 || allFireballs.get(i).get("Y") > 1100 || allFireballs.get(i).get("Y") < -50) {
+                allFireballs.remove(i);
+            }
         }
     }
 

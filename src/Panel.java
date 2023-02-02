@@ -6,6 +6,8 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.geom.AffineTransform;
 import java.io.Serializable;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 
 public class Panel extends JLayeredPane implements ActionListener, KeyListener, Serializable {
@@ -144,13 +146,19 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener, 
         mysteryRing = new ImageIcon("resources/Mystery_Ring.png").getImage();
         mysteryCharm = new ImageIcon("resources/Mystery_Charm.png").getImage();
         mysteryShoe = new ImageIcon("resources/Mystery_Shoe.png").getImage();
-        bossImage = new ImageIcon("resources/Boss.png").getImage();
+        bossImage = new ImageIcon("resources/R.gif").getImage();
         enemyImage = new ImageIcon("resources/Enemy.png").getImage();
         fireballImage = new ImageIcon("resources/Fireball.png").getImage();
         bgrHeight = bgrImage.getHeight(null) / 2;
         bgrWidth = bgrImage.getWidth(null) / 2;
 
         font = new Font("Arial", Font.PLAIN, 40);
+
+        /*JLabel jLabel = new JLabel();
+        ImageIcon icon = new javax.swing.ImageIcon("resources/R.gif");
+        jLabel.setIcon(icon);
+        jLabel.setBounds(100,100,200,200);
+        this.add(jLabel);*/
 
         addKeyListener(this);
 
@@ -260,7 +268,7 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener, 
         equipPanel.add(button6);
         inventory.equipButtons[6] = button6;
         if (coop) {
-            boss = new Boss(500, 200, 100, 5,player1,this);
+            boss = new Boss(500, 200, 100, 5, player1, this);
         }
         //enemies.add(new Enemy(500, 500, this, player1, enemies.size()));
         timer = new Timer(delay, this);
@@ -329,7 +337,7 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener, 
 
         //Boss
         if (coop) {
-            boss.drawBoss(g2d, bossImage,fireballImage);
+            boss.drawBoss(g2d, bossImage, fireballImage);
         }
         for (Enemy enemy : enemies) {
             enemy.drawEnemy(g2d);
