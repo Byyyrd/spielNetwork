@@ -7,6 +7,8 @@ public class Boss {
     int x;
     int y;
     double hp;
+    double maxHp;
+    double lastspwn;
     double damage;
     double speed = 5;
     double rotation = 0;
@@ -15,35 +17,44 @@ public class Boss {
     Panel panel;
     int width;
     int height;
+    boolean fired;
     int range = 2000;
     double timer;
-    ArrayList<HashMap<String,Double>> allFireballs = new ArrayList<>();
+    double iFrame = 0.5;
+    ArrayList<HashMap<String, Double>> allFireballs = new ArrayList<>();
 
-    public Boss(int x, int y, double hp, double damage, Player player, Panel panel) {
+    public Boss(int x, int y, double maxHp, double damage, Player player, Panel panel) {
         this.x = x;
         this.y = y;
-        this.hp = hp;
+        this.maxHp = maxHp;
+        hp = maxHp;
         this.damage = damage;
         this.player = player;
         this.panel = panel;
     }
 
-    public void drawBoss(Graphics2D g2d, Image bossImage,Image fireballImage) {
+    public void drawBoss(Graphics2D g2d, Image bossImage, Image fireballImage) {
         this.bossImage = bossImage;
         width = bossImage.getWidth(null) * 4;
         height = bossImage.getHeight(null) * 4;
         g2d.drawImage(bossImage, x, y, width, height, null);
-        for(HashMap<String,Double> h: allFireballs){
-            int width = fireballImage.getWidth(null)/4;
-            int height = fireballImage.getHeight(null)/4;
-            g2d.rotate(h.get("Rotation"),h.get("X"),h.get("Y"));
-            g2d.drawImage(fireballImage, (int) (h.get("X") - width/2), (int) (h.get("Y")-height/2),width,height,null);
+        for (HashMap<String, Double> h : allFireballs) {
+            int width = fireballImage.getWidth(null) / 4;
+            int height = fireballImage.getHeight(null) / 4;
+            g2d.rotate(h.get("Rotation"), h.get("X"), h.get("Y"));
+            g2d.drawImage(fireballImage, (int) (h.get("X") - width / 2), (int) (h.get("Y") - height / 2), width, height, null);
             g2d.setTransform(panel.oldXForm);
         }
+        g2d.setColor(Color.red);
+        System.out.println(width);
+        var normHp = hp / maxHp;
+        g2d.fillRect(x, y + height + 3, (int) (454 * normHp), 10);
+        g2d.drawImage(panel.hpImage, x, y + height + 3, width, 10, null);
     }
 
     public void tick(double dt) {
         timer -= dt;
+        iFrame -= 0.1;
         x += Math.cos(rotation) * speed;
         y += Math.sin(rotation) * speed;
         if (x + width > 1900) {
@@ -62,9 +73,9 @@ public class Boss {
             fireBullet();
             timer = 30;
         }
-        for(HashMap<String,Double> h: allFireballs){
-            h.put("X",h.get("X")+h.get("xVel")*-10);
-            h.put("Y",h.get("Y")+h.get("yVel")*-10);
+        for (HashMap<String, Double> h : allFireballs) {
+            h.put("X", h.get("X") + h.get("xVel") * -10);
+            h.put("Y", h.get("Y") + h.get("yVel") * -10);
 
         }
         for(int i = 0;i < allFireballs.size() ;i++) {
@@ -72,6 +83,37 @@ public class Boss {
                 allFireballs.remove(i);
             }
         }
+        if (hp < maxHp - lastspwn) {
+            lastspwn += maxHp / 10;
+            panel.spawnEnemy();
+            panel.sparned = true;
+
+        }
+        if (panel.player1.enemySword != null && panel.player2.swordEquipped) {
+            if (inRectangle((int) (panel.player1.enemySword.x + 21 + Math.sin(panel.player1.enemySword.rotation) * 21), (int) (panel.player1.enemySword.y + width / 2 + Math.cos(panel.player1.enemySword.rotation) * -25), x, y, width, height) || inRectangle((int) (panel.player1.enemySword.x + 21 + Math.sin(panel.player1.enemySword.rotation) * 40), (int) (panel.player1.enemySword.y + width / 2 + Math.cos(panel.player1.enemySword.rotation) * -40), x, y, width, height) || inRectangle((int) (panel.player1.enemySword.x + 21 + Math.sin(panel.player1.enemySword.rotation) * 55), (int) (panel.player1.enemySword.y + width / 2 + Math.cos(panel.player1.enemySword.rotation) * -55), x, y, width, height)) {
+                playerHit(panel.player2.swordDamage);
+            }
+        }
+        if (panel.player1.swordEquipped) {
+            if (inRectangle((int) (panel.sword.x + 21 + Math.sin(panel.sword.rotation) * 21), (int) (panel.sword.y + width / 2 + Math.cos(panel.sword.rotation) * -25), x, y, width, height) || inRectangle((int) (panel.sword.x + 21 + Math.sin(panel.sword.rotation) * 40), (int) (panel.sword.y + width / 2 + Math.cos(panel.sword.rotation) * -40), x, y, width, height) || inRectangle((int) (panel.sword.x + 21 + Math.sin(panel.sword.rotation) * 55), (int) (panel.sword.y + width / 2 + Math.cos(panel.sword.rotation) * -55), x, y, width, height)) {
+                playerHit(panel.player1.swordDamage + panel.inventory.getSwordDamage());
+            }
+        }
+        if (panel.player1.allArrows != null) {
+            for (Double[] allArrow : panel.player1.allArrows) {
+                if (inRectangle((int) (allArrow[0] + 1 - 1), (int) (allArrow[1] + 1 - 1), x, y, width, height)) {
+                    playerHit(panel.player2.bowDamage);
+                }
+            }
+        }
+        if (panel.player1.allArrowsSelf != null) {
+            for (Double[] allArrow : panel.player1.allArrowsSelf) {
+                if (inRectangle((int) (allArrow[0] + 1 - 1), (int) (allArrow[1] + 1 - 1), x, y, width, height)) {
+                    playerHit(panel.player1.bowDamage + panel.inventory.getBowDamage());
+                }
+            }
+        }
+        System.out.println(hp);
     }
 
     public void fireBullet() {
@@ -81,16 +123,16 @@ public class Boss {
         } else {
             target = panel.player2;
         }
-        double xLength = ((x + width * 0.5) - (target.x + target.width/2));
-        double yLength = ((y + height * 0.5) - (target.y + target.height/2));
+        double xLength = ((x + width * 0.5) - (target.x + target.width / 2));
+        double yLength = ((y + height * 0.5) - (target.y + target.height / 2));
         double rotation = Math.atan2(yLength, xLength);
 
         HashMap<String, Double> fireball = new HashMap<>();
-        fireball.put("X", (double) x + width/2);
-        fireball.put("Y", (double) y + height/2);
+        fireball.put("X", (double) x + width / 2);
+        fireball.put("Y", (double) y + height / 2);
         fireball.put("xVel", Math.cos(rotation));
         fireball.put("yVel", Math.sin(rotation));
-        fireball.put("Rotation",rotation);
+        fireball.put("Rotation", rotation);
 
 
         allFireballs.add(fireball);
@@ -105,5 +147,21 @@ public class Boss {
             return 0;
         }
         return ((int) (((Math.random() * ((max - min)) + min)) * 10f) + 1) / 10.0;
+    }
+
+    public void playerHit(double damage) {
+        if (iFrame <= 0) {
+            hp -= damage;
+            iFrame = 1;
+        }
+
+        if (hp <= 0) {
+            System.out.println("gewonnen");
+        }
+    }
+
+    public boolean inRectangle(int px, int py, int rx, int ry, int rb, int rh) {
+        return rx < px && px < rx + rb && ry < py && py < ry + rh;
+
     }
 }

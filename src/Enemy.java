@@ -40,4 +40,7 @@ public class Enemy{
     public boolean explosionCollision(int x, int y, int x2, int y2, int distance){
         return Math.abs(x - x2) < distance && Math.abs(y - y2) < distance;
     }
+    public boolean inRectangle(int px, int py, int rx, int ry, int rb, int rh) {
+        return rx < px && px < rx + rb && ry < py && py < ry + rh;
+    }
 }

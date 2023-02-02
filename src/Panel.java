@@ -268,7 +268,7 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener, 
         equipPanel.add(button6);
         inventory.equipButtons[6] = button6;
         if (coop) {
-            boss = new Boss(500, 200, 100, 5, player1, this);
+            boss = new Boss(500, 200, 500, 5, player1, this);
         }
         //enemies.add(new Enemy(500, 500, this, player1, enemies.size()));
         timer = new Timer(delay, this);
@@ -355,7 +355,10 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener, 
         if (inChat || inInv) {
             ui.drawIcons(g2d, schildImage, swordImage, bowImage, speedImage);
         }
-
+        if (player1.controled){
+            g2d.setColor(new Color(255,0,0, 105));
+            g2d.fillRect(0,0,2000,2000);
+        }
 
         super.paint(g);
     }
@@ -508,8 +511,12 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener, 
             message = "";
         }
         if (bow.mousePos != null) {
-            if (coop) {
+            if (coop && client.host.equals("::1")) {
                 boss.tick(delay / 10);
+            }
+            if (sparned && !client.host.equals("::1")){
+                spawnEnemy();
+                sparned = false;
             }
             client.setMinePlaced(mine.minePlaced);
             client.setExploded(mine.exploded);
@@ -531,6 +538,22 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener, 
             }
             if (!player1.swordPickedUp && inRectangle(swordX + player2.width / 2, swordY + player2.height, player1.x, player1.y, player1.width, player1.height)) {
                 player1.swordPickedUp = true;
+            }
+            for (int i = 0; i < bow.allArrows.size(); i++) {
+                for ( int j = enemies.size(); j > 0; j--) {
+                    System.out.println(i);
+                    System.out.println(j);
+                    if (inRectangle((int) (bow.allArrows.get(i)[0] + 1 - 1), (int) (bow.allArrows.get(i)[1] + 1 - 1), enemies.get(j -1).x, enemies.get(j -1).y, enemyImage.getHeight(null) / 5, enemyImage.getHeight(null) / 5)) {
+                        enemies.remove(j-1);
+                    }
+                }
+            }
+            for (int i = 0; i < bow2.allArrows.size(); i++) {
+                for ( int j = enemies.size(); j > 0; j--) {
+                    if (inRectangle((int) (bow2.allArrows.get(i)[0] + 1 - 1), (int) (bow2.allArrows.get(i)[1] + 1 - 1), enemies.get(j-1).x, enemies.get(j-1).y, enemyImage.getHeight(null) / 5, enemyImage.getHeight(null) / 5)) {
+                        enemies.remove(j-1);
+                    }
+                }
             }
         }
         repaint();
@@ -580,6 +603,24 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener, 
 
     public boolean inRectangle(int px, int py, int rx, int ry, int rb, int rh) {
         return rx < px && px < rx + rb && ry < py && py < ry + rh;
-
+    }
+    public void spawnEnemy(){
+        if (boss.x > 900){
+            if (boss.y > 600){
+                enemies.add(new Enemy(boss.x - boss.width/2, boss.y, this, player1, enemies.size()));
+                enemies.add(new Enemy(boss.x , boss.y - boss.height/2, this, player1, enemies.size()));
+            }else {
+                enemies.add(new Enemy(boss.x - boss.width/2, boss.y, this, player1, enemies.size()));
+                enemies.add(new Enemy(boss.x , boss.y + boss.height/2, this, player1, enemies.size()));
+            }
+        }else {
+            if (boss.y > 600){
+                enemies.add(new Enemy(boss.x + boss.width/2, boss.y, this, player1, enemies.size()));
+                enemies.add(new Enemy(boss.x , boss.y - boss.height/2, this, player1, enemies.size()));
+            }else {
+                enemies.add(new Enemy(boss.x + boss.width/2, boss.y, this, player1, enemies.size()));
+                enemies.add(new Enemy(boss.x , boss.y + boss.height/2, this, player1, enemies.size()));
+            }
+        }
     }
 }

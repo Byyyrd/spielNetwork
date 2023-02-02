@@ -1,15 +1,14 @@
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.lang.reflect.Array;
 import java.net.Socket;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import static java.lang.System.exit;
 
 public class Client {
     String name;
+    String host;
     Socket socket;
     GameFrame frame;
     ObjectOutputStream outputStream;
@@ -29,7 +28,7 @@ public class Client {
     public Client(String host, String name, ConnectionFrame conFrame, boolean coop) throws IOException {
         this.name = name;
         this.conFrame = conFrame;
-
+        this.host = host;
         conFrame.setVisible(true);
         frame = new GameFrame(this, coop);
         socket = new Socket(host, 30000);
@@ -69,7 +68,13 @@ public class Client {
                         panel.fist1.x2 = inMessage.fistX;
                         panel.fist2.y2 = inMessage.fistY;
                         panel.player2.fistEquipped = inMessage.fistEquipped;
-                        panel.player2.controled = inMessage.controled;
+                        panel.player2.controled = inMessage.controlled;
+                        if (host.equals("::1")){
+                            panel.boss.x = inMessage.bossX;
+                            panel.boss.y = inMessage.bossY;
+                            panel.boss.fired = inMessage.bossFired;
+                            panel.boss.hp = inMessage.bossHp;
+                        }
                     }
                     if (receivedObject.getClass() == ArrayList.class) {
                         ArrayList inArray = (ArrayList) receivedObject;
@@ -106,7 +111,7 @@ public class Client {
             if (!panel.message.equals("")) {
                 panel.messageInput.setText(name + ": " + panel.message + "\n" + panel.messageInput.getText());
             }
-            message = new Message(player.x, player.y, name, sword.rotation, bow.playerRotation, player.isBowEquipped(), bow.mousePos.getX(), bow.mousePos.getY(), isClicked, player.swordEquipped, minePlaced, exploded, panel.message, panel.ui.normHp, panel.ui.death, player.swordDamage + panel.inventory.getSwordDamage(), player.bowDamage + panel.inventory.getBowDamage(), player.mineDamage + panel.inventory.getMineDamage(), player.mineTime + panel.inventory.getMineTime(), player.maxMines + panel.inventory.getMaxMines(), panel.fist1.x, panel.fist1.y, panel.player1.fistEquipped, panel.sparned, panel.player1.controled);
+            message = new Message(player.x, player.y, name, sword.rotation, bow.playerRotation, player.isBowEquipped(), bow.mousePos.getX(), bow.mousePos.getY(), isClicked, player.swordEquipped, minePlaced, exploded, panel.message, panel.ui.normHp, panel.ui.death, player.swordDamage + panel.inventory.getSwordDamage(), player.bowDamage + panel.inventory.getBowDamage(), player.mineDamage + panel.inventory.getMineDamage(), player.mineTime + panel.inventory.getMineTime(), player.maxMines + panel.inventory.getMaxMines(), panel.fist1.x, panel.fist1.y, panel.player1.fistEquipped, panel.sparned, panel.player1.controled, panel.boss.x, panel.boss.y, panel.boss.fired, panel.boss.hp);
             if (!panel.serverDown) {
                 outputStream.writeObject(message);
             }

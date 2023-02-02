@@ -3,6 +3,7 @@ import java.awt.event.KeyEvent;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Objects;
+import java.util.concurrent.locks.AbstractOwnableSynchronizer;
 
 public class Player implements Serializable {
     int x;
@@ -116,6 +117,12 @@ public class Player implements Serializable {
                     panel.ui.playerHit(player2.bowDamage * (1 - (reduction / 100)));
                     controled = false;
                 }
+            }
+        }
+        for (int i = 0; i < panel.boss.allFireballs.size(); i++){
+            if (explosionCollision(x + width/2, y + height/2, (int)(panel.boss.allFireballs.get(i).get("X") + panel.fireballImage.getHeight(null)/8), (int)(panel.boss.allFireballs.get(i).get("Y") + panel.fireballImage.getHeight(null)/8), width/2 + panel.fireballImage.getHeight(null)/8)){
+                panel.ui.playerHitEnemy(2.5);
+                panel.boss.allFireballs.remove(i);
             }
         }
         if (!panel.coop) {
