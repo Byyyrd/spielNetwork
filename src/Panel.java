@@ -73,6 +73,7 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener, 
     Image mysteryShoe;
     Image enemyImage;
     Image bossImage;
+    Image fireballImage;
     int bgrWidth;
     int bgrHeight;
     ArrayList<int[]> allObstacles;
@@ -145,6 +146,7 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener, 
         mysteryShoe = new ImageIcon("resources/Mystery_Shoe.png").getImage();
         bossImage = new ImageIcon("resources/Boss.png").getImage();
         enemyImage = new ImageIcon("resources/Enemy.png").getImage();
+        fireballImage = new ImageIcon("resources/Fireball.png").getImage();
         bgrHeight = bgrImage.getHeight(null) / 2;
         bgrWidth = bgrImage.getWidth(null) / 2;
 
@@ -258,7 +260,7 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener, 
         equipPanel.add(button6);
         inventory.equipButtons[6] = button6;
         if (coop) {
-            boss = new Boss(500, 200, 100, 5,player1);
+            boss = new Boss(500, 200, 100, 5,player1,this);
         }
         enemies.add(new Enemy(500, 500, this, player1, enemies.size()));
         timer = new Timer(delay, this);
@@ -327,7 +329,7 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener, 
 
         //Boss
         if (coop) {
-            boss.drawBoss(g2d, bossImage);
+            boss.drawBoss(g2d, bossImage,fireballImage);
         }
         for (Enemy enemy : enemies) {
             enemy.drawEnemy(g2d);
