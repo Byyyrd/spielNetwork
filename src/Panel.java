@@ -328,8 +328,8 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
         if (coop) {
             boss.drawBoss(g2d, bossImage);
         }
-        for (int i = 0; i < enemies.size(); i++) {
-            enemies.get(i).drawEnemy(g2d);
+        for (Enemy enemy : enemies) {
+            enemy.drawEnemy(g2d);
         }
         //Ui
         ui.drawUi(g2d, hpImage);
@@ -364,7 +364,6 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
             if (weapon > 2) {
                 weapon = 1;
             }
-
             if (weapon == 1 && player1.swordPickedUp) {
                 player1.fistEquipped = false;
                 player1.setBowEquipped(false);
