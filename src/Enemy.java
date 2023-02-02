@@ -1,6 +1,7 @@
 import java.awt.*;
+import java.io.Serializable;
 
-public class Enemy {
+public class Enemy implements Serializable {
     int x;
     int y;
     double xVel;
@@ -9,8 +10,8 @@ public class Enemy {
     double yLength;
     double playerRotation;
     int i;
-    Panel panel;
-    Player player;
+    private Panel panel;
+    private Player player;
 
     public Enemy(int x, int y, Panel panel, Player player, int i) {
         this.x = x;
