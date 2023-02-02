@@ -496,6 +496,10 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
             message = "";
         }
         if (bow.mousePos != null) {
+            int[] array = new int[5];
+            array[0] = 1;
+            array[1] = 2;
+            client.sendArray(array);
             if (coop) {
                 boss.tick(delay / 100);
             }

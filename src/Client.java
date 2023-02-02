@@ -1,7 +1,9 @@
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.lang.reflect.Array;
 import java.net.Socket;
+import java.util.Arrays;
 
 import static java.lang.System.exit;
 
@@ -68,6 +70,10 @@ public class Client {
                         panel.player2.fistEquipped = inMessage.fistEquipped;
                         panel.player2.controled = inMessage.controled;
                     }
+                    if (receivedObject.getClass() == Array.class) {
+                        Array inArray = (Array) receivedObject;
+                        System.out.println(inArray);
+                    }
                     } catch(ClassNotFoundException e){
                         System.out.println("Client hat Scheiße bekommen");
                     } catch(IOException e){
@@ -83,6 +89,16 @@ public class Client {
             }
         });
         socketThread.start();
+    }
+
+    public void sendArray(int[] array) {
+        try {
+            System.out.println("Send Array");
+            outputStream.writeObject(array);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
     public void sendMessage(Player player, Sword sword) {
