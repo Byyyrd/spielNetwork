@@ -12,7 +12,7 @@ public class Boss {
     Player player;
     int width;
     int height;
-    int range = 500;
+    int range = 700;
     public Boss(int x, int y, double hp, double damage,Player player) {
         this.x = x;
         this.y = y;
@@ -25,12 +25,10 @@ public class Boss {
         width = bossImage.getWidth(null)*2;
         height = bossImage.getHeight(null)*2;
         g2d.drawImage(bossImage,x,y,width,height,null);
-        g2d.drawOval(x,y,range*2,range*2);
+        //g2d.drawOval(x+width/2-range,y+height/2-range,range*2,range*2);
     }
     public void tick(double dt){
-        /*double xLength = ;
-        double yLength = ;
-        rotation = Math.atan2(yLength,xLength);*/
+
         x += Math.cos(rotation) * speed;
         y += Math.sin(rotation) * speed;
         if(x + width > 1900){
@@ -50,7 +48,9 @@ public class Boss {
         }
     }
     public void fireBullet(){
-        System.out.println("Fire");
+        double xLength = 0;
+        double yLength = 0;
+        rotation = Math.atan2(yLength,xLength);
     }
     public boolean inRange(int x1,int y1,int x2,int y2,int range){
         return Math.sqrt(Math.pow(x2-x1,2)+Math.pow(y2-y1,2)) < range;
