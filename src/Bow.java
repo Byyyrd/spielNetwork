@@ -124,8 +124,8 @@ public class Bow implements MouseListener, ActionListener {
                 allArrows.add(Arrow);
             }
         }else {
-            long yLength = (long) ((player.y + player.height/2) - (panel.bow2.y1 + player.height / 2));
-            long xLength = (long) ((player.x + player.width/2) - (panel.bow2.x1 + player.width / 2));
+            long yLength = (long) ((panel.bow.y1 + player.height/2) - (y1 + player.height / 2));
+            long xLength = (long) ((panel.bow.x1 + player.width/2) - (x1 + player.width / 2));
             double playerRotation = Math.atan2(yLength, xLength);
             Double[] Arrow = new Double[5];
             Arrow[0] = (double) player.x + player.width / 2;// x1 Index = 0
