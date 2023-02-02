@@ -16,6 +16,7 @@ public class Boss {
     int width;
     int height;
     int range = 2000;
+    double timer;
     ArrayList<HashMap<String,Double>> allFireballs = new ArrayList<>();
 
     public Boss(int x, int y, double hp, double damage, Player player, Panel panel) {
@@ -32,20 +33,19 @@ public class Boss {
         width = bossImage.getWidth(null) * 2;
         height = bossImage.getHeight(null) * 2;
         g2d.drawImage(bossImage, x, y, width, height, null);
-        //g2d.drawOval(x+width/2-range,y+height/2-range,range*2,range*2);
         for(HashMap<String,Double> h: allFireballs){
             int width = fireballImage.getWidth(null)/4;
             int height = fireballImage.getHeight(null)/4;
-            g2d.rotate(h.get("Rotation"),h.get("X") + width * 0.5,h.get("Y")+ width * 0.5);
-            g2d.drawImage(fireballImage, (int) (h.get("X") + width/2), (int) (h.get("Y") + height/2),width,height,null);
+            g2d.rotate(h.get("Rotation"),h.get("X"),h.get("Y"));
+            g2d.drawImage(fireballImage, (int) (h.get("X") - width/2), (int) (h.get("Y")-height/2),width,height,null);
             g2d.setTransform(panel.oldXForm);
         }
     }
 
     public void tick(double dt) {
-
-        x += Math.cos(rotation) * speed;
-        y += Math.sin(rotation) * speed;
+        timer -= dt;
+        //x += Math.cos(rotation) * speed;
+        //y += Math.sin(rotation) * speed;
         if (x + width > 1900) {
             rotation = random(2, 6);
         }
@@ -58,29 +58,30 @@ public class Boss {
         if (y < 0) {
             rotation = random(0.5, Math.PI - 0.5);
         }
-        if (calcRange(x + width / 2, y + height / 2, player.x, player.y) < range) {
+        if (calcRange(x + width / 2, y + height / 2, player.x, player.y) < range && timer <= 0) {
             fireBullet();
+            timer = 10;
         }
         for(HashMap<String,Double> h: allFireballs){
-            h.put("X",h.get("X")+h.get("xVel")*-50);
-            h.put("Y",h.get("Y")+h.get("yVel")*-50);
+            h.put("X",h.get("X")+h.get("xVel")*-10);
+            h.put("Y",h.get("Y")+h.get("yVel")*-10);
         }
     }
 
     public void fireBullet() {
         Player target;
-        if (calcRange(x + width / 2, y + height / 2, player.x, player.y) > calcRange(x + width / 2, y + height / 2, panel.player2.x, panel.player2.y)) {
+        if (calcRange(x + width / 2, y + height / 2, player.x, player.y) < calcRange(x + width / 2, y + height / 2, panel.player2.x, panel.player2.y)) {
             target = player;
         } else {
             target = panel.player2;
         }
-        double xLength = ((x + width * 0.5) - target.x);
-        double yLength = ((y + height * 0.5) - target.y);
+        double xLength = ((x + width * 0.5) - (target.x + target.width/2));
+        double yLength = ((y + height * 0.5) - (target.y + target.height/2));
         double rotation = Math.atan2(yLength, xLength);
 
         HashMap<String, Double> fireball = new HashMap<>();
-        fireball.put("X", (double) x + width/4);
-        fireball.put("Y", (double) y + height/4);
+        fireball.put("X", (double) x + width/2);
+        fireball.put("Y", (double) y + height/2);
         fireball.put("xVel", Math.cos(rotation));
         fireball.put("yVel", Math.sin(rotation));
         fireball.put("Rotation",rotation);
