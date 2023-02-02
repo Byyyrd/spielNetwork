@@ -1,7 +1,8 @@
 import java.awt.*;
 import java.awt.event.*;
+import java.io.Serializable;
 
-public class Sword implements MouseListener {
+public class Sword implements MouseListener, Serializable{
     double rotation;
     long yLength;
     long xLength;

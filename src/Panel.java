@@ -5,9 +5,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.geom.AffineTransform;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Panel extends JLayeredPane implements ActionListener, KeyListener {
+public class Panel extends JLayeredPane implements ActionListener, KeyListener, Serializable {
     Player player1;
     Player player2;
 
