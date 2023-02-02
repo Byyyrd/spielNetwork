@@ -74,6 +74,10 @@ public class Client {
                         int[] inArray = (int[]) receivedObject;
                         System.out.println(Arrays.toString(inArray));
                     }
+                    if (receivedObject.getClass() == Player.class){
+                        Player inPlayer  = (Player) receivedObject;
+                        System.out.println(inPlayer);
+                    }
                     } catch(ClassNotFoundException e){
                         System.out.println("Client hat Scheiße bekommen");
                     } catch(IOException e){
@@ -91,10 +95,9 @@ public class Client {
         socketThread.start();
     }
 
-    public void sendArray(int[] array) {
+    public void sendArray(Player player) {
         try {
-            System.out.println("Send Array");
-            outputStream.writeObject(array);
+            outputStream.writeObject(player);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
