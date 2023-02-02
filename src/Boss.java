@@ -9,19 +9,23 @@ public class Boss {
     double speed = 10;
     double rotation = 0;
     Image bossImage;
+    Player player;
     int width;
     int height;
-    public Boss(int x, int y, double hp, double damage) {
+    int range = 500;
+    public Boss(int x, int y, double hp, double damage,Player player) {
         this.x = x;
         this.y = y;
         this.hp = hp;
         this.damage = damage;
+        this.player = player;
     }
     public void drawBoss(Graphics2D g2d,Image bossImage){
         this.bossImage = bossImage;
         width = bossImage.getWidth(null)*2;
         height = bossImage.getHeight(null)*2;
         g2d.drawImage(bossImage,x,y,width,height,null);
+        g2d.drawOval(x,y,range*2,range*2);
     }
     public void tick(double dt){
         /*double xLength = ;
@@ -33,11 +37,23 @@ public class Boss {
             rotation = random(2,6);
         }
         if(x < 0){
-            //rotation = random(6,);
+            rotation = random(-2,2);
         }
-        if (y + height > 900){
-            //rotation = random(,-6);
+        if (y + height > 1080){
+            rotation = random(Math.PI+0.5,Math.PI*2-0.5);
         }
+        if (y < 0){
+            rotation = random(0.5,Math.PI-0.5);
+        }
+        if (inRange(x,y,player.x,player.y,range)){
+            fireBullet();
+        }
+    }
+    public void fireBullet(){
+        System.out.println("Fire");
+    }
+    public boolean inRange(int x1,int y1,int x2,int y2,int range){
+        return Math.sqrt(Math.pow(x2-x1,2)+Math.pow(y2-y1,2)) < range;
     }
     public double random(double min, double max){
         if (min == 0 && max == 0){

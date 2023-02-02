@@ -73,11 +73,6 @@ public class Client {
                     }
                     if (receivedObject.getClass() == ArrayList.class) {
                         ArrayList inArray = (ArrayList) receivedObject;
-                        System.out.println(inArray);
-                    }
-                    if (receivedObject.getClass() == Player.class){
-                        Player inPlayer  = (Player) receivedObject;
-                        System.out.println(inPlayer);
                     }
                     } catch(ClassNotFoundException e){
                         System.out.println("Client hat Scheiße bekommen");

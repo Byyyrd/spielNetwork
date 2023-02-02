@@ -1,7 +1,6 @@
 import java.awt.*;
-import java.io.Serializable;
 
-public class Enemy implements Serializable {
+public class Enemy{
     int x;
     int y;
     double xVel;
