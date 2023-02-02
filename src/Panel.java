@@ -336,6 +336,7 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener, 
         ui.drawUi(g2d, hpImage);
 
         if (serverDown) {
+            System.out.println("Serevrrevevrevr");
             g2d.setFont(new Font("Arial", Font.PLAIN, 200));
             g2d.setColor(Color.red);
             g2d.setBackground(Color.BLACK);
@@ -497,10 +498,7 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener, 
             message = "";
         }
         if (bow.mousePos != null) {
-            ArrayList<Integer> array = new ArrayList<>();
-            array.add(1);
-            array.add(2);
-            client.sendArray(array);
+            client.sendArray(enemies);
             if (coop) {
                 boss.tick(delay / 100);
             }

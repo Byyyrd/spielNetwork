@@ -96,7 +96,7 @@ public class Client {
         socketThread.start();
     }
 
-    public void sendArray(ArrayList<Integer> array) {
+    public void sendArray(ArrayList<Enemy> array) {
         try {
             outputStream.writeObject(array);
         } catch (IOException e) {
