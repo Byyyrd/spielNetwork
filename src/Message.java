@@ -24,8 +24,10 @@ public class Message implements Serializable {
     double fistX;
     double fistY;
     boolean fistEquipped;
+    boolean controled;
+    boolean sparned;
 
-    public Message(int x, int y, String name, double swordRotation, double rotation, boolean bowPickedUp, double mouseX, double mouseY, boolean isClicked, boolean swordPickedUp, boolean minePlaced, boolean exploded, String message, double normHp, int death, double swordDamage, double bowDamage, double mineDamage, double mineTime, int maxMines, double fistX, double fistY , boolean fistEquipped) {
+    public Message(int x, int y, String name, double swordRotation, double rotation, boolean bowPickedUp, double mouseX, double mouseY, boolean isClicked, boolean swordPickedUp, boolean minePlaced, boolean exploded, String message, double normHp, int death, double swordDamage, double bowDamage, double mineDamage, double mineTime, int maxMines, double fistX, double fistY , boolean fistEquipped, boolean sparned, boolean controled) {
         this.x = x;
         this.y = y;
         this.name = name;
@@ -49,6 +51,8 @@ public class Message implements Serializable {
         this.fistX = fistX;
         this.fistY = fistY;
         this.fistEquipped = fistEquipped;
+        this.sparned = sparned;
+        this.controled = controled;
     }
 
     public int getX() {

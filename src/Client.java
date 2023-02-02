@@ -63,6 +63,8 @@ public class Client {
                     panel.fist1.x2 = receivedObject.fistX;
                     panel.fist2.y2 = receivedObject.fistY;
                     panel.player2.fistEquipped = receivedObject.fistEquipped;
+                    panel.sparned = receivedObject.sparned;
+                    panel.player2.controled = receivedObject.controled;
                 } catch (ClassNotFoundException e) {
                     System.out.println("Client hat Scheiße bekommen");
                 } catch (IOException e) {
@@ -79,12 +81,13 @@ public class Client {
             if(!panel.message.equals("")) {
                 panel.messageInput.setText(name + ": " + panel.message + "\n" + panel.messageInput.getText());
             }
-            message = new Message(player.x, player.y,name, sword.rotation, bow.playerRotation,player.isBowEquipped(), bow.mousePos.getX(), bow.mousePos.getY(),isClicked, player.swordEquipped, minePlaced, exploded,panel.message, panel.ui.normHp, panel.ui.death, player.swordDamage + panel.inventory.getSwordDamage(), player.bowDamage + panel.inventory.getBowDamage(), player.mineDamage + panel.inventory.getMineDamage(), player.mineTime + panel.inventory.getMineTime(), player.maxMines + panel.inventory.getMaxMines(), panel.fist1.x, panel.fist1.y, panel.player1.fistEquipped);
+            message = new Message(player.x, player.y,name, sword.rotation, bow.playerRotation,player.isBowEquipped(), bow.mousePos.getX(), bow.mousePos.getY(),isClicked, player.swordEquipped, minePlaced, exploded,panel.message, panel.ui.normHp, panel.ui.death, player.swordDamage + panel.inventory.getSwordDamage(), player.bowDamage + panel.inventory.getBowDamage(), player.mineDamage + panel.inventory.getMineDamage(), player.mineTime + panel.inventory.getMineTime(), player.maxMines + panel.inventory.getMaxMines(), panel.fist1.x, panel.fist1.y, panel.player1.fistEquipped, panel.sparned, panel.player1.controled);
             if(!panel.serverDown) {
                 outputStream.writeObject(message);
             }
             isClicked = false;
             panel.send = false;
+            panel.sparned = false;
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }

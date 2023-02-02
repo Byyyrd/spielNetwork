@@ -97,6 +97,7 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
     int delay = 10;
 
     boolean coop;
+    boolean sparned;
     ArrayList<Enemy> enemies = new ArrayList<>();
 
     public Panel(Client client,boolean coop) {
@@ -256,7 +257,7 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
         if(coop) {
             boss = new Boss(500, 200, 100, 5);
         }
-
+        enemies.add( new Enemy(500,500,this,player1, enemies.size() ));
         timer = new Timer(delay, this);
         timer.start();
 
@@ -315,7 +316,7 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener {
         g2d.setTransform(oldXForm);
 
         //Boss
-        boss.drawBoss(g2d,playerImage);
+        //boss.drawBoss(g2d,playerImage);
         for (int i = 0; i < enemies.size() ; i++){
             enemies.get(i).drawEnemy(g2d);
         }

@@ -87,7 +87,7 @@ public class ConnectionFrame extends JFrame implements ActionListener, KeyListen
             }
         }else {
             try {
-                new Client(textField1.getText(),textField2.getText(),this,true);
+                new Client(textField1.getText(),textField2.getText(),this,false);
                 System.out.println("New Client");
                 this.setVisible(false);
             } catch (IOException ex) {

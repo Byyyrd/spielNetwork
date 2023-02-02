@@ -40,7 +40,7 @@ public class Player implements Serializable {
     double mineDamageReduction = 0;
     double arrowVelocity = 1;
     int maxMines = 10;
-    boolean controled;
+    boolean controled = false;
 
 
 
@@ -83,6 +83,11 @@ public class Player implements Serializable {
         }
         if (y < -height) {
             y = panel.getHeight();
+        }
+        if (controled){
+            bowEquipped = true;
+            swordEquipped = false;
+            fistEquipped = false;
         }
     }
 
