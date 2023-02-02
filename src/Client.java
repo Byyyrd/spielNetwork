@@ -3,6 +3,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.lang.reflect.Array;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import static java.lang.System.exit;
@@ -70,9 +71,9 @@ public class Client {
                         panel.player2.fistEquipped = inMessage.fistEquipped;
                         panel.player2.controled = inMessage.controled;
                     }
-                    if (receivedObject.getClass() == int[].class) {
-                        int[] inArray = (int[]) receivedObject;
-                        System.out.println(Arrays.toString(inArray));
+                    if (receivedObject.getClass() == ArrayList.class) {
+                        ArrayList inArray = (ArrayList) receivedObject;
+                        System.out.println(inArray);
                     }
                     if (receivedObject.getClass() == Player.class){
                         Player inPlayer  = (Player) receivedObject;
@@ -95,9 +96,9 @@ public class Client {
         socketThread.start();
     }
 
-    public void sendArray(Player player) {
+    public void sendArray(ArrayList<Integer> array) {
         try {
-            outputStream.writeObject(player);
+            outputStream.writeObject(array);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
