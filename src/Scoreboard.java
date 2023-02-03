@@ -1,4 +1,5 @@
 import javax.swing.*;
+import javax.swing.text.PlainDocument;
 import java.awt.*;
 import java.io.*;
 
@@ -15,9 +16,10 @@ public class Scoreboard extends JFrame {
         this.setContentPane(panel);
         this.setDefaultCloseOperation(HIDE_ON_CLOSE);
         this.setTitle("Score");
-        this.setBounds(0,0,100,300);
+        this.setBounds(700,290,500,500);
         readStats();
         JLabel label = new JLabel("<html>"+stats+"</html>");
+        label.setFont(new Font("Arial", Font.PLAIN,50));
         panel.add(label);
 
     }

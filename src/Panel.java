@@ -370,7 +370,6 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener, 
         g2d.setTransform(oldXForm);
 
         if (serverDown) {
-            System.out.println("Serevrrevevrevr");
             g2d.setFont(new Font("Arial", Font.PLAIN, 200));
             g2d.setColor(Color.red);
             g2d.setBackground(Color.BLACK);
