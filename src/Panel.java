@@ -538,7 +538,11 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener, 
                     throw new RuntimeException(ex);
                 }
             }
+            if (boss.fired && !client.host.equals("::1")){
+                boss.fireBullet();
+            }
             if (sparned && !client.host.equals("::1")){
+                System.out.println("sf");
                 spawnEnemy();
                 sparned = false;
             }
