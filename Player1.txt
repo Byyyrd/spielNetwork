@@ -1,5 +1,6 @@
 Mode: Coop
 Player 1: Test
-Score: 58
-Deaths: 2
-Boss Level: 6
+Score: 0
+Deaths: 0
+Boss Level: 0
+Cheated: false

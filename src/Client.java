@@ -87,6 +87,7 @@ public class Client {
                         panel.serverDown = true;
                     try {
                         Thread.sleep(1000);
+                        panel.client.frame.writeStats();
                         exit(100);
                     } catch (InterruptedException ex) {
                         throw new RuntimeException(ex);
