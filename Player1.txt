@@ -1,5 +1,5 @@
-Mode: Vs.
+Mode: Coop
 Player 1: Test
-Score: -105
-Deaths: 0
-Level: 52Kills: 105
+Score: 58
+Deaths: 2
+Boss Level: 6

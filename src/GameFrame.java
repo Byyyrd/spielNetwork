@@ -50,6 +50,7 @@ public class GameFrame extends JFrame implements KeyListener {
                 writer.write("Level: "+panel.ui.death2/2 +"\n");
                 writer.write("Kills: "+panel.ui.death2 + 2+"\n");
             }
+            writer.write("Cheated: " + panel.cheated);
             writer.close();
         }
         catch(IOException ioe) {

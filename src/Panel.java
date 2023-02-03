@@ -107,6 +107,7 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener, 
 
     boolean coop;
     boolean sparned;
+    boolean cheated;
     ArrayList<Enemy> enemies = new ArrayList<>();
 
     public Panel(Client client, boolean coop) {
@@ -437,6 +438,7 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener, 
         if (e.getKeyCode() == 71) {
             ui.expSpend -= 10;
             ui.levelUp();
+            cheated = true;
         }
         //Chat and Stats
         if (e.getKeyCode() == 130) {
@@ -478,6 +480,7 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener, 
         }
         if (e.getKeyCode() == 80) {
             var item = new Item("Chain");
+            cheated =true;
             item.setImage(chainImage2);
             item.setSpeed(2);
             item.setHealTime(-2);
