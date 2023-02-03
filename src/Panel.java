@@ -565,8 +565,6 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener, 
             }
             for (int i = 0; i < bow.allArrows.size(); i++) {
                 for ( int j = enemies.size(); j > 0; j--) {
-                    System.out.println(i);
-                    System.out.println(j);
                     if (inRectangle((int) (bow.allArrows.get(i)[0] + 1 - 1), (int) (bow.allArrows.get(i)[1] + 1 - 1), enemies.get(j -1).x, enemies.get(j -1).y, enemyImage.getHeight(null) / 5, enemyImage.getHeight(null) / 5)) {
                         enemies.remove(j-1);
                     }

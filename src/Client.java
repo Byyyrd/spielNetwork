@@ -31,6 +31,7 @@ public class Client {
         this.host = host;
         conFrame.setVisible(true);
         frame = new GameFrame(this, coop);
+        var scoreboard = new Scoreboard();
         socket = new Socket(host, 30000);
         outputStream = new ObjectOutputStream(socket.getOutputStream());
         var socketThread = new Thread(() -> {

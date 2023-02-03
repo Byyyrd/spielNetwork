@@ -87,10 +87,14 @@ public class Ui {
         g2d.drawString("Mines: " + mines + "/" + (player.maxMines + panel.inventory.getMaxMines()), 1375, 1015);
         g2d.drawString("Dash: " + ((int) (dashCoolDown * 10f)) / 10f, 1685, 1015);
         //Points
-        g2d.setColor(Color.green);
-        g2d.fillRect(700, 975, (int) (exp * 50), 50);
-        g2d.drawImage(hpImage, 700, 975, hpImage.getWidth(null), hpImage.getHeight(null), null);
-        g2d.drawString(exp + "/" +"10", 1225, 1015);
+        if (!panel.coop) {
+            g2d.setColor(Color.green);
+            g2d.fillRect(700, 975, (int) (exp * 50), 50);
+            g2d.drawImage(hpImage, 700, 975, hpImage.getWidth(null), hpImage.getHeight(null), null);
+            g2d.drawString(exp + "/" + "10", 1225, 1015);
+        }else{
+            g2d.drawString("p1: " + death + " + p2: " + death2 + " = " + (death + death2), 800, 1015);
+        }
     }
 
     public void levelUp() {
