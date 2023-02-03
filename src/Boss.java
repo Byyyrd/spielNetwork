@@ -133,6 +133,7 @@ public class Boss {
     }
 
     public void fireBullet() {
+        fired = true;
         Player target;
         if (calcRange(x + width / 2, y + height / 2, player.x, player.y) < calcRange(x + width / 2, y + height / 2, panel.player2.x, panel.player2.y)) {
             target = player;

@@ -118,6 +118,7 @@ public class Client {
             isClicked = false;
             panel.send = false;
             panel.sparned = false;
+            panel.boss.fired = false;
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
