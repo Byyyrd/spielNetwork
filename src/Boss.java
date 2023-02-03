@@ -92,7 +92,7 @@ public class Boss {
             spawnTime = 0;
             panel.ui.levelUp();
             panel.ui.expSpend -= 10;
-            lastspwn += maxHp / 10;
+            lastspwn += maxHp / 5;
             spawned = false;
             speed = 0;
             invulnerable = true;
