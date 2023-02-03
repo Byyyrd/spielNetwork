@@ -361,10 +361,11 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener, 
         }
 
         //BossLevel
-        g2d.setColor(new Color(255, 116, 0));
-        g2d.setFont(font);
-        g2d.drawString("Boss Level: " + bossLevel,getWidth()/2,50);
-
+        if (coop) {
+            g2d.setColor(new Color(255, 116, 0));
+            g2d.setFont(font);
+            g2d.drawString("Boss Level: " + bossLevel, getWidth() / 2 - 50, 50);
+        }
         //Ui
         ui.drawUi(g2d, hpImage);
         g2d.setTransform(oldXForm);
