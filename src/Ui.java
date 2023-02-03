@@ -65,9 +65,11 @@ public class Ui {
     }
 
     public void drawUi(Graphics2D g2d, Image hpImage) {
-        exp = death2 * 5 - expSpend;
-        if (exp >= 10) {
-            levelUp();
+        if (!panel.coop) {
+            exp = death2 * 5 - expSpend;
+            if (exp >= 10) {
+                levelUp();
+            }
         }
         //Background
         g2d.setColor(new Color(1, 1, 1, 139));

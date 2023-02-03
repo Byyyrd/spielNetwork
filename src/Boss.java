@@ -104,7 +104,9 @@ public class Boss {
                 spawned = true;
             }
         }
-
+        if (fired){
+            fireBullet();
+        }
         if (panel.enemies.size() < 1) {
             if (panel.player1.enemySword != null && panel.player2.swordEquipped) {
                 if (inRectangle((int) (panel.player1.enemySword.x + 21 + Math.sin(panel.player1.enemySword.rotation) * 21), (int) (panel.player1.enemySword.y + width / 2 + Math.cos(panel.player1.enemySword.rotation) * -25), x, y, width, height) || inRectangle((int) (panel.player1.enemySword.x + 21 + Math.sin(panel.player1.enemySword.rotation) * 40), (int) (panel.player1.enemySword.y + width / 2 + Math.cos(panel.player1.enemySword.rotation) * -40), x, y, width, height) || inRectangle((int) (panel.player1.enemySword.x + 21 + Math.sin(panel.player1.enemySword.rotation) * 55), (int) (panel.player1.enemySword.y + width / 2 + Math.cos(panel.player1.enemySword.rotation) * -55), x, y, width, height)) {
