@@ -113,7 +113,11 @@ public class Player implements Serializable {
                     reduction = 100;
                 }
                 if (inRectangle((int) (allArrow[0] + 1 - 1), (int) (allArrow[1] + 1 - 1), x, y, width, height)) {
-                    panel.ui.playerHit(player2.bowDamage * (1 - (reduction / 100)));
+                    if (!controled) {
+                        panel.ui.playerHit(player2.bowDamage * (1 - (reduction / 100)));
+                    }else {
+                        panel.ui.playerHitEnemy(player2.bowDamage * (1 - (reduction / 100)));
+                    }
                     controled = false;
                 }
             }
