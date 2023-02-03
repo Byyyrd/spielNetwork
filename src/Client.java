@@ -74,10 +74,8 @@ public class Client {
                             panel.boss.y = inMessage.bossY;
                             panel.boss.fired = inMessage.bossFired;
                             panel.boss.hp = inMessage.bossHp;
+                            panel.boss.maxHp = inMessage.bossMaxHp;
                         }
-                    }
-                    if (receivedObject.getClass() == ArrayList.class) {
-                        ArrayList inArray = (ArrayList) receivedObject;
                     }
                     } catch(ClassNotFoundException e){
                         System.out.println("Client hat Scheiße bekommen");
@@ -97,21 +95,12 @@ public class Client {
         socketThread.start();
     }
 
-    public void sendArray(ArrayList<Enemy> array) {
-        try {
-            outputStream.writeObject(array);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
-    }
-
     public void sendMessage(Player player, Sword sword) {
         try {
             if (!panel.message.equals("")) {
                 panel.messageInput.setText(name + ": " + panel.message + "\n" + panel.messageInput.getText());
             }
-            message = new Message(player.x, player.y, name, sword.rotation, bow.playerRotation, player.isBowEquipped(), bow.mousePos.getX(), bow.mousePos.getY(), isClicked, player.swordEquipped, minePlaced, exploded, panel.message, panel.ui.normHp, panel.ui.death, player.swordDamage + panel.inventory.getSwordDamage(), player.bowDamage + panel.inventory.getBowDamage(), player.mineDamage + panel.inventory.getMineDamage(), player.mineTime + panel.inventory.getMineTime(), player.maxMines + panel.inventory.getMaxMines(), panel.fist1.x, panel.fist1.y, panel.player1.fistEquipped, panel.sparned, panel.player1.controled, panel.boss.x, panel.boss.y, panel.boss.fired, panel.boss.hp);
+            message = new Message(player.x, player.y, name, sword.rotation, bow.playerRotation, player.isBowEquipped(), bow.mousePos.getX(), bow.mousePos.getY(), isClicked, player.swordEquipped, minePlaced, exploded, panel.message, panel.ui.normHp, panel.ui.death, player.swordDamage + panel.inventory.getSwordDamage(), player.bowDamage + panel.inventory.getBowDamage(), player.mineDamage + panel.inventory.getMineDamage(), player.mineTime + panel.inventory.getMineTime(), player.maxMines + panel.inventory.getMaxMines(), panel.fist1.x, panel.fist1.y, panel.player1.fistEquipped, panel.sparned, panel.player1.controled, panel.boss.x, panel.boss.y, panel.boss.fired, panel.boss.hp, panel.boss.maxHp);
             if (!panel.serverDown) {
                 outputStream.writeObject(message);
             }

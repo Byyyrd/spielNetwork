@@ -276,7 +276,7 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener, 
         equipPanel.add(button6);
         inventory.equipButtons[6] = button6;
 
-        boss = new Boss(500, 200, 500, 5, player1, this);
+        boss = new Boss(500, 200, 100, 5, player1, this);
         //enemies.add(new Enemy(500, 500, this, player1, enemies.size()));
         timer = new Timer(delay, this);
         timer.start();
@@ -534,7 +534,7 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener, 
             message = "";
         }
         if (bow.mousePos != null) {
-            if (coop && client.host.equals("::1")) {
+            if (coop) {
                 try {
                     boss.tick(delay / 10);
                 } catch (InterruptedException ex) {
