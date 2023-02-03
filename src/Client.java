@@ -75,6 +75,7 @@ public class Client {
                             panel.boss.fired = inMessage.bossFired;
                             panel.boss.hp = inMessage.bossHp;
                             panel.boss.maxHp = inMessage.bossMaxHp;
+                            panel.bossLevel = inMessage.bosslevel;
                         }
                     }
                     } catch(ClassNotFoundException e){
@@ -100,7 +101,7 @@ public class Client {
             if (!panel.message.equals("")) {
                 panel.messageInput.setText(name + ": " + panel.message + "\n" + panel.messageInput.getText());
             }
-            message = new Message(player.x, player.y, name, sword.rotation, bow.playerRotation, player.isBowEquipped(), bow.mousePos.getX(), bow.mousePos.getY(), isClicked, player.swordEquipped, minePlaced, exploded, panel.message, panel.ui.normHp, panel.ui.death, player.swordDamage + panel.inventory.getSwordDamage(), player.bowDamage + panel.inventory.getBowDamage(), player.mineDamage + panel.inventory.getMineDamage(), player.mineTime + panel.inventory.getMineTime(), player.maxMines + panel.inventory.getMaxMines(), panel.fist1.x, panel.fist1.y, panel.player1.fistEquipped, panel.sparned, panel.player1.controled, panel.boss.x, panel.boss.y, panel.boss.fired, panel.boss.hp, panel.boss.maxHp);
+            message = new Message(player.x, player.y, name, sword.rotation, bow.playerRotation, player.isBowEquipped(), bow.mousePos.getX(), bow.mousePos.getY(), isClicked, player.swordEquipped, minePlaced, exploded, panel.message, panel.ui.normHp, panel.ui.death, player.swordDamage + panel.inventory.getSwordDamage(), player.bowDamage + panel.inventory.getBowDamage(), player.mineDamage + panel.inventory.getMineDamage(), player.mineTime + panel.inventory.getMineTime(), player.maxMines + panel.inventory.getMaxMines(), panel.fist1.x, panel.fist1.y, panel.player1.fistEquipped, panel.sparned, panel.player1.controled, panel.boss.x, panel.boss.y, panel.boss.fired, panel.boss.hp, panel.boss.maxHp, panel.bossLevel);
             if (!panel.serverDown) {
                 outputStream.writeObject(message);
             }

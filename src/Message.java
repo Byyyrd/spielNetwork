@@ -31,8 +31,9 @@ public class Message implements Serializable {
     boolean bossFired;
     double bossHp;
     double bossMaxHp;
+    int bosslevel;
 
-    public Message(int x, int y, String name, double swordRotation, double rotation, boolean bowPickedUp, double mouseX, double mouseY, boolean isClicked, boolean swordPickedUp, boolean minePlaced, boolean exploded, String message, double normHp, int death, double swordDamage, double bowDamage, double mineDamage, double mineTime, int maxMines, double fistX, double fistY , boolean fistEquipped, boolean spawned, boolean controlled, int bossX, int bossY, boolean bossFired, double bossHp, double bossMaxHp) {
+    public Message(int x, int y, String name, double swordRotation, double rotation, boolean bowPickedUp, double mouseX, double mouseY, boolean isClicked, boolean swordPickedUp, boolean minePlaced, boolean exploded, String message, double normHp, int death, double swordDamage, double bowDamage, double mineDamage, double mineTime, int maxMines, double fistX, double fistY , boolean fistEquipped, boolean spawned, boolean controlled, int bossX, int bossY, boolean bossFired, double bossHp, double bossMaxHp, int bosslevel) {
         this.x = x;
         this.y = y;
         this.name = name;
@@ -63,6 +64,7 @@ public class Message implements Serializable {
         this.bossFired = bossFired;
         this.bossHp = bossHp;
         this.bossMaxHp = bossMaxHp;
+        this.bosslevel =bosslevel;
     }
 
     public int getX() {
