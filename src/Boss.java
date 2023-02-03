@@ -1,8 +1,6 @@
 import java.awt.*;
-import java.time.Duration;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Timer;
 
 public class Boss {
 
@@ -25,6 +23,7 @@ public class Boss {
     double iFrame = 0.5;
     double spawnTime;
     boolean spawned;
+    boolean invulnerable;
     ArrayList<HashMap<String, Double>> allFireballs = new ArrayList<>();
 
     public Boss(int x, int y, double maxHp, double damage, Player player, Panel panel) {
@@ -94,10 +93,11 @@ public class Boss {
             lastspwn += maxHp / 10;
             spawned = false;
             speed = 0;
-
+            invulnerable = true;
         }
         if(spawnTime >= 100){
             speed = 5;
+            invulnerable = false;
             if (!spawned) {
                 panel.spawnEnemy();
                 panel.sparned = true;
@@ -167,7 +167,7 @@ public class Boss {
     }
 
     public void playerHit(double damage) {
-        if (iFrame <= 0) {
+        if (iFrame <= 0 && !invulnerable) {
             hp -= damage;
             iFrame = 1;
         }

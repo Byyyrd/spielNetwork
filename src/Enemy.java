@@ -20,7 +20,7 @@ public class Enemy{
         this.i = i;
     }
 
-    public void tick(){
+    public void tick(int i){
         if (explosionCollision(x + panel.enemyImage.getWidth(null)/10,y + panel.enemyImage.getHeight(null)/10, player.x + player.width/2, player.y + player.height/2, 10)){
             player.controled = true;
             panel.enemies.remove(i);

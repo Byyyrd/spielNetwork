@@ -553,7 +553,7 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener, 
             fist1.tick();
             player1.heal();
             for (int i = 0; i < enemies.size(); i++) {
-                enemies.get(i).tick();
+                enemies.get(i).tick(i);
             }
             mine.minePlaced = false;
             mine.exploded = false;
