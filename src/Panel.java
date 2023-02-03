@@ -279,7 +279,7 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener, 
         equipPanel.add(button6);
         inventory.equipButtons[6] = button6;
         if (coop) {
-            boss = new Boss(500, 200, 500, 80, player1, this);
+            boss = new Boss(500, 200, 500, 8000, player1, this);
         }
         //enemies.add(new Enemy(500, 500, this, player1, enemies.size()));
         timer = new Timer(delay, this);
