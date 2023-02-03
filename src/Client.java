@@ -69,7 +69,7 @@ public class Client {
                         panel.fist2.y2 = inMessage.fistY;
                         panel.player2.fistEquipped = inMessage.fistEquipped;
                         panel.player2.controled = inMessage.controlled;
-                        if (host.equals("::1")){
+                        if (!host.equals("::1")){
                             panel.boss.x = inMessage.bossX;
                             panel.boss.y = inMessage.bossY;
                             panel.boss.fired = inMessage.bossFired;
