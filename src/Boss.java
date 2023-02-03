@@ -119,10 +119,10 @@ public class Boss {
                     }
                 }
                 if (panel.player1.allArrows != null) {
-                    for (Double[] allArrow : panel.player1.allArrows) {
-                        if (inRectangle((int) (allArrow[0] + 1 - 1), (int) (allArrow[1] + 1 - 1), x, y, width, height)) {
-                            playerHit(panel.player2.bowDamage);
-                            panel.player1.allArrows.remove(allArrow);
+                    for (int i = 0; i < panel.player1.allArrows.size();i++) {
+                        if (inRectangle((int) (panel.player1.allArrows.get(i)[0] + 1 - 1), (int) (panel.player1.allArrows.get(i)[1] + 1 - 1), x, y, width, height)) {
+                            playerHit(panel.player1.bowDamage + panel.inventory.getBowDamage());
+                            panel.player1.allArrows.remove(i);
                         }
                     }
                 }
