@@ -332,6 +332,7 @@ public class UpgradeButton extends JButton implements ActionListener {
         }
         panel.inventory.updateInv();
         panel.ui.allButtons.removeAll(panel.ui.allButtons);
+        panel.inUpgradeWindow = false;
         panel.inventory.updateInv();
         panel.repaint();
     }

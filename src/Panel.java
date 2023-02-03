@@ -89,6 +89,7 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener, 
     boolean inChat;
     boolean serverDown;
     boolean inInv;
+    boolean inUpgradeWindow;
     JPanel inventoryPanel;
     JPanel equipPanel;
     Inventory inventory;

@@ -96,33 +96,36 @@ public class Ui {
     public void levelUp() {
         expSpend += 10;
         level++;
-        for (int i = 0; i <= 2; i++) {
-            int rand = (int) (Math.random() * 20 + 1);
-            switch (rand) {
-                case 1 -> allButtons.add(new UpgradeButton(panel, i * 600 + 100, "Heal"));
-                case 2 -> allButtons.add(new UpgradeButton(panel, i * 600 + 100, "SwordDamage"));
-                case 3 -> allButtons.add(new UpgradeButton(panel, i * 600 + 100, "BowDamage"));
-                case 4 -> allButtons.add(new UpgradeButton(panel, i * 600 + 100, "MineDamage"));
-                case 5 -> allButtons.add(new UpgradeButton(panel, i * 600 + 100, "Bow-CoolDown"));
-                case 6 -> allButtons.add(new UpgradeButton(panel, i * 600 + 100, "Sword-DmgReduction"));
-                case 7 -> allButtons.add(new UpgradeButton(panel, i * 600 + 100, "Bow-DmgReduction"));
-                case 8 -> allButtons.add(new UpgradeButton(panel, i * 600 + 100, "Mines-DmgReduction"));
-                case 9 -> allButtons.add(new UpgradeButton(panel, i * 600 + 100, "Speed"));
-                case 10 -> allButtons.add(new UpgradeButton(panel, i * 600 + 100, "MaxMines"));
-                case 11 -> allButtons.add(new UpgradeButton(panel, i * 600 + 100, "MineGain"));
-                case 12 -> allButtons.add(new UpgradeButton(panel, i * 600 + 100, "MaxHp"));
-                case 13 -> allButtons.add(new UpgradeButton(panel, i * 600 + 100, "ArrowVelocity"));
-                case 14 -> allButtons.add(new UpgradeButton(panel, i * 600 + 100, "Armor"));
-                case 15 -> allButtons.add(new UpgradeButton(panel, i * 600 + 100, "Sword"));
-                case 16 -> allButtons.add(new UpgradeButton(panel, i * 600 + 100, "Bow"));
-                case 17 -> allButtons.add(new UpgradeButton(panel, i * 600 + 100, "Mine"));
-                case 18 -> allButtons.add(new UpgradeButton(panel, i * 600 + 100, "Ring"));
-                case 19 -> allButtons.add(new UpgradeButton(panel, i * 600 + 100, "Chain"));
-                case 20 -> allButtons.add(new UpgradeButton(panel, i * 600 + 100, "Shoes"));
+        if (!panel.inUpgradeWindow) {
+            panel.inUpgradeWindow = true;
+            for (int i = 0; i <= 2; i++) {
+                int rand = (int) (Math.random() * 20 + 1);
+                switch (rand) {
+                    case 1 -> allButtons.add(new UpgradeButton(panel, i * 600 + 100, "Heal"));
+                    case 2 -> allButtons.add(new UpgradeButton(panel, i * 600 + 100, "SwordDamage"));
+                    case 3 -> allButtons.add(new UpgradeButton(panel, i * 600 + 100, "BowDamage"));
+                    case 4 -> allButtons.add(new UpgradeButton(panel, i * 600 + 100, "MineDamage"));
+                    case 5 -> allButtons.add(new UpgradeButton(panel, i * 600 + 100, "Bow-CoolDown"));
+                    case 6 -> allButtons.add(new UpgradeButton(panel, i * 600 + 100, "Sword-DmgReduction"));
+                    case 7 -> allButtons.add(new UpgradeButton(panel, i * 600 + 100, "Bow-DmgReduction"));
+                    case 8 -> allButtons.add(new UpgradeButton(panel, i * 600 + 100, "Mines-DmgReduction"));
+                    case 9 -> allButtons.add(new UpgradeButton(panel, i * 600 + 100, "Speed"));
+                    case 10 -> allButtons.add(new UpgradeButton(panel, i * 600 + 100, "MaxMines"));
+                    case 11 -> allButtons.add(new UpgradeButton(panel, i * 600 + 100, "MineGain"));
+                    case 12 -> allButtons.add(new UpgradeButton(panel, i * 600 + 100, "MaxHp"));
+                    case 13 -> allButtons.add(new UpgradeButton(panel, i * 600 + 100, "ArrowVelocity"));
+                    case 14 -> allButtons.add(new UpgradeButton(panel, i * 600 + 100, "Armor"));
+                    case 15 -> allButtons.add(new UpgradeButton(panel, i * 600 + 100, "Sword"));
+                    case 16 -> allButtons.add(new UpgradeButton(panel, i * 600 + 100, "Bow"));
+                    case 17 -> allButtons.add(new UpgradeButton(panel, i * 600 + 100, "Mine"));
+                    case 18 -> allButtons.add(new UpgradeButton(panel, i * 600 + 100, "Ring"));
+                    case 19 -> allButtons.add(new UpgradeButton(panel, i * 600 + 100, "Chain"));
+                    case 20 -> allButtons.add(new UpgradeButton(panel, i * 600 + 100, "Shoes"));
 
+                }
+                allButtons.get(i).addKeyListener(panel);
+                panel.add(allButtons.get(i));
             }
-            allButtons.get(i).addKeyListener(panel);
-            panel.add(allButtons.get(i));
         }
     }
 
