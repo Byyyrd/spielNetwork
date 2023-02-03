@@ -15,7 +15,7 @@ public class Player implements Serializable {
     double xVel, yVel;
     double xDir, yDir;
     double iFrame = 0.5;
-    String name = "";
+    String name = "-------";
     Player player2;
     Sword enemySword;
     ArrayList<Double[]> allArrows;
