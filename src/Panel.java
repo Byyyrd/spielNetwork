@@ -532,7 +532,11 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener, 
         }
         if (bow.mousePos != null) {
             if (coop && client.host.equals("::1")) {
-                boss.tick(delay / 10);
+                try {
+                    boss.tick(delay / 10);
+                } catch (InterruptedException ex) {
+                    throw new RuntimeException(ex);
+                }
             }
             if (sparned && !client.host.equals("::1")){
                 spawnEnemy();

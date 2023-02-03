@@ -1,6 +1,8 @@
 import java.awt.*;
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Timer;
 
 public class Boss {
 
@@ -21,6 +23,8 @@ public class Boss {
     int range = 2000;
     double timer;
     double iFrame = 0.5;
+    double spawnTime;
+    boolean spawned;
     ArrayList<HashMap<String, Double>> allFireballs = new ArrayList<>();
 
     public Boss(int x, int y, double maxHp, double damage, Player player, Panel panel) {
@@ -51,8 +55,9 @@ public class Boss {
         g2d.drawImage(panel.hpImage, x, y + height + 3, width, 10, null);
     }
 
-    public void tick(double dt) {
+    public void tick(double dt) throws InterruptedException {
         timer -= dt;
+        spawnTime += dt;
         iFrame -= 0.1;
         x += Math.cos(rotation) * speed;
         y += Math.sin(rotation) * speed;
@@ -68,7 +73,7 @@ public class Boss {
         if (y < 0) {
             rotation = random(0.5, Math.PI - 0.5);
         }
-        if (calcRange(x + width / 2, y + height / 2, player.x, player.y) < range && timer <= 0) {
+        if (calcRange(x + width / 2, y + height / 2, player.x, player.y) < range && timer <= 0 && spawnTime > 100) {
             fireBullet();
             timer = 30;
         }
@@ -77,20 +82,30 @@ public class Boss {
             h.put("Y", h.get("Y") + h.get("yVel") * -10);
 
         }
-        for(int i = 0;i < allFireballs.size() ;i++) {
+        for (int i = 0; i < allFireballs.size(); i++) {
             if (allFireballs.get(i).get("X") > 1950 || allFireballs.get(i).get("X") < -50 || allFireballs.get(i).get("Y") > 1100 || allFireballs.get(i).get("Y") < -50) {
                 allFireballs.remove(i);
             }
         }
         if (hp < maxHp - lastspwn) {
-            lastspwn += maxHp / 10;
-            panel.spawnEnemy();
-            panel.sparned = true;
+            spawnTime = 0;
             panel.ui.levelUp();
             panel.ui.expSpend -= 10;
+            lastspwn += maxHp / 10;
+            spawned = false;
+            speed = 0;
 
         }
-        if (panel.enemies.size()<1) {
+        if(spawnTime >= 100){
+            speed = 5;
+            if (!spawned) {
+                panel.spawnEnemy();
+                panel.sparned = true;
+                spawned = true;
+            }
+        }
+
+        if (panel.enemies.size() < 1) {
             if (panel.player1.enemySword != null && panel.player2.swordEquipped) {
                 if (inRectangle((int) (panel.player1.enemySword.x + 21 + Math.sin(panel.player1.enemySword.rotation) * 21), (int) (panel.player1.enemySword.y + width / 2 + Math.cos(panel.player1.enemySword.rotation) * -25), x, y, width, height) || inRectangle((int) (panel.player1.enemySword.x + 21 + Math.sin(panel.player1.enemySword.rotation) * 40), (int) (panel.player1.enemySword.y + width / 2 + Math.cos(panel.player1.enemySword.rotation) * -40), x, y, width, height) || inRectangle((int) (panel.player1.enemySword.x + 21 + Math.sin(panel.player1.enemySword.rotation) * 55), (int) (panel.player1.enemySword.y + width / 2 + Math.cos(panel.player1.enemySword.rotation) * -55), x, y, width, height)) {
                     playerHit(panel.player2.swordDamage);
@@ -158,7 +173,7 @@ public class Boss {
         }
 
         if (hp <= 0) {
-            panel.boss = new Boss(900,600, maxHp*2, damage*2,player, panel);
+            panel.boss = new Boss(900, 600, maxHp * 2, damage * 2, player, panel);
         }
     }
 
