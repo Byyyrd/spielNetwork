@@ -58,19 +58,21 @@ public class Boss {
         timer -= dt;
         spawnTime += dt;
         iFrame -= 0.1;
-        x += Math.cos(rotation) * speed;
-        y += Math.sin(rotation) * speed;
-        if (x + width > 1900) {
-            rotation = random(2, 6);
-        }
-        if (x < 0) {
-            rotation = random(-2, 2);
-        }
-        if (y + height > 1080) {
-            rotation = random(Math.PI + 0.5, Math.PI * 2 - 0.5);
-        }
-        if (y < 0) {
-            rotation = random(0.5, Math.PI - 0.5);
+        if (panel.client.host.equals("::1")) {
+            x += Math.cos(rotation) * speed;
+            y += Math.sin(rotation) * speed;
+            if (x + width > 1900) {
+                rotation = random(2, 6);
+            }
+            if (x < 0) {
+                rotation = random(-2, 2);
+            }
+            if (y + height > 1080) {
+                rotation = random(Math.PI + 0.5, Math.PI * 2 - 0.5);
+            }
+            if (y < 0) {
+                rotation = random(0.5, Math.PI - 0.5);
+            }
         }
         if (calcRange(x + width / 2, y + height / 2, player.x, player.y) < range && timer <= 0 && spawnTime > 100) {
             fireBullet();
@@ -104,28 +106,47 @@ public class Boss {
                 spawned = true;
             }
         }
-        if (panel.enemies.size() < 1) {
-            if (panel.player1.enemySword != null && panel.player2.swordEquipped) {
-                if (inRectangle((int) (panel.player1.enemySword.x + 21 + Math.sin(panel.player1.enemySword.rotation) * 21), (int) (panel.player1.enemySword.y + width / 2 + Math.cos(panel.player1.enemySword.rotation) * -25), x, y, width, height) || inRectangle((int) (panel.player1.enemySword.x + 21 + Math.sin(panel.player1.enemySword.rotation) * 40), (int) (panel.player1.enemySword.y + width / 2 + Math.cos(panel.player1.enemySword.rotation) * -40), x, y, width, height) || inRectangle((int) (panel.player1.enemySword.x + 21 + Math.sin(panel.player1.enemySword.rotation) * 55), (int) (panel.player1.enemySword.y + width / 2 + Math.cos(panel.player1.enemySword.rotation) * -55), x, y, width, height)) {
-                    playerHit(panel.player2.swordDamage);
-                }
-            }
-            if (panel.player1.swordEquipped) {
-                if (inRectangle((int) (panel.sword.x + 21 + Math.sin(panel.sword.rotation) * 21), (int) (panel.sword.y + width / 2 + Math.cos(panel.sword.rotation) * -25), x, y, width, height) || inRectangle((int) (panel.sword.x + 21 + Math.sin(panel.sword.rotation) * 40), (int) (panel.sword.y + width / 2 + Math.cos(panel.sword.rotation) * -40), x, y, width, height) || inRectangle((int) (panel.sword.x + 21 + Math.sin(panel.sword.rotation) * 55), (int) (panel.sword.y + width / 2 + Math.cos(panel.sword.rotation) * -55), x, y, width, height)) {
-                    playerHit(panel.player1.swordDamage + panel.inventory.getSwordDamage());
-                }
-            }
-            if (panel.player1.allArrows != null) {
-                for (Double[] allArrow : panel.player1.allArrows) {
-                    if (inRectangle((int) (allArrow[0] + 1 - 1), (int) (allArrow[1] + 1 - 1), x, y, width, height)) {
-                        playerHit(panel.player2.bowDamage);
+        if (panel.client.host.equals("::1")) {
+            if (panel.enemies.size() < 1) {
+                if (panel.player1.enemySword != null && panel.player2.swordEquipped) {
+                    if (inRectangle((int) (panel.player1.enemySword.x + 21 + Math.sin(panel.player1.enemySword.rotation) * 21), (int) (panel.player1.enemySword.y + width / 2 + Math.cos(panel.player1.enemySword.rotation) * -25), x, y, width, height) || inRectangle((int) (panel.player1.enemySword.x + 21 + Math.sin(panel.player1.enemySword.rotation) * 40), (int) (panel.player1.enemySword.y + width / 2 + Math.cos(panel.player1.enemySword.rotation) * -40), x, y, width, height) || inRectangle((int) (panel.player1.enemySword.x + 21 + Math.sin(panel.player1.enemySword.rotation) * 55), (int) (panel.player1.enemySword.y + width / 2 + Math.cos(panel.player1.enemySword.rotation) * -55), x, y, width, height)) {
+                        playerHit(panel.player2.swordDamage);
                     }
                 }
-            }
-            if (panel.player1.allArrowsSelf != null) {
-                for (Double[] allArrow : panel.player1.allArrowsSelf) {
-                    if (inRectangle((int) (allArrow[0] + 1 - 1), (int) (allArrow[1] + 1 - 1), x, y, width, height)) {
-                        playerHit(panel.player1.bowDamage + panel.inventory.getBowDamage());
+                if (panel.player1.swordEquipped) {
+                    if (inRectangle((int) (panel.sword.x + 21 + Math.sin(panel.sword.rotation) * 21), (int) (panel.sword.y + width / 2 + Math.cos(panel.sword.rotation) * -25), x, y, width, height) || inRectangle((int) (panel.sword.x + 21 + Math.sin(panel.sword.rotation) * 40), (int) (panel.sword.y + width / 2 + Math.cos(panel.sword.rotation) * -40), x, y, width, height) || inRectangle((int) (panel.sword.x + 21 + Math.sin(panel.sword.rotation) * 55), (int) (panel.sword.y + width / 2 + Math.cos(panel.sword.rotation) * -55), x, y, width, height)) {
+                        playerHit(panel.player1.swordDamage + panel.inventory.getSwordDamage());
+                    }
+                }
+                if (panel.player1.allArrows != null) {
+                    for (Double[] allArrow : panel.player1.allArrows) {
+                        if (inRectangle((int) (allArrow[0] + 1 - 1), (int) (allArrow[1] + 1 - 1), x, y, width, height)) {
+                            playerHit(panel.player2.bowDamage);
+                            panel.player1.allArrows.remove(allArrow);
+                        }
+                    }
+                }
+                if (panel.player1.allArrowsSelf != null) {
+                    for (Double[] allArrow : panel.player1.allArrowsSelf) {
+                        if (inRectangle((int) (allArrow[0] + 1 - 1), (int) (allArrow[1] + 1 - 1), x, y, width, height)) {
+                            playerHit(panel.player1.bowDamage + panel.inventory.getBowDamage());
+                            panel.player1.allArrowsSelf.remove(allArrow);
+                        }
+                    }
+                }else {
+                    if (panel.player1.allArrows != null) {
+                        for (Double[] allArrow : panel.player1.allArrows) {
+                            if (inRectangle((int) (allArrow[0] + 1 - 1), (int) (allArrow[1] + 1 - 1), x, y, width, height)) {
+                                panel.player1.allArrows.remove(allArrow);
+                            }
+                        }
+                    }
+                    if (panel.player1.allArrowsSelf != null) {
+                        for (Double[] allArrow : panel.player1.allArrowsSelf) {
+                            if (inRectangle((int) (allArrow[0] + 1 - 1), (int) (allArrow[1] + 1 - 1), x, y, width, height)) {
+                                panel.player1.allArrowsSelf.remove(allArrow);
+                            }
+                        }
                     }
                 }
             }
