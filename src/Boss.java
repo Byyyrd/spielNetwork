@@ -174,6 +174,7 @@ public class Boss {
 
         if (hp <= 0) {
             panel.boss = new Boss(900, 600, maxHp * 2, damage * 2, player, panel);
+            panel.bossLevel++;
         }
     }
 

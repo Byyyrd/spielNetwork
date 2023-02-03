@@ -1,4 +1,3 @@
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -7,8 +6,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.geom.AffineTransform;
 import java.io.Serializable;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 
 public class Panel extends JLayeredPane implements ActionListener, KeyListener, Serializable {
@@ -96,7 +93,7 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener, 
     JPanel equipPanel;
     Inventory inventory;
 
-
+    int bossLevel;
 
     AffineTransform oldXForm;
     int weapon = 1;
@@ -360,6 +357,12 @@ public class Panel extends JLayeredPane implements ActionListener, KeyListener, 
             enemy.drawEnemy(g2d);
             g2d.setTransform(oldXForm);
         }
+
+        //BossLevel
+        g2d.setColor(new Color(255, 116, 0));
+        g2d.setFont(font);
+        g2d.drawString("Boss Level: " + bossLevel,getWidth()/2,50);
+
         //Ui
         ui.drawUi(g2d, hpImage);
         g2d.setTransform(oldXForm);
