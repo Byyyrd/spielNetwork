@@ -127,26 +127,18 @@ public class Boss {
                     }
                 }
                 if (panel.player1.allArrowsSelf != null) {
-                    for (Double[] allArrow : panel.player1.allArrowsSelf) {
-                        if (inRectangle((int) (allArrow[0] + 1 - 1), (int) (allArrow[1] + 1 - 1), x, y, width, height)) {
+                    for (int i = 0; i < panel.player1.allArrowsSelf.size();i++) {
+                        if (inRectangle((int) (panel.player1.allArrowsSelf.get(i)[0] + 1 - 1), (int) (panel.player1.allArrowsSelf.get(i)[1] + 1 - 1), x, y, width, height)) {
                             playerHit(panel.player1.bowDamage + panel.inventory.getBowDamage());
-                            panel.player1.allArrowsSelf.remove(allArrow);
+                            panel.player1.allArrowsSelf.remove(i);
                         }
                     }
                 }else {
                     if (panel.player1.allArrows != null) {
-                        for (Double[] allArrow : panel.player1.allArrows) {
-                            if (inRectangle((int) (allArrow[0] + 1 - 1), (int) (allArrow[1] + 1 - 1), x, y, width, height)) {
-                                panel.player1.allArrows.remove(allArrow);
-                            }
-                        }
+                        panel.player1.allArrows.removeIf(allArrow -> inRectangle((int) (allArrow[0] + 1 - 1), (int) (allArrow[1] + 1 - 1), x, y, width, height));
                     }
                     if (panel.player1.allArrowsSelf != null) {
-                        for (Double[] allArrow : panel.player1.allArrowsSelf) {
-                            if (inRectangle((int) (allArrow[0] + 1 - 1), (int) (allArrow[1] + 1 - 1), x, y, width, height)) {
-                                panel.player1.allArrowsSelf.remove(allArrow);
-                            }
-                        }
+                        panel.player1.allArrowsSelf.removeIf(allArrow -> inRectangle((int) (allArrow[0] + 1 - 1), (int) (allArrow[1] + 1 - 1), x, y, width, height));
                     }
                 }
             }
