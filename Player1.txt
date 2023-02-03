@@ -1,6 +1,6 @@
 Mode: Coop
 Player 1: Test
-Deaths: 0
-Boss Level: 1
-Cheated: true
-Score: <font color = green>10</font>
+Score: -1
+Deaths: 1
+Boss Level: 0
+Cheated: tru

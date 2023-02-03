@@ -2,11 +2,8 @@ import javax.swing.*;
 import javax.swing.text.PlainDocument;
 import java.awt.*;
 import java.io.*;
-
-
 public class Scoreboard extends JFrame {
     StringBuilder stats = new StringBuilder();
-    //String stats = "<html>zdfcvfhj<br> dtzuifghjkl</html>";
 
     public Scoreboard() {
         JPanel panel = new JPanel();
